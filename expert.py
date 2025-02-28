@@ -52,7 +52,7 @@ def load_cheetah_expert():
     return expert_states, expert_actions, expert_next_states
 
 if __name__ == "__main__":
-    env = gym.make("HalfCheetah-v4", render_mode='human')
+    env = gym.make("Ant-v4", render_mode='human')
     env.reset_model()
     env.reset()
 
@@ -62,15 +62,7 @@ if __name__ == "__main__":
     print("action space:", env.action_space)
     print("action space shape:", env.action_space.shape)
 
-    actions = torch.load('HalfCheetahFH-v0_airl_action.pt').numpy()[1]
-    states = torch.load('HalfCheetahFH-v0_airl.pt').numpy()[1]
-
-    # save as csv
-    np.savetxt('HalfCheetahFH-v0_airl_action.csv', actions, delimiter=',')
-    np.savetxt('HalfCheetahFH-v0_airl.csv', states, delimiter=',')
-
-    print(actions.shape, states.shape)
-    env.unwrapped.set_state(states[0,:9], states[0,9:])
+    actions = torch.load('AntFH-v0_airl.pt').numpy()[1]
 
     for i in range(1000):
         action = actions[i]
