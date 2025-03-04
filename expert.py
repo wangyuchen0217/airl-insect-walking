@@ -28,31 +28,21 @@ def collect_agent_trajectories(env, policy, steps_per_iter, device):
             state = next_state
     return trajectories
 
-def load_expert_data(num_samples, state_dim, action_dim):
-    """
-    Dummy expert data generator. Replace this function with loading your own expert data.
-    """
-    expert_states = np.random.randn(num_samples, state_dim)
-    expert_actions = np.random.randn(num_samples, action_dim)
-    expert_next_states = np.random.randn(num_samples, state_dim)
-    print("Loaded expert data with shapes:", expert_states.shape, expert_actions.shape, expert_next_states.shape)
-    return expert_states, expert_actions, expert_next_states
-
-def load_cheetah_expert():
-    expert_states = torch.load('HalfCheetahFH-v0_airl.pt').numpy() # (62, 1000, 17)
-    expert_actions = torch.load('HalfCheetahFH-v0_airl_action.pt').numpy() # (62, 1000, 6)
-    print(expert_states.shape, expert_actions.shape)
+def load_expert_data(model_name='Ant'):
+    expert_states = torch.load(model_name+'_states.pt').numpy() # (62, 1000, 111)
+    expert_actions = torch.load(model_name+'_actions.pt').numpy() # (62, 1000, 8)
+    print("expert_states:", expert_states.shape, "expert_actions:", expert_actions.shape)
     # take only 1 trail
-    expert_states = expert_states[50]
-    expert_actions = expert_actions[50]
-    print(expert_states.shape, expert_actions.shape)
+    expert_states = expert_states[1,:,:27] # (1000, 27)
+    expert_actions = expert_actions[1] # (1000, 8)
     expert_next_states = np.roll(expert_states, -1, axis=0)
     expert_next_states[-1] = expert_states[-1]
-    print(expert_next_states.shape)
+    print("expert_states:", expert_states.shape, "expert_actions:", expert_actions.shape, "expert_next_states:", expert_next_states.shape)
     return expert_states, expert_actions, expert_next_states
 
 if __name__ == "__main__":
-    env = gym.make("Ant-v4", render_mode='human')
+    model_name = 'Ant'
+    env = gym.make(model_name+"-v4", render_mode='human')
     env.reset_model()
     env.reset()
 
@@ -62,12 +52,11 @@ if __name__ == "__main__":
     print("action space:", env.action_space)
     print("action space shape:", env.action_space.shape)
 
-    actions = torch.load('AntFH-v0_airl.pt').numpy()[1]
+    actions = torch.load(model_name+'_actions.pt').numpy()[1]
 
     for i in range(1000):
         action = actions[i]
         obs, reward, done, _, _=env.step(action)
-        #env.step(env.action_space.sample())
         env.render()
         print("Step:", i, "Reward:", reward, "Done:", done)
     env.close()
