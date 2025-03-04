@@ -31,7 +31,7 @@ policy_optimizer = optim.Adam(policy.parameters(), lr=3e-4)
 
 # Initialize the AIRL discriminator and its optimizer
 discriminator = AIRLDiscriminator(state_dim, action_dim, gamma=gamma).to(device)
-disc_optimizer = optim.Adam(discriminator.parameters(), lr=3e-4)
+disc_optimizer = optim.Adam(discriminator.parameters(), lr=1e-4)
 
 # Load expert data (replace with your expert trajectories)
 expert_states, expert_actions, expert_next_states = load_expert_data(model_name)

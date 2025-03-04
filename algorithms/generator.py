@@ -38,7 +38,7 @@ class PolicyNetwork(nn.Module):
         return action, log_prob, value
 
 def ppo_update(policy, trajectories, rewards, optimizer, device, clip_epsilon=0.2,
-               ppo_epochs=10, mini_batch_size=64, gamma=0.99, lam=0.95):
+               ppo_epochs=15, mini_batch_size=64, gamma=0.99, lam=0.95):
     """
     Performs a PPO update using trajectories re-labeled with the AIRL reward.
     """
