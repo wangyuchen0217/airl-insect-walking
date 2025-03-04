@@ -33,8 +33,8 @@ def load_expert_data(model_name='Ant'):
     expert_actions = torch.load(model_name+'_actions.pt').numpy() # (62, 1000, 8)
     print("expert_states:", expert_states.shape, "expert_actions:", expert_actions.shape)
     # take only 1 trail
-    expert_states = expert_states[1,:,:27] # (1000, 27)
-    expert_actions = expert_actions[1] # (1000, 8)
+    expert_states = expert_states[:,:,:27].reshape(-1,27) # (62000, 27)
+    expert_actions = expert_actions.reshape(-1,8) # (62000, 8)
     expert_next_states = np.roll(expert_states, -1, axis=0)
     expert_next_states[-1] = expert_states[-1]
     print("expert_states:", expert_states.shape, "expert_actions:", expert_actions.shape, "expert_next_states:", expert_next_states.shape)
@@ -58,5 +58,5 @@ if __name__ == "__main__":
         action = actions[i]
         obs, reward, done, _, _=env.step(action)
         env.render()
-        print("Step:", i, "Reward:", reward, "Done:", done)
+        # print("Step:", i, "Reward:", reward, "Done:", done)
     env.close()
