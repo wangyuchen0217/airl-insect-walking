@@ -23,7 +23,7 @@ gamma = 0.99                 # Discount factor
 env = gym.make(ENV_NAME)
 state_dim = env.observation_space.shape[0]
 action_dim = env.action_space.shape[0]
-print(state_dim, action_dim)
+print("state_dim:", state_dim, "action_dim:", action_dim)
 
 # Initialize policy and its optimizer
 policy = PolicyNetwork(state_dim, action_dim).to(device)
@@ -41,11 +41,11 @@ expert_dataset = TensorDataset(torch.FloatTensor(expert_states).to(device),
 expert_loader = DataLoader(expert_dataset, batch_size=batch_size, shuffle=True)
 
 # Train the models and save them.
-trained_policy, trained_discriminator = train_airl(env, policy, num_iterations, steps_per_iter, discriminator_iters, batch_size, discriminator, 
-                            expert_loader, expert_dataset, disc_optimizer, policy_optimizer, device)
+# trained_policy, trained_discriminator = train_airl(env, policy, num_iterations, steps_per_iter, discriminator_iters, batch_size, discriminator, 
+#                             expert_loader, expert_dataset, disc_optimizer, policy_optimizer, device)
 
-# trained_policy = PolicyNetwork(state_dim, action_dim).to(device)
-# trained_policy.load_state_dict(torch.load("policy.pth", map_location=device))
+trained_policy = PolicyNetwork(state_dim, action_dim).to(device)
+trained_policy.load_state_dict(torch.load("trained_models/policy.pth", map_location=device))
 
 # Visualize the trained policy in Mujoco
-visualize_trained_agent(trained_policy, device)
+visualize_trained_agent(trained_policy, device, ENV_NAME)

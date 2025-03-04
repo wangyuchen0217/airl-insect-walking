@@ -70,7 +70,7 @@ def train_airl(env, policy, num_iterations, steps_per_iter, discriminator_iters,
     env.close()
     return policy, discriminator
 
-def visualize_trained_agent(policy, device, env_name="HalfCheetah-v4", episodes=5, sleep_time=0.02):
+def visualize_trained_agent(policy, device, env_name, episodes=5, sleep_time=0.02):
     """
     Create a Gymnasium Mujoco environment with rendering enabled (via render_mode='human')
     and run a few episodes using the trained policy.
