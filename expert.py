@@ -54,9 +54,15 @@ if __name__ == "__main__":
 
     actions = torch.load(model_name+'_actions.pt').numpy()[1]
 
-    for i in range(1000):
+    # for i in range(1000):
+    done = False
+    i = 0
+    total_reward = 0
+    while not done:
         action = actions[i]
         obs, reward, done, _, _=env.step(action)
         env.render()
-        # print("Step:", i, "Reward:", reward, "Done:", done)
+        i += 1
+        total_reward += reward
+        print("Step:", i, "Reward:", total_reward, "Done:", done)
     env.close()
