@@ -49,3 +49,5 @@ trained_policy, trained_discriminator = train_airl(env, policy, num_iterations, 
 
 # # Visualize the trained policy in Mujoco
 # visualize_trained_agent(trained_policy, device, ENV_NAME)
+
+# test
