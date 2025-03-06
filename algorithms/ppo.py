@@ -3,8 +3,8 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torch.utils.data import DataLoader, TensorDataset
 from torch.optim import Adam
-from algorithms.buffer import RolloutBuffer
-from algorithms.base import Algorithm
+from common.buffer import RolloutBuffer
+from common.base import Algorithm
 from networks.actor import ActorNetworkPolicy
 from networks.critic import CriticNetworkPolicy
     
