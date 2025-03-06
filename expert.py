@@ -5,29 +5,18 @@ import gymnasium as gym
 
 def load_expert_data(state_file, action_file, save_npz=False, npz_filename="expert_data.npz"):
     """
-    Loads expert data from state and action .pt files and constructs a dictionary containing:
-        - 'state': numpy array of shape (num_trajectories * traj_length, state_dim)
-        - 'action': numpy array of shape (num_trajectories * traj_length, action_dim)
-        - 'reward': numpy array of shape (num_trajectories * traj_length,) with zeros
-        - 'done': numpy array of shape (num_trajectories * traj_length, 1), where only the last timestep of each trajectory is 1
-        - 'next_state': numpy array of shape (num_trajectories * traj_length, state_dim)
-    
-    Args:
-        state_file (str): Path to the state.pt file. Expected shape: (num_trajectories, traj_length, state_dim)
-        action_file (str): Path to the action.pt file. Expected shape: (num_trajectories, traj_length, action_dim)
-        save_npz (bool): If True, saves the resulting dictionary as an .npz file.
-        npz_filename (str): The filename for the saved npz file.
-    
+    Loads expert data from state and action .pt files and constructs a dictionary。
     Returns:
         dict: Expert data dictionary.
     """
     # Load data from .pt files.
-    states = torch.load(state_file)   # shape: (num_trajectories, traj_length, state_dim)
-    actions = torch.load(action_file)   # shape: (num_trajectories, traj_length, action_dim)
+    states = torch.load(state_file, weights_only=True)   # shape: (num_trajectories, traj_length, state_dim)
+    actions = torch.load(action_file, weights_only=True)   # shape: (num_trajectories, traj_length, action_dim)
     
     # Convert to numpy arrays.
     states_np = states.numpy()[:,:,:27]
     actions_np = actions.numpy()
+    print(f"states: {states_np.shape}, actions: {actions_np.shape}")
     
     num_trajectories, traj_length, state_dim = states_np.shape
     _, _, action_dim = actions_np.shape
@@ -67,8 +56,8 @@ def load_expert_data(state_file, action_file, save_npz=False, npz_filename="expe
 class ExpertBuffer:
     def __init__(self, expert_data, device):
         """
-        expert_data: dict containing keys 'state', 'action', 'reward', 'done', 'next_state'
-        device: torch device
+        Initializes the ExpertBuffer by converting the expert demonstration data 
+        into PyTorch tensors and moving them to the specified device.
         """
         self.states = torch.tensor(expert_data['state'], dtype=torch.float32, device=device)
         self.actions = torch.tensor(expert_data['action'], dtype=torch.float32, device=device)
@@ -78,6 +67,9 @@ class ExpertBuffer:
         self.size = self.states.size(0)
 
     def sample(self, batch_size):
+        """
+        Randomly samples a mini-batch of expert data.
+        """
         idx = np.random.randint(0, self.size, size=batch_size)
         return (self.states[idx],
                 self.actions[idx],
@@ -86,4 +78,6 @@ class ExpertBuffer:
                 self.next_states[idx])
 
 if __name__ == "__main__":
-    pass
+    STATE_FILE = "Ant_states.pt"
+    ACTION_FILE = "Ant_actions.pt"
+    expert_data = load_expert_data(STATE_FILE, ACTION_FILE, save_npz=False, npz_filename="expert_data.npz")

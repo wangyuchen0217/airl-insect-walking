@@ -41,6 +41,7 @@ def main():
     device = torch.device("cuda:0" if CUDA and torch.cuda.is_available() else "cpu")
     np.random.seed(SEED)
     torch.manual_seed(SEED)
+    print(f"Device: {device}")
 
     # Load expert data from .pt files and wrap into an ExpertBuffer.
     expert_data = load_expert_data(STATE_FILE, ACTION_FILE, save_npz=False)
