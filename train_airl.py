@@ -3,8 +3,8 @@ import torch
 import torch.optim as optim
 from torch.utils.data import DataLoader, TensorDataset
 import time
-from algorithms.generator import PolicyNetwork
-from algorithms.discriminator import AIRLDiscriminator
+from algorithms.ppo import PolicyNetwork
+from networks.discrim import AIRLDiscriminator
 from expert import load_expert_data
 from airl import train_airl, visualize_trained_agent
 

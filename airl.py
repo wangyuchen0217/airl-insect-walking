@@ -4,7 +4,7 @@ import torch.nn as nn
 import numpy as np
 from torch.utils.data import DataLoader
 import time
-from algorithms.generator import ppo_update
+from algorithms.ppo import ppo_update
 from expert import collect_agent_trajectories
 
 
