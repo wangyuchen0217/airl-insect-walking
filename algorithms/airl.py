@@ -39,6 +39,7 @@ class AIRL(PPO):
         self.batch_size = batch_size
         self.epoch_disc = epoch_disc
 
+
     def update(self, writer):
         self.learning_steps += 1
 
@@ -71,6 +72,7 @@ class AIRL(PPO):
         # Update PPO using estimated rewards.
         self.update_ppo(
             states, actions, rewards, dones, log_pis, next_states, writer)
+
 
     def update_disc(self, states, dones, log_pis, next_states,
                     states_exp, dones_exp, log_pis_exp,

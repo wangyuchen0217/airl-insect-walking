@@ -8,10 +8,9 @@ class Trainer:
     def __init__(self, env, env_test, algo, log_dir, seed=0, num_steps=10**7,
                  eval_interval=10**5, num_eval_episodes=5):
         self.env = env
-        # self.env.seed(seed)
+        self.seed = seed
 
         self.env_test = env_test
-        # self.env_test.seed(2**31 - seed)
 
         self.algo = algo
         self.log_dir = log_dir
@@ -26,12 +25,13 @@ class Trainer:
         self.eval_interval = eval_interval
         self.num_eval_episodes = num_eval_episodes
 
+
     def train(self):
         self.start_time = time()
         t = 0
 
         # Reset the environment properly.
-        reset_out = self.env.reset()
+        reset_out = self.env.reset(seed=self.seed)
         if isinstance(reset_out, tuple):
             state, _ = reset_out
         else:
@@ -49,10 +49,11 @@ class Trainer:
                 self.algo.save_models(os.path.join(self.model_dir, f'step{step}'))
         sleep(10)
 
+
     def evaluate(self, step):
         mean_return = 0.0
         for _ in range(self.num_eval_episodes):
-            reset_out = self.env_test.reset()
+            reset_out = self.env_test.reset(seed=2**31 - self.seed)
             if isinstance(reset_out, tuple):
                 state, _ = reset_out
             else:
@@ -70,6 +71,7 @@ class Trainer:
             mean_return += episode_return / self.num_eval_episodes
         self.writer.add_scalar('return/test', mean_return, step)
         print(f"Num steps: {step:<6}   Return: {mean_return:<5.1f}   Time: {self.time}")
+
 
     @property
     def time(self):
