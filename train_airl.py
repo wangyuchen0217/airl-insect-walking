@@ -89,5 +89,8 @@ def main():
     )
     trainer.train()
 
+    # Save the final model.
+    algo.save_models(os.path.join(log_dir, "model"))
+
 if __name__ == "__main__":
     main()
