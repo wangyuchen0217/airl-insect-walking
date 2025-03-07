@@ -1,5 +1,6 @@
 import os
 import torch
+import envs
 import gymnasium as gym
 import numpy as np
 from datetime import datetime
@@ -8,12 +9,12 @@ from expert import load_expert_data, ExpertBuffer
 from common.trainer import Trainer
 
 # ======== Parameters (modify these as needed) =========
-STATE_FILE = "Ant_states.pt"
-ACTION_FILE = "Ant_actions.pt"
-ENV_ID = "Ant-v4"
+STATE_FILE = "HalfCheetah_states.pt"
+ACTION_FILE = "HalfCheetah_actions.pt"
+ENV_ID = "HalfCheetah-v4"
 ROLLOUT_LENGTH = 2048
-NUM_STEPS = 10**5
-EVAL_INTERVAL = 10**3
+NUM_STEPS = 10**7
+EVAL_INTERVAL = 10**5
 GAMMA = 0.995
 MIX_BUFFER = 1
 BATCH_SIZE = 64
