@@ -13,9 +13,10 @@ import logging
 from common.base import LoggerWriter
 
 # ======== Parameters (modify these as needed) =========
-STATE_FILE = "HalfCheetah_states.pt"
-ACTION_FILE = "HalfCheetah_actions.pt"
-ENV_ID = "HalfCheetah-v4"
+NAME = "Ant"
+STATE_FILE = NAME+"_states.pt"
+ACTION_FILE = NAME+"_actions.pt"
+ENV_ID = NAME+"-v4"
 CUDA = 0
 ROLLOUT_LENGTH = 2048
 NUM_STEPS = 10**7
@@ -28,8 +29,8 @@ LR_CRITIC = 3e-4
 LR_DISC = 3e-4
 UNITS_ACTOR = (64, 64)
 UNITS_CRITIC = (64, 64)
-UNITS_DISC_R = (100, 100)
-UNITS_DISC_V = (100, 100)
+UNITS_DISC_R = (64, 64)
+UNITS_DISC_V = (64, 64)
 EPOCH_PPO = 10
 EPOCH_DISC = 5
 CLIP_EPS = 0.2

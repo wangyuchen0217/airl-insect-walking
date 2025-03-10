@@ -34,6 +34,16 @@ def main():
     else:
         print(f"Actor model file not found: {actor_path}")
         return
+    print("Actor Network Parameters:")
+    for name, param in actor.named_parameters():
+        print(f"{name}: {param.shape}")
+    print(f"---  Statistics ---")
+    for name, param in actor.named_parameters():
+        if param.requires_grad:
+            mean_val = param.data.mean().item()
+            std_val = param.data.std().item()
+            l2_norm = param.data.norm(2).item()
+            print(f"{name}: mean={mean_val:.4f}, std={std_val:.4f}, L2 norm={l2_norm:.4f}")
     
     # Set the model to evaluation mode
     actor.eval()
@@ -68,7 +78,7 @@ def main():
             done = terminated or truncated
             ep_return += reward
             step += 1
-            print(f"Step: {step}, Reward: {reward:.2f}, Done: {done}")
+            # print(f"Step: {step}, Reward: {reward:.2f}, Done: {done}")
             
             # Optionally, render is already enabled via render_mode="human"
             # env.render()  # 如果需要手动调用 render，可以取消注释
