@@ -1,7 +1,0 @@
-Logging started at 20250310-1921
-NVIDIA RTX A6000
-Process ID: 3251654
-states: (64, 1000, 111), actions: (64, 1000, 8)
-Expert buffer size: 64000
-Initial state shape:
-(27,)
