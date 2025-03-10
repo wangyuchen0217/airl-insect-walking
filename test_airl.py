@@ -5,8 +5,8 @@ import numpy as np
 from networks.actor import ActorNetworkPolicy  # 确保该路径与项目结构一致
 
 def main():
-    SAVE_PATH = "/home/yuchen/airl_insect_walking/logs/Ant-v4/airl/seed123-20250307-1402"
-    ENV_ID = "Ant-v4"
+    SAVE_PATH = "/home/yuchen/airl_insect_walking/logs/HalfCheetah-v4/airl/seed123-20250310-1339"
+    ENV_ID = "HalfCheetah-v4"
     NUM_EPISODES = 10
     SEED = 123
 
@@ -52,7 +52,7 @@ def main():
             
         done = False
         ep_return = 0.0
-        
+        step = 0
         while not done:
             # Convert state to a torch tensor and add batch dimension
             state_tensor = torch.tensor(np.array(state), dtype=torch.float32, device=device).unsqueeze(0)
@@ -67,6 +67,8 @@ def main():
             state, reward, terminated, truncated, info = next_step
             done = terminated or truncated
             ep_return += reward
+            step += 1
+            print(f"Step: {step}, Reward: {reward:.2f}, Done: {done}")
             
             # Optionally, render is already enabled via render_mode="human"
             # env.render()  # 如果需要手动调用 render，可以取消注释
