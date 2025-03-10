@@ -54,3 +54,17 @@ class LoggerWriter:
 
     def flush(self):
         pass  # Required for compatibility
+
+def log_parameters(ENV_ID, STATE_FILE, ACTION_FILE, ROLLOUT_LENGTH, NUM_STEPS, EVAL_INTERVAL, 
+                   GAMMA, MIX_BUFFER, BATCH_SIZE, LR_ACTOR, LR_CRITIC, LR_DISC, 
+                   UNITS_ACTOR, UNITS_CRITIC, UNITS_DISC_R, UNITS_DISC_V, 
+                   EPOCH_PPO, EPOCH_DISC, CLIP_EPS, LAMBDA, COEF_ENT, MAX_GRAD_NORM, SEED):
+    print(f"Env: {ENV_ID}, {STATE_FILE}, {ACTION_FILE}, Seed: {SEED}") 
+    print(f"Rollout length: {ROLLOUT_LENGTH}")
+    print(f"Num steps: {NUM_STEPS}, Eval interval: {EVAL_INTERVAL}")
+    print(f"Gamma: {GAMMA}, Mix buffer: {MIX_BUFFER}, Batch size: {BATCH_SIZE}")
+    print(f"lr_actor: {LR_ACTOR}, lr_critic: {LR_CRITIC}, lr_disc: {LR_DISC}")
+    print(f"Units Actor: {UNITS_ACTOR}, Units Critic: {UNITS_CRITIC}")
+    print(f"Units Disc R: {UNITS_DISC_R}, Units Disc V: {UNITS_DISC_V}")
+    print(f"Epoch ppo: {EPOCH_PPO}, Epoch disc: {EPOCH_DISC}")
+    print(f"Clip Epsc: {CLIP_EPS}, Lambda: {LAMBDA}, Coef Ent: {COEF_ENT}, Max Grad Norm: {MAX_GRAD_NORM}") 

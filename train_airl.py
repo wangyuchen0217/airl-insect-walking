@@ -11,6 +11,7 @@ from expert import load_expert_data, ExpertBuffer
 from common.trainer import Trainer
 import logging
 from common.base import LoggerWriter
+from common.base import log_parameters
 
 # ======== Parameters (modify these as needed) =========
 NAME = "Ant"
@@ -18,7 +19,7 @@ STATE_FILE = NAME+"_states.pt"
 ACTION_FILE = NAME+"_actions.pt"
 ENV_ID = NAME+"-v4"
 CUDA = 0
-ROLLOUT_LENGTH = 2048
+ROLLOUT_LENGTH = 1000
 NUM_STEPS = 10**7
 EVAL_INTERVAL = 10**5
 GAMMA = 0.995
@@ -43,7 +44,7 @@ SEED = 123
 def main():
     # Create log directory.
     current_time = datetime.now().strftime("%Y%m%d-%H%M")
-    log_dir = os.path.join("logs", ENV_ID, "airl", f"seed{SEED}-{current_time}")
+    log_dir = os.path.join("logs", ENV_ID, "airl", f"{current_time}")
     if not os.path.exists(log_dir):
         os.makedirs(log_dir)
     log_filename = os.path.join(log_dir, "training_process.log")
@@ -67,6 +68,11 @@ def main():
     print(f"Process ID: {os.getpid()}")
     np.random.seed(SEED)
     torch.manual_seed(SEED)
+
+    log_parameters(ENV_ID, STATE_FILE, ACTION_FILE, ROLLOUT_LENGTH, NUM_STEPS, EVAL_INTERVAL, 
+                   GAMMA, MIX_BUFFER, BATCH_SIZE, LR_ACTOR, LR_CRITIC, LR_DISC, 
+                   UNITS_ACTOR, UNITS_CRITIC, UNITS_DISC_R, UNITS_DISC_V, 
+                   EPOCH_PPO, EPOCH_DISC, CLIP_EPS, LAMBDA, COEF_ENT, MAX_GRAD_NORM, SEED)
 
     # Load expert data from .pt files and wrap into an ExpertBuffer.
     expert_data = load_expert_data(STATE_FILE, ACTION_FILE, save_npz=False)

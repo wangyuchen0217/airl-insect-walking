@@ -38,7 +38,7 @@ class Trainer:
             state = reset_out
         if isinstance(state, dict):
             state = state.get("observation", state)
-        print("Initial state shape:", state.shape)
+        print(f"Initial state shape: {state.shape}")
 
         for step in range(1, self.num_steps + 1):
             state, t = self.algo.step(self.env, state, t, step)
