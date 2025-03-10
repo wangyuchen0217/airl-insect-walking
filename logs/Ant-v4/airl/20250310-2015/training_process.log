@@ -1,0 +1,26 @@
+Logging started at 20250310-2015
+NVIDIA RTX A6000
+Process ID: 3253595
+Env: Ant-v4, Ant_states.pt, Ant_actions.pt, Seed: 123
+Rollout length: 1000
+Num steps: 10000000, Eval interval: 100000
+Gamma: 0.995, Mix buffer: 1, Batch size: 64
+lr_actor: 0.0003, lr_critic: 0.0003, lr_disc: 0.0003
+Units Actor: (64, 64), Units Critic: (64, 64)
+Units Disc R: (100, 100), Units Disc V: (100, 100)
+Epoch ppo: 50, Epoch disc: 10
+Clip Epsc: 0.2, Lambda: 0.97, Coef Ent: 0.0, Max Grad Norm: 10.0
+states: (64, 1000, 27), actions: (64, 1000, 8)
+Expert buffer size: 64000
+Initial state shape: (27,)
+Num steps: 100000   Return: 916.7   Time: 0:09:03
+Num steps: 200000   Return: 799.1   Time: 0:17:58
+Num steps: 300000   Return: 744.6   Time: 0:26:51
+Num steps: 400000   Return: 710.4   Time: 0:35:38
+Num steps: 500000   Return: 780.3   Time: 0:44:31
+Num steps: 600000   Return: 740.2   Time: 0:53:35
+Num steps: 700000   Return: 726.1   Time: 1:02:16
+Num steps: 800000   Return: 689.6   Time: 1:11:08
+Num steps: 900000   Return: 747.7   Time: 1:20:01
+Num steps: 1000000   Return: 696.1   Time: 1:28:59
+Num steps: 1100000   Return: 739.3   Time: 1:37:48

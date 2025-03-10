@@ -1,0 +1,50 @@
+Logging started at 20250310-1926
+NVIDIA RTX A6000
+Process ID: 3253178
+states: (64, 1000, 27), actions: (64, 1000, 8)
+Expert buffer size: 64000
+Initial state shape:
+(27,)
+Num steps: 100000   Return: 896.7   Time: 0:03:01
+Num steps: 200000   Return: 924.9   Time: 0:05:55
+Num steps: 300000   Return: 973.7   Time: 0:08:41
+Num steps: 400000   Return: 946.1   Time: 0:11:28
+Num steps: 500000   Return: 882.0   Time: 0:14:26
+Num steps: 600000   Return: 838.2   Time: 0:17:11
+Num steps: 700000   Return: 794.1   Time: 0:19:57
+Num steps: 800000   Return: 774.1   Time: 0:22:47
+Num steps: 900000   Return: 817.8   Time: 0:25:35
+Num steps: 1000000   Return: 731.3   Time: 0:28:22
+Num steps: 1100000   Return: 704.6   Time: 0:31:11
+Num steps: 1200000   Return: 721.4   Time: 0:33:59
+Num steps: 1300000   Return: 734.4   Time: 0:36:50
+Num steps: 1400000   Return: 731.3   Time: 0:39:44
+Num steps: 1500000   Return: 742.4   Time: 0:42:40
+Num steps: 1600000   Return: 758.5   Time: 0:45:31
+Num steps: 1700000   Return: 718.3   Time: 0:48:21
+Num steps: 1800000   Return: 683.3   Time: 0:51:55
+Num steps: 1900000   Return: 737.8   Time: 0:55:33
+Num steps: 2000000   Return: 744.8   Time: 0:59:10
+Num steps: 2100000   Return: 736.4   Time: 1:02:53
+Num steps: 2200000   Return: 726.9   Time: 1:06:31
+Num steps: 2300000   Return: 726.9   Time: 1:10:07
+Num steps: 2400000   Return: 706.2   Time: 1:13:43
+Num steps: 2500000   Return: 712.3   Time: 1:17:25
+Num steps: 2600000   Return: 698.4   Time: 1:21:10
+Num steps: 2700000   Return: 717.9   Time: 1:24:54
+Num steps: 2800000   Return: 719.2   Time: 1:28:38
+Num steps: 2900000   Return: 730.0   Time: 1:32:25
+Num steps: 3000000   Return: 714.4   Time: 1:36:06
+Num steps: 3100000   Return: 727.8   Time: 1:39:55
+Num steps: 3200000   Return: 716.2   Time: 1:43:40
+Num steps: 3300000   Return: 726.9   Time: 1:47:20
+Num steps: 3400000   Return: 728.9   Time: 1:51:07
+Num steps: 3500000   Return: 718.6   Time: 1:54:55
+Num steps: 3600000   Return: 717.3   Time: 1:58:46
+Num steps: 3700000   Return: 719.2   Time: 2:02:39
+Num steps: 3800000   Return: 712.7   Time: 2:06:23
+Num steps: 3900000   Return: 712.3   Time: 2:10:09
+Num steps: 4000000   Return: 709.5   Time: 2:13:52
+Num steps: 4100000   Return: 708.1   Time: 2:17:36
+Num steps: 4200000   Return: 704.0   Time: 2:21:23
+Num steps: 4300000   Return: 701.2   Time: 2:25:12
