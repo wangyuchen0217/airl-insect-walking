@@ -25,7 +25,7 @@ EVAL_INTERVAL = 10**5
 GAMMA = 0.995
 MIX_BUFFER = 1
 BATCH_SIZE = 64
-LR_ACTOR = 3e-4
+LR_ACTOR = 1e-4
 LR_CRITIC = 3e-4
 LR_DISC = 3e-4
 UNITS_ACTOR = (64, 64)
@@ -36,7 +36,7 @@ EPOCH_PPO = 50
 EPOCH_DISC = 10
 CLIP_EPS = 0.2
 LAMBDA = 0.97
-COEF_ENT = 0.0
+COEF_ENT = 0.01
 MAX_GRAD_NORM = 10.0
 SEED = 123
 # ========================================================
