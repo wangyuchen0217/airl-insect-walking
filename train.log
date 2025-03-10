@@ -1,9 +1,29 @@
 nohup: ignoring input
-2025-03-10 13:39:27.354145: I tensorflow/core/platform/cpu_feature_guard.cc:193] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 FMA
+2025-03-10 19:21:11.933575: I tensorflow/core/platform/cpu_feature_guard.cc:193] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 FMA
 To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
-2025-03-10 13:39:27.543866: E tensorflow/stream_executor/cuda/cuda_blas.cc:2981] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
-2025-03-10 13:39:28.103037: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libnvinfer.so.7'; dlerror: libnvinfer.so.7: cannot open shared object file: No such file or directory; LD_LIBRARY_PATH: /home/yuchen/anaconda3/envs/mujoco316/lib/python3.8/site-packages/cv2/../../lib64:/opt/slurm/20.02.6/lib:/home/yuchen/.mujoco/mujoco210/bin:/usr/lib/nvidia
-2025-03-10 13:39:28.103168: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libnvinfer_plugin.so.7'; dlerror: libnvinfer_plugin.so.7: cannot open shared object file: No such file or directory; LD_LIBRARY_PATH: /home/yuchen/anaconda3/envs/mujoco316/lib/python3.8/site-packages/cv2/../../lib64:/opt/slurm/20.02.6/lib:/home/yuchen/.mujoco/mujoco210/bin:/usr/lib/nvidia
-2025-03-10 13:39:28.103178: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Cannot dlopen some TensorRT libraries. If you would like to use Nvidia GPU with TensorRT, please make sure the missing libraries mentioned above are installed properly.
+2025-03-10 19:21:12.140756: E tensorflow/stream_executor/cuda/cuda_blas.cc:2981] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2025-03-10 19:21:12.804224: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libnvinfer.so.7'; dlerror: libnvinfer.so.7: cannot open shared object file: No such file or directory; LD_LIBRARY_PATH: /home/yuchen/anaconda3/envs/mujoco316/lib/python3.8/site-packages/cv2/../../lib64:/opt/slurm/20.02.6/lib:/home/yuchen/.mujoco/mujoco210/bin:/usr/lib/nvidia
+2025-03-10 19:21:12.804332: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libnvinfer_plugin.so.7'; dlerror: libnvinfer_plugin.so.7: cannot open shared object file: No such file or directory; LD_LIBRARY_PATH: /home/yuchen/anaconda3/envs/mujoco316/lib/python3.8/site-packages/cv2/../../lib64:/opt/slurm/20.02.6/lib:/home/yuchen/.mujoco/mujoco210/bin:/usr/lib/nvidia
+2025-03-10 19:21:12.804340: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Cannot dlopen some TensorRT libraries. If you would like to use Nvidia GPU with TensorRT, please make sure the missing libraries mentioned above are installed properly.
 /home/yuchen/anaconda3/envs/mujoco316/lib/python3.8/site-packages/torch/utils/tensorboard/__init__.py:4: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
   if not hasattr(tensorboard, "__version__") or LooseVersion(
+Traceback (most recent call last):
+  File "train_airl.py", line 117, in <module>
+    main()
+  File "train_airl.py", line 111, in main
+    trainer.train()
+  File "/home/yuchen/airl_insect_walking/common/trainer.py", line 46, in train
+    self.algo.update(self.writer)
+  File "/home/yuchen/airl_insect_walking/algorithms/airl.py", line 57, in update
+    log_pis_exp = self.actor.evaluate_log_pi(
+  File "/home/yuchen/airl_insect_walking/networks/actor.py", line 44, in evaluate_log_pi
+    return evaluate_lop_pi(self.net(states), self.log_stds, actions)
+  File "/home/yuchen/anaconda3/envs/mujoco316/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/yuchen/anaconda3/envs/mujoco316/lib/python3.8/site-packages/torch/nn/modules/container.py", line 204, in forward
+    input = module(input)
+  File "/home/yuchen/anaconda3/envs/mujoco316/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/yuchen/anaconda3/envs/mujoco316/lib/python3.8/site-packages/torch/nn/modules/linear.py", line 114, in forward
+    return F.linear(input, self.weight, self.bias)
+RuntimeError: mat1 and mat2 shapes cannot be multiplied (64x111 and 27x64)
