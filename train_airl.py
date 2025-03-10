@@ -1,4 +1,5 @@
 import os
+os.environ["NUMEXPR_MAX_THREADS"] = "8"
 import sys
 import torch
 import envs
@@ -57,7 +58,7 @@ def main():
     # Create training and testing environments.
     env = gym.make(ENV_ID)
     env_test = gym.make(ENV_ID)
-    device = torch.device("cuda:"+str(CUDA) if torch.cuda.is_available() and CUDA >= 0 else "cpu")
+    device = torch.device(f"cuda:{CUDA}" if torch.cuda.is_available() and CUDA >= 0 else "cpu")
     if torch.cuda.is_available():
         print(torch.cuda.get_device_name(CUDA))
     else:
