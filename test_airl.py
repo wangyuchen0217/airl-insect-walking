@@ -1,0 +1,80 @@
+import os
+import gymnasium as gym
+import torch
+import numpy as np
+from networks.actor import ActorNetworkPolicy  # 确保该路径与项目结构一致
+
+def main():
+    SAVE_PATH = "/home/yuchen/airl_insect_walking/logs/Ant-v4/airl/seed123-20250307-1402"
+    ENV_ID = "Ant-v4"
+    NUM_EPISODES = 10
+    SEED = 123
+
+    # Set the device and env
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    env = gym.make(ENV_ID, render_mode="human")
+    
+    # Get state and action shapes from the environment
+    state_shape = env.observation_space.shape    # e.g., (27,)
+    action_shape = env.action_space.shape          # e.g., (8,)
+    
+    # Instantiate the Actor network with the same architecture as used during training
+    actor = ActorNetworkPolicy(
+        state_shape=state_shape,
+        action_shape=action_shape,
+        hidden_units=(64, 64),
+        hidden_activation=torch.nn.Tanh()
+    ).to(device)
+    
+    # Load the saved actor model parameters from a .pth file
+    actor_path = f"{SAVE_PATH}/model/actor.pth"
+    if os.path.exists(actor_path):
+        actor.load_state_dict(torch.load(actor_path, map_location=device))
+        print(f"Loaded actor model from {actor_path}")
+    else:
+        print(f"Actor model file not found: {actor_path}")
+        return
+    
+    # Set the model to evaluation mode
+    actor.eval()
+    
+    for ep in range(NUM_EPISODES):
+        # Reset the environment with a fixed seed for reproducibility
+        reset_out = env.reset(seed=SEED)
+        if isinstance(reset_out, tuple):
+            state, _ = reset_out
+        else:
+            state = reset_out
+        
+        # If observation is a dict, extract the "observation" key
+        if isinstance(state, dict):
+            state = state.get("observation", state)
+            
+        done = False
+        ep_return = 0.0
+        
+        while not done:
+            # Convert state to a torch tensor and add batch dimension
+            state_tensor = torch.tensor(np.array(state), dtype=torch.float32, device=device).unsqueeze(0)
+            
+            # Get the action from the actor (deterministic, using the mean)
+            with torch.no_grad():
+                mean = actor(state_tensor)  # Actor returns the policy mean after tanh activation
+                action = mean.cpu().numpy()[0]
+            
+            # Take a step in the environment
+            next_step = env.step(action)
+            state, reward, terminated, truncated, info = next_step
+            done = terminated or truncated
+            ep_return += reward
+            
+            # Optionally, render is already enabled via render_mode="human"
+            # env.render()  # 如果需要手动调用 render，可以取消注释
+            
+        print(f"Episode {ep+1}: Return = {ep_return:.2f}")
+    
+    env.close()
+
+if __name__ == "__main__":
+    main()
+

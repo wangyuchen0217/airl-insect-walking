@@ -7,6 +7,7 @@ from common.buffer import RolloutBuffer
 from common.base import Algorithm
 from networks.actor import ActorNetworkPolicy
 from networks.critic import CriticNetworkPolicy
+import os
     
 
 def calculate_gae(values, rewards, dones, next_values, gamma, lambd):
@@ -140,5 +141,20 @@ class PPO(Algorithm):
             writer.add_scalar('stats/entropy', entropy.item(), self.learning_steps)
 
     def save_models(self, save_dir):
-        # Add saving functionality if needed.
-        pass
+        # Create directory if it does not exist.
+        if not os.path.exists(save_dir):
+            os.makedirs(save_dir)
+        
+        # Save the actor model.
+        actor_path = os.path.join(save_dir, "actor.pth")
+        torch.save(self.actor.state_dict(), actor_path)
+        
+        # Save the critic model.
+        critic_path = os.path.join(save_dir, "critic.pth")
+        torch.save(self.critic.state_dict(), critic_path)
+        
+        # Save the discriminator model.
+        disc_path = os.path.join(save_dir, "discriminator.pth")
+        torch.save(self.disc.state_dict(), disc_path)
+        
+        print(f"Models saved to {save_dir}")

@@ -46,7 +46,7 @@ class Trainer:
                 self.algo.update(self.writer)
             if step % self.eval_interval == 0:
                 self.evaluate(step)
-                self.algo.save_models(os.path.join(self.model_dir, f'step{step}'))
+                # self.algo.save_models(os.path.join(self.model_dir, f'step{step}'))
         sleep(10)
 
 
