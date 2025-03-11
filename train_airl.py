@@ -18,7 +18,7 @@ NAME = "Ant"
 STATE_FILE = NAME+"_states.pt"
 ACTION_FILE = NAME+"_actions.pt"
 ENV_ID = NAME+"-v4"
-CUDA = 0
+CUDA = 1
 ROLLOUT_LENGTH = 1000
 NUM_STEPS = 10**7
 EVAL_INTERVAL = 10**5
@@ -27,7 +27,7 @@ MIX_BUFFER = 1
 BATCH_SIZE = 64
 LR_ACTOR = 3e-4
 LR_CRITIC = 3e-4
-LR_DISC = 1e-4
+LR_DISC = 3e-4
 UNITS_ACTOR = (64, 64)
 UNITS_CRITIC = (64, 64)
 UNITS_DISC_R = (100, 100)
@@ -58,8 +58,8 @@ def main():
     print(f"Logging started at {current_time}")
 
     # Create training and testing environments.
-    env = gym.make(ENV_ID, healthy_z_range=(0.26, 1.0), use_contact_forces=False)
-    env_test = gym.make(ENV_ID, healthy_z_range=(0.26, 1.0), use_contact_forces=False)
+    env = gym.make(ENV_ID, healthy_z_range=(0.26, 1.0), use_contact_forces=True)
+    env_test = gym.make(ENV_ID, healthy_z_range=(0.26, 1.0), use_contact_forces=True)
     device = torch.device(f"cuda:{CUDA}" if torch.cuda.is_available() and CUDA >= 0 else "cpu")
     if torch.cuda.is_available():
         print(torch.cuda.get_device_name(CUDA))
