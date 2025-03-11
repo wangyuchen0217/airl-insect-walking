@@ -16,13 +16,13 @@ net.2.bias: mean=0.0628, std=0.4289, L2 norm=3.4412
 net.4.weight: mean=-0.0013, std=0.1330, L2 norm=3.0060
 net.4.bias: mean=-0.0660, std=0.1311, L2 norm=0.3939
 ---  Evaluation ---
-Episode 1: Return = -93.28, Steps = 86
-Episode 2: Return = -98.29, Steps = 102
-Episode 3: Return = -35.26, Steps = 38
-Episode 4: Return = -103.72, Steps = 87
-Episode 5: Return = -1106.53, Steps = 1000
-Episode 6: Return = -1086.33, Steps = 1000
-Episode 7: Return = -79.72, Steps = 113
-Episode 8: Return = -1084.74, Steps = 1000
-Episode 9: Return = -91.41, Steps = 105
-Episode 10: Return = -38.34, Steps = 50
+Episode 1: Return = -122.77, Steps = 101
+Episode 2: Return = -112.70, Steps = 110
+Episode 3: Return = -1008.60, Steps = 1000
+Episode 4: Return = -19.34, Steps = 30
+Episode 5: Return = -2.15, Steps = 18
+Episode 6: Return = -1035.12, Steps = 1000
+Episode 7: Return = -972.62, Steps = 1000
+Episode 8: Return = -1094.76, Steps = 1000
+Episode 9: Return = -1030.72, Steps = 1000
+Episode 10: Return = -973.00, Steps = 1000
