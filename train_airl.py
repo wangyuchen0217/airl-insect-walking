@@ -59,7 +59,7 @@ def main():
 
     # Create training and testing environments.
     env = gym.make(ENV_ID, healthy_z_range=(0.26, 1.0), use_contact_forces=False)
-    env_test = gym.make(ENV_ID)
+    env_test = gym.make(ENV_ID, healthy_z_range=(0.26, 1.0), use_contact_forces=False)
     device = torch.device(f"cuda:{CUDA}" if torch.cuda.is_available() and CUDA >= 0 else "cpu")
     if torch.cuda.is_available():
         print(torch.cuda.get_device_name(CUDA))
