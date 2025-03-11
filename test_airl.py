@@ -47,7 +47,7 @@ def main():
     else:
         print(f"Actor model file not found: {actor_path}")
         return
-    print("Actor Network Parameters:")
+    print("---  Actor Networks ---")
     for name, param in actor.named_parameters():
         print(f"{name}: {param.shape}")
     print(f"---  Statistics ---")
@@ -61,9 +61,10 @@ def main():
     # Set the model to evaluation mode
     actor.eval()
     
+    print(f"---  Evaluation ---")
     for ep in range(NUM_EPISODES):
-        # Reset the environment with a fixed seed for reproducibility
-        reset_out = env.reset(seed=SEED)
+        # Reset the environment with a fixed seed for reproducibility: seed = SEED
+        reset_out = env.reset()
         if isinstance(reset_out, tuple):
             state, _ = reset_out
         else:
@@ -72,7 +73,7 @@ def main():
         # If observation is a dict, extract the "observation" key
         if isinstance(state, dict):
             state = state.get("observation", state)
-            
+        
         done = False
         ep_return = 0.0
         step = 0
@@ -96,7 +97,7 @@ def main():
             # Optionally, render is already enabled via render_mode="human"
             # env.render()  # 如果需要手动调用 render，可以取消注释
             
-        print(f"Episode {ep+1}: Return = {ep_return:.2f}")
+        print(f"Episode {ep+1}: Return = {ep_return:.2f}, Steps = {step}")
     
     env.close()
 
