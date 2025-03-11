@@ -1,5 +1,5 @@
 Loaded actor model from /home/yuchen/airl_insect_walking/logs/Ant-v4/airl/seed123-20250310-1926/model/actor.pth
-Actor Network Parameters:
+---  Actor Networks ---
 log_stds: torch.Size([1, 8])
 net.0.weight: torch.Size([64, 27])
 net.0.bias: torch.Size([64])
@@ -15,13 +15,14 @@ net.2.weight: mean=-0.0000, std=0.0101, L2 norm=0.6440
 net.2.bias: mean=0.0002, std=0.0021, L2 norm=0.0169
 net.4.weight: mean=0.0001, std=0.0106, L2 norm=0.2392
 net.4.bias: mean=0.0980, std=0.2785, L2 norm=0.7872
-Episode 1: Return = 706.27
-Episode 2: Return = 706.27
-Episode 3: Return = 706.27
-Episode 4: Return = 706.27
-Episode 5: Return = 706.27
-Episode 6: Return = 706.27
-Episode 7: Return = 706.27
-Episode 8: Return = 706.27
-Episode 9: Return = 706.27
-Episode 10: Return = 706.27
+---  Evaluation ---
+Episode 1: Return = 705.40, Steps = 1000
+Episode 2: Return = 704.34, Steps = 1000
+Episode 3: Return = 705.79, Steps = 1000
+Episode 4: Return = 705.34, Steps = 1000
+Episode 5: Return = 710.49, Steps = 1000
+Episode 6: Return = 706.49, Steps = 1000
+Episode 7: Return = 709.82, Steps = 1000
+Episode 8: Return = 706.42, Steps = 1000
+Episode 9: Return = 705.26, Steps = 1000
+Episode 10: Return = 705.30, Steps = 1000
