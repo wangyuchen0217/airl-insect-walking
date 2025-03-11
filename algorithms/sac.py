@@ -6,9 +6,8 @@ from torch.optim import Adam
 from common.base import Algorithm
 from common.buffer import Buffer
 from common.utils import soft_update, disable_gradient
-from networks import (
-    StateDependentPolicy, TwinnedStateActionFunction
-)
+from networks.actor import StateDependentPolicy
+from networks.critic import TwinnedStateActionFunction
 
 
 class SAC(Algorithm):

@@ -2,7 +2,7 @@ from tqdm import tqdm
 import numpy as np
 import torch
 
-from .buffer import Buffer
+from common.buffer import Buffer
 
 
 def soft_update(target, source, tau):
