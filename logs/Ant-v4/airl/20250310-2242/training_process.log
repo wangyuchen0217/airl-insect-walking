@@ -104,3 +104,13 @@ Num steps: 8800000   Return: -1339.6   Time: 12:36:36
 Num steps: 8900000   Return: -1013.7   Time: 12:45:23
 Num steps: 9000000   Return: -945.0   Time: 12:54:16
 Num steps: 9100000   Return: -1048.8   Time: 13:02:54
+Num steps: 9200000   Return: -696.1   Time: 13:11:28
+Num steps: 9300000   Return: -845.8   Time: 13:20:15
+Num steps: 9400000   Return: -568.9   Time: 13:29:40
+Num steps: 9500000   Return: -650.5   Time: 13:38:08
+Num steps: 9600000   Return: -421.9   Time: 13:46:44
+Num steps: 9700000   Return: -157.1   Time: 13:55:08
+Num steps: 9800000   Return: -718.7   Time: 14:03:41
+Num steps: 9900000   Return: -1123.5   Time: 14:12:36
+Num steps: 10000000   Return: -1177.6   Time: 14:21:19
+Models saved to logs/Ant-v4/airl/20250310-2242/model
