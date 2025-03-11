@@ -42,7 +42,7 @@ def main():
     # Load the saved actor model parameters from a .pth file
     actor_path = f"{SAVE_PATH}/model/actor.pth"
     if os.path.exists(actor_path):
-        actor.load_state_dict(torch.load(actor_path, map_location=device))
+        actor.load_state_dict(torch.load(actor_path, weights_only=True, map_location=device))
         print(f"Loaded actor model from {actor_path}")
     else:
         print(f"Actor model file not found: {actor_path}")
