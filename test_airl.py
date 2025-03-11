@@ -1,14 +1,27 @@
 import os
+import sys
 import gymnasium as gym
 import torch
 import numpy as np
-from networks.actor import ActorNetworkPolicy  # 确保该路径与项目结构一致
+from networks.actor import ActorNetworkPolicy 
+import logging
+from common.base import LoggerWriter
 
 def main():
-    SAVE_PATH = "/home/yuchen/airl_insect_walking/logs/HalfCheetah-v4/airl/seed123-20250310-1339"
-    ENV_ID = "HalfCheetah-v4"
+    SAVE_PATH = "/home/yuchen/airl_insect_walking/logs/Ant-v4/airl/20250310-2015"
+    ENV_ID = "Ant-v4"
     NUM_EPISODES = 10
     SEED = 123
+
+    # Log the evaluation process
+    log_filename = os.path.join(SAVE_PATH, "evaluation.log")
+    logging.basicConfig(
+        filename=log_filename,    
+        level=logging.INFO,
+        format='%(message)s',
+        filemode='w'
+        )
+    sys.stdout = LoggerWriter(logging.info)
 
     # Set the device and env
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
