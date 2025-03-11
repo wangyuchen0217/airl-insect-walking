@@ -8,7 +8,7 @@ import numpy as np
 from datetime import datetime
 from algorithms.airl import AIRL
 from expert import load_expert_data, ExpertBuffer
-from common.trainer import Trainer
+from common.trainer import Trai.ner
 import logging
 from common.base import LoggerWriter
 from common.base import log_parameters
