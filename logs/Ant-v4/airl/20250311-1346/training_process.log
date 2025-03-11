@@ -1,0 +1,39 @@
+Logging started at 20250311-1346
+NVIDIA RTX A6000
+Process ID: 3280465
+Env: Ant-v4, Ant_states.pt, Ant_actions.pt, Seed: 123
+Rollout length: 1000
+Num steps: 10000000, Eval interval: 100000
+Gamma: 0.995, Mix buffer: 1, Batch size: 64
+lr_actor: 0.0003, lr_critic: 0.0003, lr_disc: 0.0001
+Units Actor: (64, 64), Units Critic: (64, 64)
+Units Disc R: (100, 100), Units Disc V: (100, 100)
+Epoch ppo: 50, Epoch disc: 10
+Clip Epsc: 0.2, Lambda: 0.97, Coef Ent: 0.01, Max Grad Norm: 10.0
+states: (64, 1000, 111), actions: (64, 1000, 8)
+Expert buffer size: 64000
+Initial state shape: (111,)
+Num steps: 100000   Return: 835.0   Time: 0:09:01
+Num steps: 200000   Return: 608.3   Time: 0:18:22
+Num steps: 300000   Return: 649.7   Time: 0:27:24
+Num steps: 400000   Return: 430.8   Time: 0:36:27
+Num steps: 500000   Return: 285.9   Time: 0:45:40
+Num steps: 600000   Return: 230.9   Time: 0:54:41
+Num steps: 700000   Return: 179.7   Time: 1:03:41
+Num steps: 800000   Return: 346.9   Time: 1:12:46
+Num steps: 900000   Return: 203.1   Time: 1:22:09
+Num steps: 1000000   Return: 200.3   Time: 1:31:26
+Num steps: 1100000   Return: 495.3   Time: 1:40:44
+Num steps: 1200000   Return: 357.0   Time: 1:49:50
+Num steps: 1300000   Return: 330.8   Time: 1:58:59
+Num steps: 1400000   Return: 475.6   Time: 2:07:59
+Num steps: 1500000   Return: 114.8   Time: 2:17:03
+Num steps: 1600000   Return: 106.3   Time: 2:26:07
+Num steps: 1700000   Return: 87.0    Time: 2:35:22
+Num steps: 1800000   Return: 123.6   Time: 2:45:04
+Num steps: 1900000   Return: 63.4    Time: 2:54:17
+Num steps: 2000000   Return: 119.2   Time: 3:03:49
+Num steps: 2100000   Return: 134.1   Time: 3:13:03
+Num steps: 2200000   Return: 152.1   Time: 3:22:38
+Num steps: 2300000   Return: 184.9   Time: 3:32:08
+Num steps: 2400000   Return: 90.2    Time: 3:41:32
