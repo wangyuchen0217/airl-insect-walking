@@ -31,7 +31,7 @@ class Trainer:
         t = 0
 
         # Reset the environment properly.
-        reset_out = self.env.reset(seed=self.seed)
+        reset_out = self.env.reset()
         if isinstance(reset_out, tuple):
             state, _ = reset_out
         else:
@@ -53,7 +53,7 @@ class Trainer:
     def evaluate(self, step):
         mean_return = 0.0
         for _ in range(self.num_eval_episodes):
-            reset_out = self.env_test.reset(seed=2**31 - self.seed)
+            reset_out = self.env_test.reset()
             if isinstance(reset_out, tuple):
                 state, _ = reset_out
             else:
