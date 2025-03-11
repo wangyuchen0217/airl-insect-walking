@@ -22,7 +22,6 @@ def add_random_noise(action, std):
 
 
 def collect_demo(env, algo, buffer_size, device, std, p_rand, seed=0):
-    env.seed(seed)
     np.random.seed(seed)
     torch.manual_seed(seed)
     torch.cuda.manual_seed(seed)
