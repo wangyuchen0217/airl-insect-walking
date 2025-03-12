@@ -8,7 +8,7 @@ import logging
 from common.base import LoggerWriter
 
 def main():
-    SAVE_PATH = "/home/yuchen/airl_insect_walking/logs/Ant-v4/airl/20250310-2015"
+    SAVE_PATH = "/home/yuchen/airl_insect_walking/logs/Ant-v4/airl/20250311-1346"
     ENV_ID = "Ant-v4"
     NUM_EPISODES = 10
     SEED = 123
@@ -25,7 +25,7 @@ def main():
 
     # Set the device and env
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    env = gym.make(ENV_ID, render_mode="human")
+    env = gym.make(ENV_ID, render_mode="human", healthy_z_range=(0.26, 1.0),  use_contact_forces=True)
     
     # Get state and action shapes from the environment
     state_shape = env.observation_space.shape    # e.g., (27,)
