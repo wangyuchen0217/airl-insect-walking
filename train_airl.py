@@ -16,7 +16,7 @@ from common.env import make_env, normalize_expert_data
 from common.buffer import SerializedBuffer
 
 # ======== Parameters (modify these as needed) =========
-NAME = "Hopper"
+NAME = "Ant"
 STATE_FILE = NAME+"_states.pt"
 ACTION_FILE = NAME+"_actions.pt"
 ENV_ID = NAME+"-v4"
@@ -80,8 +80,8 @@ def main():
 
     # Load expert data from .pt files and wrap into an ExpertBuffer.
     expert_data = load_expert_data(STATE_FILE, ACTION_FILE, save_npz=False)
+    expert_data = normalize_expert_data(expert_data, env)
     expert_buffer = ExpertBuffer(expert_data, device)
-    expert_buffer = normalize_expert_data(expert_buffer, env)
     print(f"Expert buffer size: {expert_buffer.size}")
     # expert_buffer = SerializedBuffer(
     #     path='/home/yuchen/airl_insect_walking/buffers/Hopper-v4/size1000000_std0.01_prand0.0.pth',
