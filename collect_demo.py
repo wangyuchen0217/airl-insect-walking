@@ -4,10 +4,12 @@ import torch
 import gymnasium as gym
 from algorithms.sac import SACExpert
 from common.utils import collect_demo
+from common.env import make_env
 
 
 def run(args):
-    env = gym.make(args.env_id)
+    # env = gym.make(args.env_id)
+    env = make_env(args.env_id)   
 
     algo = SACExpert(
         state_shape=env.observation_space.shape,
