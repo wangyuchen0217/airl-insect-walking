@@ -12,7 +12,7 @@ from common.trainer import Trainer
 import logging
 from common.base import LoggerWriter
 from common.base import log_parameters
-from common.env import make_env
+from common.env import make_env, normalize_expert_data
 from common.buffer import SerializedBuffer
 
 # ======== Parameters (modify these as needed) =========
@@ -62,8 +62,8 @@ def main():
     # Create training and testing environments.
     # env = gym.make(ENV_ID, healthy_z_range=(0.26, 1.0), use_contact_forces=True)
     # env_test = gym.make(ENV_ID, healthy_z_range=(0.26, 1.0), use_contact_forces=True)
-    env = make_env(ENV_ID)
-    env_test = make_env(ENV_ID)
+    env = make_env(ENV_ID, healthy_z_range=(0.26, 1.0), healthy_reward=0, use_contact_forces=False)
+    env_test = make_env(ENV_ID, healthy_z_range=(0.26, 1.0), healthy_reward=0, use_contact_forces=False)
     device = torch.device(f"cuda:{CUDA}" if torch.cuda.is_available() and CUDA >= 0 else "cpu")
     if torch.cuda.is_available():
         print(torch.cuda.get_device_name(CUDA))
@@ -79,12 +79,13 @@ def main():
                    EPOCH_PPO, EPOCH_DISC, CLIP_EPS, LAMBDA, COEF_ENT, MAX_GRAD_NORM, SEED)
 
     # Load expert data from .pt files and wrap into an ExpertBuffer.
-    # expert_data = load_expert_data(STATE_FILE, ACTION_FILE, save_npz=False)
-    # expert_buffer = ExpertBuffer(expert_data, device)
-    # print(f"Expert buffer size: {expert_buffer.size}")
-    expert_buffer = SerializedBuffer(
-        path='/home/yuchen/airl_insect_walking/buffers/Hopper-v4/size1000000_std0.01_prand0.0.pth',
-        device=device)
+    expert_data = load_expert_data(STATE_FILE, ACTION_FILE, save_npz=False)
+    expert_buffer = ExpertBuffer(expert_data, device)
+    expert_buffer = normalize_expert_data(expert_buffer, env)
+    print(f"Expert buffer size: {expert_buffer.size}")
+    # expert_buffer = SerializedBuffer(
+    #     path='/home/yuchen/airl_insect_walking/buffers/Hopper-v4/size1000000_std0.01_prand0.0.pth',
+    #     device=device)
 
     # Create AIRL agent.
     algo = AIRL(

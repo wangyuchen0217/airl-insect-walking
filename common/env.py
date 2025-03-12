@@ -3,8 +3,11 @@ import gymnasium as gym
 gym.logger.set_level(40)
 
 
-def make_env(env_id):
-    return NormalizedEnv(gym.make(env_id))
+def make_env(env_id, healthy_z_range=(0.26, 1.0), healthy_reward=0, use_contact_forces=False):
+    return NormalizedEnv(gym.make(env_id, 
+                                  healthy_z_range=healthy_z_range, 
+                                  healthy_reward=healthy_reward, 
+                                  use_contact_forces=use_contact_forces))
 
 
 class NormalizedEnv(gym.Wrapper):
@@ -19,3 +22,9 @@ class NormalizedEnv(gym.Wrapper):
 
     def step(self, action):
         return self.env.step(action * self.scale)
+    
+
+def normalize_expert_data(expert_data, env):
+    scale = env.action_space.high
+    expert_data['action'] = expert_data['action'] / scale
+    return expert_data

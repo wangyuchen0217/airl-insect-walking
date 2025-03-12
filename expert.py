@@ -14,7 +14,7 @@ def load_expert_data(state_file, action_file, save_npz=False, npz_filename="expe
     actions = torch.load(action_file, weights_only=True)   # shape: (num_trajectories, traj_length, action_dim)
     
     # Convert to numpy arrays.
-    states_np = states.numpy()#[:,:,:27]
+    states_np = states.numpy()[:,:,:27]
     actions_np = actions.numpy()
     print(f"states: {states_np.shape}, actions: {actions_np.shape}")
     
