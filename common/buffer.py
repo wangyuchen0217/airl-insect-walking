@@ -5,7 +5,7 @@ import os
 class SerializedBuffer:
 
     def __init__(self, path, device):
-        tmp = torch.load(path)
+        tmp = torch.load(path, weights_only=True)
         self.buffer_size = self._n = tmp['state'].size(0)
         self.device = device
 
