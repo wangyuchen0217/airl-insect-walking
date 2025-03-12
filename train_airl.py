@@ -8,10 +8,12 @@ import numpy as np
 from datetime import datetime
 from algorithms.airl import AIRL
 from expert import load_expert_data, ExpertBuffer
-from common.trainer import Trai.ner
+from common.trainer import Trainer
 import logging
 from common.base import LoggerWriter
 from common.base import log_parameters
+from common.env import make_env
+from common.buffer import SerializedBuffer
 
 # ======== Parameters (modify these as needed) =========
 NAME = "Ant"
@@ -58,8 +60,10 @@ def main():
     print(f"Logging started at {current_time}")
 
     # Create training and testing environments.
-    env = gym.make(ENV_ID, healthy_z_range=(0.26, 1.0), use_contact_forces=True)
-    env_test = gym.make(ENV_ID, healthy_z_range=(0.26, 1.0), use_contact_forces=True)
+    # env = gym.make(ENV_ID, healthy_z_range=(0.26, 1.0), use_contact_forces=True)
+    # env_test = gym.make(ENV_ID, healthy_z_range=(0.26, 1.0), use_contact_forces=True)
+    env = make_env(ENV_ID)
+    env_test = make_env(ENV_ID)
     device = torch.device(f"cuda:{CUDA}" if torch.cuda.is_available() and CUDA >= 0 else "cpu")
     if torch.cuda.is_available():
         print(torch.cuda.get_device_name(CUDA))
@@ -75,8 +79,11 @@ def main():
                    EPOCH_PPO, EPOCH_DISC, CLIP_EPS, LAMBDA, COEF_ENT, MAX_GRAD_NORM, SEED)
 
     # Load expert data from .pt files and wrap into an ExpertBuffer.
-    expert_data = load_expert_data(STATE_FILE, ACTION_FILE, save_npz=False)
-    expert_buffer = ExpertBuffer(expert_data, device)
+    # expert_data = load_expert_data(STATE_FILE, ACTION_FILE, save_npz=False)
+    # expert_buffer = ExpertBuffer(expert_data, device)
+    expert_buffer = SerializedBuffer(
+        path='/home/yuchen/airl_insect_walking/buffers/Hopper-v4/size1000000_std0.01_prand0.0.pth',
+        device=device)
     print(f"Expert buffer size: {expert_buffer.size}")
 
     # Create AIRL agent.
