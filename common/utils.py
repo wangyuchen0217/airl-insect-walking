@@ -36,7 +36,13 @@ def collect_demo(env, algo, buffer_size, device, std, p_rand, seed=0):
     total_return = 0.0
     num_episodes = 0
 
-    state = env.reset()
+    reset_out = env.reset(seed=seed)
+    if isinstance(reset_out, tuple):
+        state, info = reset_out
+    else:
+        state = reset_out
+    if isinstance(state, dict):
+        state = state.get("observation", state)
     t = 0
     episode_return = 0.0
 
@@ -46,10 +52,10 @@ def collect_demo(env, algo, buffer_size, device, std, p_rand, seed=0):
         if np.random.rand() < p_rand:
             action = env.action_space.sample()
         else:
-            action = algo.exploit(state)
+            action = algo.exploit(np.array(state))
             action = add_random_noise(action, std)
 
-        next_state, reward, done, _ = env.step(action)
+        next_state, reward, done, _, _ = env.step(action)
         mask = False if t == env._max_episode_steps else done
         buffer.append(state, action, reward, mask, next_state)
         episode_return += reward
