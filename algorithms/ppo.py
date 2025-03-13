@@ -97,48 +97,55 @@ class PPO(Algorithm):
     def update_ppo(self, states, actions, rewards, dones, log_pis, next_states, writer):
         # Compute value estimates.
         with torch.no_grad():
-            values = self.critic(states).squeeze()
-            next_values = self.critic(next_states).squeeze()
-        # Squeeze rewards and dones to have shape (rollout_length,)
-        rewards = rewards.squeeze(-1)
-        dones = dones.squeeze(-1)
+            values = self.critic(states)
+            next_values = self.critic(next_states)
+
         # Calculate targets and advantages using GAE.
         targets, gaes = calculate_gae(values, rewards, dones, next_values, self.gamma, self.lambd)
-        # Create DataLoader for mini-batch updates.
-        dataset = TensorDataset(states, actions, log_pis, targets, gaes)
-        loader = DataLoader(dataset, batch_size=self.mini_batch_size, shuffle=True)
-        # PPO update loop.
+
         for _ in range(self.epoch_ppo):
             self.learning_steps_ppo += 1
-            for batch_states, batch_actions, batch_old_log_probs, batch_targets, batch_gaes in loader:
-                self.update_critic(batch_states, batch_targets, writer)
-                self.update_actor(batch_states, batch_actions, batch_old_log_probs, batch_gaes, writer)
+            self.update_critic(states, targets, writer)
+            self.update_actor(states, actions, log_pis, gaes, writer)
+
 
     def update_critic(self, states, targets, writer):
-        values_pred = self.critic(states).squeeze()
-        loss_critic = F.mse_loss(values_pred, targets)
+        loss_critic = (self.critic(states) - targets).pow_(2).mean()
+
         self.optim_critic.zero_grad()
-        loss_critic.backward()
+        loss_critic.backward(retain_graph=False)
         nn.utils.clip_grad_norm_(self.critic.parameters(), self.max_grad_norm)
         self.optim_critic.step()
+
         if self.learning_steps_ppo % self.epoch_ppo == 0:
-            writer.add_scalar('loss/critic', loss_critic.item(), self.learning_steps)
+            writer.add_scalar(
+                'loss/critic', loss_critic.item(), self.learning_steps)
+
 
     def update_actor(self, states, actions, log_pis_old, gaes, writer):
         log_pis = self.actor.evaluate_log_pi(states, actions)
         entropy = -log_pis.mean()
-        ratios = (log_pis - log_pis_old).exp()
+
+        ratios = (log_pis - log_pis_old).exp_()
         loss_actor1 = -ratios * gaes
-        loss_actor2 = -torch.clamp(ratios, 1.0 - self.clip_eps, 1.0 + self.clip_eps) * gaes
+        loss_actor2 = -torch.clamp(
+            ratios,
+            1.0 - self.clip_eps,
+            1.0 + self.clip_eps
+        ) * gaes
         loss_actor = torch.max(loss_actor1, loss_actor2).mean()
-        total_actor_loss = loss_actor - self.coef_ent * entropy
+
         self.optim_actor.zero_grad()
-        total_actor_loss.backward()
+        (loss_actor - self.coef_ent * entropy).backward(retain_graph=False)
         nn.utils.clip_grad_norm_(self.actor.parameters(), self.max_grad_norm)
         self.optim_actor.step()
+
         if self.learning_steps_ppo % self.epoch_ppo == 0:
-            writer.add_scalar('loss/actor', loss_actor.item(), self.learning_steps)
-            writer.add_scalar('stats/entropy', entropy.item(), self.learning_steps)
+            writer.add_scalar(
+                'loss/actor', loss_actor.item(), self.learning_steps)
+            writer.add_scalar(
+                'stats/entropy', entropy.item(), self.learning_steps)
+
 
     def save_models(self, save_dir):
         # Create directory if it does not exist.
