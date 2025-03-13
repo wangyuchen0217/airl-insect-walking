@@ -22,14 +22,14 @@ ACTION_FILE = NAME+"_actions.pt"
 ENV_ID = NAME+"-v4"
 CUDA = 0
 ROLLOUT_LENGTH = 1000
-NUM_STEPS = 10**7
-EVAL_INTERVAL = 10**5
+NUM_STEPS = 10**5
+EVAL_INTERVAL = 10**3
 GAMMA = 0.995
 MIX_BUFFER = 1
 BATCH_SIZE = 64
 LR_ACTOR = 3e-4
 LR_CRITIC = 3e-4
-LR_DISC = 3e-4
+LR_DISC = 1e-4
 UNITS_ACTOR = (64, 64)
 UNITS_CRITIC = (64, 64)
 UNITS_DISC_R = (100, 100)
@@ -38,9 +38,9 @@ EPOCH_PPO = 50
 EPOCH_DISC = 10
 CLIP_EPS = 0.2
 LAMBDA = 0.97
-COEF_ENT = 0.0
+COEF_ENT = 0.01
 MAX_GRAD_NORM = 10.0
-SEED = 123
+SEED = None
 # ========================================================
 
 def main():
