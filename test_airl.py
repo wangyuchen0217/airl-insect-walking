@@ -9,7 +9,7 @@ from common.base import LoggerWriter
 from common.env import make_env
 
 def main():
-    SAVE_PATH = "/home/yuchen/airl_insect_walking/logs/Ant-v4/airl/20250313-1724"
+    SAVE_PATH = "/home/yuchen/airl_insect_walking/logs/Ant-v4/airl/20250313-1810"
     ENV_ID = "Ant-v4"
     NUM_EPISODES = 10
     SEED = 123

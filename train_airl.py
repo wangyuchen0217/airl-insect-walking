@@ -78,7 +78,7 @@ def main():
 
     # Load expert data from .pt files and wrap into an ExpertBuffer.
     expert_data = load_expert_data(STATE_FILE, ACTION_FILE, save_npz=False)
-    # expert_data = normalize_expert_data(expert_data, env)
+    expert_data = normalize_expert_data(expert_data, env)
     expert_buffer = ExpertBuffer(expert_data, device)
     print(f"Expert buffer size: {expert_buffer.size}")
     # expert_buffer = SerializedBuffer(
