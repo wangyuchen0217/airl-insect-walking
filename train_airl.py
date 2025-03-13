@@ -21,21 +21,21 @@ STATE_FILE = NAME+"_states.pt"
 ACTION_FILE = NAME+"_actions.pt"
 ENV_ID = NAME+"-v4"
 CUDA = 0
-ROLLOUT_LENGTH = 2048
+ROLLOUT_LENGTH = 1000
 NUM_STEPS = 10**5
 EVAL_INTERVAL = 10**3
 GAMMA = 0.995
 MIX_BUFFER = 1
 BATCH_SIZE = 64
 LR_ACTOR = 3e-4
-LR_CRITIC = 1e-4
+LR_CRITIC = 3e-4
 LR_DISC = 1e-4
 UNITS_ACTOR = (64, 64)
 UNITS_CRITIC = (64, 64)
 UNITS_DISC_R = (100, 100)
 UNITS_DISC_V = (100, 100)
-EPOCH_PPO = 70
-EPOCH_DISC = 30
+EPOCH_PPO = 50
+EPOCH_DISC = 10
 CLIP_EPS = 0.2
 LAMBDA = 0.97
 COEF_ENT = 0.02
@@ -78,7 +78,7 @@ def main():
 
     # Load expert data from .pt files and wrap into an ExpertBuffer.
     expert_data = load_expert_data(STATE_FILE, ACTION_FILE, save_npz=False)
-    expert_data = normalize_expert_data(expert_data, env)
+    # expert_data = normalize_expert_data(expert_data, env)
     expert_buffer = ExpertBuffer(expert_data, device)
     print(f"Expert buffer size: {expert_buffer.size}")
     # expert_buffer = SerializedBuffer(
