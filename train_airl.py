@@ -77,13 +77,13 @@ def main():
                    EPOCH_PPO, EPOCH_DISC, CLIP_EPS, LAMBDA, COEF_ENT, MAX_GRAD_NORM, SEED)
 
     # Load expert data from .pt files and wrap into an ExpertBuffer.
-    # expert_data = load_expert_data(STATE_FILE, ACTION_FILE, save_npz=False)
-    # expert_data = normalize_expert_data(expert_data, env)
-    # expert_buffer = ExpertBuffer(expert_data, device)
-    # print(f"Expert buffer size: {expert_buffer.size}")
-    expert_buffer = SerializedBuffer(
-        path='/home/yuchen/airl_insect_walking/buffers/Hopper-v4/size1000000_std0.01_prand0.0.pth',
-        device=device)
+    expert_data = load_expert_data(STATE_FILE, ACTION_FILE, save_npz=False)
+    expert_data = normalize_expert_data(expert_data, env)
+    expert_buffer = ExpertBuffer(expert_data, device)
+    print(f"Expert buffer size: {expert_buffer.size}")
+    # expert_buffer = SerializedBuffer(
+    #     path='/home/yuchen/airl_insect_walking/buffers/Hopper-v4/size1000000_std0.01_prand0.0.pth',
+    #     device=device)
 
     # Create AIRL agent.
     algo = AIRL(
