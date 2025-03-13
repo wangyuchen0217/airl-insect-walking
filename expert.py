@@ -11,8 +11,7 @@ def load_expert_data(state_file, action_file, save_npz=False, npz_filename="expe
     # Convert to numpy arrays.
     states_np = states.numpy()[:,:,:27]
     actions_np = actions.numpy()
-    print("Load data:")
-    print(f"states: {states_np.shape}, actions: {actions_np.shape}")
+    print(f"Load data states: {states_np.shape}, actions: {actions_np.shape}")
 
     num_trajectories, traj_length, _ = states_np.shape
 
@@ -36,8 +35,7 @@ def load_expert_data(state_file, action_file, save_npz=False, npz_filename="expe
         'done': dones,
         'next_state': next_states
     }
-    print("Expert data:")
-    print(f"states: {expert_data['state'].shape}, actions: {expert_data['action'].shape}")
+    print(f"Expert data states: {expert_data['state'].shape}, actions: {expert_data['action'].shape}")
 
     if save_npz:
         np.savez(npz_filename, **expert_data)
