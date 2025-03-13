@@ -26,9 +26,7 @@ def main():
 
     # Set the device and env
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    # env = gym.make(ENV_ID, render_mode="human", healthy_z_range=(0.26, 1.0),  use_contact_forces=True)
-    # env = make_env(ENV_ID, render_mode="human")
-    env = make_env(ENV_ID, healthy_z_range=(0.26, 1.0), healthy_reward=0, use_contact_forces=False, render_mode="human")
+    env = make_env(ENV_ID, test=True)
     
     # Get state and action shapes from the environment
     state_shape = env.observation_space.shape    # e.g., (27,)

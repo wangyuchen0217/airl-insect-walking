@@ -60,10 +60,8 @@ def main():
     print(f"Logging started at {current_time}")
 
     # Create training and testing environments.
-    # env = gym.make(ENV_ID, healthy_z_range=(0.26, 1.0), use_contact_forces=True)
-    # env_test = gym.make(ENV_ID, healthy_z_range=(0.26, 1.0), use_contact_forces=True)
-    env = make_env(ENV_ID, healthy_z_range=(0.26, 1.0), healthy_reward=0, use_contact_forces=False)
-    env_test = make_env(ENV_ID, healthy_z_range=(0.26, 1.0), healthy_reward=0, use_contact_forces=False)
+    env = make_env(ENV_ID, test=False)
+    env_test = make_env(ENV_ID, test=False)
     device = torch.device(f"cuda:{CUDA}" if torch.cuda.is_available() and CUDA >= 0 else "cpu")
     if torch.cuda.is_available():
         print(torch.cuda.get_device_name(CUDA))
