@@ -16,7 +16,7 @@ from common.env import make_env, normalize_expert_data
 from common.buffer import SerializedBuffer
 
 # ======== Parameters (modify these as needed) =========
-NAME = "Ant"
+NAME = "Hopper"
 STATE_FILE = NAME+"_states.pt"
 ACTION_FILE = NAME+"_actions.pt"
 ENV_ID = NAME+"-v4"
@@ -29,7 +29,7 @@ MIX_BUFFER = 1
 BATCH_SIZE = 64
 LR_ACTOR = 3e-4
 LR_CRITIC = 3e-4
-LR_DISC = 1e-4
+LR_DISC = 3e-4
 UNITS_ACTOR = (64, 64)
 UNITS_CRITIC = (64, 64)
 UNITS_DISC_R = (100, 100)
@@ -38,9 +38,9 @@ EPOCH_PPO = 50
 EPOCH_DISC = 10
 CLIP_EPS = 0.2
 LAMBDA = 0.97
-COEF_ENT = 0.01
+COEF_ENT = 0.0
 MAX_GRAD_NORM = 10.0
-SEED = None
+SEED = 0
 # ========================================================
 
 def main():
@@ -77,13 +77,13 @@ def main():
                    EPOCH_PPO, EPOCH_DISC, CLIP_EPS, LAMBDA, COEF_ENT, MAX_GRAD_NORM, SEED)
 
     # Load expert data from .pt files and wrap into an ExpertBuffer.
-    expert_data = load_expert_data(STATE_FILE, ACTION_FILE, save_npz=False)
-    expert_data = normalize_expert_data(expert_data, env)
-    expert_buffer = ExpertBuffer(expert_data, device)
-    print(f"Expert buffer size: {expert_buffer.size}")
-    # expert_buffer = SerializedBuffer(
-    #     path='/home/yuchen/airl_insect_walking/buffers/Hopper-v4/size1000000_std0.01_prand0.0.pth',
-    #     device=device)
+    # expert_data = load_expert_data(STATE_FILE, ACTION_FILE, save_npz=False)
+    # expert_data = normalize_expert_data(expert_data, env)
+    # expert_buffer = ExpertBuffer(expert_data, device)
+    # print(f"Expert buffer size: {expert_buffer.size}")
+    expert_buffer = SerializedBuffer(
+        path='/home/yuchen/airl_insect_walking/buffers/Hopper-v4/size1000000_std0.01_prand0.0.pth',
+        device=device)
 
     # Create AIRL agent.
     algo = AIRL(
