@@ -14,8 +14,7 @@ def load_expert_data(state_file, action_file, save_npz=False, npz_filename="expe
     print("Load data:")
     print(f"states: {states_np.shape}, actions: {actions_np.shape}")
 
-    num_trajectories, traj_length, state_dim = states_np.shape
-    _, _, action_dim = actions_np.shape
+    num_trajectories, traj_length, _ = states_np.shape
 
     states = []
     actions = []
