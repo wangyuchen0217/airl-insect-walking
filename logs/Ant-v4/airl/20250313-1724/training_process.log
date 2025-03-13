@@ -1,0 +1,119 @@
+Logging started at 20250313-1724
+NVIDIA RTX A6000
+Process ID: 3758740
+Env: Ant-v4, Ant_states.pt, Ant_actions.pt, Seed: 0
+Rollout length: 1000
+Num steps: 100000, Eval interval: 1000
+Gamma: 0.995, Mix buffer: 1, Batch size: 64
+lr_actor: 0.0003, lr_critic: 0.0003, lr_disc: 0.0001
+Units Actor: (64, 64), Units Critic: (64, 64)
+Units Disc R: (100, 100), Units Disc V: (100, 100)
+Epoch ppo: 50, Epoch disc: 10
+Clip Epsc: 0.2, Lambda: 0.97, Coef Ent: 0.02, Max Grad Norm: 10.0
+Load data:
+states: (64, 1000, 27), actions: (64, 1000, 8)
+Expert data:
+states: (63936, 27), actions: (63936, 8)
+Expert buffer size: 63936
+Initial state shape: (27,)
+Num steps: 1000     Return: 949.8   Time: 0:00:04
+Num steps: 2000     Return: 926.5   Time: 0:00:08
+Num steps: 3000     Return: 890.0   Time: 0:00:12
+Num steps: 4000     Return: 896.9   Time: 0:00:16
+Num steps: 5000     Return: 870.2   Time: 0:00:20
+Num steps: 6000     Return: 896.8   Time: 0:00:24
+Num steps: 7000     Return: 886.1   Time: 0:00:28
+Num steps: 8000     Return: 830.3   Time: 0:00:32
+Num steps: 9000     Return: 809.0   Time: 0:00:36
+Num steps: 10000    Return: 784.9   Time: 0:00:40
+Num steps: 11000    Return: 857.0   Time: 0:00:44
+Num steps: 12000    Return: 846.5   Time: 0:00:48
+Num steps: 13000    Return: 858.5   Time: 0:00:52
+Num steps: 14000    Return: 831.5   Time: 0:00:56
+Num steps: 15000    Return: 842.9   Time: 0:01:00
+Num steps: 16000    Return: 840.0   Time: 0:01:04
+Num steps: 17000    Return: 822.1   Time: 0:01:08
+Num steps: 18000    Return: 813.8   Time: 0:01:12
+Num steps: 19000    Return: 810.9   Time: 0:01:16
+Num steps: 20000    Return: 836.2   Time: 0:01:20
+Num steps: 21000    Return: 878.5   Time: 0:01:24
+Num steps: 22000    Return: 887.8   Time: 0:01:28
+Num steps: 23000    Return: 826.6   Time: 0:01:32
+Num steps: 24000    Return: 762.0   Time: 0:01:36
+Num steps: 25000    Return: 799.0   Time: 0:01:40
+Num steps: 26000    Return: 818.9   Time: 0:01:44
+Num steps: 27000    Return: 784.7   Time: 0:01:48
+Num steps: 28000    Return: 767.7   Time: 0:01:52
+Num steps: 29000    Return: 790.9   Time: 0:01:56
+Num steps: 30000    Return: 775.4   Time: 0:02:00
+Num steps: 31000    Return: 785.8   Time: 0:02:04
+Num steps: 32000    Return: 818.4   Time: 0:02:08
+Num steps: 33000    Return: 823.1   Time: 0:02:12
+Num steps: 34000    Return: 845.4   Time: 0:02:16
+Num steps: 35000    Return: 831.8   Time: 0:02:20
+Num steps: 36000    Return: 859.3   Time: 0:02:24
+Num steps: 37000    Return: 830.0   Time: 0:02:28
+Num steps: 38000    Return: 772.9   Time: 0:02:33
+Num steps: 39000    Return: 811.9   Time: 0:02:37
+Num steps: 40000    Return: 792.6   Time: 0:02:41
+Num steps: 41000    Return: 834.8   Time: 0:02:45
+Num steps: 42000    Return: 803.2   Time: 0:02:49
+Num steps: 43000    Return: 773.5   Time: 0:02:53
+Num steps: 44000    Return: 732.5   Time: 0:02:57
+Num steps: 45000    Return: 722.3   Time: 0:03:01
+Num steps: 46000    Return: 700.8   Time: 0:03:05
+Num steps: 47000    Return: 674.5   Time: 0:03:09
+Num steps: 48000    Return: 721.3   Time: 0:03:13
+Num steps: 49000    Return: 698.9   Time: 0:03:17
+Num steps: 50000    Return: 631.0   Time: 0:03:21
+Num steps: 51000    Return: 555.5   Time: 0:03:25
+Num steps: 52000    Return: 576.1   Time: 0:03:29
+Num steps: 53000    Return: 608.4   Time: 0:03:33
+Num steps: 54000    Return: 594.2   Time: 0:03:37
+Num steps: 55000    Return: 506.5   Time: 0:03:41
+Num steps: 56000    Return: 510.3   Time: 0:03:45
+Num steps: 57000    Return: 525.0   Time: 0:03:49
+Num steps: 58000    Return: 570.1   Time: 0:03:53
+Num steps: 59000    Return: 550.1   Time: 0:03:57
+Num steps: 60000    Return: 495.5   Time: 0:04:01
+Num steps: 61000    Return: 430.9   Time: 0:04:05
+Num steps: 62000    Return: 413.5   Time: 0:04:09
+Num steps: 63000    Return: 422.9   Time: 0:04:13
+Num steps: 64000    Return: 433.1   Time: 0:04:17
+Num steps: 65000    Return: 471.3   Time: 0:04:22
+Num steps: 66000    Return: 464.2   Time: 0:04:26
+Num steps: 67000    Return: 430.8   Time: 0:04:30
+Num steps: 68000    Return: 347.1   Time: 0:04:34
+Num steps: 69000    Return: 361.1   Time: 0:04:38
+Num steps: 70000    Return: 254.3   Time: 0:04:42
+Num steps: 71000    Return: 368.1   Time: 0:04:46
+Num steps: 72000    Return: 290.9   Time: 0:04:50
+Num steps: 73000    Return: 267.1   Time: 0:04:54
+Num steps: 74000    Return: 322.9   Time: 0:04:58
+Num steps: 75000    Return: 267.1   Time: 0:05:02
+Num steps: 76000    Return: 251.3   Time: 0:05:06
+Num steps: 77000    Return: 307.9   Time: 0:05:10
+Num steps: 78000    Return: 418.9   Time: 0:05:14
+Num steps: 79000    Return: 456.4   Time: 0:05:18
+Num steps: 80000    Return: 388.5   Time: 0:05:22
+Num steps: 81000    Return: 422.7   Time: 0:05:26
+Num steps: 82000    Return: 344.1   Time: 0:05:31
+Num steps: 83000    Return: 466.7   Time: 0:05:35
+Num steps: 84000    Return: 465.1   Time: 0:05:39
+Num steps: 85000    Return: 497.4   Time: 0:05:43
+Num steps: 86000    Return: 470.1   Time: 0:05:47
+Num steps: 87000    Return: 504.4   Time: 0:05:51
+Num steps: 88000    Return: 562.1   Time: 0:05:55
+Num steps: 89000    Return: 601.2   Time: 0:05:59
+Num steps: 90000    Return: 544.7   Time: 0:06:03
+Num steps: 91000    Return: 626.4   Time: 0:06:07
+Num steps: 92000    Return: 388.8   Time: 0:06:11
+Num steps: 93000    Return: 323.7   Time: 0:06:15
+Num steps: 94000    Return: 500.0   Time: 0:06:19
+Num steps: 95000    Return: 449.8   Time: 0:06:23
+Num steps: 96000    Return: 229.9   Time: 0:06:27
+Num steps: 97000    Return: 507.8   Time: 0:06:31
+Num steps: 98000    Return: 356.1   Time: 0:06:35
+Num steps: 99000    Return: 193.8   Time: 0:06:39
+Num steps: 100000   Return: -120.3   Time: 0:06:43
+Models saved to logs/Ant-v4/airl/20250313-1724/model
