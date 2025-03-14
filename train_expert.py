@@ -55,6 +55,8 @@ def run(args):
     )
     trainer.train()
 
+    # Save the final model.
+    algo.save_models(trainer.model_dir)
 
 if __name__ == '__main__':
     p = argparse.ArgumentParser()
