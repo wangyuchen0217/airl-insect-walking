@@ -1,0 +1,16 @@
+Logging started at 20250314-1203
+NVIDIA RTX A6000
+Process ID: 533567
+Note: NumExpr detected 64 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+NumExpr defaulting to 8 threads.
+Initial state shape: (11,)
+Num steps: 10000    Return: 97.0    Time: 0:00:08
+Num steps: 20000    Return: 236.4   Time: 0:01:41
+Num steps: 30000    Return: 279.7   Time: 0:03:14
+Num steps: 40000    Return: 369.8   Time: 0:04:47
+Num steps: 50000    Return: 527.9   Time: 0:06:19
+Num steps: 60000    Return: 361.2   Time: 0:07:51
+Num steps: 70000    Return: 340.2   Time: 0:09:21
+Num steps: 80000    Return: 348.8   Time: 0:10:50
+Num steps: 90000    Return: 398.6   Time: 0:12:22
+Num steps: 100000   Return: 532.6   Time: 0:13:53
