@@ -77,14 +77,22 @@ class SAC(Algorithm):
         else:
             action = self.explore(state)[0]
 
-        next_state, reward, done, _ = env.step(action)
+        next_state, reward, done, truncated,  info = env.step(action)
+        done = done or truncated
         mask = False if t == env._max_episode_steps else done
 
         self.buffer.append(state, action, reward, mask, next_state)
 
         if done:
             t = 0
-            next_state = env.reset()
+            reset_out = env.reset()
+            if isinstance(reset_out, tuple):
+                next_state, info = reset_out
+            else:
+                next_state = reset_out
+            # If observation is a dict, extract the "observation" key.
+            if isinstance(next_state, dict):
+                next_state = next_state.get("observation", next_state)
 
         return next_state, t
 
