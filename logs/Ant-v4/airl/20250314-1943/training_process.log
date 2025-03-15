@@ -92,3 +92,23 @@ Num steps: 7800000   Return: -2737.3   Time: 3:53:34
 Num steps: 7900000   Return: -2737.3   Time: 3:56:42
 Num steps: 8000000   Return: -2738.4   Time: 3:59:57
 Num steps: 8100000   Return: -2739.2   Time: 4:03:06
+Num steps: 8200000   Return: -2739.8   Time: 4:06:20
+Num steps: 8300000   Return: -2738.3   Time: 4:09:33
+Num steps: 8400000   Return: -2738.4   Time: 4:12:54
+Num steps: 8500000   Return: -2741.7   Time: 4:16:09
+Num steps: 8600000   Return: -2737.7   Time: 4:19:25
+Num steps: 8700000   Return: -2736.6   Time: 4:22:51
+Num steps: 8800000   Return: -2736.6   Time: 4:26:08
+Num steps: 8900000   Return: -2738.5   Time: 4:29:24
+Num steps: 9000000   Return: -2738.3   Time: 4:32:37
+Num steps: 9100000   Return: -2739.5   Time: 4:35:54
+Num steps: 9200000   Return: -2739.6   Time: 4:39:13
+Num steps: 9300000   Return: -2737.9   Time: 4:42:29
+Num steps: 9400000   Return: -2738.7   Time: 4:45:45
+Num steps: 9500000   Return: -2739.2   Time: 4:49:00
+Num steps: 9600000   Return: -2738.7   Time: 4:52:17
+Num steps: 9700000   Return: -2739.1   Time: 4:55:36
+Num steps: 9800000   Return: -2738.6   Time: 4:58:50
+Num steps: 9900000   Return: -2738.7   Time: 5:02:09
+Num steps: 10000000   Return: -2740.0   Time: 5:05:26
+Models saved to logs/Ant-v4/airl/20250314-1943/model
