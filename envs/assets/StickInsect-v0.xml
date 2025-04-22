@@ -2,13 +2,6 @@
   <compiler angle="degree" coordinate="local" inertiafromgeom="true"/>
   <option integrator="RK4" timestep="0.005"/> <!-- frequency [200,50] -->
 
-  <custom>
-    <numeric data="0.10681971 -0.20482576 0.76341401 0.92561184 0.18595086 0.18452993  
-0.78049568 0.01004119 0.00413513 -0.03130112 -0.18171205 0.21024531  
--0.19540428 0.15524787 -0.6086322 0.4715757 -0.23915008 0.06885989  
--1.01172582 0.99137151 0.1567984 0.60833356 -0.45790772 -0.41003116 " name="init_qpos"/>
-  </custom>
-
   <default>
     <joint armature="1" damping="1" limited="true"/>
     <geom conaffinity="0" condim="3" density="5.0" friction="1 0.5 0.5" margin="0.01" rgba="0.8 0.6 0.4 1"/>
@@ -139,27 +132,6 @@
     <position ctrllimited="true" ctrlrange="-3.141592654 3.141592654" joint="RF_FTi" gear="1" kp="300" kv="200"/>
     <position ctrllimited="true" ctrlrange="-3.141592654 3.141592654" joint="RM_FTi" gear="1" kp="300" kv="200"/>
     <position ctrllimited="true" ctrlrange="-3.141592654 3.141592654" joint="RH_FTi" gear="1" kp="300" kv="200"/>
-
-    <velocity joint="LF_CTr" gear="1" ctrllimited="true" ctrlrange="-600 600"/>
-    <velocity joint="LM_CTr" gear="1" ctrllimited="true" ctrlrange="-600 600"/>
-    <velocity joint="LH_CTr" gear="1" ctrllimited="true" ctrlrange="-600 600"/>
-    <velocity joint="RF_CTr" gear="1" ctrllimited="true" ctrlrange="-600 600"/>
-    <velocity joint="RM_CTr" gear="1" ctrllimited="true" ctrlrange="-600 600"/>
-    <velocity joint="RH_CTr" gear="1" ctrllimited="true" ctrlrange="-600 600"/>
-
-    <velocity joint="LF_ThC" gear="1" ctrllimited="true" ctrlrange="-600 600"/>
-    <velocity joint="LM_ThC" gear="1" ctrllimited="true" ctrlrange="-600 600"/>
-    <velocity joint="LH_ThC" gear="1" ctrllimited="true" ctrlrange="-600 600"/>
-    <velocity joint="RF_ThC" gear="1" ctrllimited="true" ctrlrange="-600 600"/>
-    <velocity joint="RM_ThC" gear="1" ctrllimited="true" ctrlrange="-600 600"/>
-    <velocity joint="RH_ThC" gear="1" ctrllimited="true" ctrlrange="-600 600"/>
-
-    <velocity joint="LF_FTi" gear="1" ctrllimited="true" ctrlrange="-600 600"/>
-    <velocity joint="LM_FTi" gear="1" ctrllimited="true" ctrlrange="-600 600"/>
-    <velocity joint="LH_FTi" gear="1" ctrllimited="true" ctrlrange="-600 600"/>
-    <velocity joint="RF_FTi" gear="1" ctrllimited="true" ctrlrange="-600 600"/>
-    <velocity joint="RM_FTi" gear="1" ctrllimited="true" ctrlrange="-600 600"/>
-    <velocity joint="RH_FTi" gear="1" ctrllimited="true" ctrlrange="-600 600"/>
 
   </actuator>
 

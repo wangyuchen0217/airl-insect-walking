@@ -42,9 +42,8 @@ def data_smooth(data):
 
 
 '''main'''
-
 animal = "Carausius"
-joint_path = os.path.join("stickinsects", animal, 
+joint_path = os.path.join("experts/stickinsects", animal, 
                                                 "Animal12_110415_00_22.csv")
 joint_movement = pd.read_csv(joint_path, header=[0], index_col=None).to_numpy()
 joint_movement = data_smooth(joint_movement) # smooth the data
@@ -53,15 +52,8 @@ joint_movement = data_smooth(joint_movement) # smooth the data
 joint_movement[:,-6:] = joint_movement[:,-6:] - 90
 # remove the sup data
 joint_movement = joint_movement[:,6:]
-
-dt = 0.005  # The timestep of your data
-# Calculate velocities and accelerations
-velocities = np.diff(joint_movement, axis=0) / dt
-# Pad the arrays to match the length of the original data
-velocities = np.vstack((velocities, np.zeros((1, velocities.shape[1])))) # [2459, 24]
-
 print("joint_movement:", joint_movement.shape)
-print("velocites:", velocities.shape)
+
 
 #  Set up simulation without rendering
 model_name = 'StickInsect-v0'
@@ -87,8 +79,7 @@ with mujoco.viewer.launch_passive(model, data) as viewer:
             break
         # implement the joint angle data
         joint_angle = np.deg2rad(joint_movement[j])
-        data.ctrl[:18] = joint_angle
-        data.ctrl[18:] = velocities[j]
+        data.ctrl = joint_angle
         mujoco.mj_step(model, data)
         viewer.sync()
         with viewer.lock():
@@ -122,8 +113,8 @@ with mujoco.viewer.launch_passive(model, data) as viewer:
 obs_states = np.array([obs_state]) # [1, 2459, 48] only joint angles and velocities, [1, 2459, 61] w/ torso
 print("expert_demo:", obs_states.shape)
 # np.save("StickInsect-v0.npy", obs_states)
-actions = np.array([np.hstack((np.deg2rad(joint_movement), velocities))])
-print("actions:", actions.shape)
+# actions = np.array([np.hstack((np.deg2rad(joint_movement), velocities))])
+# print("actions:", actions.shape)
 # np.save("StickInsect-v0-m3t-32-act.npy", actions)
 contact_matrix = np.array(contact_matrix) # [2459, 6]
 print("contact_matrix:", contact_matrix.shape)
