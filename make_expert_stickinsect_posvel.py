@@ -43,17 +43,19 @@ def data_smooth(data):
 
 '''main'''
 # open config file
-with open("configs/irl.yml", "r") as f:
-    config_data = yaml.safe_load(f)
+# with open("configs/irl.yml", "r") as f:
+#     config_data = yaml.safe_load(f)
 
 animal = "Carausius"
-joint_path = os.path.join("expert_data_builder/stick_insect", animal, 
+joint_path = os.path.join("stickinsects", animal, 
                                                 "Animal12_110415_00_22.csv")
 joint_movement = pd.read_csv(joint_path, header=[0], index_col=None).to_numpy()
 joint_movement = data_smooth(joint_movement) # smooth the data
 
 # FTi joint angle minus 90 degree
 joint_movement[:,-6:] = joint_movement[:,-6:] - 90
+# remove the sup data
+joint_movement = joint_movement[:,6:]
 
 dt = 0.005  # The timestep of your data
 # Calculate velocities and accelerations
@@ -61,25 +63,28 @@ velocities = np.diff(joint_movement, axis=0) / dt
 # Pad the arrays to match the length of the original data
 velocities = np.vstack((velocities, np.zeros((1, velocities.shape[1])))) # [2459, 24]
 
+print("joint_movement:", joint_movement.shape)
+print("velocites:", velocities.shape)
+
 #  Set up simulation without rendering
-model_name = config_data.get("model")
+model_name = 'StickInsect-v0'
 model_path = 'envs/assets/' + model_name + '.xml'
 model = mujoco.MjModel.from_xml_path(model_path)
 data = mujoco.MjData(model)
 
-set_initial_state = False
-if set_initial_state:
-    # Parse the XML file to extract custom data
-    tree = ET.parse(model_path)
-    root = tree.getroot()
-    # Find the custom element and extract the init_qpos data
-    init_qpos_data = None
-    for custom in root.findall('custom'):
-        for numeric in custom.findall('numeric'):
-            if numeric.get('name') == 'init_qpos':
-                init_qpos_data = numeric.get('data')
-                break
-    data.qpos[-24:] = np.array(init_qpos_data.split()).astype(np.float64)
+# set_initial_state = False
+# if set_initial_state:
+#     # Parse the XML file to extract custom data
+#     tree = ET.parse(model_path)
+#     root = tree.getroot()
+#     # Find the custom element and extract the init_qpos data
+#     init_qpos_data = None
+#     for custom in root.findall('custom'):
+#         for numeric in custom.findall('numeric'):
+#             if numeric.get('name') == 'init_qpos':
+#                 init_qpos_data = numeric.get('data')
+#                 break
+#     data.qpos[-24:] = np.array(init_qpos_data.split()).astype(np.float64)
 
 obs_state = []
 leg_geoms = ['LF_tibia_geom', 'LM_tibia_geom', 'LH_tibia_geom', 'RF_tibia_geom', 'RM_tibia_geom', 'RH_tibia_geom']
@@ -99,8 +104,8 @@ with mujoco.viewer.launch_passive(model, data) as viewer:
             break
         # implement the joint angle data
         joint_angle = np.deg2rad(joint_movement[j])
-        data.ctrl[:24] = joint_angle
-        data.ctrl[24:] = velocities[j]
+        data.ctrl[:18] = joint_angle
+        data.ctrl[18:] = velocities[j]
         mujoco.mj_step(model, data)
         viewer.sync()
         with viewer.lock():
