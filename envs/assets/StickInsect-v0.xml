@@ -95,7 +95,7 @@
           <geom fromto="0.0 0.0 0.0 0.0 1.39 0.0" name="LH_femur_geom" size="0.06" type="capsule"/>
           <body pos="0.0 1.39 0.0">
             <joint axis="1 0 0" name="LH_FTi" pos="0.0 0.0 0.0" range="-51 78" type="hinge"/>
-            <geom fromto="0.0 0.0 0.0 0.0 0.0 -1.41" name="LH_tibia_geom" size="0.03" type="capsule"/>
+            <geom fromto="0.0 0.0 0.0 0.0 0.0 -1.41" name="LH_tibia_geom" size="0.06" type="capsule"/>
           </body>
         </body>
       </body>
