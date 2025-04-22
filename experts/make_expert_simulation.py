@@ -44,7 +44,7 @@ def data_smooth(data):
 '''main'''
 animal = "Carausius"
 joint_path = os.path.join("experts/stickinsects", animal, 
-                                                "Animal12_110415_00_22.csv")
+                                                "Animal12_110415_00_32.csv")
 joint_movement = pd.read_csv(joint_path, header=[0], index_col=None).to_numpy()
 joint_movement = data_smooth(joint_movement) # smooth the data
 
