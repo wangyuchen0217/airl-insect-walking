@@ -112,26 +112,26 @@
 
   <actuator>
 
-    <position ctrllimited="true" ctrlrange="-3.141592654 3.141592654" joint="LF_CTr" gear="1" kp="300" kv="200"/>
-    <position ctrllimited="true" ctrlrange="-3.141592654 3.141592654" joint="LM_CTr" gear="1" kp="300" kv="200"/>
-    <position ctrllimited="true" ctrlrange="-3.141592654 3.141592654" joint="LH_CTr" gear="1" kp="300" kv="200"/>
-    <position ctrllimited="true" ctrlrange="-3.141592654 3.141592654" joint="RF_CTr" gear="1" kp="300" kv="200"/>
-    <position ctrllimited="true" ctrlrange="-3.141592654 3.141592654" joint="RM_CTr" gear="1" kp="300" kv="200"/>
-    <position ctrllimited="true" ctrlrange="-3.141592654 3.141592654" joint="RH_CTr" gear="1" kp="300" kv="200"/>
+    <position ctrllimited="true" ctrlrange="-3.141592654 3.141592654" joint="LF_CTr" gear="1" kp="300" kv="100"/>
+    <position ctrllimited="true" ctrlrange="-3.141592654 3.141592654" joint="LM_CTr" gear="1" kp="300" kv="100"/>
+    <position ctrllimited="true" ctrlrange="-3.141592654 3.141592654" joint="LH_CTr" gear="1" kp="300" kv="100"/>
+    <position ctrllimited="true" ctrlrange="-3.141592654 3.141592654" joint="RF_CTr" gear="1" kp="300" kv="100"/>
+    <position ctrllimited="true" ctrlrange="-3.141592654 3.141592654" joint="RM_CTr" gear="1" kp="300" kv="100"/>
+    <position ctrllimited="true" ctrlrange="-3.141592654 3.141592654" joint="RH_CTr" gear="1" kp="300" kv="100"/>
 
-    <position ctrllimited="true" ctrlrange="-3.141592654 3.141592654" joint="LF_ThC" gear="1" kp="300" kv="200"/>
-    <position ctrllimited="true" ctrlrange="-3.141592654 3.141592654" joint="LM_ThC" gear="1" kp="300" kv="200"/>
-    <position ctrllimited="true" ctrlrange="-3.141592654 3.141592654" joint="LH_ThC" gear="1" kp="300" kv="200"/>
-    <position ctrllimited="true" ctrlrange="-3.141592654 3.141592654" joint="RF_ThC" gear="1" kp="300" kv="200"/>
-    <position ctrllimited="true" ctrlrange="-3.141592654 3.141592654" joint="RM_ThC" gear="1" kp="300" kv="200"/>
-    <position ctrllimited="true" ctrlrange="-3.141592654 3.141592654" joint="RH_ThC" gear="1" kp="300" kv="200"/>
+    <position ctrllimited="true" ctrlrange="-3.141592654 3.141592654" joint="LF_ThC" gear="1" kp="300" kv="100"/>
+    <position ctrllimited="true" ctrlrange="-3.141592654 3.141592654" joint="LM_ThC" gear="1" kp="300" kv="100"/>
+    <position ctrllimited="true" ctrlrange="-3.141592654 3.141592654" joint="LH_ThC" gear="1" kp="300" kv="100"/>
+    <position ctrllimited="true" ctrlrange="-3.141592654 3.141592654" joint="RF_ThC" gear="1" kp="300" kv="100"/>
+    <position ctrllimited="true" ctrlrange="-3.141592654 3.141592654" joint="RM_ThC" gear="1" kp="300" kv="100"/>
+    <position ctrllimited="true" ctrlrange="-3.141592654 3.141592654" joint="RH_ThC" gear="1" kp="300" kv="100"/>
 
-    <position ctrllimited="true" ctrlrange="-3.141592654 3.141592654" joint="LF_FTi" gear="1" kp="300" kv="200"/>
-    <position ctrllimited="true" ctrlrange="-3.141592654 3.141592654" joint="LM_FTi" gear="1" kp="300" kv="200"/>
-    <position ctrllimited="true" ctrlrange="-3.141592654 3.141592654" joint="LH_FTi" gear="1" kp="300" kv="200"/>
-    <position ctrllimited="true" ctrlrange="-3.141592654 3.141592654" joint="RF_FTi" gear="1" kp="300" kv="200"/>
-    <position ctrllimited="true" ctrlrange="-3.141592654 3.141592654" joint="RM_FTi" gear="1" kp="300" kv="200"/>
-    <position ctrllimited="true" ctrlrange="-3.141592654 3.141592654" joint="RH_FTi" gear="1" kp="300" kv="200"/>
+    <position ctrllimited="true" ctrlrange="-3.141592654 3.141592654" joint="LF_FTi" gear="1" kp="300" kv="100"/>
+    <position ctrllimited="true" ctrlrange="-3.141592654 3.141592654" joint="LM_FTi" gear="1" kp="300" kv="100"/>
+    <position ctrllimited="true" ctrlrange="-3.141592654 3.141592654" joint="LH_FTi" gear="1" kp="300" kv="100"/>
+    <position ctrllimited="true" ctrlrange="-3.141592654 3.141592654" joint="RF_FTi" gear="1" kp="300" kv="100"/>
+    <position ctrllimited="true" ctrlrange="-3.141592654 3.141592654" joint="RM_FTi" gear="1" kp="300" kv="100"/>
+    <position ctrllimited="true" ctrlrange="-3.141592654 3.141592654" joint="RH_FTi" gear="1" kp="300" kv="100"/>
 
   </actuator>
 
