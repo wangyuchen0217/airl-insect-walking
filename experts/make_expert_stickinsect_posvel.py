@@ -42,9 +42,6 @@ def data_smooth(data):
 
 
 '''main'''
-# open config file
-# with open("configs/irl.yml", "r") as f:
-#     config_data = yaml.safe_load(f)
 
 animal = "Carausius"
 joint_path = os.path.join("stickinsects", animal, 
@@ -71,20 +68,6 @@ model_name = 'StickInsect-v0'
 model_path = 'envs/assets/' + model_name + '.xml'
 model = mujoco.MjModel.from_xml_path(model_path)
 data = mujoco.MjData(model)
-
-# set_initial_state = False
-# if set_initial_state:
-#     # Parse the XML file to extract custom data
-#     tree = ET.parse(model_path)
-#     root = tree.getroot()
-#     # Find the custom element and extract the init_qpos data
-#     init_qpos_data = None
-#     for custom in root.findall('custom'):
-#         for numeric in custom.findall('numeric'):
-#             if numeric.get('name') == 'init_qpos':
-#                 init_qpos_data = numeric.get('data')
-#                 break
-#     data.qpos[-24:] = np.array(init_qpos_data.split()).astype(np.float64)
 
 obs_state = []
 leg_geoms = ['LF_tibia_geom', 'LM_tibia_geom', 'LH_tibia_geom', 'RF_tibia_geom', 'RM_tibia_geom', 'RH_tibia_geom']
@@ -181,17 +164,3 @@ if sub_plot_obs_act:
     axs[3].plot(actions[0, :, idx_v], label="actions", color="red")
     axs[3].set_title("joint velocities_actions")
     plt.savefig("obs_act_plot.png")
-
-
-'''record the forces data'''
-collect_forces_data = False
-if collect_forces_data:
-    contact_forces = np.array(contact_forces) # [2459, 6]
-    print("contact_forces:", contact_forces.shape)
-    forces_save_path = os.path.join("expert_data_builder/stick_insect", animal, "Animal12_110415_00_22_contactforce.csv")
-    pd.DataFrame(contact_forces).to_csv(forces_save_path, header=["LF_foot", "LM_foot", "LH_foot", 
-                                                                "RF_foot", "RM_foot", "RH_foot"], index=None)
-    pd.DataFrame(contact_forces).to_csv(forces_save_path, header=["LF_sup", "LM_sup", "LH_sup", "RF_sup", "RM_sup", "RH_sup",
-                                                                        "LF_CTr", "LM_CTr", "LH_CTr", "RF_CTr", "RM_CTr", "RH_CTr",
-                                                                        "LF_ThC", "LM_ThC", "LH_ThC", "RF_ThC", "RM_ThC", "RH_ThC",
-                                                                        "LF_FTi", "LM_FTi", "LH_FTi", "RF_FTi", "RM_FTi", "RH_FTi"], index=None)
