@@ -30,71 +30,65 @@
     <camera name="fixed float" mode="fixed" pos="-2 -10 6" xyaxes="1 0 0 0 0 1"/>
 
     <body name="torso" pos="0 0 2">
-      <geom name="head_geom" pos="0 0 0" fromto="0.0 0.0 0.0 0.44 0.0 0.0" size="0.06" type="capsule"/>
-      <geom name="T1_geom" pos="0 0 0" fromto="0.0 0.0 0.0 -0.38 0.0 -0.08" size="0.06" type="capsule"/>
-      <geom name="T2_geom" pos="0 0 0" fromto="-0.38 0.0 -0.08 -2.1 0.0 -0.46" size="0.06" type="capsule"/>
-      <geom name="T3_geom" pos="0 0 0" fromto="-2.1 0.0 -0.46 -3.3 0.0 -0.56" size="0.06" type="capsule"/>
+      <geom name="head_geom" pos="0 0 0" fromto="0.0 0.0 0.0 0.4 0.0 0.0" size="0.1" type="capsule"/>
+      <geom name="thorax_geom" pos="0 0 0" fromto="0.0 0.0 0.0 -3.3 0.0 0.0" size="0.1" type="capsule"/>
+      <geom name="abdomen_geom" pos="0 0 0 " fromto="0.0 0.0 0.0 -7.2 0.0 0.0" size="0.1" type="capsule"/>
       <joint armature="0" damping="0" limited="false" margin="0.01" name="root" pos="0 0 0" type="free"/>
 
-      <body name="LF_leg" pos="-0.19 0 -0.04">
+      <body name="LF_leg" pos="-0.1 0.0 0.0">
         <geom fromto="0.0 0.0 0.0 0.0 0.13 0.0" name="LF_cox_geom" size="0.05" type="capsule"/>
-        <joint axis="0 -1 0" name="LF_Sup" pos="0.0 0.0 0.0" range="-7 24" type="hinge" />
         <body name="LF_femur" pos="0.0 0.13 0">
           <joint axis="1 0 0" name="LF_CTr" pos="0.0 0.0 0.0" range="-25 32" type="hinge"/>
           <joint axis="0 0 -1" name="LF_ThC" pos="0.0 0.0 0.0" range="-5 71" type="hinge"/>
           <geom fromto="0.0 0.0 0.0 0.0 1.58 0.0" name="LF_femur_geom" size="0.06" type="capsule"/>
           <body pos="0.0 1.58 0.0">
             <joint axis="1 0 0" name="LF_FTi" pos="0.0 0.0 0.0" range="-43 56" type="hinge"/>
-            <geom fromto="0.0 0.0 0.0 0.0 0.0 -1.50" name="LF_tibia_geom" size="0.03" type="capsule"/>
+            <geom fromto="0.0 0.0 0.0 0.0 0.0 -1.50" name="LF_tibia_geom" size="0.06" type="capsule"/>
           </body>
         </body>
       </body>
 
-      <body name="RF_leg" pos="-0.19 0 -0.04">
+      <body name="RF_leg" pos="-0.1 0.0 0.0">
         <geom fromto="0.0 0.0 0.0 0.0 -0.13 0.0" name="RF_cox_geom" size="0.05" type="capsule"/>
-        <joint axis="0 -1 0" name="RF_Sup" pos="0.0 0.0 0.0" range="-7 24" type="hinge" />
         <body name="RF_femur" pos="0.0 -0.13 0">
           <joint axis="-1 0 0" name="RF_CTr" pos="0.0 0.0 0.0" range="-25 32" type="hinge"/>
           <joint axis="0 0 1" name="RF_ThC" pos="0.0 0.0 0.0" range="-5 71" type="hinge"/>
           <geom fromto="0.0 0.0 0.0 0.0 -1.58 0.0" name="RF_femur_geom" size="0.06" type="capsule"/>
           <body pos="0.0 -1.58 0.0">
             <joint axis="-1 0 0" name="RF_FTi" pos="0.0 0.0 0.0" range="-43 56" type="hinge"/>
-            <geom fromto="0.0 0.0 0.0 0.0 0.0 -1.50" name="RF_tibia_geom" size="0.03" type="capsule"/>
+            <geom fromto="0.0 0.0 0.0 0.0 0.0 -1.50" name="RF_tibia_geom" size="0.06" type="capsule"/>
           </body>
         </body>
       </body>
 
-      <body name="LM_leg" pos="-2.1 0.0 -0.46">
+      <body name="LM_leg" pos="-2.1 0.0 0.0">
         <geom fromto="0.0 0.0 0.0 0.0 0.14 0.0" name="LM_cox_geom" size="0.05" type="capsule" />
-        <joint axis="0 -1 0" name="LM_Sup" pos="0.0 0.0 0.0" range="-26 37" type="hinge" />
         <body name="LM_femur" pos="0.0 0.14 0">
           <joint axis="1 0 0" name="LM_CTr" pos="0.0 0.0 0.0" range="-24 34" type="hinge"/>
           <joint axis="0 0 -1" name="LM_ThC" pos="0.0 0.0 0.0" range="-48 30" type="hinge"/>
           <geom fromto="0.0 0.0 0.0 0.0 1.16 0.0" name="LM_femur_geom" size="0.06" type="capsule"/>
           <body pos="0.0 1.16 0.0">
             <joint axis="1 0 0" name="LM_FTi" pos="0.0 0.0 0.0" range="-50 79" type="hinge"/>
-            <geom fromto="0.0 0.0 0.0 0.0 0.0 -1.12" name="LM_tibia_geom" size="0.03" type="capsule"/>
+            <geom fromto="0.0 0.0 0.0 0.0 0.0 -1.12" name="LM_tibia_geom" size="0.06" type="capsule"/>
           </body>
         </body>
       </body>
 
-      <body name="RM_leg" pos="-2.1 0.0 -0.46">
+      <body name="RM_leg" pos="-2.1 0.0 0.0">
         <geom fromto="0.0 0.0 0.0 0.0 -0.14 0.0" name="RM_cox_geom" size="0.05" type="capsule" />
-        <joint axis="0 -1 0" name="RM_Sup" pos="0.0 0.0 0.0" range="-26 37" type="hinge" />
         <body name="RM_femur" pos="0.0 -0.14 0">
           <joint axis="-1 0 0" name="RM_CTr" pos="0.0 0.0 0.0" range="-24 34" type="hinge"/>
           <joint axis="0 0 1" name="RM_ThC" pos="0.0 0.0 0.0" range="-48 30" type="hinge"/>
           <geom fromto="0.0 0.0 0.0 0.0 -1.16 0.0" name="RM_femur_geom" size="0.06" type="capsule"/>
           <body pos="0.0 -1.16 0.0">
             <joint axis="-1 0 0" name="RM_FTi" pos="0.0 0.0 0.0" range="-50 79" type="hinge"/>
-            <geom fromto="0.0 0.0 0.0 0.0 0.0 -1.12" name="RM_tibia_geom" size="0.03" type="capsule"/>
+            <geom fromto="0.0 0.0 0.0 0.0 0.0 -1.12" name="RM_tibia_geom" size="0.06" type="capsule"/>
           </body>
         </body>
       </body>
 
-      <body name="LH_leg" pos="-3.3 0.0 -0.56">
+      <body name="LH_leg" pos="-3.2 0.0 0.0">
         <geom fromto="0.0 0.0 0.0 0.0 0.15 0.0" name="LH_cox_geom" size="0.05" type="capsule"/>
-        <joint axis="0 -1 0" name="LH_Sup" pos="0.0 0.0 0.0" range="-18 20" type="hinge" />
         <body name="LH_femur" pos="0.0 0.15 0">
           <joint axis="1 0 0" name="LH_CTr" pos="0.0 0.0 0.0" range="-10 50" type="hinge"/>
           <joint axis="0 0 -1" name="LH_ThC" pos="0.0 0.0 0.0" range="-65 -10" type="hinge"/>
@@ -106,16 +100,15 @@
         </body>
       </body>
 
-      <body name="RH_leg" pos="-3.3 0.0 -0.56">
+      <body name="RH_leg" pos="-3.2 0.0 0.0">
         <geom fromto="0.0 0.0 0.0 0.0 -0.15 0.0" name="RH_cox_geom" size="0.05" type="capsule"/>
-        <joint axis="0 -1 0" name="RH_Sup" pos="0.0 0.0 0.0" range="-18 20" type="hinge" />
         <body name="RH_femur" pos="0.0 -0.15 0">
           <joint axis="-1 0 0" name="RH_CTr" pos="0.0 0.0 0.0" range="-10 50" type="hinge"/>
           <joint axis="0 0 1" name="RH_ThC" pos="0.0 0.0 0.0" range="-65 -10" type="hinge"/>
           <geom fromto="0.0 0.0 0.0 0.0 -1.39 0.0" name="RH_femur_geom" size="0.06" type="capsule"/>
           <body pos="0.0 -1.39 0.0">
             <joint axis="-1 0 0" name="RH_FTi" pos="0.0 0.0 0.0" range="-51 78" type="hinge"/>
-            <geom fromto="0.0 0.0 0.0 0.0 0.0 -1.41" name="RH_tibia_geom" size="0.03" type="capsule"/>
+            <geom fromto="0.0 0.0 0.0 0.0 0.0 -1.41" name="RH_tibia_geom" size="0.06" type="capsule"/>
           </body>
         </body>
       </body>
@@ -125,12 +118,6 @@
   </worldbody>
 
   <actuator>
-    <position ctrllimited="true" ctrlrange="-3.141592654 3.141592654" joint="LF_Sup" gear="1" kp="300" kv="200"/>
-    <position ctrllimited="true" ctrlrange="-3.141592654 3.141592654" joint="LM_Sup" gear="1" kp="300" kv="200"/>
-    <position ctrllimited="true" ctrlrange="-3.141592654 3.141592654" joint="LH_Sup" gear="1" kp="300" kv="200"/>
-    <position ctrllimited="true" ctrlrange="-3.141592654 3.141592654" joint="RF_Sup" gear="1" kp="300" kv="200"/>
-    <position ctrllimited="true" ctrlrange="-3.141592654 3.141592654" joint="RM_Sup" gear="1" kp="300" kv="200"/>
-    <position ctrllimited="true" ctrlrange="-3.141592654 3.141592654" joint="RH_Sup" gear="1" kp="300" kv="200"/>
 
     <position ctrllimited="true" ctrlrange="-3.141592654 3.141592654" joint="LF_CTr" gear="1" kp="300" kv="200"/>
     <position ctrllimited="true" ctrlrange="-3.141592654 3.141592654" joint="LM_CTr" gear="1" kp="300" kv="200"/>
@@ -153,13 +140,6 @@
     <position ctrllimited="true" ctrlrange="-3.141592654 3.141592654" joint="RM_FTi" gear="1" kp="300" kv="200"/>
     <position ctrllimited="true" ctrlrange="-3.141592654 3.141592654" joint="RH_FTi" gear="1" kp="300" kv="200"/>
 
-    <velocity joint="LF_Sup" gear="1" ctrllimited="true" ctrlrange="-600 600"/>
-    <velocity joint="LM_Sup" gear="1" ctrllimited="true" ctrlrange="-600 600"/>
-    <velocity joint="LH_Sup" gear="1" ctrllimited="true" ctrlrange="-600 600"/>
-    <velocity joint="RF_Sup" gear="1" ctrllimited="true" ctrlrange="-600 600"/>
-    <velocity joint="RM_Sup" gear="1" ctrllimited="true" ctrlrange="-600 600"/>
-    <velocity joint="RH_Sup" gear="1" ctrllimited="true" ctrlrange="-600 600"/>
-
     <velocity joint="LF_CTr" gear="1" ctrllimited="true" ctrlrange="-600 600"/>
     <velocity joint="LM_CTr" gear="1" ctrllimited="true" ctrlrange="-600 600"/>
     <velocity joint="LH_CTr" gear="1" ctrllimited="true" ctrlrange="-600 600"/>
@@ -180,34 +160,6 @@
     <velocity joint="RF_FTi" gear="1" ctrllimited="true" ctrlrange="-600 600"/>
     <velocity joint="RM_FTi" gear="1" ctrllimited="true" ctrlrange="-600 600"/>
     <velocity joint="RH_FTi" gear="1" ctrllimited="true" ctrlrange="-600 600"/>
-
-    <!-- <velocity joint="LF_Sup" gear="1"/>
-    <velocity joint="LM_Sup" gear="1"/>
-    <velocity joint="LH_Sup" gear="1"/>
-    <velocity joint="RF_Sup" gear="1"/>
-    <velocity joint="RM_Sup" gear="1"/>
-    <velocity joint="RH_Sup" gear="1"/>
-
-    <velocity joint="LF_CTr" gear="1"/>
-    <velocity joint="LM_CTr" gear="1"/>
-    <velocity joint="LH_CTr" gear="1"/>
-    <velocity joint="RF_CTr" gear="1"/>
-    <velocity joint="RM_CTr" gear="1"/>
-    <velocity joint="RH_CTr" gear="1"/>
-
-    <velocity joint="LF_ThC" gear="1"/>
-    <velocity joint="LM_ThC" gear="1"/>
-    <velocity joint="LH_ThC" gear="1"/>
-    <velocity joint="RF_ThC" gear="1"/>
-    <velocity joint="RM_ThC" gear="1"/>
-    <velocity joint="RH_ThC" gear="1"/>
-
-    <velocity joint="LF_FTi" gear="1"/>
-    <velocity joint="LM_FTi" gear="1"/>
-    <velocity joint="LH_FTi" gear="1"/>
-    <velocity joint="RF_FTi" gear="1"/>
-    <velocity joint="RM_FTi" gear="1"/>
-    <velocity joint="RH_FTi" gear="1"/> -->
 
   </actuator>
 
