@@ -20,8 +20,16 @@ def make_env(env_id, test=False):
 class NormalizedEnv(gym.Wrapper):
 
     def __init__(self, env):
-        gym.Wrapper.__init__(self, env)
-        self._max_episode_steps = env._max_episode_steps
+        # gym.Wrapper.__init__(self, env)
+        # self._max_episode_steps = env._max_episode_steps
+
+        super().__init__(env)
+        # Get the maximum number of steps from env.spec instead of accessing private properties
+        self._max_episode_steps = getattr(env.spec, "max_episode_steps", None)
+
+        # If also want to enable TimeLimit (to ensure that it is automatically done when the step count is reached)
+        if self._max_episode_steps is not None:
+            self.env = gym.wrappers.TimeLimit(self.env, max_episode_steps=self._max_episode_steps)
 
         self.scale = env.action_space.high
         self.action_space.high /= self.scale
