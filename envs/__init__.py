@@ -1,6 +1,6 @@
 from gymnasium.envs.registration import register
 
 register(
-    id='StickInsectEnv-v4',
+    id='StickInsect-v4',
     entry_point='envs.StickInsectEnv:StickInsectEnv',
 )
