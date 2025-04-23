@@ -8,12 +8,9 @@ import pandas as pd
 import mujoco
 import mujoco.viewer
 import time
-import yaml
-import json
 import matplotlib.pyplot as plt
-from sklearn.preprocessing import MinMaxScaler
 from pykalman import KalmanFilter
-import xml.etree.ElementTree as ET
+import torch
 
 
 # smooth the data
@@ -138,9 +135,28 @@ def plot_expert_demo(obs_states, actions):
     plt.show()
 
 ANIMAL = "Carausius"
-DATA_FILE = "Animal12_110415_00_22.csv"
+DATA_FILE_1 = "Animal12_110415_00_22.csv"
+DATA_FILE_2 = "Animal12_110415_00_23.csv"
+DATA_FILE_3 = "Animal12_110415_00_32.csv"
 
-joint_movement = joint_prepration(ANIMAL, DATA_FILE) 
-obs_states, actions, contact_matrix = expert_simulation(joint_movement)
+print(ANIMAL, ":", DATA_FILE_1)
+joint_movement_1 = joint_prepration(ANIMAL, DATA_FILE_1) 
+obs_states_1, actions_1, contact_matrix_1 = expert_simulation(joint_movement_1)
+print(ANIMAL, ":", DATA_FILE_2)
+joint_movement_2 = joint_prepration(ANIMAL, DATA_FILE_2)
+obs_states_2, actions_2, contact_matrix_2 = expert_simulation(joint_movement_2)
+print(ANIMAL, ":", DATA_FILE_3)
+joint_movement_3 = joint_prepration(ANIMAL, DATA_FILE_3)
+obs_states_3, actions_3, contact_matrix_3 = expert_simulation(joint_movement_3)
 
-plot_expert_demo(obs_states, actions)
+expert_states = np.concatenate((obs_states_1, obs_states_2, obs_states_3), axis=0)
+expert_actions = np.concatenate((actions_1, actions_2, actions_3), axis=0)
+print("---")
+print("expert states:", expert_states.shape)
+print("expert actions:", expert_actions.shape)
+
+# save numpy data as pt file
+expert_states = torch.tensor(expert_states, dtype=torch.float32)
+expert_actions = torch.tensor(expert_actions, dtype=torch.float32)
+torch.save(expert_states, "experts/StickInsect_states.pt")
+torch.save(expert_actions, "experts/StickInsect_actions.pt")
