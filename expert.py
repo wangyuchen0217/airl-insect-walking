@@ -13,6 +13,11 @@ def load_expert_data(state_file, action_file, save_npz=False, npz_filename="expe
     actions_np = actions.numpy()
     print(f"Load data states: {states_np.shape}, actions: {actions_np.shape}")
 
+    # Add num_trajectories dimension if not present.
+    if len(states_np.shape) == 2:
+        states_np = states_np[None, :, :]
+        actions_np = actions_np[None, :, :]
+
     num_trajectories, traj_length, _ = states_np.shape
 
     states = []
