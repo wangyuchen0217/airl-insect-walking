@@ -66,18 +66,11 @@ class StickInsectEnv(MujocoEnv, utils.EzPickle):
             exclude_current_positions_from_observation
         )
 
-        # For Ant-v4
-        # obs_shape = 27
-        # if not exclude_current_positions_from_observation:
-        #     obs_shape += 2
-        # if use_contact_forces:
-        #     obs_shape += 84
-
-        obs_shape = 59
+        obs_shape = 47
         if not exclude_current_positions_from_observation:
             obs_shape += 2
         if use_contact_forces:
-            obs_shape += 128
+            obs_shape += 120
         observation_space = Box(
             low=-np.inf, high=np.inf, shape=(obs_shape,), dtype=np.float64
         )
@@ -165,8 +158,7 @@ class StickInsectEnv(MujocoEnv, utils.EzPickle):
 
         if self.render_mode == "human":
             self.render()
-        # truncation=False as the time limit is handled by the `TimeLimit` wrapper added during `make`
-        return observation, rewards, terminated, False, info
+        return observation, reward, terminated, False, info
 
     def _get_obs(self):
         position = self.data.qpos.flat.copy()
@@ -182,23 +174,18 @@ class StickInsectEnv(MujocoEnv, utils.EzPickle):
             return np.concatenate((position, velocity))
 
     def reset_model(self):
-        # noise_low = -self._reset_noise_scale
-        # noise_high = self._reset_noise_scale
+        noise_low = -self._reset_noise_scale
+        noise_high = self._reset_noise_scale
 
-        # qpos = self.init_qpos + self.np_random.uniform(
-        #     low=noise_low, high=noise_high, size=self.model.nq
-        # )
-        # qvel = (
-        #     self.init_qvel
-        #     + self._reset_noise_scale * self.np_random.standard_normal(self.model.nv)
-        # )
-        # self.set_state(qpos, qvel)
-
-        # observation = self._get_obs()
-
-        qpos = self.init_qpos
-        qvel = self.init_qvel
+        qpos = self.init_qpos + self.np_random.uniform(
+            low=noise_low, high=noise_high, size=self.model.nq
+        )
+        qvel = (
+            self.init_qvel
+            + self._reset_noise_scale * self.np_random.standard_normal(self.model.nv)
+        )
         self.set_state(qpos, qvel)
+
         observation = self._get_obs()
 
         return observation
@@ -217,15 +204,3 @@ if __name__ == "__main__":
         env.step(env.action_space.sample())
         env.render()
     env.close()
-    
-    # import sys
-    # sys.path.append("./")
-
-    # actions = np.load('expert_demonstration/expert/StickInsect-v0-m3t-12-act.npy', allow_pickle=True)
-    # actions = actions[0, :-1, :] 
-    # for i in range(2458):
-    #     action = actions[i]
-    #     obs, reward, done, _, _=env.step(action)
-    #     env.render()
-    #     print("Step:", i, "Reward:", reward, "Done:", done)
-    # env.close()
