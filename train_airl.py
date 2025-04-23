@@ -16,9 +16,9 @@ from common.env import make_env, normalize_expert_data
 from common.buffer import SerializedBuffer
 
 # ======== Parameters (modify these as needed) =========
-NAME = "Ant"
-STATE_FILE = NAME+"_states.pt"
-ACTION_FILE = NAME+"_actions.pt"
+NAME = "StickInsect"
+STATE_FILE = "experts/" + NAME + "_states.pt"
+ACTION_FILE = "experts/" + NAME + "_actions.pt"
 ENV_ID = NAME+"-v4"
 CUDA = 0
 ROLLOUT_LENGTH = 1000
