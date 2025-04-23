@@ -16,7 +16,6 @@ from pykalman import KalmanFilter
 import xml.etree.ElementTree as ET
 
 
-'''functions'''
 # smooth the data
 def Kalman1D(observations,damping=1):
     observation_covariance = damping
@@ -52,8 +51,9 @@ def joint_prepration(ANIMAL, DATA_FILE):
     joint_movement = joint_movement[:,6:]
     print("joint_movement:", joint_movement.shape)
 
+    return joint_movement
 
-def expert_simulation():
+def expert_simulation(joint_movement):
     #  Set up simulation without rendering
     model_name = 'StickInsect-v0'
     model_path = 'envs/assets/' + model_name + '.xml'
@@ -64,7 +64,7 @@ def expert_simulation():
     leg_geoms = ['LF_tibia_geom', 'LM_tibia_geom', 'LH_tibia_geom', 'RF_tibia_geom', 'RM_tibia_geom', 'RH_tibia_geom']
     leg_ids = [mujoco.mj_name2id(model, mujoco.mjtObj.mjOBJ_GEOM, name) for name in leg_geoms]
     floor_id = mujoco.mj_name2id(model, mujoco.mjtObj.mjOBJ_GEOM, 'floor')
-    contact_matrix = np.zeros((2459, len(leg_geoms)), dtype=int)
+    contact_matrix = np.zeros((joint_movement.shape[0], len(leg_geoms)), dtype=int)
     with mujoco.viewer.launch_passive(model, data) as viewer:
         # set a camera <camera name="top" mode="fixed" pos="5 0 20" xyaxes="1 0 0 0 1 0"/>
         viewer.cam.lookat[0] = 5  # x-coordinate of the point to look at
@@ -73,7 +73,8 @@ def expert_simulation():
         viewer.cam.distance = 20  # Camera distance from the lookat point
         viewer.cam.azimuth = 90  # Camera azimuth angle in degrees
         viewer.cam.elevation = -90  # Camera elevation angle in degrees
-        for j in range(2459):  # Run exactly 2459 frames
+
+        for j in range(joint_movement.shape[0]):  # Run the simulation for the length of the joint movement data
             if not viewer.is_running():  # Check if the viewer has been closed manually
                 break
             # implement the joint angle data
@@ -86,10 +87,10 @@ def expert_simulation():
             # Manage timing to maintain a steady frame rate
             time.sleep(model.opt.timestep)
 
-            state = np.hstack((data.qpos.copy()[2:], # [-24:] joint angles, [:] w/ torso
-                                                data.qvel.copy()[:])) # [-24:] joint velocities, [:] w/ torso
+            state = np.hstack((data.qpos.copy()[2:], # [2:] remove the root position
+                                                data.qvel.copy()))
             # record the state of each step
-            obs_state.append(state) # [2459,48] only joint angles and velocities, [2459, 61] w/ torso
+            obs_state.append(state)
             
             # Record contact data
             for i in range(data.ncon):
@@ -102,30 +103,16 @@ def expert_simulation():
                             contact_matrix[j, leg_index] = 1  # Mark contact
 
     # record observation state and action
-    obs_states = np.array([obs_state]) # [1, 2459, 48] only joint angles and velocities, [1, 2459, 61] w/ torso
-    print("expert_demo:", obs_states.shape)
-    # np.save("StickInsect-v0.npy", obs_states)
-    # actions = np.array([np.hstack((np.deg2rad(joint_movement), velocities))])
-    # print("actions:", actions.shape)
-    # np.save("StickInsect-v0-m3t-32-act.npy", actions)
-    contact_matrix = np.array(contact_matrix) # [2459, 6]
+    obs_states = np.array(obs_state) # [len, 47] with torso without root position
+    print("states:", obs_states.shape)
+    actions = np.array((np.deg2rad(joint_movement)))
+    print("actions:", actions.shape)  # [len, 18]
+    contact_matrix = np.array(contact_matrix) # [len, 6]
     print("contact_matrix:", contact_matrix.shape)
-    # pd.DataFrame(contact_matrix).to_csv("contact_matrix.csv", header=["LF", "LM", "LH", "RF", "RM", "RH"], index=None)
+    return obs_states, actions, contact_matrix
 
-'''main'''
-ANIMAL = "Carausius"
-DATA_FILE = "Animal12_110415_00_32.csv"
-
-joint_movement = joint_prepration(ANIMAL, DATA_FILE) 
-
-
-
-
-'''plotting the gait phase'''
-plot_gait_phase = False
-if plot_gait_phase:
+def plot_contact_gait(contact_matrix):
     plt.figure(figsize=(7, 6))
-    labels = ['LF', 'LM', 'LH', 'RF', 'RM', 'RH']
     for leg in range(contact_matrix.shape[1]):
         plt.fill_between(range(contact_matrix.shape[0]), 
                         leg * 1.5, leg * 1.5 + 1, 
@@ -136,22 +123,24 @@ if plot_gait_phase:
     plt.xlabel('Time Step')
     plt.title('Gait Phase Plot kp300kv200')
     plt.show()
-    # plt.savefig("gait_phase_plot_kp300kv200.png")
 
-
-'''subplot the obs and act data'''
-sub_plot_obs_act = False
-if sub_plot_obs_act:
-    idx_j = 0 # 0--23 joint angles
-    idx_v= 24 # 24--47 joint velocities
-    fig, axs = plt.subplots(4, 1, figsize=(10, 10))
+def plot_expert_demo(obs_states, actions):
+    idx_j = 0 # 0--17 joint angles
+    idx_v= 18 # 18--35 joint velocities
+    fig, axs = plt.subplots(3, 1, figsize=(10, 10))
     plt.subplots_adjust(hspace=0.5)
-    axs[0].plot(obs_states[0, :, idx_j+7], label="obs_states", color="blue")
-    axs[0].set_title("joint angles_obs_states")
-    axs[1].plot(actions[0, :, idx_j], label="actions", color="red")
-    axs[1].set_title("joint angles_actions")
-    axs[2].plot(obs_states[0, :, idx_v+13], label="obs_states", color="blue")
-    axs[2].set_title("joint velocities_obs_states")
-    axs[3].plot(actions[0, :, idx_v], label="actions", color="red")
-    axs[3].set_title("joint velocities_actions")
-    plt.savefig("obs_act_plot.png")
+    axs[0].plot(obs_states[:, idx_j+7], label="states_qpos", color="blue")
+    axs[0].set_title("joint position states")
+    axs[1].plot(obs_states[:, idx_v+13], label="states_qvel", color="blue")
+    axs[1].set_title("joint velocity states")
+    axs[2].plot(actions[:, idx_j], label="actions", color="red")
+    axs[2].set_title("actions")
+    plt.show()
+
+ANIMAL = "Carausius"
+DATA_FILE = "Animal12_110415_00_22.csv"
+
+joint_movement = joint_prepration(ANIMAL, DATA_FILE) 
+obs_states, actions, contact_matrix = expert_simulation(joint_movement)
+
+plot_expert_demo(obs_states, actions)
