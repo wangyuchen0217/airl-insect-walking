@@ -67,8 +67,8 @@ class ExpertBuffer:
 
 
 if __name__ == "__main__":
-    STATE_FILE = "Ant_states.pt"
-    ACTION_FILE = "Ant_actions.pt"
+    STATE_FILE = "experts/Ant_states.pt"
+    ACTION_FILE = "experts/Ant_actions.pt"
     expert_data = load_expert_data(STATE_FILE, ACTION_FILE, save_npz=False, npz_filename="expert_data.npz")
 
     # convert action to csv
