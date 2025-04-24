@@ -12,7 +12,7 @@ from common.trainer import Trainer
 import logging
 from common.base import LoggerWriter
 from common.base import log_parameters
-from common.env import make_env, normalize_expert_data
+from common.env import make_env, NormalizedEnv
 from common.buffer import SerializedBuffer
 
 # ======== Parameters (modify these as needed) =========
@@ -78,7 +78,7 @@ def main():
 
     # Load expert data from .pt files and wrap into an ExpertBuffer.
     expert_data = load_expert_data(STATE_FILE, ACTION_FILE, save_npz=False)
-    expert_data = normalize_expert_data(expert_data, env)
+    expert_data = NormalizedEnv.normalize_expert_data(env, expert_data)
     expert_buffer = ExpertBuffer(expert_data, device)
     print(f"Expert buffer size: {expert_buffer.size}")
     # expert_buffer = SerializedBuffer(
