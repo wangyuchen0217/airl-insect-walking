@@ -3,14 +3,15 @@ import sys
 import gymnasium as gym
 import torch
 import numpy as np
+import envs
 from networks.actor import StateDependentPolicy 
 import logging
 from common.base import LoggerWriter
 from common.env import make_env
 
 def main():
-    SAVE_PATH = "/home/yuchen/airl_insect_walking/logs/Ant-v4/sac/20250314-1354"
-    ENV_ID = "Ant-v4"
+    SAVE_PATH = "/home/yuchen/airl_insect_walking/logs/StickInsect-v4/sac/20250424-1634"
+    ENV_ID = "StickInsect-v4"
     NUM_EPISODES = 10
     SEED = 123
 
