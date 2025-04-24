@@ -6,6 +6,7 @@ import logging
 import sys
 from common.base import LoggerWriter
 
+import envs
 from common.env import make_env
 from algorithms.sac import SAC
 from common.trainer import Trainer
