@@ -12,7 +12,7 @@ from algorithms.sac import SAC
 from common.trainer import Trainer
 
 def run(args):
-    CUDA = 0
+    CUDA = 2
 
     # Create log directory.
     current_time = datetime.now().strftime("%Y%m%d-%H%M")
@@ -42,6 +42,9 @@ def run(args):
         state_shape=env.observation_space.shape,
         action_shape=env.action_space.shape,
         device=device,
+        lr_actor=3e-5,
+        lr_critic=3e-5,
+        lr_alpha=3e-5,
         seed=args.seed
     )
 

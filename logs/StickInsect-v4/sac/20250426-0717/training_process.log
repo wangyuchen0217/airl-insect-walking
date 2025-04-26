@@ -1,0 +1,71 @@
+Logging started at 20250426-0717
+NVIDIA RTX A6000
+Process ID: 1778170
+Note: NumExpr detected 64 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+NumExpr defaulting to 8 threads.
+Initial state shape: (47,)
+Num steps: 10000    Return: 598.5   Time: 0:00:53
+Num steps: 20000    Return: -637.6   Time: 0:05:53
+Num steps: 30000    Return: -2705.3   Time: 0:11:00
+Num steps: 40000    Return: -834.3   Time: 0:16:02
+Num steps: 50000    Return: -2167.7   Time: 0:21:04
+Num steps: 60000    Return: -2743.5   Time: 0:26:05
+Num steps: 70000    Return: -2959.7   Time: 0:31:18
+Num steps: 80000    Return: -2148.1   Time: 0:36:16
+Num steps: 90000    Return: -2410.0   Time: 0:41:23
+Num steps: 100000   Return: -2473.3   Time: 0:46:35
+Num steps: 110000   Return: -2410.0   Time: 0:51:42
+Num steps: 120000   Return: -2915.2   Time: 0:56:52
+Num steps: 130000   Return: -3806.3   Time: 1:02:06
+Num steps: 140000   Return: -1474.7   Time: 1:07:16
+Num steps: 150000   Return: -2140.9   Time: 1:12:24
+Num steps: 160000   Return: -4228.7   Time: 1:17:36
+Num steps: 170000   Return: -4340.5   Time: 1:22:43
+Num steps: 180000   Return: -4289.7   Time: 1:28:00
+Num steps: 190000   Return: -3597.4   Time: 1:33:07
+Num steps: 200000   Return: -3533.0   Time: 1:38:14
+Num steps: 210000   Return: -1594.2   Time: 1:43:23
+Num steps: 220000   Return: -1422.4   Time: 1:48:24
+Num steps: 230000   Return: -2582.1   Time: 1:53:30
+Num steps: 240000   Return: -3474.2   Time: 1:58:39
+Num steps: 250000   Return: -704.4   Time: 2:03:38
+Num steps: 260000   Return: -2397.2   Time: 2:08:53
+Num steps: 270000   Return: -1995.6   Time: 2:13:57
+Num steps: 280000   Return: -1144.7   Time: 2:19:04
+Num steps: 290000   Return: -965.1   Time: 2:24:12
+Num steps: 300000   Return: -958.0   Time: 2:29:11
+Num steps: 310000   Return: -661.4   Time: 2:34:13
+Num steps: 320000   Return: -537.1   Time: 2:39:16
+Num steps: 330000   Return: -956.1   Time: 2:44:17
+Num steps: 340000   Return: -429.4   Time: 2:49:16
+Num steps: 350000   Return: -326.5   Time: 2:54:16
+Num steps: 360000   Return: -345.2   Time: 2:59:19
+Num steps: 370000   Return: -489.1   Time: 3:04:16
+Num steps: 380000   Return: -704.6   Time: 3:09:17
+Num steps: 390000   Return: -760.8   Time: 3:14:20
+Num steps: 400000   Return: -1258.9   Time: 3:19:26
+Num steps: 410000   Return: -394.1   Time: 3:24:29
+Num steps: 420000   Return: -343.2   Time: 3:27:42
+Num steps: 430000   Return: -215.7   Time: 3:29:15
+Num steps: 440000   Return: -288.4   Time: 3:30:48
+Num steps: 450000   Return: -218.2   Time: 3:32:20
+Num steps: 460000   Return: -889.1   Time: 3:33:51
+Num steps: 470000   Return: -309.7   Time: 3:35:23
+Num steps: 480000   Return: -2369.8   Time: 3:36:55
+Num steps: 490000   Return: -154.6   Time: 3:38:28
+Num steps: 500000   Return: -1865.6   Time: 3:40:03
+Num steps: 510000   Return: -256.1   Time: 3:41:38
+Num steps: 520000   Return: -1270.0   Time: 3:43:10
+Num steps: 530000   Return: -1550.6   Time: 3:44:42
+Num steps: 540000   Return: -381.2   Time: 3:46:12
+Num steps: 550000   Return: -1489.0   Time: 3:47:43
+Num steps: 560000   Return: -301.6   Time: 3:49:14
+Num steps: 570000   Return: -982.8   Time: 3:50:44
+Num steps: 580000   Return: -822.4   Time: 3:52:13
+Num steps: 590000   Return: -1517.9   Time: 3:53:43
+Num steps: 600000   Return: -1830.2   Time: 3:55:15
+Num steps: 610000   Return: -2556.6   Time: 3:56:50
+Num steps: 620000   Return: -273.9   Time: 3:58:22
+Num steps: 630000   Return: -2850.1   Time: 3:59:55
+Num steps: 640000   Return: -287.6   Time: 4:01:28
+Num steps: 650000   Return: -411.1   Time: 4:03:00
