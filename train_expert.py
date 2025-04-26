@@ -42,9 +42,9 @@ def run(args):
         state_shape=env.observation_space.shape,
         action_shape=env.action_space.shape,
         device=device,
-        lr_actor=3e-5,
-        lr_critic=3e-5,
-        lr_alpha=3e-5,
+        lr_actor=1e-5,
+        lr_critic=1e-5,
+        lr_alpha=1e-5,
         seed=args.seed
     )
 
