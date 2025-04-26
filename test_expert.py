@@ -10,7 +10,7 @@ from common.base import LoggerWriter
 from common.env import make_env
 
 def main():
-    SAVE_PATH = "/home/yuchen/airl_insect_walking/logs/StickInsect-v4/sac/20250425-1208"
+    SAVE_PATH = "/home/yuchen/airl_insect_walking/logs/StickInsect-v4/sac/20250426-1130"
     ENV_ID = "StickInsect-v4"
     NUM_EPISODES = 10
     SEED = 123
