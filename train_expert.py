@@ -45,8 +45,8 @@ def run(args):
         lr_actor=1e-4,
         lr_critic=1e-4,
         lr_alpha=1e-4,
-        units_actor=(512, 512),
-        units_critic=(512, 512),
+        units_actor=(256, 256),
+        units_critic=(256, 256),
         seed=args.seed
     )
 

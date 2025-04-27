@@ -158,7 +158,7 @@ class StickInsectEnv(MujocoEnv, utils.EzPickle):
 
         if self.render_mode == "human":
             self.render()
-        return observation, reward, terminated, False, info
+        return observation, rewards, terminated, False, info
 
     def _get_obs(self):
         position = self.data.qpos.flat.copy()
