@@ -58,13 +58,17 @@ def expert_simulation(joint_movement):
     env = gym.make(env_id, render_mode="human")
     env.reset()
 
-    reward = 0
-    for i in range(joint_movement.shape[0]):
-        env.step(np.deg2rad(joint_movement[i]))
-        reward += env.get_reward()
-        env.render()
-        env.close()
-    print("reward:", reward)
+    total_reward = 0.0
+    for i, angles_deg in enumerate(joint_movement):
+        action = np.deg2rad(angles_deg.astype(np.float32))
+        obs, reward, terminated, truncated, info = env.step(action)
+        total_reward += reward
+        if terminated or truncated:
+            print(f" Episode ended at step {i}")
+            break
+
+    print("Total reward:", total_reward)
+    env.close()
     
 ANIMAL = "Carausius"
 DATA_FILE_1 = "Animal12_110415_00_22.csv"
