@@ -10,7 +10,7 @@ from common.base import LoggerWriter
 from common.env import make_env
 
 def main():
-    SAVE_PATH = "/home/yuchen/airl_insect_walking/logs/StickInsect-v4/airl/20250426-2127"
+    SAVE_PATH = "/home/yuchen/airl_insect_walking/logs/StickInsect-v4/airl/20250427-1450"
     ENV_ID = "StickInsect-v4"
     NUM_EPISODES = 10
     SEED = 123
@@ -37,7 +37,7 @@ def main():
     actor = ActorNetworkPolicy(
         state_shape=state_shape,
         action_shape=action_shape,
-        hidden_units=(128, 128),
+        hidden_units=(64, 64),
         hidden_activation=torch.nn.Tanh()
     ).to(device)
     
