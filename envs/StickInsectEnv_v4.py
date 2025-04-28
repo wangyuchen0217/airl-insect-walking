@@ -22,7 +22,7 @@ class StickInsectEnv(MujocoEnv, utils.EzPickle):
 
     def __init__(
         self,
-        xml_file="/home/yuchen/airl_insect_walking/envs/assets/StickInsect-v0.xml",
+        xml_file="/home/yuchen/airl_insect_walking/envs/assets/StickInsect-v4.xml",
         ctrl_cost_weight=0.5,
         use_contact_forces=False,
         contact_cost_weight=5e-4,
@@ -158,7 +158,7 @@ class StickInsectEnv(MujocoEnv, utils.EzPickle):
 
         if self.render_mode == "human":
             self.render()
-        return observation, reward, terminated, False, info
+        return observation, rewards, terminated, False, info
 
     def _get_obs(self):
         position = self.data.qpos.flat.copy()

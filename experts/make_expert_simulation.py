@@ -52,7 +52,7 @@ def joint_prepration(ANIMAL, DATA_FILE):
 
 def expert_simulation(joint_movement):
     #  Set up simulation without rendering
-    model_name = 'StickInsect-v0'
+    model_name = 'StickInsect-v4'
     model_path = 'envs/assets/' + model_name + '.xml'
     model = mujoco.MjModel.from_xml_path(model_path)
     data = mujoco.MjData(model)
