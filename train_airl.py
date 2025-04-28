@@ -17,10 +17,10 @@ from common.buffer import SerializedBuffer
 
 # ======== Parameters (modify these as needed) =========
 NAME = "StickInsect"
-STATE_FILE = "experts/" + NAME + "_states.pt"
-ACTION_FILE = "experts/" + NAME + "_actions.pt"
+STATE_FILE = "experts/" + NAME + "_states_v1.pt"
+ACTION_FILE = "experts/" + NAME + "_actions_v1.pt"
 ENV_ID = NAME+"-v4"
-CUDA = 0
+CUDA = 3
 ROLLOUT_LENGTH = 3000
 NUM_STEPS = 2*10**6
 EVAL_INTERVAL = 10**4
