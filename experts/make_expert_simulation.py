@@ -62,6 +62,7 @@ def expert_simulation(joint_movement):
     leg_ids = [mujoco.mj_name2id(model, mujoco.mjtObj.mjOBJ_GEOM, name) for name in leg_geoms]
     floor_id = mujoco.mj_name2id(model, mujoco.mjtObj.mjOBJ_GEOM, 'floor')
     contact_matrix = np.zeros((joint_movement.shape[0], len(leg_geoms)), dtype=int)
+    force_data = []
     with mujoco.viewer.launch_passive(model, data) as viewer:
         # set a camera <camera name="top" mode="fixed" pos="5 0 20" xyaxes="1 0 0 0 1 0"/>
         viewer.cam.lookat[0] = 5  # x-coordinate of the point to look at
@@ -89,7 +90,7 @@ def expert_simulation(joint_movement):
             # record the state of each step
             obs_state.append(state)
             
-            # Record contact data
+            # record contact data
             for i in range(data.ncon):
                     contact = data.contact[i]
                     geom1 = contact.geom1
@@ -99,6 +100,10 @@ def expert_simulation(joint_movement):
                         if (geom1 == leg_id and geom2 == floor_id) or (geom1 == floor_id and geom2 == leg_id):
                             contact_matrix[j, leg_index] = 1  # Mark contact
 
+            # record the force sensor data
+            sensor_data = data.sensordata[6:].copy()
+            force_data.append(sensor_data)
+
     # record observation state and action
     obs_states = np.array(obs_state) # [len, 47] with torso without root position
     print("states:", obs_states.shape)
@@ -106,7 +111,9 @@ def expert_simulation(joint_movement):
     print("actions:", actions.shape)  # [len, 18]
     contact_matrix = np.array(contact_matrix) # [len, 6]
     print("contact_matrix:", contact_matrix.shape)
-    return obs_states, actions, contact_matrix
+    force_data = np.array(force_data) # [len, 18]
+    print("force_data:", force_data.shape) # [len, 18]
+    return obs_states, actions, contact_matrix, force_data
 
 def plot_contact_gait(contact_matrix):
     plt.figure(figsize=(7, 6))
@@ -141,13 +148,18 @@ DATA_FILE_3 = "Animal12_110415_00_32.csv"
 
 print(ANIMAL, ":", DATA_FILE_1)
 joint_movement_1 = joint_prepration(ANIMAL, DATA_FILE_1) 
-obs_states_1, actions_1, contact_matrix_1 = expert_simulation(joint_movement_1)
+obs_states_1, actions_1, contact_matrix_1, force_1 = expert_simulation(joint_movement_1)
 print(ANIMAL, ":", DATA_FILE_2)
 joint_movement_2 = joint_prepration(ANIMAL, DATA_FILE_2)
-obs_states_2, actions_2, contact_matrix_2 = expert_simulation(joint_movement_2)
+obs_states_2, actions_2, contact_matrix_2, force_2 = expert_simulation(joint_movement_2)
 print(ANIMAL, ":", DATA_FILE_3)
 joint_movement_3 = joint_prepration(ANIMAL, DATA_FILE_3)
-obs_states_3, actions_3, contact_matrix_3 = expert_simulation(joint_movement_3)
+obs_states_3, actions_3, contact_matrix_3, force_3 = expert_simulation(joint_movement_3)
+
+# # save force data as csv
+# np.savetxt("experts/StickInsect_force_1.csv", force_1, delimiter=",")
+# np.savetxt("experts/StickInsect_force_2.csv", force_2, delimiter=",")
+# np.savetxt("experts/StickInsect_force_3.csv", force_3, delimiter=",")
 
 expert_states = np.concatenate((obs_states_1, obs_states_2, obs_states_3), axis=0)
 expert_actions = np.concatenate((actions_1, actions_2, actions_3), axis=0)
@@ -158,5 +170,5 @@ print("expert actions:", expert_actions.shape)
 # save numpy data as pt file
 expert_states = torch.tensor(expert_states, dtype=torch.float32)
 expert_actions = torch.tensor(expert_actions, dtype=torch.float32)
-torch.save(expert_states, "experts/StickInsect_states.pt")
-torch.save(expert_actions, "experts/StickInsect_actions.pt")
+# torch.save(expert_states, "experts/StickInsect_states.pt")
+# torch.save(expert_actions, "experts/StickInsect_actions.pt")

@@ -37,6 +37,7 @@
           <body pos="0.0 1.58 0.0">
             <joint axis="1 0 0" name="LF_FTi" pos="0.0 0.0 0.0" range="-43 56" type="hinge"/>
             <geom fromto="0.0 0.0 0.0 0.0 0.0 -1.50" name="LF_tibia_geom" size="0.06" type="capsule"/>
+            <site name="LF_foot" pos="0.0 0.0 -1.50" size="0.06"/>
           </body>
         </body>
       </body>
@@ -50,6 +51,7 @@
           <body pos="0.0 -1.58 0.0">
             <joint axis="-1 0 0" name="RF_FTi" pos="0.0 0.0 0.0" range="-43 56" type="hinge"/>
             <geom fromto="0.0 0.0 0.0 0.0 0.0 -1.50" name="RF_tibia_geom" size="0.06" type="capsule"/>
+            <site name="RF_foot" pos="0.0 0.0 -1.50" size="0.06"/>
           </body>
         </body>
       </body>
@@ -63,6 +65,7 @@
           <body pos="0.0 1.16 0.0">
             <joint axis="1 0 0" name="LM_FTi" pos="0.0 0.0 0.0" range="-50 79" type="hinge"/>
             <geom fromto="0.0 0.0 0.0 0.0 0.0 -1.12" name="LM_tibia_geom" size="0.06" type="capsule"/>
+            <site name="LM_foot" pos="0.0 0.0 -1.12" size="0.06"/>
           </body>
         </body>
       </body>
@@ -76,6 +79,7 @@
           <body pos="0.0 -1.16 0.0">
             <joint axis="-1 0 0" name="RM_FTi" pos="0.0 0.0 0.0" range="-50 79" type="hinge"/>
             <geom fromto="0.0 0.0 0.0 0.0 0.0 -1.12" name="RM_tibia_geom" size="0.06" type="capsule"/>
+            <site name="RM_foot" pos="0.0 0.0 -1.12" size="0.06"/>
           </body>
         </body>
       </body>
@@ -89,6 +93,7 @@
           <body pos="0.0 1.39 0.0">
             <joint axis="1 0 0" name="LH_FTi" pos="0.0 0.0 0.0" range="-51 78" type="hinge"/>
             <geom fromto="0.0 0.0 0.0 0.0 0.0 -1.41" name="LH_tibia_geom" size="0.06" type="capsule"/>
+            <site name="LH_foot" pos="0.0 0.0 -1.41" size="0.06"/>
           </body>
         </body>
       </body>
@@ -102,6 +107,7 @@
           <body pos="0.0 -1.39 0.0">
             <joint axis="-1 0 0" name="RH_FTi" pos="0.0 0.0 0.0" range="-51 78" type="hinge"/>
             <geom fromto="0.0 0.0 0.0 0.0 0.0 -1.41" name="RH_tibia_geom" size="0.06" type="capsule"/>
+            <site name="RH_foot" pos="0.0 0.0 -1.41" size="0.06"/>
           </body>
         </body>
       </body>
@@ -134,5 +140,25 @@
     <position ctrllimited="true" ctrlrange="-3.141592654 3.141592654" joint="RH_FTi" gear="1" kp="300" kv="100"/>
 
   </actuator>
+  
+  <sensor>
 
+    <!-- only indicate contact or contact strength -->
+    <touch   site="LF_foot"   name="LF_foot_touch"/>
+    <touch   site="RF_foot"   name="RF_foot_touch"/>
+    <touch   site="LM_foot"   name="LM_foot_touch"/>
+    <touch   site="RM_foot"   name="RM_foot_touch"/>
+    <touch   site="LH_foot"   name="LH_foot_touch"/>
+    <touch   site="RH_foot"   name="RH_foot_touch"/>
+
+    <!-- giving the contact force in vector form-->
+    <force   site="LF_foot"   name="LF_foot_force"/>
+    <force   site="RF_foot"   name="RF_foot_force"/>
+    <force   site="LM_foot"   name="LM_foot_force"/>
+    <force   site="RM_foot"   name="RM_foot_force"/>
+    <force   site="LH_foot"   name="LH_foot_force"/>
+    <force   site="RH_foot"   name="RH_foot_force"/>
+
+  </sensor>
+ 
 </mujoco>
