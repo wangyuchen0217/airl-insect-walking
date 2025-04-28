@@ -129,7 +129,7 @@ class StickInsectEnv(MujocoEnv, utils.EzPickle):
         xy_velocity = (xy_position_after - xy_position_before) / self.dt
         x_velocity, y_velocity = xy_velocity
 
-        forward_reward = x_velocity
+        forward_reward = x_velocity * 5
         healthy_reward = self.healthy_reward
 
         rewards = forward_reward + healthy_reward
