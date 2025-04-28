@@ -4,5 +4,5 @@ from gymnasium.envs.registration import register
 register(
     id='StickInsect-v0',
     entry_point='envs.StickInsectEnv_v0:StickInsectEnv',
-    max_episode_steps=1000,
+    max_episode_steps=3000,
 )

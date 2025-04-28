@@ -54,7 +54,7 @@ def joint_prepration(ANIMAL, DATA_FILE):
 
 def expert_simulation(joint_movement):
     #  Set up simulation without rendering
-    env_id = 'StickInsect-v4'
+    env_id = 'StickInsect-v0'
     env = gym.make(env_id, render_mode="human")
     env.reset()
 
