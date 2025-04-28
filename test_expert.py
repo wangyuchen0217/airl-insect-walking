@@ -11,7 +11,7 @@ from common.env import make_env
 
 def main():
     SAVE_PATH = "/home/yuchen/airl_insect_walking/logs/StickInsect-v4/sac/20250427-1450"
-    ENV_ID = "StickInsect-v4"
+    ENV_ID = "StickInsect-v0"
     NUM_EPISODES = 10
     SEED = 123
 
