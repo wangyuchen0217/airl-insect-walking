@@ -129,7 +129,7 @@ class StickInsectEnv(MujocoEnv, utils.EzPickle):
         xy_velocity = (xy_position_after - xy_position_before) / self.dt
         x_velocity, y_velocity = xy_velocity
 
-        forward_reward = x_velocity * 5
+        forward_reward = x_velocity
         healthy_reward = self.healthy_reward
 
         rewards = forward_reward + healthy_reward
@@ -158,7 +158,7 @@ class StickInsectEnv(MujocoEnv, utils.EzPickle):
 
         if self.render_mode == "human":
             self.render()
-        return observation, reward, terminated, False, info
+        return observation, rewards, terminated, False, info
 
     def _get_obs(self):
         position = self.data.qpos.flat.copy()
