@@ -27,6 +27,7 @@ class ActorNetworkPolicy(nn.Module):
         A tanh activation is applied to bound the outputs.
         """
         mean = torch.tanh(self.net(states))
+        mean = mean * 0.2
         return mean
 
     def sample(self, states):
