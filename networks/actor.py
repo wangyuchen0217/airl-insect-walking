@@ -1,6 +1,6 @@
 import torch
 import torch.nn as nn
-from networks.utils import build_mlp, reparameterize, evaluate_lop_pi
+from networks.utils import build_mlp, reparameterize, evaluate_lop_pi, atanh
 
 
 class ActorNetworkPolicy(nn.Module):
@@ -35,16 +35,43 @@ class ActorNetworkPolicy(nn.Module):
         Sample actions from the policy distribution using the reparameterization trick.
         Returns a tuple: (action, log probability).
         """
-        mean = torch.tanh(self.net(states)) * self.scale  # <--- use scale with a consistent shape
-        action, log_prob = reparameterize(mean, self.log_stds) # <--- use the log_stds
+        """
+        用 reparameterization 采样动作 + 修正后的 log_prob
+        """
+        mean = self.net(states)
+        std = self.log_stds.exp().expand_as(mean)
+        noise = torch.randn_like(mean)
+        pre_tanh = mean + std * noise
+        action = torch.tanh(pre_tanh) * self.scale
+
+        # 修正 log_prob
+        log_prob = -0.5 * ((noise ** 2) + 2 * self.log_stds + torch.log(torch.tensor(2 * torch.pi)))
+        log_prob = log_prob.sum(dim=-1)
+        log_prob -= torch.log(1 - torch.tanh(pre_tanh).pow(2) + 1e-6).sum(dim=-1)
+
         return action, log_prob
 
     def evaluate_log_pi(self, states, actions):
         """
         Evaluate the log probabilities for given actions under the current policy.
         """
-        mean = torch.tanh(self.net(states)) * self.scale  # <--- use scale with a consistent shape
-        return evaluate_lop_pi(mean, self.log_stds, actions)
+        """
+        计算给定动作的 log_prob（包含 tanh 修正）
+        """
+        mean = self.net(states)
+        std = self.log_stds.exp().expand_as(mean)
+
+        # 反推 pre_tanh 的动作值
+        squashed_action = actions / self.scale
+        squashed_action = torch.clamp(squashed_action, -0.999, 0.999)
+        pre_tanh = atanh(squashed_action)
+
+        noise = (pre_tanh - mean) / std
+        log_prob = -0.5 * ((noise ** 2) + 2 * self.log_stds + torch.log(torch.tensor(2 * torch.pi)))
+        log_prob = log_prob.sum(dim=-1)
+        log_prob -= torch.log(1 - squashed_action.pow(2) + 1e-6).sum(dim=-1)
+
+        return log_prob
     
     
 class StateDependentPolicy(nn.Module):
