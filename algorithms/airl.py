@@ -68,6 +68,12 @@ class AIRL(PPO):
         # Calculate rewards.
         rewards = self.disc.calculate_reward(
             states, dones, log_pis, next_states)
+        
+        # add debug 5.15
+        print(f"[Debug] Reward mean: {rewards.mean().item():.4f}, std: {rewards.std().item():.4f}")
+
+        # add reward normalization 5.15
+        rewards = (rewards - rewards.mean()) / (rewards.std() + 1e-8)
 
         # Update PPO using estimated rewards.
         self.update_ppo(
@@ -83,8 +89,11 @@ class AIRL(PPO):
             states_exp, dones_exp, log_pis_exp, next_states_exp)
 
         # Discriminator is to maximize E_{\pi} [log(1 - D)] + E_{exp} [log(D)].
-        loss_pi = -F.logsigmoid(-logits_pi).mean()
-        loss_exp = -F.logsigmoid(logits_exp).mean()
+        # loss_pi = -F.logsigmoid(-logits_pi).mean()
+        # loss_exp = -F.logsigmoid(logits_exp).mean()
+        # Instead of hard 0/1 targets, make expert labels softer label smoothing 5.15
+        loss_pi = -F.logsigmoid(-logits_pi).mean()               # label 0
+        loss_exp = -F.binary_cross_entropy_with_logits(logits_exp, torch.full_like(logits_exp, 0.9))  # label 1 → 0.9
         loss_disc = loss_pi + loss_exp
 
         self.optim_disc.zero_grad()
