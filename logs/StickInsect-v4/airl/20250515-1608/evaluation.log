@@ -1,0 +1,28 @@
+Loaded actor model from /home/yuchen/airl-insect-walking/logs/StickInsect-v4/airl/20250515-1608/model/actor.pth
+---  Actor Networks ---
+log_stds: torch.Size([1, 18])
+net.0.weight: torch.Size([64, 47])
+net.0.bias: torch.Size([64])
+net.2.weight: torch.Size([64, 64])
+net.2.bias: torch.Size([64])
+net.4.weight: torch.Size([18, 64])
+net.4.bias: torch.Size([18])
+---  Statistics ---
+log_stds: mean=-0.1587, std=0.0049, L2 norm=0.6734
+net.0.weight: mean=-0.0018, std=0.0835, L2 norm=4.5788
+net.0.bias: mean=0.0121, std=0.0666, L2 norm=0.5377
+net.2.weight: mean=0.0000, std=0.0540, L2 norm=3.4530
+net.2.bias: mean=-0.0004, std=0.0324, L2 norm=0.2569
+net.4.weight: mean=-0.0005, std=0.0218, L2 norm=0.7406
+net.4.bias: mean=0.0053, std=0.0152, L2 norm=0.0665
+---  Evaluation ---
+Episode 1: Return = 2977.56, Steps = 3000
+Episode 2: Return = 2965.96, Steps = 3000
+Episode 3: Return = 2996.55, Steps = 3000
+Episode 4: Return = 3037.53, Steps = 3000
+Episode 5: Return = 3152.45, Steps = 3000
+Episode 6: Return = 3044.22, Steps = 3000
+Episode 7: Return = 2974.78, Steps = 3000
+Episode 8: Return = 3026.41, Steps = 3000
+Episode 9: Return = 2944.54, Steps = 3000
+Episode 10: Return = 3056.03, Steps = 3000
