@@ -19,7 +19,7 @@ class ActorNetworkPolicy(nn.Module):
             hidden_activation=hidden_activation
         )
         # log_stds is a learnable parameter that defines the standard deviation for all actions.
-        self.log_stds = nn.Parameter(torch.zeros(1, action_shape[0]))
+        self.log_stds = nn.Parameter(torch.zeros(1, action_shape[0]) * -0.5)
         self.scale = scale # <--- add scale parameter
 
     def forward(self, states):
