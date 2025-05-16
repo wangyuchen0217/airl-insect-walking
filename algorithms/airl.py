@@ -24,14 +24,21 @@ class AIRL(PPO):
         # Expert's buffer.
         self.buffer_exp = buffer_exp
 
-        # Discriminator.
+        # # Discriminator.
+        # self.disc = AIRLDiscrim(
+        #     state_shape=state_shape,
+        #     gamma=gamma,
+        #     hidden_units_r=units_disc_r,
+        #     hidden_units_v=units_disc_v,
+        #     hidden_activation_r=nn.ReLU(inplace=True),
+        #     hidden_activation_v=nn.ReLU(inplace=True)
+        # ).to(device)
+
+        # GRU-based Discriminator.
         self.disc = AIRLDiscrim(
             state_shape=state_shape,
             gamma=gamma,
-            hidden_units_r=units_disc_r,
-            hidden_units_v=units_disc_v,
-            hidden_activation_r=nn.ReLU(inplace=True),
-            hidden_activation_v=nn.ReLU(inplace=True)
+            hidden_size=64  # you can parameterize this as needed
         ).to(device)
 
         self.learning_steps_disc = 0

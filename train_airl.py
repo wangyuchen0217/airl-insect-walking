@@ -17,10 +17,10 @@ from common.buffer import SerializedBuffer
 
 # ======== Parameters (modify these as needed) =========
 NAME = "StickInsect"
-STATE_FILE = "experts/" + NAME + "_states_v2.pt"
-ACTION_FILE = "experts/" + NAME + "_actions_v2.pt"
+STATE_FILE = "experts/" + NAME + "_states_v3.pt"
+ACTION_FILE = "experts/" + NAME + "_actions_v3.pt"
 ENV_ID = NAME+"-v4"
-CUDA = 6
+CUDA = 0
 ROLLOUT_LENGTH = 3000
 NUM_STEPS = 2*10**6
 EVAL_INTERVAL = 10**4
@@ -60,8 +60,10 @@ def main():
     print(f"Logging started at {current_time}")
 
     # Create training and testing environments.
-    env = make_env(ENV_ID, test=False)
-    env_test = make_env(ENV_ID, test=False)
+    # env = make_env(ENV_ID, test=False)
+    # env_test = make_env(ENV_ID, test=False)
+    env = gym.make(ENV_ID)
+    env_test = gym.make(ENV_ID, render_mode="human")
     device = torch.device(f"cuda:{CUDA}" if torch.cuda.is_available() and CUDA >= 0 else "cpu")
     if torch.cuda.is_available():
         print(torch.cuda.get_device_name(CUDA))
@@ -78,7 +80,7 @@ def main():
 
     # Load expert data from .pt files and wrap into an ExpertBuffer.
     expert_data = load_expert_data(STATE_FILE, ACTION_FILE, save_npz=False)
-    expert_data = NormalizedEnv.normalize_expert_data(env, expert_data)
+    # expert_data = NormalizedEnv.normalize_expert_data(env, expert_data)
     expert_buffer = ExpertBuffer(expert_data, device)
     print(f"Expert buffer size: {expert_buffer.size}")
     # expert_buffer = SerializedBuffer(

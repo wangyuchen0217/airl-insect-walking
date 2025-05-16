@@ -26,3 +26,4 @@ This project implements Adversarial Inverse Reinforcement Learning (AIRL) and So
     - SrickInsect_states/actions.pt: all 3 insects, v3 env
     - SrickInsect_states/actions_v1.pt: w/o 1st insect, v3 env
     - SrickInsect_states/actions_v2.pt: w/o 1st insect, v4 env
+    - SrickInsect_states/actions_v3.pt: w/o 1st insect, include xy qpos, v4 env
