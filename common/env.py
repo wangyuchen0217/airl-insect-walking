@@ -61,6 +61,8 @@ class NormalizedEnv(gym.Wrapper):
 
         print(f"scale: {self.scale}")
         print(f"mid: {self.mid}")
+        print(f"action space high: {self.action_space.high}")
+        print(f"action space low: {self.action_space.low}")
 
     def step(self, action):
         real_action = action * self.scale + self.mid
