@@ -17,9 +17,9 @@ from common.buffer import SerializedBuffer
 
 # ======== Parameters (modify these as needed) =========
 NAME = "StickInsect"
-STATE_FILE = "experts/" + NAME + "_states_v3.pt"
-ACTION_FILE = "experts/" + NAME + "_actions_v3.pt"
-ENV_ID = NAME+"-v4"
+STATE_FILE = "experts/" + NAME + "_states_v2.pt"
+ACTION_FILE = "experts/" + NAME + "_actions_v2.pt"
+ENV_ID = NAME+"-v5"
 CUDA = 0
 ROLLOUT_LENGTH = 3000
 NUM_STEPS = 2*10**6
