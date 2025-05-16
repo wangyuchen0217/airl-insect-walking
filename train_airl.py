@@ -63,7 +63,7 @@ def main():
     # env = make_env(ENV_ID, test=False)
     # env_test = make_env(ENV_ID, test=False)
     env = gym.make(ENV_ID)
-    env_test = gym.make(ENV_ID, render_mode="human")
+    env_test = gym.make(ENV_ID)
     device = torch.device(f"cuda:{CUDA}" if torch.cuda.is_available() and CUDA >= 0 else "cpu")
     if torch.cuda.is_available():
         print(torch.cuda.get_device_name(CUDA))
