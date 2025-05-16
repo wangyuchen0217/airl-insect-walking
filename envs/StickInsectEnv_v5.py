@@ -23,7 +23,7 @@ class StickInsectEnv(MujocoEnv, utils.EzPickle):
     def __init__(
         self,
         xml_file="/home/yuchen/airl-insect-walking/envs/assets/StickInsect-v5.xml",
-        ctrl_cost_weight=0.5,
+        ctrl_cost_weight=0.05,
         use_contact_forces=False,
         contact_cost_weight=5e-4,
         healthy_reward=1.0,
@@ -134,7 +134,7 @@ class StickInsectEnv(MujocoEnv, utils.EzPickle):
         xy_velocity = (xy_position_after - xy_position_before) / self.dt
         x_velocity, y_velocity = xy_velocity
 
-        forward_reward = x_velocity * 1
+        forward_reward = x_velocity * 5
         healthy_reward = self.healthy_reward
 
         rewards = forward_reward + healthy_reward
