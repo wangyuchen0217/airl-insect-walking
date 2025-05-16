@@ -31,7 +31,7 @@ class StickInsectEnv(MujocoEnv, utils.EzPickle):
         healthy_z_range=(0.5, 3.0),
         contact_force_range=(-1.0, 1.0),
         reset_noise_scale=0.1,
-        exclude_current_positions_from_observation=False,
+        exclude_current_positions_from_observation=True,
         **kwargs,
     ):
         utils.EzPickle.__init__(
