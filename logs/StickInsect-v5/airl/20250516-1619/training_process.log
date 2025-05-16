@@ -1,0 +1,413 @@
+Logging started at 20250516-1619
+NVIDIA RTX A6000
+Process ID: 3166714
+Env: StickInsect-v5, experts/StickInsect_states_v2.pt, experts/StickInsect_actions_v2.pt, Seed: 0
+Rollout length: 3000
+Num steps: 2000000, Eval interval: 10000
+Gamma: 0.995, Mix buffer: 1, Batch size: 64
+lr_actor: 0.0001, lr_critic: 0.0001, lr_disc: 0.0001
+Units Actor: (64, 64), Units Critic: (64, 64)
+Units Disc R: (100, 100), Units Disc V: (100, 100)
+Epoch ppo: 50, Epoch disc: 10
+Clip Epsc: 0.2, Lambda: 0.97, Coef Ent: 0.01, Max Grad Norm: 10.0
+Load data states: (2749, 49), actions: (2749, 18)
+Expert data states: (2748, 49), actions: (2748, 18)
+Expert buffer size: 2748
+Initial state shape: (49,)
+[Debug] Reward mean: 11.1314, std: 1.1927
+[Debug] Reward mean: 11.7992, std: 0.9861
+[Debug] Reward mean: 11.3794, std: 0.9509
+Num steps: 10000    Return: 2926.0   Time: 0:00:22
+[Debug] Reward mean: 12.1280, std: 0.9331
+[Debug] Reward mean: 11.4176, std: 0.8796
+[Debug] Reward mean: 11.5510, std: 0.8601
+Num steps: 20000    Return: 2989.3   Time: 0:00:44
+[Debug] Reward mean: 11.5724, std: 0.8640
+[Debug] Reward mean: 11.8405, std: 0.8237
+[Debug] Reward mean: 11.7846, std: 0.8353
+[Debug] Reward mean: 11.4065, std: 0.7807
+Num steps: 30000    Return: 2968.7   Time: 0:01:06
+[Debug] Reward mean: 11.2543, std: 0.7797
+[Debug] Reward mean: 11.5276, std: 0.7801
+[Debug] Reward mean: 11.1439, std: 0.7702
+Num steps: 40000    Return: 3027.1   Time: 0:01:28
+[Debug] Reward mean: 10.4997, std: 0.7443
+[Debug] Reward mean: 10.9355, std: 0.7426
+[Debug] Reward mean: 10.6842, std: 0.7243
+Num steps: 50000    Return: 2996.4   Time: 0:01:50
+[Debug] Reward mean: 10.3946, std: 0.6865
+[Debug] Reward mean: 9.7533, std: 0.6821
+[Debug] Reward mean: 9.6943, std: 0.6832
+[Debug] Reward mean: 8.4872, std: 0.6748
+Num steps: 60000    Return: 3010.4   Time: 0:02:13
+[Debug] Reward mean: 9.1202, std: 0.6576
+[Debug] Reward mean: 8.3345, std: 0.6318
+[Debug] Reward mean: 7.0766, std: 0.6268
+Num steps: 70000    Return: 2999.7   Time: 0:02:34
+[Debug] Reward mean: 6.5053, std: 0.6224
+[Debug] Reward mean: 5.4078, std: 0.6246
+[Debug] Reward mean: 5.0362, std: 0.6192
+Num steps: 80000    Return: 3053.1   Time: 0:02:56
+[Debug] Reward mean: 3.5920, std: 0.6001
+[Debug] Reward mean: 3.2061, std: 0.5862
+[Debug] Reward mean: 2.4149, std: 0.5366
+[Debug] Reward mean: 2.0057, std: 0.5039
+Num steps: 90000    Return: 3030.0   Time: 0:03:19
+[Debug] Reward mean: 1.4821, std: 0.4354
+[Debug] Reward mean: 1.3624, std: 0.4078
+[Debug] Reward mean: 1.0157, std: 0.3689
+Num steps: 100000   Return: 3021.8   Time: 0:03:40
+[Debug] Reward mean: 1.0907, std: 0.3661
+[Debug] Reward mean: 0.7415, std: 0.2877
+[Debug] Reward mean: 0.6108, std: 0.2768
+Num steps: 110000   Return: 3011.8   Time: 0:04:02
+[Debug] Reward mean: 0.5089, std: 0.2369
+[Debug] Reward mean: 0.4762, std: 0.2352
+[Debug] Reward mean: 0.4412, std: 0.2119
+[Debug] Reward mean: 0.4886, std: 0.2194
+Num steps: 120000   Return: 3058.3   Time: 0:04:25
+[Debug] Reward mean: 0.3662, std: 0.1942
+[Debug] Reward mean: 0.3008, std: 0.1738
+[Debug] Reward mean: 0.2764, std: 0.1616
+Num steps: 130000   Return: 3022.1   Time: 0:04:47
+[Debug] Reward mean: 0.3021, std: 0.1611
+[Debug] Reward mean: 0.2513, std: 0.1498
+[Debug] Reward mean: 0.3012, std: 0.1738
+Num steps: 140000   Return: 3122.8   Time: 0:05:08
+[Debug] Reward mean: 0.3248, std: 0.1695
+[Debug] Reward mean: 0.3152, std: 0.1596
+[Debug] Reward mean: 0.2379, std: 0.1346
+[Debug] Reward mean: 0.2628, std: 0.1624
+Num steps: 150000   Return: 3024.2   Time: 0:05:31
+[Debug] Reward mean: 0.2703, std: 0.1644
+[Debug] Reward mean: 0.2590, std: 0.1533
+[Debug] Reward mean: 0.1810, std: 0.1435
+Num steps: 160000   Return: 2990.1   Time: 0:05:52
+[Debug] Reward mean: 0.1473, std: 0.1165
+[Debug] Reward mean: 0.1291, std: 0.1010
+[Debug] Reward mean: 0.1078, std: 0.0862
+Num steps: 170000   Return: 2997.0   Time: 0:06:14
+[Debug] Reward mean: 0.1755, std: 0.1032
+[Debug] Reward mean: 0.0886, std: 0.0737
+[Debug] Reward mean: 0.0824, std: 0.0744
+[Debug] Reward mean: 0.0740, std: 0.0674
+Num steps: 180000   Return: 3071.4   Time: 0:06:36
+[Debug] Reward mean: 0.0693, std: 0.0847
+[Debug] Reward mean: 0.0636, std: 0.0461
+[Debug] Reward mean: 0.0797, std: 0.0776
+Num steps: 190000   Return: 3070.6   Time: 0:06:58
+[Debug] Reward mean: 0.0636, std: 0.0489
+[Debug] Reward mean: 0.0608, std: 0.0616
+[Debug] Reward mean: 0.0559, std: 0.0510
+Num steps: 200000   Return: 2966.1   Time: 0:07:19
+[Debug] Reward mean: 0.0430, std: 0.0340
+[Debug] Reward mean: 0.0555, std: 0.0455
+[Debug] Reward mean: 0.0391, std: 0.0374
+[Debug] Reward mean: 0.0460, std: 0.0612
+Num steps: 210000   Return: 2997.2   Time: 0:07:41
+[Debug] Reward mean: 0.0383, std: 0.0324
+[Debug] Reward mean: 0.0411, std: 0.0552
+[Debug] Reward mean: 0.0360, std: 0.0293
+Num steps: 220000   Return: 2407.7   Time: 0:08:01
+[Debug] Reward mean: 0.0603, std: 0.0647
+[Debug] Reward mean: 0.0340, std: 0.0247
+[Debug] Reward mean: 0.0269, std: 0.0275
+Num steps: 230000   Return: 2997.6   Time: 0:08:23
+[Debug] Reward mean: 0.0473, std: 0.0619
+[Debug] Reward mean: 0.0455, std: 0.0402
+[Debug] Reward mean: 0.0283, std: 0.0217
+[Debug] Reward mean: 0.0207, std: 0.0193
+Num steps: 240000   Return: 2961.7   Time: 0:08:45
+[Debug] Reward mean: 0.0316, std: 0.0295
+[Debug] Reward mean: 0.0197, std: 0.0169
+[Debug] Reward mean: 0.0229, std: 0.0189
+Num steps: 250000   Return: 3094.0   Time: 0:09:07
+[Debug] Reward mean: 0.0181, std: 0.0206
+[Debug] Reward mean: 0.0178, std: 0.0241
+[Debug] Reward mean: 0.0182, std: 0.0262
+Num steps: 260000   Return: 2985.2   Time: 0:09:28
+[Debug] Reward mean: 0.0196, std: 0.0219
+[Debug] Reward mean: 0.0206, std: 0.0300
+[Debug] Reward mean: 0.0144, std: 0.0366
+[Debug] Reward mean: 0.0159, std: 0.0194
+Num steps: 270000   Return: 3023.1   Time: 0:09:51
+[Debug] Reward mean: 0.0125, std: 0.0104
+[Debug] Reward mean: 0.0158, std: 0.0152
+[Debug] Reward mean: 0.0141, std: 0.0141
+Num steps: 280000   Return: 2995.0   Time: 0:10:12
+[Debug] Reward mean: 0.0115, std: 0.0113
+[Debug] Reward mean: 0.0129, std: 0.0192
+[Debug] Reward mean: 0.0100, std: 0.0106
+Num steps: 290000   Return: 2967.0   Time: 0:10:34
+[Debug] Reward mean: 0.0107, std: 0.0310
+[Debug] Reward mean: 0.0107, std: 0.0100
+[Debug] Reward mean: 0.0144, std: 0.0147
+[Debug] Reward mean: 0.0088, std: 0.0148
+Num steps: 300000   Return: 3002.7   Time: 0:10:57
+[Debug] Reward mean: 0.0083, std: 0.0083
+[Debug] Reward mean: 0.0125, std: 0.0152
+[Debug] Reward mean: 0.0090, std: 0.0100
+Num steps: 310000   Return: 2982.6   Time: 0:11:18
+[Debug] Reward mean: 0.0163, std: 0.0160
+[Debug] Reward mean: 0.0058, std: 0.0067
+[Debug] Reward mean: 0.0059, std: 0.0232
+Num steps: 320000   Return: 3038.2   Time: 0:11:40
+[Debug] Reward mean: 0.0057, std: 0.0060
+[Debug] Reward mean: 0.0050, std: 0.0083
+[Debug] Reward mean: 0.0051, std: 0.0162
+[Debug] Reward mean: 0.0048, std: 0.0045
+Num steps: 330000   Return: 3003.6   Time: 0:12:02
+[Debug] Reward mean: 0.0043, std: 0.0065
+[Debug] Reward mean: 0.0044, std: 0.0058
+[Debug] Reward mean: 0.0037, std: 0.0056
+Num steps: 340000   Return: 3042.3   Time: 0:12:23
+[Debug] Reward mean: 0.0053, std: 0.0065
+[Debug] Reward mean: 0.0040, std: 0.0064
+[Debug] Reward mean: 0.0030, std: 0.0054
+Num steps: 350000   Return: 3013.2   Time: 0:12:45
+[Debug] Reward mean: 0.0042, std: 0.0100
+[Debug] Reward mean: 0.0035, std: 0.0053
+[Debug] Reward mean: 0.0030, std: 0.0035
+[Debug] Reward mean: 0.0021, std: 0.0019
+Num steps: 360000   Return: 3001.6   Time: 0:13:07
+[Debug] Reward mean: 0.0035, std: 0.0027
+[Debug] Reward mean: 0.0022, std: 0.0046
+[Debug] Reward mean: 0.0022, std: 0.0026
+Num steps: 370000   Return: 3010.2   Time: 0:13:29
+[Debug] Reward mean: 0.0021, std: 0.0025
+[Debug] Reward mean: 0.0020, std: 0.0025
+[Debug] Reward mean: 0.0017, std: 0.0019
+Num steps: 380000   Return: 3012.3   Time: 0:13:50
+[Debug] Reward mean: 0.0023, std: 0.0025
+[Debug] Reward mean: 0.0015, std: 0.0023
+[Debug] Reward mean: 0.0016, std: 0.0060
+[Debug] Reward mean: 0.0022, std: 0.0045
+Num steps: 390000   Return: 3020.7   Time: 0:14:12
+[Debug] Reward mean: 0.0015, std: 0.0050
+[Debug] Reward mean: 0.0017, std: 0.0032
+[Debug] Reward mean: 0.0010, std: 0.0021
+Num steps: 400000   Return: 2974.7   Time: 0:14:34
+[Debug] Reward mean: 0.0010, std: 0.0018
+[Debug] Reward mean: 0.0010, std: 0.0015
+[Debug] Reward mean: 0.0012, std: 0.0053
+Num steps: 410000   Return: 3039.8   Time: 0:14:55
+[Debug] Reward mean: 0.0008, std: 0.0008
+[Debug] Reward mean: 0.0010, std: 0.0009
+[Debug] Reward mean: 6.4725, std: 0.4771
+[Debug] Reward mean: 26.8519, std: 0.4609
+Num steps: 420000   Return: 3045.1   Time: 0:15:17
+[Debug] Reward mean: 0.0009, std: 0.0013
+[Debug] Reward mean: 0.0012, std: 0.0011
+[Debug] Reward mean: 0.0012, std: 0.0025
+Num steps: 430000   Return: 2974.3   Time: 0:15:39
+[Debug] Reward mean: 0.0009, std: 0.0008
+[Debug] Reward mean: 0.0009, std: 0.0015
+[Debug] Reward mean: 0.0009, std: 0.0008
+Num steps: 440000   Return: 2984.6   Time: 0:16:01
+[Debug] Reward mean: 0.0010, std: 0.0012
+[Debug] Reward mean: 0.0007, std: 0.0012
+[Debug] Reward mean: 0.0007, std: 0.0009
+[Debug] Reward mean: 0.0006, std: 0.0006
+Num steps: 450000   Return: 3008.6   Time: 0:16:23
+[Debug] Reward mean: 0.0006, std: 0.0005
+[Debug] Reward mean: 0.0007, std: 0.0116
+[Debug] Reward mean: 0.0007, std: 0.0007
+Num steps: 460000   Return: 2997.6   Time: 0:16:44
+[Debug] Reward mean: 0.0005, std: 0.0007
+[Debug] Reward mean: 0.0006, std: 0.0016
+[Debug] Reward mean: 0.0005, std: 0.0010
+Num steps: 470000   Return: 3041.3   Time: 0:17:06
+[Debug] Reward mean: 0.0004, std: 0.0005
+[Debug] Reward mean: 0.0003, std: 0.0004
+[Debug] Reward mean: 0.0003, std: 0.0004
+[Debug] Reward mean: 0.0002, std: 0.0002
+Num steps: 480000   Return: 2966.9   Time: 0:17:28
+[Debug] Reward mean: 0.0004, std: 0.0004
+[Debug] Reward mean: 0.0002, std: 0.0005
+[Debug] Reward mean: 0.0002, std: 0.0002
+Num steps: 490000   Return: 3034.3   Time: 0:17:49
+[Debug] Reward mean: 0.0002, std: 0.0003
+[Debug] Reward mean: 0.0002, std: 0.0002
+[Debug] Reward mean: 0.0002, std: 0.0004
+Num steps: 500000   Return: 3025.1   Time: 0:18:10
+[Debug] Reward mean: 0.0002, std: 0.0003
+[Debug] Reward mean: 0.0002, std: 0.0002
+[Debug] Reward mean: 0.0002, std: 0.0002
+[Debug] Reward mean: 0.0002, std: 0.0004
+Num steps: 510000   Return: 3041.8   Time: 0:18:32
+[Debug] Reward mean: 0.0001, std: 0.0002
+[Debug] Reward mean: 0.0001, std: 0.0001
+[Debug] Reward mean: 0.0002, std: 0.0002
+Num steps: 520000   Return: 2993.1   Time: 0:18:54
+[Debug] Reward mean: 0.0001, std: 0.0001
+[Debug] Reward mean: 0.0001, std: 0.0001
+[Debug] Reward mean: 0.0001, std: 0.0001
+Num steps: 530000   Return: 2962.2   Time: 0:19:15
+[Debug] Reward mean: 0.0001, std: 0.0001
+[Debug] Reward mean: 0.0001, std: 0.0002
+[Debug] Reward mean: 0.0001, std: 0.0001
+[Debug] Reward mean: 0.0001, std: 0.0001
+Num steps: 540000   Return: 3093.8   Time: 0:19:37
+[Debug] Reward mean: 0.0001, std: 0.0001
+[Debug] Reward mean: 0.0000, std: 0.0001
+[Debug] Reward mean: 0.0001, std: 0.0001
+Num steps: 550000   Return: 3018.1   Time: 0:19:58
+[Debug] Reward mean: 0.0001, std: 0.0001
+[Debug] Reward mean: 0.0001, std: 0.0001
+[Debug] Reward mean: 0.0000, std: 0.0000
+Num steps: 560000   Return: 3000.6   Time: 0:20:20
+[Debug] Reward mean: 0.0000, std: 0.0001
+[Debug] Reward mean: 0.0000, std: 0.0001
+[Debug] Reward mean: 0.0000, std: 0.0000
+[Debug] Reward mean: 0.0000, std: 0.0000
+Num steps: 570000   Return: 3044.2   Time: 0:20:42
+[Debug] Reward mean: 0.0000, std: 0.0000
+[Debug] Reward mean: 0.0000, std: 0.0000
+[Debug] Reward mean: 0.0000, std: 0.0000
+Num steps: 580000   Return: 3003.2   Time: 0:21:03
+[Debug] Reward mean: 0.0000, std: 0.0000
+[Debug] Reward mean: 0.0000, std: 0.0000
+[Debug] Reward mean: 0.0000, std: 0.0000
+Num steps: 590000   Return: 3012.2   Time: 0:21:24
+[Debug] Reward mean: 0.0000, std: 0.0000
+[Debug] Reward mean: 0.0000, std: 0.0001
+[Debug] Reward mean: 0.0000, std: 0.0000
+[Debug] Reward mean: 0.0000, std: 0.0000
+Num steps: 600000   Return: 3012.9   Time: 0:21:46
+[Debug] Reward mean: 0.0000, std: 0.0002
+[Debug] Reward mean: 0.0000, std: 0.0000
+[Debug] Reward mean: 0.0000, std: 0.0000
+Num steps: 610000   Return: 3016.0   Time: 0:22:07
+[Debug] Reward mean: 0.0000, std: 0.0000
+[Debug] Reward mean: 0.0000, std: 0.0000
+[Debug] Reward mean: 0.0000, std: 0.0000
+Num steps: 620000   Return: 3036.7   Time: 0:22:29
+[Debug] Reward mean: 0.0000, std: 0.0000
+[Debug] Reward mean: 0.0000, std: 0.0001
+[Debug] Reward mean: 0.0000, std: 0.0000
+[Debug] Reward mean: 0.0000, std: 0.0000
+Num steps: 630000   Return: 2994.6   Time: 0:22:51
+[Debug] Reward mean: 0.0000, std: 0.0000
+[Debug] Reward mean: 0.0000, std: 0.0000
+[Debug] Reward mean: 0.0000, std: 0.0000
+Num steps: 640000   Return: 3129.7   Time: 0:23:12
+[Debug] Reward mean: 0.0000, std: 0.0000
+[Debug] Reward mean: 0.0000, std: 0.0000
+[Debug] Reward mean: 0.0000, std: 0.0000
+Num steps: 650000   Return: 2995.7   Time: 0:23:33
+[Debug] Reward mean: 20.8095, std: 0.4738
+[Debug] Reward mean: 0.0000, std: 0.0000
+[Debug] Reward mean: 0.0000, std: 0.0000
+[Debug] Reward mean: 0.0000, std: 0.0000
+Num steps: 660000   Return: 3040.4   Time: 0:23:55
+[Debug] Reward mean: 0.0000, std: 0.0000
+[Debug] Reward mean: 0.0000, std: 0.0000
+[Debug] Reward mean: 0.0000, std: 0.0002
+Num steps: 670000   Return: 3007.2   Time: 0:24:16
+[Debug] Reward mean: 0.0000, std: 0.0000
+[Debug] Reward mean: 0.0000, std: 0.0000
+[Debug] Reward mean: 0.0000, std: 0.0000
+Num steps: 680000   Return: 3039.1   Time: 0:24:38
+[Debug] Reward mean: 0.0000, std: 0.0000
+[Debug] Reward mean: 0.0000, std: 0.0000
+[Debug] Reward mean: 37.8178, std: 0.4880
+[Debug] Reward mean: 0.0000, std: 0.0000
+Num steps: 690000   Return: 3061.2   Time: 0:24:59
+[Debug] Reward mean: 0.0000, std: 0.0000
+[Debug] Reward mean: 0.0000, std: 0.0000
+[Debug] Reward mean: 0.0000, std: 0.0000
+Num steps: 700000   Return: 2997.6   Time: 0:25:21
+[Debug] Reward mean: 0.0000, std: 0.0000
+[Debug] Reward mean: 34.5909, std: 0.4987
+[Debug] Reward mean: 0.0000, std: 0.0000
+Num steps: 710000   Return: 3011.4   Time: 0:25:42
+[Debug] Reward mean: 0.0000, std: 0.0000
+[Debug] Reward mean: 0.0000, std: 0.0000
+[Debug] Reward mean: 0.0000, std: 0.0000
+[Debug] Reward mean: 0.0000, std: 0.0000
+Num steps: 720000   Return: 2461.3   Time: 0:26:02
+[Debug] Reward mean: 0.0000, std: 0.0000
+[Debug] Reward mean: 0.0000, std: 0.0000
+[Debug] Reward mean: 0.0000, std: 0.0000
+Num steps: 730000   Return: 3001.4   Time: 0:26:23
+[Debug] Reward mean: 0.0000, std: 0.0000
+[Debug] Reward mean: 0.0000, std: 0.0000
+[Debug] Reward mean: 0.0000, std: 0.0000
+Num steps: 740000   Return: 3025.2   Time: 0:26:45
+[Debug] Reward mean: 0.0000, std: 0.0000
+[Debug] Reward mean: 0.0000, std: 0.0000
+[Debug] Reward mean: 0.0000, std: 0.0000
+[Debug] Reward mean: 0.0000, std: 0.0000
+Num steps: 750000   Return: 2988.3   Time: 0:27:06
+[Debug] Reward mean: 0.0000, std: 0.0000
+[Debug] Reward mean: 0.0000, std: 0.0000
+[Debug] Reward mean: 0.0000, std: 0.0000
+Num steps: 760000   Return: 2462.6   Time: 0:27:26
+[Debug] Reward mean: 0.0000, std: 0.0000
+[Debug] Reward mean: 0.0000, std: 0.0000
+[Debug] Reward mean: 0.0000, std: 0.0000
+Num steps: 770000   Return: 2459.5   Time: 0:27:46
+[Debug] Reward mean: 0.0000, std: 0.0000
+[Debug] Reward mean: 0.0000, std: 0.0000
+[Debug] Reward mean: 20.7703, std: 0.4829
+[Debug] Reward mean: 0.0000, std: 0.0000
+Num steps: 780000   Return: 2989.2   Time: 0:28:09
+[Debug] Reward mean: 0.0000, std: 0.0000
+[Debug] Reward mean: 0.0000, std: 0.0000
+[Debug] Reward mean: 0.0000, std: 0.0000
+Num steps: 790000   Return: 3098.3   Time: 0:28:30
+[Debug] Reward mean: 0.0000, std: 0.0000
+[Debug] Reward mean: 0.0000, std: 0.0000
+[Debug] Reward mean: 0.0000, std: 0.0000
+Num steps: 800000   Return: 2982.9   Time: 0:28:52
+[Debug] Reward mean: 0.0000, std: 0.0000
+[Debug] Reward mean: 0.0000, std: 0.0000
+[Debug] Reward mean: 0.0000, std: 0.0000
+[Debug] Reward mean: 0.0000, std: 0.0000
+Num steps: 810000   Return: 3093.2   Time: 0:29:14
+[Debug] Reward mean: 0.0000, std: 0.0000
+[Debug] Reward mean: 0.0000, std: 0.0000
+[Debug] Reward mean: 0.0000, std: 0.0000
+Num steps: 820000   Return: 2976.3   Time: 0:29:36
+[Debug] Reward mean: 0.0000, std: 0.0000
+[Debug] Reward mean: 0.0000, std: 0.0000
+[Debug] Reward mean: 0.0000, std: 0.0000
+Num steps: 830000   Return: 2993.0   Time: 0:29:57
+[Debug] Reward mean: 0.0000, std: 0.0000
+[Debug] Reward mean: 0.0000, std: 0.0000
+[Debug] Reward mean: 0.0000, std: 0.0000
+[Debug] Reward mean: 0.0000, std: 0.0000
+Num steps: 840000   Return: 2989.7   Time: 0:30:19
+[Debug] Reward mean: 0.0000, std: 0.0000
+[Debug] Reward mean: 22.2616, std: 0.4953
+[Debug] Reward mean: 0.0000, std: 0.0000
+Num steps: 850000   Return: 3003.2   Time: 0:30:41
+[Debug] Reward mean: 0.0000, std: 0.0000
+[Debug] Reward mean: 0.0000, std: 0.0000
+[Debug] Reward mean: 0.0000, std: 0.0000
+Num steps: 860000   Return: 3001.0   Time: 0:31:03
+[Debug] Reward mean: 0.0000, std: 0.0000
+[Debug] Reward mean: 0.0000, std: 0.0000
+[Debug] Reward mean: 0.0000, std: 0.0000
+[Debug] Reward mean: 0.0000, std: 0.0000
+Num steps: 870000   Return: 3061.4   Time: 0:31:24
+[Debug] Reward mean: 0.0000, std: 0.0000
+[Debug] Reward mean: 0.0000, std: 0.0000
+[Debug] Reward mean: 0.0000, std: 0.0000
+Num steps: 880000   Return: 2984.5   Time: 0:31:46
+[Debug] Reward mean: 0.0000, std: 0.0000
+[Debug] Reward mean: 0.0000, std: 0.0000
+[Debug] Reward mean: 0.0000, std: 0.0000
+Num steps: 890000   Return: 2984.8   Time: 0:32:07
+[Debug] Reward mean: 0.0000, std: 0.0000
+[Debug] Reward mean: 0.0000, std: 0.0000
+[Debug] Reward mean: 0.0000, std: 0.0000
+[Debug] Reward mean: 0.0000, std: 0.0000
+Num steps: 900000   Return: 2995.6   Time: 0:32:29
+[Debug] Reward mean: 40.9680, std: 0.4720
+[Debug] Reward mean: 0.0000, std: 0.0000
+[Debug] Reward mean: 0.0000, std: 0.0000
+Num steps: 910000   Return: 3057.8   Time: 0:32:51
+[Debug] Reward mean: 0.0000, std: 0.0000
+[Debug] Reward mean: 19.2404, std: 0.4959
+[Debug] Reward mean: 0.0000, std: 0.0000
