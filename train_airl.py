@@ -17,8 +17,8 @@ from common.buffer import SerializedBuffer
 
 # ======== Parameters (modify these as needed) =========
 NAME = "StickInsect"
-STATE_FILE = "experts/" + NAME + "_states_v1.pt"
-ACTION_FILE = "experts/" + NAME + "_actions_v1.pt"
+STATE_FILE = "experts/" + NAME + "_states_v2.pt"
+ACTION_FILE = "experts/" + NAME + "_actions_v2.pt"
 ENV_ID = NAME+"-v4"
 CUDA = 6
 ROLLOUT_LENGTH = 3000
@@ -35,7 +35,7 @@ UNITS_CRITIC = (64, 64)
 UNITS_DISC_R = (100, 100)
 UNITS_DISC_V = (100, 100)
 EPOCH_PPO = 50
-EPOCH_DISC = 1
+EPOCH_DISC = 10
 CLIP_EPS = 0.2
 LAMBDA = 0.97
 COEF_ENT = 0.01

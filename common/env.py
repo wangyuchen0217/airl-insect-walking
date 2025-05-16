@@ -27,9 +27,9 @@ class NormalizedEnv(gym.Wrapper):
         self.action_space.high /= self.scale
         self.action_space.low /= self.scale
         # print to check the scale
-        # print(f"scale: {self.scale}")
-        # print(f"action space high: {self.action_space.high}")
-        # print(f"action space low: {self.action_space.low}")
+        print(f"scale: {self.scale}")
+        print(f"action space high: {self.action_space.high}")
+        print(f"action space low: {self.action_space.low}")
 
     def step(self, action):
         return self.env.step(action * self.scale)
@@ -37,7 +37,7 @@ class NormalizedEnv(gym.Wrapper):
     def normalize_expert_data(self, expert_data):
         expert_data['action'] = expert_data['action'] / self.scale
         # print to check the scale
-        # print(f"data scale: {self.scale}")
-        # print(f"data action space high: {expert_data['action'].max()}")
-        # print(f"data action space low: {expert_data['action'].min()}")
+        print(f"data scale: {self.scale}")
+        print(f"data action space high: {expert_data['action'].max()}")
+        print(f"data action space low: {expert_data['action'].min()}")
         return expert_data 
