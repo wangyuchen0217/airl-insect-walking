@@ -45,7 +45,7 @@ class PPO(Algorithm):
             action_shape=action_shape,
             hidden_units=units_actor,
             hidden_activation=nn.Tanh(),
-            scale=0.2
+            scale=1
         ).to(device)
         
         # Critic.
