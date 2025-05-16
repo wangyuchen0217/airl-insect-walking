@@ -70,6 +70,7 @@ class NormalizedEnv(gym.Wrapper):
 
     def normalize_expert_data(self, expert_data):
         expert_data['action'] = (expert_data['action'] - self.mid) / self.scale
+        expert_data['action'] = np.clip(expert_data['action'], -0.999, 0.999)
         print(f"normalized expert action high: {expert_data['action'].max()}")
         print(f"normalized expert action low: {expert_data['action'].min()}")
         return expert_data
