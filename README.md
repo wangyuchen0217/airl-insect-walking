@@ -18,12 +18,14 @@ This project implements Adversarial Inverse Reinforcement Learning (AIRL) and So
   - Hopper-v4: `logs/Hopper-v4/sac/20250314-1353`
 - **In Progress**:
   - Custom stick insect locomotion model (currently under development and debugging)
-    **env**：
-    - StickInsect-v4 integrator="RK4", actuator: pos, ctrlrange revised
-    - StickInsect-v3 integrator="RK4", actuator: pos
+    **xml**：
     - StickInsect-v1 integrator="implicitfast", actuator: pos & vel
+    - StickInsect-v4 integrator="RK4", actuator: pos
+    - StickInsect-v5 integrator="RK4", actuator: pos, ctrlrange revised
+    **env**:
+    - StickInsect-v4
+    - StickInsect-v5 action=data.ctrl - qpos[:N]
     **expert data**：
-    - SrickInsect_states/actions.pt: all 3 insects, v3 env
-    - SrickInsect_states/actions_v1.pt: w/o 1st insect, v3 env
-    - SrickInsect_states/actions_v2.pt: w/o 1st insect, v4 env
-    - SrickInsect_states/actions_v3.pt: w/o 1st insect, include xy qpos, v4 env
+    - SrickInsect_states/actions.pt: all 3 insects, v4 env
+    - SrickInsect_states/actions_v1.pt: w/o 1st insect, v4 env
+    - SrickInsect_states/actions_v2.pt: w/o 1st insect, v5 env, v5 xml
