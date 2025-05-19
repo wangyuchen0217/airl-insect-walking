@@ -10,8 +10,8 @@ from common.base import LoggerWriter
 from common.env import make_env
 
 def main():
-    SAVE_PATH = "/home/yuchen/airl-insect-walking/logs/StickInsect-v4/airl/20250515-1608"
-    ENV_ID = "StickInsect-v4"
+    SAVE_PATH = "/home/yuchen/airl-insect-walking/logs/StickInsect-v5/airl/20250516-1751"
+    ENV_ID = "StickInsect-v5"
     NUM_EPISODES = 10
     SEED = 123
 
@@ -27,7 +27,8 @@ def main():
 
     # Set the device and env
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    env = make_env(ENV_ID, test=True)
+    # env = make_env(ENV_ID, test=True)
+    env = gym.make(ENV_ID, render_mode="human", exclude_current_positions_from_observation=False)
     
     # Get state and action shapes from the environment
     state_shape = env.observation_space.shape    # e.g., (27,)
