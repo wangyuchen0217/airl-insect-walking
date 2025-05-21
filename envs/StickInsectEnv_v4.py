@@ -31,7 +31,7 @@ class StickInsectEnv(MujocoEnv, utils.EzPickle):
         healthy_z_range=(0.5, 3.0),
         contact_force_range=(-1.0, 1.0),
         reset_noise_scale=0.1,
-        exclude_current_positions_from_observation=False,
+        exclude_current_positions_from_observation=True,
         **kwargs,
     ):
         utils.EzPickle.__init__(
@@ -129,7 +129,7 @@ class StickInsectEnv(MujocoEnv, utils.EzPickle):
         xy_velocity = (xy_position_after - xy_position_before) / self.dt
         x_velocity, y_velocity = xy_velocity
 
-        forward_reward = x_velocity * 1
+        forward_reward = x_velocity * 10
         healthy_reward = self.healthy_reward
 
         rewards = forward_reward + healthy_reward

@@ -50,6 +50,14 @@ def run(args):
         seed=args.seed
     )
 
+    # Load pretrained actor weights if available.
+    PRETRAINED_PATH = "weights/bc_sac_pretrained_actor.pth"
+    if os.path.exists(PRETRAINED_PATH):
+        algo.actor.load_state_dict(torch.load(PRETRAINED_PATH, weights_only=True))
+        print(f"[BC Init] Loaded actor weights from {PRETRAINED_PATH}")
+    else:
+        print(f"[BC Init] No pretrained actor found at {PRETRAINED_PATH}, training from scratch.")
+
     trainer = Trainer(
         env=env,
         env_test=env_test,

@@ -5,11 +5,12 @@ from tqdm import tqdm
 import numpy as np
 
 from networks.actor import ActorNetworkPolicy  
+from networks.actor import StateDependentPolicy
 
 # ====== set path and parameters ======
-expert_state_path = "experts/StickInsect_states_v2.pt"
-expert_action_path = "experts/StickInsect_actions_v2.pt"
-model_save_path = "weights/bc_pretrained_actor.pth"
+expert_state_path = "experts/StickInsect_states_v1.pt"
+expert_action_path = "experts/StickInsect_actions_v1.pt"
+model_save_path = "weights/bc_sac_pretrained_actor.pth"
 
 batch_size = 128
 learning_rate = 1e-4
@@ -30,12 +31,19 @@ dataloader = DataLoader(dataset, batch_size=batch_size, shuffle=True)
 state_dim = states.shape[1]
 action_dim = actions.shape[1]
 
-actor = ActorNetworkPolicy(
-    state_shape=(state_dim,),
-    action_shape=(action_dim,),
-    hidden_units=(64, 64),
-    scale=1.0  # ⚠️ consistent with the scale used in the training of the expert policy
-)
+# actor = ActorNetworkPolicy(
+#     state_shape=(state_dim,),
+#     action_shape=(action_dim,),
+#     hidden_units=(64, 64),
+#     scale=1.0  # ⚠️ consistent with the scale used in the training of the expert policy
+# )
+
+actor = StateDependentPolicy(
+            state_shape=(state_dim,),
+            action_shape=(action_dim,),
+            hidden_units=(256, 256),
+            hidden_activation=nn.ReLU(inplace=True)
+        )
 
 actor.train()
 optimizer = torch.optim.Adam(actor.parameters(), lr=learning_rate)
