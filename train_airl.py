@@ -27,9 +27,9 @@ EVAL_INTERVAL = 10**4
 GAMMA = 0.995
 MIX_BUFFER = 1
 BATCH_SIZE = 64
-LR_ACTOR = 1e-5
-LR_CRITIC = 1e-5
-LR_DISC = 1e-5
+LR_ACTOR = 5e-5
+LR_CRITIC = 5e-5
+LR_DISC = 5e-5
 UNITS_ACTOR = (64, 64)
 UNITS_CRITIC = (64, 64)
 UNITS_DISC_R = (100, 100)
@@ -116,7 +116,7 @@ def main():
 
     # Load pretrained actor weights if available.
     if os.path.exists(PRETRAINED_PATH):
-        algo.actor.load_state_dict(torch.load(PRETRAINED_PATH), weights_only=True)
+        algo.actor.load_state_dict(torch.load(PRETRAINED_PATH, weights_only=True))
         print(f"[BC Init] Loaded actor weights from {PRETRAINED_PATH}")
     else:
         print(f"[BC Init] No pretrained actor found at {PRETRAINED_PATH}, training from scratch.")
