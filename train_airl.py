@@ -20,7 +20,7 @@ NAME = "StickInsect"
 STATE_FILE = "experts/" + NAME + "_states_v2.pt"
 ACTION_FILE = "experts/" + NAME + "_actions_v2.pt"
 ENV_ID = NAME+"-v5"
-CUDA = 1
+CUDA = 0
 ROLLOUT_LENGTH = 3000
 NUM_STEPS = 2*10**6
 EVAL_INTERVAL = 10**4
@@ -116,7 +116,7 @@ def main():
 
     # Load pretrained actor weights if available.
     if os.path.exists(PRETRAINED_PATH):
-        algo.actor.load_state_dict(torch.load(PRETRAINED_PATH))
+        algo.actor.load_state_dict(torch.load(PRETRAINED_PATH), weights_only=True)
         print(f"[BC Init] Loaded actor weights from {PRETRAINED_PATH}")
     else:
         print(f"[BC Init] No pretrained actor found at {PRETRAINED_PATH}, training from scratch.")
