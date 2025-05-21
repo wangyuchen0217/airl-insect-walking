@@ -41,6 +41,7 @@ LAMBDA = 0.97
 COEF_ENT = 0.01
 MAX_GRAD_NORM = 10.0
 SEED = 0
+PRETRAINED_PATH = "weights/bc_pretrained_actor.pth"
 # ========================================================
 
 def main():
@@ -112,6 +113,14 @@ def main():
         coef_ent=COEF_ENT,
         max_grad_norm=MAX_GRAD_NORM
     )
+
+    # Load pretrained actor weights if available.
+    if os.path.exists(PRETRAINED_PATH):
+        algo.actor.load_state_dict(torch.load(PRETRAINED_PATH))
+        print(f"[BC Init] Loaded actor weights from {PRETRAINED_PATH}")
+    else:
+        print(f"[BC Init] No pretrained actor found at {PRETRAINED_PATH}, training from scratch.")
+
 
     trainer = Trainer(
         env=env,
