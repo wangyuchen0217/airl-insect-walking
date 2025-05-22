@@ -3,7 +3,6 @@ from torch import nn
 import torch.nn.functional as F
 from networks.utils import build_mlp
 
-
 class GAILDiscrim(nn.Module):
 
     def __init__(self, state_shape, action_shape, hidden_units=(100, 100),

@@ -11,7 +11,7 @@ from expert import load_expert_data, ExpertBuffer
 from common.trainer import Trainer
 import logging
 from common.base import LoggerWriter
-from common.base import log_parameters
+from common.base import log_parameters_gail
 from common.env import make_env, NormalizedEnv
 from common.buffer import SerializedBuffer
 
@@ -32,8 +32,7 @@ LR_CRITIC = 5e-5
 LR_DISC = 3e-4
 UNITS_ACTOR = (64, 64)
 UNITS_CRITIC = (64, 64)
-UNITS_DISC_R = (100, 100)
-UNITS_DISC_V = (100, 100)
+UNITS_DISC = (100, 100)
 EPOCH_PPO = 50
 EPOCH_DISC = 10
 CLIP_EPS = 0.2
@@ -73,9 +72,9 @@ def main():
     np.random.seed(SEED)
     torch.manual_seed(SEED)
 
-    log_parameters(ENV_ID, STATE_FILE, ACTION_FILE, ROLLOUT_LENGTH, NUM_STEPS, EVAL_INTERVAL, 
+    log_parameters_gail(ENV_ID, STATE_FILE, ACTION_FILE, ROLLOUT_LENGTH, NUM_STEPS, EVAL_INTERVAL, 
                    GAMMA, MIX_BUFFER, BATCH_SIZE, LR_ACTOR, LR_CRITIC, LR_DISC, 
-                   UNITS_ACTOR, UNITS_CRITIC, UNITS_DISC_R, UNITS_DISC_V, 
+                   UNITS_ACTOR, UNITS_CRITIC, UNITS_DISC, 
                    EPOCH_PPO, EPOCH_DISC, CLIP_EPS, LAMBDA, COEF_ENT, MAX_GRAD_NORM, SEED)
 
     # Load expert data from .pt files and wrap into an ExpertBuffer.
@@ -109,7 +108,7 @@ def main():
         lr_disc=LR_DISC,
         units_actor=UNITS_ACTOR,
         units_critic=UNITS_CRITIC,
-        units_disc=(UNITS_DISC_R, UNITS_DISC_V),
+        units_disc=UNITS_DISC,
         epoch_ppo=EPOCH_PPO,
         epoch_disc=EPOCH_DISC,
         clip_eps=CLIP_EPS,
