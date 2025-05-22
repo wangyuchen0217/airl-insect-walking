@@ -41,13 +41,12 @@ LAMBDA = 0.97
 COEF_ENT = 0.05
 MAX_GRAD_NORM = 10.0
 SEED = 0
-PRETRAINED_PATH = "weights/bc_pretrained_actor.pth"
 # ========================================================
 
 def main():
     # Create log directory.
     current_time = datetime.now().strftime("%Y%m%d-%H%M")
-    log_dir = os.path.join("logs", ENV_ID, "airl", f"{current_time}")
+    log_dir = os.path.join("logs", ENV_ID, "gail", f"{current_time}")
     if not os.path.exists(log_dir):
         os.makedirs(log_dir)
     log_filename = os.path.join(log_dir, "training_process.log")
@@ -88,9 +87,15 @@ def main():
     #     path='/home/yuchen/airl_insect_walking/buffers/Ant-v4/size1000000_std0.01_prand0.0.pth',
     #     device=device)
 
+    state_shape=env.observation_space.shape
+    action_shape=env.action_space.shape
+    print(f"State shape: {state_shape}, Action shape: {action_shape}")
+    input_dim=state_shape[0] + action_shape[0]
+    print(f"Input dimension: {input_dim}")
+
     # Create AIRL agent.
     algo = GAIL(
-        buffer=expert_buffer,
+        buffer_exp=expert_buffer,
         state_shape=env.observation_space.shape,
         action_shape=env.action_space.shape,
         device=device,
@@ -112,14 +117,6 @@ def main():
         coef_ent=COEF_ENT,
         max_grad_norm=MAX_GRAD_NORM
     )
- 
-
-    # # Load pretrained actor weights if available.
-    # if os.path.exists(PRETRAINED_PATH):
-    #     algo.actor.load_state_dict(torch.load(PRETRAINED_PATH, weights_only=True))
-    #     print(f"[BC Init] Loaded actor weights from {PRETRAINED_PATH}")
-    # else:
-    #     print(f"[BC Init] No pretrained actor found at {PRETRAINED_PATH}, training from scratch.")
 
 
     trainer = Trainer(
