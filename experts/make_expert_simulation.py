@@ -52,7 +52,7 @@ def joint_prepration(ANIMAL, DATA_FILE):
 
 def expert_simulation(joint_movement):
     #  Set up simulation without rendering
-    model_name = 'StickInsect-v5'
+    model_name = 'StickInsect-v4'
     model_path = 'envs/assets/' + model_name + '.xml'
     model = mujoco.MjModel.from_xml_path(model_path)
     data = mujoco.MjData(model)
@@ -171,9 +171,9 @@ print("expert actions:", expert_actions.shape)
 # np.savetxt("experts/StickInsect_states_v2.csv", expert_states, delimiter=",")
 # np.savetxt("experts/StickInsect_actions_v2.csv", expert_actions, delimiter=",")
 
-# save numpy data as pt file
-expert_states = torch.tensor(expert_states, dtype=torch.float32)
-expert_actions = torch.tensor(expert_actions, dtype=torch.float32)
-torch.save(expert_states, "experts/StickInsect_states_v3.pt")
-torch.save(expert_actions, "experts/StickInsect_actions_v3.pt")
+# # save numpy data as pt file
+# expert_states = torch.tensor(expert_states, dtype=torch.float32)
+# expert_actions = torch.tensor(expert_actions, dtype=torch.float32)
+# torch.save(expert_states, "experts/StickInsect_states_v3.pt")
+# torch.save(expert_actions, "experts/StickInsect_actions_v3.pt")
 

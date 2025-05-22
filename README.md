@@ -27,6 +27,6 @@ This project implements Adversarial Inverse Reinforcement Learning (AIRL) and So
     - StickInsect-v5 action=data.ctrl - qpos[:N]
     **expert data**：
     - SrickInsect_states/actions.pt: all 3 insects, v4 env
-    - SrickInsect_states/actions_v1.pt: w/o 1st insect, v4 env
+    - SrickInsect_states/actions_v1.pt: w/o 1st insect, v4 env, without xy
     - SrickInsect_states/actions_v2.pt: w/o 1st insect, v5 env, v5 xml, with xy
     - SrickInsect_states/actions_v3.pt: w/o 1st insect, v5 env, v5 xml, without xy
