@@ -10,6 +10,7 @@ import envs
 from common.env import make_env
 from algorithms.sac import SAC
 from common.trainer import Trainer
+from common.buffer import ExpertBuffer
 
 def run(args):
     CUDA = 0
@@ -38,10 +39,21 @@ def run(args):
         print("Running on CPU")
     print(f"Process ID: {os.getpid()}")
 
+    # Load expert data.
+    expert_data = torch.load("experts/StickInsect_states_v1.pt", weights_only=True) 
+    expert_actions = torch.load("experts/StickInsect_actions_v1.pt", weights_only=True)
+    expert_dict = {
+        "state": expert_data.numpy(),      # 转成 numpy for indexing
+        "action": expert_actions.numpy()
+    }
+    # build expert buffer
+    expert_buffer = ExpertBuffer(expert_dict, device=device)
+
     algo = SAC(
         state_shape=env.observation_space.shape,
         action_shape=env.action_space.shape,
         device=device,
+        expert_buffer=expert_buffer,
         lr_actor=1e-4,
         lr_critic=1e-4,
         lr_alpha=1e-4,
@@ -49,6 +61,14 @@ def run(args):
         units_critic=(256, 256),
         seed=args.seed
     )
+
+    # Load pretrained actor weights if available.
+    PRETRAINED_PATH = "weights/bc_sac_pretrained_actor.pth"
+    if os.path.exists(PRETRAINED_PATH):
+        algo.actor.load_state_dict(torch.load(PRETRAINED_PATH, weights_only=True))
+        print(f"[BC Init] Loaded actor weights from {PRETRAINED_PATH}")
+    else:
+        print(f"[BC Init] No pretrained actor found at {PRETRAINED_PATH}, training from scratch.")
 
     trainer = Trainer(
         env=env,

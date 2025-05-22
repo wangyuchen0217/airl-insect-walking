@@ -13,12 +13,14 @@ from networks.critic import TwinnedStateActionFunction
 
 class SAC(Algorithm):
 
-    def __init__(self, state_shape, action_shape, device, seed, gamma=0.99,
+    def __init__(self, state_shape, action_shape, device, seed, expert_buffer, gamma=0.99,
                  batch_size=256, buffer_size=10**6, lr_actor=3e-4,
                  lr_critic=3e-4, lr_alpha=3e-4, units_actor=(256, 256),
                  units_critic=(256, 256), start_steps=10000, tau=5e-3):
         super().__init__(state_shape, action_shape, device, seed, gamma)
 
+        self.expert_buffer = expert_buffer
+        
         # Replay buffer.
         self.buffer = Buffer(
             buffer_size=buffer_size,

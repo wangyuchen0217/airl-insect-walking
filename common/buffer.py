@@ -125,3 +125,17 @@ class RolloutBuffer:
             self.log_pis[idxes],
             self.next_states[idxes]
         )
+    
+class ExpertBuffer:
+    def __init__(self, expert_data, device='cpu'):
+        """
+        expert_data: dict with keys 'state' and 'action'
+        """
+        self.device = device
+        self.states = torch.tensor(expert_data['state'], dtype=torch.float32, device=device)
+        self.actions = torch.tensor(expert_data['action'], dtype=torch.float32, device=device)
+        self.size = self.states.shape[0]
+
+    def sample(self, batch_size):
+        idxs = np.random.randint(0, self.size, size=batch_size)
+        return self.states[idxs], self.actions[idxs]
