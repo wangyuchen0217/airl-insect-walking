@@ -4,6 +4,29 @@ import torch.nn.functional as F
 from networks.utils import build_mlp
 
 
+class GAILDiscrim(nn.Module):
+
+    def __init__(self, state_shape, action_shape, hidden_units=(100, 100),
+                 hidden_activation=nn.Tanh()):
+        super().__init__()
+
+        self.net = build_mlp(
+            input_dim=state_shape[0] + action_shape[0],
+            output_dim=1,
+            hidden_units=hidden_units,
+            hidden_activation=hidden_activation
+        )
+
+    def forward(self, states, actions):
+        return self.net(torch.cat([states, actions], dim=-1))
+
+    def calculate_reward(self, states, actions):
+        # PPO(GAIL) is to maximize E_{\pi} [-log(1 - D)].
+        with torch.no_grad():
+            return -F.logsigmoid(-self.forward(states, actions))
+        
+
+'''Oriniginal AIRLDiscrim with dropout'''
 class AIRLDiscrim(nn.Module):
 
     def __init__(self, state_shape, gamma,
@@ -56,6 +79,7 @@ class AIRLDiscrim(nn.Module):
             logits = self.forward(states, dones, log_pis, next_states)
             return -F.logsigmoid(-logits)
 
+'''Oriniginal AIRLDiscrim without dropout'''
 # class AIRLDiscrim(nn.Module):
 
 #     def __init__(self, state_shape, gamma,
@@ -96,7 +120,7 @@ class AIRLDiscrim(nn.Module):
 #             return -F.logsigmoid(-logits)
 
 
-
+'''Oriniginal AIRLDiscrim with GRU'''
 # class AIRLDiscrim(nn.Module):
 
 #     def __init__(self, state_shape, gamma, hidden_size=64):
