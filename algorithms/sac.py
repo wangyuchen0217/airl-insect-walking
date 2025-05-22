@@ -2,6 +2,7 @@ import os
 import torch
 from torch import nn
 from torch.optim import Adam
+import torch.nn.functional as F
 
 from common.base import Algorithm
 from common.buffer import Buffer
@@ -127,16 +128,40 @@ class SAC(Algorithm):
                 'loss/critic1', loss_critic1.item(), self.learning_steps)
             writer.add_scalar(
                 'loss/critic2', loss_critic2.item(), self.learning_steps)
+            
+    def lambda_bc_schedule(self, step):
+        # You can adjust this strategy
+        if step < 50000:
+            return 0.5
+        elif step < 100000:
+            return 0.2
+        else:
+            return 0.0
 
     def update_actor(self, states, writer):
+        # SAC actor loss
         actions, log_pis = self.actor.sample(states)
         qs1, qs2 = self.critic(states, actions)
         loss_actor = self.alpha * log_pis.mean() - torch.min(qs1, qs2).mean()
+
+        # BC imitation loss
+        lambda_bc = self.lambda_bc_schedule(self.learning_steps)  # add λ_bc
+        if lambda_bc > 0:
+            # sample from expert buffer (make sure it is not empty)
+            s_exp, a_exp = self.expert_buffer.sample(self.batch_size)
+            pred_a_exp, _ = self.actor.sample(s_exp)
+            bc_loss = F.mse_loss(pred_a_exp, a_exp)
+        else:
+            bc_loss = 0.0
+
+        # merge the two losses
+        loss_actor = loss_actor + lambda_bc * bc_loss
 
         self.optim_actor.zero_grad()
         loss_actor.backward(retain_graph=False)
         self.optim_actor.step()
 
+        # alpha loss
         entropy = -log_pis.detach_().mean()
         loss_alpha = -self.log_alpha * (self.target_entropy - entropy)
 
@@ -147,6 +172,7 @@ class SAC(Algorithm):
         with torch.no_grad():
             self.alpha = self.log_alpha.exp().item()
 
+        # logging
         if self.learning_steps % 1000 == 0:
             writer.add_scalar(
                 'loss/actor', loss_actor.item(), self.learning_steps)
