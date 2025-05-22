@@ -21,6 +21,7 @@ This project implements Adversarial Inverse Reinforcement Learning (AIRL) and So
     **xml**：
     - StickInsect-v1 integrator="implicitfast", actuator: pos & vel
     - StickInsect-v4 integrator="RK4", actuator: pos
+    - StickInsect-v4u1 integrator="RK4", actuator: pos change the kv and kp
     - StickInsect-v5 integrator="RK4", actuator: pos, ctrlrange revised
     **env**:
     - StickInsect-v4
