@@ -17,12 +17,12 @@ class StickInsectEnv(MujocoEnv, utils.EzPickle):
             "rgb_array",
             "depth_array",
         ],
-        "render_fps": 200, # 200/ 50
+        "render_fps": 50, # 200/ 50
     }
 
     def __init__(
         self,
-        xml_file="/home/yuchen/airl-insect-walking/envs/assets/StickInsect-v4u1.xml",
+        xml_file="/home/yuchen/airl-insect-walking/envs/assets/StickInsect-v4u2.xml",
         ctrl_cost_weight=0.5,
         use_contact_forces=False,
         contact_cost_weight=5e-4,
