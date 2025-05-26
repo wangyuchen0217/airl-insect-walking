@@ -13,7 +13,7 @@ from common.trainer import Trainer
 from common.buffer import ExpertBuffer
 
 def run(args):
-    CUDA = 2
+    CUDA = 1
 
     # Create log directory.
     current_time = datetime.now().strftime("%Y%m%d-%H%M")
@@ -40,8 +40,8 @@ def run(args):
     print(f"Process ID: {os.getpid()}")
 
     # Load expert data.
-    expert_data = torch.load("experts/StickInsect_states_v1u1.pt", weights_only=True) 
-    expert_actions = torch.load("experts/StickInsect_actions_v1u1.pt", weights_only=True)
+    expert_data = torch.load("experts/StickInsect_states_v1u2.pt", weights_only=True) 
+    expert_actions = torch.load("experts/StickInsect_actions_v1u2.pt", weights_only=True)
     expert_dict = {
         "state": expert_data.numpy(),      # 转成 numpy for indexing
         "action": expert_actions.numpy()
