@@ -1,0 +1,32 @@
+scale: [3.1415927 3.1415927 3.1415927 3.1415927 3.1415927 3.1415927 3.1415927
+ 3.1415927 3.1415927 3.1415927 3.1415927 3.1415927 3.1415927 3.1415927
+ 3.1415927 3.1415927 3.1415927 3.1415927]
+mid: [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+action space high: [1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1.]
+action space low: [-1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1.]
+Loaded actor model from /home/yuchen/airl-insect-walking/logs/StickInsect-v4/sac/20250526-1131/model/actor.pth
+---  Actor Networks ---
+net.0.weight: torch.Size([256, 47])
+net.0.bias: torch.Size([256])
+net.2.weight: torch.Size([256, 256])
+net.2.bias: torch.Size([256])
+net.4.weight: torch.Size([36, 256])
+net.4.bias: torch.Size([36])
+---  Statistics ---
+net.0.weight: mean=-0.0008, std=0.3347, L2 norm=36.7096
+net.0.bias: mean=0.0464, std=0.4932, L2 norm=7.9108
+net.2.weight: mean=-0.0074, std=0.2068, L2 norm=52.9863
+net.2.bias: mean=0.0141, std=0.1840, L2 norm=2.9476
+net.4.weight: mean=0.0024, std=0.1392, L2 norm=13.3644
+net.4.bias: mean=-0.5021, std=0.5222, L2 norm=4.3152
+---  Evaluation ---
+Episode 1: Return = 53869.55, Steps = 804
+Episode 2: Return = 235400.86, Steps = 3000
+Episode 3: Return = 215.05, Steps = 41
+Episode 4: Return = 246462.47, Steps = 3000
+Episode 5: Return = -65356.34, Steps = 3000
+Episode 6: Return = 143912.79, Steps = 1768
+Episode 7: Return = 253075.80, Steps = 3000
+Episode 8: Return = 249542.99, Steps = 3000
+Episode 9: Return = 99415.66, Steps = 1849
+Episode 10: Return = 236465.81, Steps = 3000
