@@ -36,7 +36,7 @@ def data_smooth(data):
         data[:,i] = smoothed_data[:,0]
     return data
 
-def joint_prepration(ANIMAL, DATA_FILE):
+def joint_prepration(ANIMAL, DATA_FILE, downsample=False):
     # Load the joint angle data
     joint_path = os.path.join("experts/stickinsects", ANIMAL, DATA_FILE)
     joint_movement = pd.read_csv(joint_path, header=[0], index_col=None).to_numpy()
@@ -48,11 +48,16 @@ def joint_prepration(ANIMAL, DATA_FILE):
     joint_movement = joint_movement[:,6:]
     print("joint_movement:", joint_movement.shape)
 
+    if downsample:
+        # Downsample the joint movement data from 200 Hz to 50 Hz
+        downsample_rate = 4  
+        joint_movement = joint_movement[::downsample_rate, :]
+
     return joint_movement
 
 def expert_simulation(joint_movement):
     #  Set up simulation without rendering
-    model_name = 'StickInsect-v5u1'
+    model_name = 'StickInsect-v4u2'
     model_path = 'envs/assets/' + model_name + '.xml'
     model = mujoco.MjModel.from_xml_path(model_path)
     data = mujoco.MjData(model)
@@ -147,13 +152,13 @@ DATA_FILE_2 = "Animal12_110415_00_23.csv"
 DATA_FILE_3 = "Animal12_110415_00_32.csv"
 
 # print(ANIMAL, ":", DATA_FILE_1)
-# joint_movement_1 = joint_prepration(ANIMAL, DATA_FILE_1) 
+# joint_movement_1 = joint_prepration(ANIMAL, DATA_FILE_1, downsample=False) 
 # obs_states_1, actions_1, contact_matrix_1, force_1 = expert_simulation(joint_movement_1)
 print(ANIMAL, ":", DATA_FILE_2)
-joint_movement_2 = joint_prepration(ANIMAL, DATA_FILE_2)
+joint_movement_2 = joint_prepration(ANIMAL, DATA_FILE_2, downsample=True)
 obs_states_2, actions_2, contact_matrix_2, force_2 = expert_simulation(joint_movement_2)
 print(ANIMAL, ":", DATA_FILE_3)
-joint_movement_3 = joint_prepration(ANIMAL, DATA_FILE_3)
+joint_movement_3 = joint_prepration(ANIMAL, DATA_FILE_3, downsample=True)
 obs_states_3, actions_3, contact_matrix_3, force_3 = expert_simulation(joint_movement_3)
 
 # # save force data as csv
@@ -174,6 +179,6 @@ print("expert actions:", expert_actions.shape)
 # save numpy data as pt file
 expert_states = torch.tensor(expert_states, dtype=torch.float32)
 expert_actions = torch.tensor(expert_actions, dtype=torch.float32)
-torch.save(expert_states, "experts/StickInsect_states_v3u1.pt")
-torch.save(expert_actions, "experts/StickInsect_actions_v3u1.pt")
+torch.save(expert_states, "experts/StickInsect_states_v1u2.pt")
+torch.save(expert_actions, "experts/StickInsect_actions_v1u2.pt")
 
