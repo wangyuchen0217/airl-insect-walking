@@ -1,0 +1,119 @@
+Logging started at 20250522-1637
+scale: [3.1415927 3.1415927 3.1415927 3.1415927 3.1415927 3.1415927 3.1415927
+ 3.1415927 3.1415927 3.1415927 3.1415927 3.1415927 3.1415927 3.1415927
+ 3.1415927 3.1415927 3.1415927 3.1415927]
+mid: [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+action space high: [1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1.]
+action space low: [-1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1.]
+scale: [3.1415927 3.1415927 3.1415927 3.1415927 3.1415927 3.1415927 3.1415927
+ 3.1415927 3.1415927 3.1415927 3.1415927 3.1415927 3.1415927 3.1415927
+ 3.1415927 3.1415927 3.1415927 3.1415927]
+mid: [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+action space high: [1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1.]
+action space low: [-1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1.]
+NVIDIA RTX A6000
+Process ID: 73448
+[BC Init] Loaded actor weights from weights/bc_sac_pretrained_actor.pth
+Note: NumExpr detected 64 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+NumExpr defaulting to 8 threads.
+Initial state shape: (47,)
+Num steps: 10000    Return: -19072.3   Time: 0:00:04
+Num steps: 20000    Return: -25452.7   Time: 0:02:17
+Num steps: 30000    Return: -20413.6   Time: 0:04:27
+Num steps: 40000    Return: -22367.5   Time: 0:06:36
+Num steps: 50000    Return: -16652.0   Time: 0:08:55
+Num steps: 60000    Return: -28047.6   Time: 0:11:17
+Num steps: 70000    Return: -36560.2   Time: 0:13:36
+Num steps: 80000    Return: -61059.7   Time: 0:15:50
+Num steps: 90000    Return: -29097.9   Time: 0:18:03
+Num steps: 100000   Return: -23409.3   Time: 0:20:14
+Num steps: 110000   Return: -21297.5   Time: 0:22:24
+Num steps: 120000   Return: -15719.6   Time: 0:24:22
+Num steps: 130000   Return: -15527.3   Time: 0:26:19
+Num steps: 140000   Return: -9123.6   Time: 0:28:12
+Num steps: 150000   Return: -14055.7   Time: 0:30:06
+Num steps: 160000   Return: -27477.6   Time: 0:32:02
+Num steps: 170000   Return: -8270.3   Time: 0:33:59
+Num steps: 180000   Return: -18060.0   Time: 0:35:54
+Num steps: 190000   Return: -14330.7   Time: 0:37:54
+Num steps: 200000   Return: -17611.1   Time: 0:39:54
+Num steps: 210000   Return: -21423.9   Time: 0:41:49
+Num steps: 220000   Return: -18412.9   Time: 0:43:47
+Num steps: 230000   Return: -18738.5   Time: 0:45:45
+Num steps: 240000   Return: -40864.3   Time: 0:47:44
+Num steps: 250000   Return: -13867.7   Time: 0:49:40
+Num steps: 260000   Return: -13138.7   Time: 0:51:39
+Num steps: 270000   Return: -22243.0   Time: 0:53:36
+Num steps: 280000   Return: -18891.2   Time: 0:55:32
+Num steps: 290000   Return: -13911.6   Time: 0:57:23
+Num steps: 300000   Return: -10190.8   Time: 0:59:19
+Num steps: 310000   Return: -32974.9   Time: 1:01:16
+Num steps: 320000   Return: -23324.6   Time: 1:03:17
+Num steps: 330000   Return: -17443.4   Time: 1:05:05
+Num steps: 340000   Return: -16332.0   Time: 1:06:59
+Num steps: 350000   Return: -6268.9   Time: 1:08:55
+Num steps: 360000   Return: -18684.8   Time: 1:10:47
+Num steps: 370000   Return: -4345.3   Time: 1:12:38
+Num steps: 380000   Return: -12879.5   Time: 1:14:26
+Num steps: 390000   Return: -25265.8   Time: 1:16:22
+Num steps: 400000   Return: -5598.6   Time: 1:18:13
+Num steps: 410000   Return: -18036.3   Time: 1:20:07
+Num steps: 420000   Return: -30945.8   Time: 1:22:03
+Num steps: 430000   Return: -5111.4   Time: 1:23:58
+Num steps: 440000   Return: -7943.3   Time: 1:25:53
+Num steps: 450000   Return: -2122.2   Time: 1:27:50
+Num steps: 460000   Return: -17697.6   Time: 1:29:49
+Num steps: 470000   Return: -25134.8   Time: 1:31:51
+Num steps: 480000   Return: -8217.9   Time: 1:33:50
+Num steps: 490000   Return: -16643.8   Time: 1:35:50
+Num steps: 500000   Return: 1087.7   Time: 1:37:45
+Num steps: 510000   Return: -5461.0   Time: 1:39:36
+Num steps: 520000   Return: -8548.0   Time: 1:41:33
+Num steps: 530000   Return: -7439.0   Time: 1:43:30
+Num steps: 540000   Return: -4173.3   Time: 1:45:22
+Num steps: 550000   Return: -8192.9   Time: 1:47:12
+Num steps: 560000   Return: -10246.1   Time: 1:49:02
+Num steps: 570000   Return: -1435.6   Time: 1:50:52
+Num steps: 580000   Return: 294.8   Time: 1:52:43
+Num steps: 590000   Return: -7111.8   Time: 1:54:30
+Num steps: 600000   Return: -13469.3   Time: 1:56:15
+Num steps: 610000   Return: -5910.1   Time: 1:58:00
+Num steps: 620000   Return: -2718.5   Time: 1:59:54
+Num steps: 630000   Return: -4333.9   Time: 2:01:38
+Num steps: 640000   Return: -2665.5   Time: 2:03:28
+Num steps: 650000   Return: -10735.7   Time: 2:05:20
+Num steps: 660000   Return: -18286.6   Time: 2:07:14
+Num steps: 670000   Return: 927.8   Time: 2:08:56
+Num steps: 680000   Return: -2770.0   Time: 2:10:42
+Num steps: 690000   Return: -35783.0   Time: 2:12:31
+Num steps: 700000   Return: 1798.3   Time: 2:14:12
+Num steps: 710000   Return: -3889.8   Time: 2:15:50
+Num steps: 720000   Return: -19887.4   Time: 2:17:32
+Num steps: 730000   Return: 1633.9   Time: 2:19:19
+Num steps: 740000   Return: -2822.4   Time: 2:21:03
+Num steps: 750000   Return: -4052.1   Time: 2:22:46
+Num steps: 760000   Return: -4956.9   Time: 2:24:25
+Num steps: 770000   Return: 446.8   Time: 2:26:10
+Num steps: 780000   Return: -20734.0   Time: 2:27:59
+Num steps: 790000   Return: 2250.4   Time: 2:29:38
+Num steps: 800000   Return: -6303.8   Time: 2:31:06
+Num steps: 810000   Return: -1185.1   Time: 2:32:35
+Num steps: 820000   Return: -11325.7   Time: 2:34:10
+Num steps: 830000   Return: -8797.1   Time: 2:36:01
+Num steps: 840000   Return: -873.5   Time: 2:37:53
+Num steps: 850000   Return: -17535.1   Time: 2:39:37
+Num steps: 860000   Return: -9020.9   Time: 2:41:12
+Num steps: 870000   Return: -8041.5   Time: 2:43:00
+Num steps: 880000   Return: -796.2   Time: 2:44:42
+Num steps: 890000   Return: -6520.6   Time: 2:46:25
+Num steps: 900000   Return: -631.9   Time: 2:48:11
+Num steps: 910000   Return: -21656.7   Time: 2:50:06
+Num steps: 920000   Return: -3761.6   Time: 2:51:46
+Num steps: 930000   Return: -5382.0   Time: 2:53:24
+Num steps: 940000   Return: -9995.6   Time: 2:55:11
+Num steps: 950000   Return: 4555.8   Time: 2:57:03
+Num steps: 960000   Return: -13842.7   Time: 2:58:51
+Num steps: 970000   Return: -1419.7   Time: 3:00:32
+Num steps: 980000   Return: -10055.8   Time: 3:02:17
+Num steps: 990000   Return: 7260.0   Time: 3:04:10
+Num steps: 1000000   Return: -16949.8   Time: 3:05:52

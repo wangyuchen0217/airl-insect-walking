@@ -136,7 +136,7 @@ class SAC(Algorithm):
         if step < 50000:
             return 0.5
         elif step < 100000:
-            return 0.2
+            return max(0.2, 0.5 * (1 - step / 100000))
         else:
             return 0.0
 
