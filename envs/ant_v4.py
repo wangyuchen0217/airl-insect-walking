@@ -1,8 +1,8 @@
 import numpy as np
 
-from gym import utils
-from gym.envs.mujoco import MujocoEnv
-from gym.spaces import Box
+from gymnasium import utils
+from gymnasium.envs.mujoco import MujocoEnv
+from gymnasium.spaces import Box
 
 DEFAULT_CAMERA_CONFIG = {
     "distance": 4.0,
@@ -238,7 +238,11 @@ class AntEnv(MujocoEnv, utils.EzPickle):
         )
 
         MujocoEnv.__init__(
-            self, xml_file, 5, observation_space=observation_space, **kwargs
+            self, 
+            xml_file, 
+            5, 
+            observation_space=observation_space, 
+            **kwargs
         )
 
     @property
@@ -354,3 +358,14 @@ class AntEnv(MujocoEnv, utils.EzPickle):
                 getattr(self.viewer.cam, key)[:] = value
             else:
                 setattr(self.viewer.cam, key, value)
+
+if __name__ == "__main__":
+    env = AntEnv(render_mode='human')
+    obs, info = env.reset()
+    done = False
+    while not done:
+        action = env.action_space.sample()  # Random action for testing
+        obs, reward, done, truncated, info = env.step(action)
+        print(f"Obs: {obs}, Reward: {reward}, Done: {done}, Info: {info}")
+    env.close()
+#     env.close()

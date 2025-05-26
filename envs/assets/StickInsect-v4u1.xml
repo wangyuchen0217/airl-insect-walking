@@ -1,6 +1,6 @@
 <mujoco model="stickinsect">
   <compiler angle="degree" coordinate="local" inertiafromgeom="true"/>
-  <option integrator="RK4" timestep="0.005"/> <!-- frequency [200,50] -->
+  <option integrator="RK4" timestep="0.005"/> <!-- frequency [200,50] 0.005-->
 
   <default>
     <joint armature="1" damping="1" limited="true"/>
