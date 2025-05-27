@@ -61,10 +61,10 @@ def main():
     print(f"Logging started at {current_time}")
 
     # Create training and testing environments.
-    # env = make_env(ENV_ID, test=False)
-    # env_test = make_env(ENV_ID, test=False)
-    env = gym.make(ENV_ID, exclude_current_positions_from_observation=False)
-    env_test = gym.make(ENV_ID, exclude_current_positions_from_observation=False)
+    env = make_env(ENV_ID, test=False)
+    env_test = make_env(ENV_ID, test=False)
+    # env = gym.make(ENV_ID, exclude_current_positions_from_observation=False)
+    # env_test = gym.make(ENV_ID, exclude_current_positions_from_observation=False)
     device = torch.device(f"cuda:{CUDA}" if torch.cuda.is_available() and CUDA >= 0 else "cpu")
     if torch.cuda.is_available():
         print(torch.cuda.get_device_name(CUDA))
@@ -81,7 +81,7 @@ def main():
 
     # Load expert data from .pt files and wrap into an ExpertBuffer.
     expert_data = load_expert_data(STATE_FILE, ACTION_FILE, save_npz=False)
-    # expert_data = NormalizedEnv.normalize_expert_data(env, expert_data)
+    expert_data = NormalizedEnv.normalize_expert_data(env, expert_data)
     expert_buffer = ExpertBuffer(expert_data, device)
     print(f"Expert buffer size: {expert_buffer.size}")
     # expert_buffer = SerializedBuffer(
