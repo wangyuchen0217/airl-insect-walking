@@ -86,12 +86,6 @@ def main():
     #     path='/home/yuchen/airl_insect_walking/buffers/Ant-v4/size1000000_std0.01_prand0.0.pth',
     #     device=device)
 
-    state_shape=env.observation_space.shape
-    action_shape=env.action_space.shape
-    print(f"State shape: {state_shape}, Action shape: {action_shape}")
-    input_dim=state_shape[0] + action_shape[0]
-    print(f"Input dimension: {input_dim}")
-
     # Create AIRL agent.
     algo = GAIL(
         buffer_exp=expert_buffer,
@@ -116,7 +110,6 @@ def main():
         coef_ent=COEF_ENT,
         max_grad_norm=MAX_GRAD_NORM
     )
-
 
     trainer = Trainer(
         env=env,

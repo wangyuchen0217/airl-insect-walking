@@ -121,7 +121,6 @@ def main():
     # else:
     #     print(f"[BC Init] No pretrained actor found at {PRETRAINED_PATH}, training from scratch.")
 
-
     trainer = Trainer(
         env=env,
         env_test=env_test,
