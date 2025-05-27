@@ -13,7 +13,7 @@ from common.trainer import Trainer
 from common.buffer import ExpertBuffer
 
 def run(args):
-    CUDA = 1
+    CUDA = 4
 
     # Create log directory.
     current_time = datetime.now().strftime("%Y%m%d-%H%M")
@@ -54,9 +54,9 @@ def run(args):
         action_shape=env.action_space.shape,
         device=device,
         expert_buffer=expert_buffer,
-        lr_actor=5e-5,
-        lr_critic=5e-5,
-        lr_alpha=5e-5,
+        lr_actor=1e-4,
+        lr_critic=1e-4,
+        lr_alpha=1e-4,
         units_actor=(256, 256),
         units_critic=(256, 256),
         seed=args.seed

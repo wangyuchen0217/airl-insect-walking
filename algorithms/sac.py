@@ -140,6 +140,15 @@ class SAC(Algorithm):
         else:
             return 0.0
 
+    # def lambda_bc_schedule(self, step):
+    #     # You can adjust this strategy
+    #     if step < 500000:
+    #         return 0.5
+    #     elif step < 1000000:
+    #         return max(0.2, 0.5 * (1 - step / 100000))
+    #     else:
+    #         return 0.0
+
     def update_actor(self, states, writer):
         # SAC actor loss
         actions, log_pis = self.actor.sample(states)
