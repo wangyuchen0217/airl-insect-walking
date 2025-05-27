@@ -17,9 +17,9 @@ from common.buffer import SerializedBuffer
 
 # ======== Parameters (modify these as needed) =========
 NAME = "StickInsect"
-STATE_FILE = "experts/" + NAME + "_states_v2.pt"
-ACTION_FILE = "experts/" + NAME + "_actions_v2.pt"
-ENV_ID = NAME+"-v5"
+STATE_FILE = "experts/" + NAME + "_states_v1u2.pt"
+ACTION_FILE = "experts/" + NAME + "_actions_v1u2.pt"
+ENV_ID = NAME+"-v4"
 CUDA = 0
 ROLLOUT_LENGTH = 3000
 NUM_STEPS = 2*10**6
@@ -41,7 +41,7 @@ LAMBDA = 0.97
 COEF_ENT = 0.05
 MAX_GRAD_NORM = 10.0
 SEED = 0
-PRETRAINED_PATH = "weights/bc_pretrained_actor.pth"
+# PRETRAINED_PATH = "weights/bc_pretrained_actor.pth"
 # ========================================================
 
 def main():
@@ -114,12 +114,12 @@ def main():
         max_grad_norm=MAX_GRAD_NORM
     )
 
-    # Load pretrained actor weights if available.
-    if os.path.exists(PRETRAINED_PATH):
-        algo.actor.load_state_dict(torch.load(PRETRAINED_PATH, weights_only=True))
-        print(f"[BC Init] Loaded actor weights from {PRETRAINED_PATH}")
-    else:
-        print(f"[BC Init] No pretrained actor found at {PRETRAINED_PATH}, training from scratch.")
+    # # Load pretrained actor weights if available.
+    # if os.path.exists(PRETRAINED_PATH):
+    #     algo.actor.load_state_dict(torch.load(PRETRAINED_PATH, weights_only=True))
+    #     print(f"[BC Init] Loaded actor weights from {PRETRAINED_PATH}")
+    # else:
+    #     print(f"[BC Init] No pretrained actor found at {PRETRAINED_PATH}, training from scratch.")
 
 
     trainer = Trainer(
