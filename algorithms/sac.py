@@ -131,23 +131,23 @@ class SAC(Algorithm):
             writer.add_scalar(
                 'loss/critic2', loss_critic2.item(), self.learning_steps)
             
-    def lambda_bc_schedule(self, step):
-        # You can adjust this strategy
-        if step < 50000:
-            return 0.5
-        elif step < 100000:
-            return max(0.2, 0.5 * (1 - step / 100000))
-        else:
-            return 0.0
-
     # def lambda_bc_schedule(self, step):
     #     # You can adjust this strategy
-    #     if step < 500000:
+    #     if step < 50000:
     #         return 0.5
-    #     elif step < 1000000:
+    #     elif step < 100000:
     #         return max(0.2, 0.5 * (1 - step / 100000))
     #     else:
     #         return 0.0
+
+    def lambda_bc_schedule(self, step):
+        # You can adjust this strategy
+        if step < 500000:
+            return 0.5
+        elif step < 1000000:
+            return max(0.2, 0.5 * (1 - step / 100000))
+        else:
+            return 0.0
 
     def update_actor(self, states, writer):
         # SAC actor loss
