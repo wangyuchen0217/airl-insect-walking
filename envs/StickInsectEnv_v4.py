@@ -32,6 +32,10 @@ class StickInsectEnv(MujocoEnv, utils.EzPickle):
         contact_force_range=(-1.0, 1.0),
         reset_noise_scale=0.1,
         exclude_current_positions_from_observation=True,
+        weight_forward = 10.0,
+        weight_smooth=0.05,
+        weight_contact=2.0,
+        contact_threshold=1.0,
         **kwargs,
     ):
         utils.EzPickle.__init__(
@@ -46,6 +50,10 @@ class StickInsectEnv(MujocoEnv, utils.EzPickle):
             contact_force_range,
             reset_noise_scale,
             exclude_current_positions_from_observation,
+            weight_forward,
+            weight_smooth,
+            weight_contact,
+            contact_threshold,
             **kwargs,
         )
 
@@ -65,6 +73,14 @@ class StickInsectEnv(MujocoEnv, utils.EzPickle):
         self._exclude_current_positions_from_observation = (
             exclude_current_positions_from_observation
         )
+
+        self.weight_forward = weight_forward
+        self.weight_smooth = weight_smooth
+        self.weight_contact = weight_contact
+        self.contact_threshold = contact_threshold
+        self.weight_forward = weight_forward
+
+        self.prev_qvel = np.zeros(47)  # Assumes 47-dim velocity, adjust if needed
 
         obs_shape = 47
         if not exclude_current_positions_from_observation:
@@ -128,13 +144,21 @@ class StickInsectEnv(MujocoEnv, utils.EzPickle):
 
         xy_velocity = (xy_position_after - xy_position_before) / self.dt
         x_velocity, y_velocity = xy_velocity
+        qvel = self.data.qvel.copy()
+        contact_forces = self.contact_forces.copy()
 
-        forward_reward = x_velocity * 10
+        forward_reward = x_velocity * self.weight_forward
         healthy_reward = self.healthy_reward
+        smoothness_reward = -self.weight_smooth * np.sum(np.square(qvel - self.prev_qvel))
+        contact_reward = self.weight_contact * np.sum(np.linalg.norm(contact_forces, axis=1) > self.contact_threshold)
+        ctrl_cost = self.control_cost(action)
 
-        rewards = forward_reward + healthy_reward
+        # rewards = forward_reward + healthy_reward
+        # costs = ctrl_cost = self.control_cost(action)
 
-        costs = ctrl_cost = self.control_cost(action)
+        self.prev_qvel = qvel.copy()
+
+        reward = forward_reward + healthy_reward + smoothness_reward + contact_reward - ctrl_cost
 
         terminated = self.terminated
         observation = self._get_obs()
@@ -154,7 +178,7 @@ class StickInsectEnv(MujocoEnv, utils.EzPickle):
             costs += contact_cost
             info["reward_ctrl"] = -contact_cost
 
-        reward = rewards - costs
+        # reward = rewards - costs
 
         if self.render_mode == "human":
             self.render()
@@ -185,6 +209,7 @@ class StickInsectEnv(MujocoEnv, utils.EzPickle):
             + self._reset_noise_scale * self.np_random.standard_normal(self.model.nv)
         )
         self.set_state(qpos, qvel)
+        self.prev_qvel = np.zeros_like(self.data.qvel)
 
         observation = self._get_obs()
 
