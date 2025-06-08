@@ -13,7 +13,7 @@ from common.trainer import Trainer
 from common.buffer import ExpertBuffer
 
 def run(args):
-    CUDA = 0
+    CUDA = 1
 
     # Create log directory.
     current_time = datetime.now().strftime("%Y%m%d-%H%M")
