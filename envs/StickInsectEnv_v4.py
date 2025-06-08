@@ -33,7 +33,7 @@ class StickInsectEnv(MujocoEnv, utils.EzPickle):
         reset_noise_scale=0.1,
         exclude_current_positions_from_observation=True,
         weight_forward = 10.0,
-        weight_smooth=0.1, # 0.05
+        weight_smooth=0.05, # 0.05
         weight_contact=1.0, # 2.0
         contact_threshold=1.0,
         **kwargs,
