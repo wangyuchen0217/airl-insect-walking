@@ -26,79 +26,39 @@ class GAILDiscrim(nn.Module):
         
 
 '''Oriniginal AIRLDiscrim with dropout'''
-class AIRLDiscrim(nn.Module):
-
-    def __init__(self, state_shape, gamma,
-                 hidden_units_r=(32, 32), # （64, 64）
-                 hidden_units_v=(32, 32), # （64, 64）
-                 hidden_activation_r=nn.ReLU(inplace=True),
-                 hidden_activation_v=nn.ReLU(inplace=True)):
-        super().__init__()
-
-        def build_dropout_mlp(input_dim, output_dim, hidden_units, hidden_activation, dropout_p=0.3):
-            layers = []
-            prev_dim = input_dim
-            for hidden_dim in hidden_units:
-                layers.append(nn.Linear(prev_dim, hidden_dim))
-                layers.append(hidden_activation)
-                layers.append(nn.Dropout(p=dropout_p))
-                prev_dim = hidden_dim
-            layers.append(nn.Linear(prev_dim, output_dim))
-            return nn.Sequential(*layers)
-
-        self.g = build_dropout_mlp(
-            input_dim=state_shape[0],
-            output_dim=1,
-            hidden_units=hidden_units_r,
-            hidden_activation=hidden_activation_r,
-            dropout_p=0.3
-        )
-        self.h = build_dropout_mlp(
-            input_dim=state_shape[0],
-            output_dim=1,
-            hidden_units=hidden_units_v,
-            hidden_activation=hidden_activation_v,
-            dropout_p=0.3
-        )
-
-        self.gamma = gamma
-
-    def f(self, states, dones, next_states):
-        rs = self.g(states)
-        vs = self.h(states)
-        next_vs = self.h(next_states)
-        return rs + self.gamma * (1 - dones) * next_vs - vs
-
-    def forward(self, states, dones, log_pis, next_states):
-        # Discriminator's output is sigmoid(f - log_pi).
-        return self.f(states, dones, next_states) - log_pis
-
-    def calculate_reward(self, states, dones, log_pis, next_states):
-        with torch.no_grad():
-            logits = self.forward(states, dones, log_pis, next_states)
-            return -F.logsigmoid(-logits)
-
-'''Oriniginal AIRLDiscrim without dropout'''
 # class AIRLDiscrim(nn.Module):
 
 #     def __init__(self, state_shape, gamma,
-#                  hidden_units_r=(64, 64),
-#                  hidden_units_v=(64, 64), 
+#                  hidden_units_r=(32, 32), # （64, 64）
+#                  hidden_units_v=(32, 32), # （64, 64）
 #                  hidden_activation_r=nn.ReLU(inplace=True),
 #                  hidden_activation_v=nn.ReLU(inplace=True)):
 #         super().__init__()
 
-#         self.g = build_mlp(
+#         def build_dropout_mlp(input_dim, output_dim, hidden_units, hidden_activation, dropout_p=0.3):
+#             layers = []
+#             prev_dim = input_dim
+#             for hidden_dim in hidden_units:
+#                 layers.append(nn.Linear(prev_dim, hidden_dim))
+#                 layers.append(hidden_activation)
+#                 layers.append(nn.Dropout(p=dropout_p))
+#                 prev_dim = hidden_dim
+#             layers.append(nn.Linear(prev_dim, output_dim))
+#             return nn.Sequential(*layers)
+
+#         self.g = build_dropout_mlp(
 #             input_dim=state_shape[0],
 #             output_dim=1,
 #             hidden_units=hidden_units_r,
-#             hidden_activation=hidden_activation_r
+#             hidden_activation=hidden_activation_r,
+#             dropout_p=0.3
 #         )
-#         self.h = build_mlp(
+#         self.h = build_dropout_mlp(
 #             input_dim=state_shape[0],
 #             output_dim=1,
 #             hidden_units=hidden_units_v,
-#             hidden_activation=hidden_activation_v
+#             hidden_activation=hidden_activation_v,
+#             dropout_p=0.3
 #         )
 
 #         self.gamma = gamma
@@ -117,6 +77,46 @@ class AIRLDiscrim(nn.Module):
 #         with torch.no_grad():
 #             logits = self.forward(states, dones, log_pis, next_states)
 #             return -F.logsigmoid(-logits)
+
+'''Oriniginal AIRLDiscrim without dropout'''
+class AIRLDiscrim(nn.Module):
+
+    def __init__(self, state_shape, gamma,
+                 hidden_units_r=(64, 64),
+                 hidden_units_v=(64, 64), 
+                 hidden_activation_r=nn.ReLU(inplace=True),
+                 hidden_activation_v=nn.ReLU(inplace=True)):
+        super().__init__()
+
+        self.g = build_mlp(
+            input_dim=state_shape[0],
+            output_dim=1,
+            hidden_units=hidden_units_r,
+            hidden_activation=hidden_activation_r
+        )
+        self.h = build_mlp(
+            input_dim=state_shape[0],
+            output_dim=1,
+            hidden_units=hidden_units_v,
+            hidden_activation=hidden_activation_v
+        )
+
+        self.gamma = gamma
+
+    def f(self, states, dones, next_states):
+        rs = self.g(states)
+        vs = self.h(states)
+        next_vs = self.h(next_states)
+        return rs + self.gamma * (1 - dones) * next_vs - vs
+
+    def forward(self, states, dones, log_pis, next_states):
+        # Discriminator's output is sigmoid(f - log_pi).
+        return self.f(states, dones, next_states) - log_pis
+
+    def calculate_reward(self, states, dones, log_pis, next_states):
+        with torch.no_grad():
+            logits = self.forward(states, dones, log_pis, next_states)
+            return -F.logsigmoid(-logits)
 
 
 '''Oriniginal AIRLDiscrim with GRU'''
