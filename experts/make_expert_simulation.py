@@ -112,7 +112,7 @@ def expert_simulation(joint_movement):
     # record observation state and action
     obs_states = np.array(obs_state) # [len, 47] with torso without root position
     print("states:", obs_states.shape)
-    actions = np.array((np.deg2rad(joint_movement))-obs_states[:, 5:23]) 
+    actions = np.array((np.deg2rad(joint_movement))) 
     print("actions:", actions.shape)  # [len, 18]
     contact_matrix = np.array(contact_matrix) # [len, 6]
     print("contact_matrix:", contact_matrix.shape)
@@ -179,6 +179,6 @@ print("expert actions:", expert_actions.shape)
 # save numpy data as pt file
 expert_states = torch.tensor(expert_states, dtype=torch.float32)
 expert_actions = torch.tensor(expert_actions, dtype=torch.float32)
-torch.save(expert_states, "experts/StickInsect_states_v1u2.pt")
-torch.save(expert_actions, "experts/StickInsect_actions_v1u2.pt")
+# torch.save(expert_states, "experts/StickInsect_states_v1u2.pt")
+# torch.save(expert_actions, "experts/StickInsect_actions_v1u2.pt")
 
