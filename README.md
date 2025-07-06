@@ -1,4 +1,4 @@
-# AIRL-Insect-Walking
+# AIRL-Insect-Walking（In-process）
 
 This project implements Adversarial Inverse Reinforcement Learning (AIRL) and Soft Actor-Critic (SAC) in MuJoCo-based continuous control environments. The framework supports both imitation learning and standard reinforcement learning pipelines. It is designed for investigating locomotion strategies, including future applications to a custom stick insect simulation model. （In-process）
 
