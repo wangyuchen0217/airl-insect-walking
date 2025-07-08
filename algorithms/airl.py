@@ -34,13 +34,6 @@ class AIRL(PPO):
             hidden_activation_v=nn.ReLU(inplace=True)
         ).to(device)
 
-        # # GRU-based Discriminator.
-        # self.disc = AIRLDiscrim(
-        #     state_shape=state_shape,
-        #     gamma=gamma,
-        #     hidden_size=64  # you can parameterize this as needed
-        # ).to(device)
-
         self.learning_steps_disc = 0
         self.optim_disc = Adam(self.disc.parameters(), lr=lr_disc)
         self.batch_size = batch_size
@@ -96,11 +89,8 @@ class AIRL(PPO):
             states_exp, dones_exp, log_pis_exp, next_states_exp)
 
         # Discriminator is to maximize E_{\pi} [log(1 - D)] + E_{exp} [log(D)].
-        # loss_pi = -F.logsigmoid(-logits_pi).mean()
-        # loss_exp = -F.logsigmoid(logits_exp).mean()
-        # Instead of hard 0/1 targets, make expert labels softer label smoothing 5.15
-        loss_pi = -F.logsigmoid(-logits_pi).mean()               # label 0
-        loss_exp = -F.binary_cross_entropy_with_logits(logits_exp, torch.full_like(logits_exp, 0.9))  # label 1 → 0.9
+        loss_pi = -F.logsigmoid(-logits_pi).mean()
+        loss_exp = -F.logsigmoid(logits_exp).mean()
         loss_disc = loss_pi + loss_exp
 
         self.optim_disc.zero_grad()
