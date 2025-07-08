@@ -2,7 +2,6 @@ import os
 os.environ["NUMEXPR_MAX_THREADS"] = "8"
 import sys
 import torch
-import envs
 import gymnasium as gym
 import numpy as np
 from datetime import datetime
