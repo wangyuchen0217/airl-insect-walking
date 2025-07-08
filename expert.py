@@ -1,37 +1,23 @@
 import torch
 import numpy as np
-import gymnasium as gym
+import pandas as pd
 
 
-def load_expert_data(state_file, action_file, save_npz=False, npz_filename="expert_data.npz"):
-    # Load data from .pt files.
-    states = torch.load(state_file, weights_only=True)   # shape: (num_trajectories, traj_length, state_dim)
-    actions = torch.load(action_file, weights_only=True)   # shape: (num_trajectories, traj_length, action_dim)
-    
-    # Convert to numpy arrays.
-    states_np = states.numpy()# For Ant-v4 [:,:,:27]
-    actions_np = actions.numpy()
-    print(f"Load data states: {states_np.shape}, actions: {actions_np.shape}")
-
-    # Add num_trajectories dimension if not present.
-    if len(states_np.shape) == 2:
-        states_np = states_np[None, :, :]
-        actions_np = actions_np[None, :, :]
-
-    num_trajectories, traj_length, _ = states_np.shape
+def load_expert_data(states_np, actions_np, save_npz=False, npz_filename="expert_data.npz"):
 
     states = []
     actions = []
     next_states = []
-    for i in range(num_trajectories):
-        states.append(states_np[i, :-1, :]) # remove the last state
-        actions.append(actions_np[i, :-1, :]) # remove the last action
-        next_states.append(states_np[i, 1:, :]) # remove the first state
-    states = np.concatenate(states, axis=0)      
-    actions = np.concatenate(actions, axis=0)      
-    next_states = np.concatenate(next_states, axis=0)
-    dones = np.zeros(((traj_length-1)*num_trajectories), dtype=np.float32)
-    rewards = np.zeros(((traj_length-1)*num_trajectories), dtype=np.float32)
+    for i in range(len(states_np) - 1):
+        states.append(states_np[i])
+        actions.append(actions_np[i])
+        next_states.append(states_np[i + 1])
+
+    states = np.array(states, dtype=np.float32)
+    actions = np.array(actions, dtype=np.float32)
+    next_states = np.array(next_states, dtype=np.float32)
+    rewards = np.zeros(len(states), dtype=np.float32)  # Assuming zero rewards for expert data (not affect AIRL training)
+    dones = np.zeros(len(states), dtype=np.float32)  # Assuming no terminal states for expert data
 
     expert_data = {
         'state': states,
@@ -41,6 +27,7 @@ def load_expert_data(state_file, action_file, save_npz=False, npz_filename="expe
         'next_state': next_states
     }
     print(f"Expert data states: {expert_data['state'].shape}, actions: {expert_data['action'].shape}")
+    print(expert_data)
 
     if save_npz:
         np.savez(npz_filename, **expert_data)
@@ -67,10 +54,25 @@ class ExpertBuffer:
 
 
 if __name__ == "__main__":
-    STATE_FILE = "experts/Ant_states.pt"
-    ACTION_FILE = "experts/Ant_actions.pt"
-    expert_data = load_expert_data(STATE_FILE, ACTION_FILE, save_npz=False, npz_filename="expert_data.npz")
+    # load the expert data (CoppeliaSim)
+    data = pd.read_csv("expert.csv", header=[0])
+    states = data[['body_roll', 'body_pitch', 'body_yaw', 
+                  'motor_pos_FL_TC', 'motor_pos_FL_CF', 'motor_pos_FL_FT', 
+                  'motor_pos_ML_TC', 'motor_pos_ML_CF', 'motor_pos_ML_FT',
+                  'motor_pos_HL_TC', 'motor_pos_HL_CF', 'motor_pos_HL_FT',
+                  'motor_pos_FR_TC', 'motor_pos_FR_CF', 'motor_pos_FR_FT',
+                  'motor_pos_MR_TC', 'motor_pos_MR_CF', 'motor_pos_MR_FT',
+                  'motor_pos_HR_TC', 'motor_pos_HR_CF', 'motor_pos_HR_FT',
+                  'force_FL', 'force_ML', 'force_HL', 'force_FR', 'force_MR', 'force_HR',
+                  'FL_foot_traj_z', 'ML_foot_traj_z', 'HL_foot_traj_z',
+                  'FR_foot_traj_z', 'MR_foot_traj_z', 'HR_foot_traj_z']].values
+    actions = data[['motor_cmd_FL_TC', 'motor_cmd_FL_CF', 'motor_cmd_FL_FT',
+                   'motor_cmd_ML_TC', 'motor_cmd_ML_CF', 'motor_cmd_ML_FT',
+                  'motor_cmd_HL_TC', 'motor_cmd_HL_CF', 'motor_cmd_HL_FT',
+                  'motor_cmd_FR_TC', 'motor_cmd_FR_CF', 'motor_cmd_FR_FT',
+                  'motor_cmd_MR_TC', 'motor_cmd_MR_CF', 'motor_cmd_MR_FT',
+                  'motor_cmd_HR_TC', 'motor_cmd_HR_CF', 'motor_cmd_HR_FT']].values
+    
+    print(f"States shape: {states.shape}, Actions shape: {actions.shape}")
 
-    # convert action to csv
-    actions = expert_data['action']
-    np.savetxt("Ant_actions.csv", actions, delimiter=",")
+    expert_data = load_expert_data(states, actions, save_npz=False, npz_filename="expert_data.npz")
