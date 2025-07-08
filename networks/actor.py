@@ -10,7 +10,7 @@ class ActorNetworkPolicy(nn.Module):
     deviation (log_stds) for a Gaussian policy.
     """
     def __init__(self, state_shape, action_shape, hidden_units=(64, 64),
-                 hidden_activation=nn.Tanh(), scale=1.0):
+                 hidden_activation=nn.Tanh()):
         super(ActorNetworkPolicy, self).__init__()
         self.net = build_mlp(
             input_dim=state_shape[0],
@@ -20,7 +20,6 @@ class ActorNetworkPolicy(nn.Module):
         )
         # log_stds is a learnable parameter that defines the standard deviation for all actions. (torch.zeros(1, action_shape[0]) * 0.5)
         self.log_stds = nn.Parameter(torch.zeros(1, action_shape[0]))
-        self.scale = scale # <--- add scale parameter
 
     def forward(self, states):
         """
@@ -28,7 +27,7 @@ class ActorNetworkPolicy(nn.Module):
         A tanh activation is applied to bound the outputs.
         """
         mean = torch.tanh(self.net(states))
-        return mean * self.scale # <--- apply scale parameter
+        return mean
     
     def sample(self, states):
         """
