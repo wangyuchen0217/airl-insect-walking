@@ -2,7 +2,6 @@ import os
 os.environ["NUMEXPR_MAX_THREADS"] = "8"
 import sys
 import torch
-import gymnasium as gym
 import numpy as np
 from datetime import datetime
 from algorithms.airl import AIRL
@@ -112,13 +111,6 @@ def main():
         coef_ent=COEF_ENT,
         max_grad_norm=MAX_GRAD_NORM
     )
-
-    # # Load pretrained actor weights if available.
-    # if os.path.exists(PRETRAINED_PATH):
-    #     algo.actor.load_state_dict(torch.load(PRETRAINED_PATH, weights_only=True))
-    #     print(f"[BC Init] Loaded actor weights from {PRETRAINED_PATH}")
-    # else:
-    #     print(f"[BC Init] No pretrained actor found at {PRETRAINED_PATH}, training from scratch.")
 
     trainer = Trainer(
         env=env,
