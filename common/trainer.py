@@ -5,10 +5,9 @@ from torch.utils.tensorboard import SummaryWriter
 
 
 class Trainer:
-    def __init__(self, env, env_test, algo, log_dir, seed=0, num_steps=10**7,
+    def __init__(self, env, env_test, algo, log_dir, num_steps=10**7,
                  eval_interval=10**5, num_eval_episodes=5):
         self.env = env
-        self.seed = seed
 
         self.env_test = env_test
 

@@ -177,7 +177,7 @@ if __name__ == "__main__":
     import matplotlib.pyplot as plt
     from matplotlib.animation import FuncAnimation
 
-    interface = VREP_Interface(OnTimeStep=True, port=9999)
+    interface = VREP_Interface(OnTimeStep=True, port=23000)
     time.sleep(0.1)
     interface.start()
     print('::Check Velocity and Force Reward::')

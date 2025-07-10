@@ -2,8 +2,27 @@ import torch
 import numpy as np
 import pandas as pd
 
+def load_expert_data(expert_file, save_npz=False, npz_filename="expert_data.npz"):
 
-def load_expert_data(states_np, actions_np, save_npz=False, npz_filename="expert_data.npz"):
+    # load the expert data (CoppeliaSim)
+    data = pd.read_csv(expert_file, header=[0])
+    states_np = data[['body_roll', 'body_pitch', 'body_yaw', 
+                  'motor_pos_FL_TC', 'motor_pos_FL_CF', 'motor_pos_FL_FT', 
+                  'motor_pos_ML_TC', 'motor_pos_ML_CF', 'motor_pos_ML_FT',
+                  'motor_pos_HL_TC', 'motor_pos_HL_CF', 'motor_pos_HL_FT',
+                  'motor_pos_FR_TC', 'motor_pos_FR_CF', 'motor_pos_FR_FT',
+                  'motor_pos_MR_TC', 'motor_pos_MR_CF', 'motor_pos_MR_FT',
+                  'motor_pos_HR_TC', 'motor_pos_HR_CF', 'motor_pos_HR_FT',
+                  'force_FL', 'force_ML', 'force_HL', 'force_FR', 'force_MR', 'force_HR',
+                  'FL_foot_traj_z', 'ML_foot_traj_z', 'HL_foot_traj_z',
+                  'FR_foot_traj_z', 'MR_foot_traj_z', 'HR_foot_traj_z']].values
+    actions_np = data[['motor_cmd_FL_TC', 'motor_cmd_FL_CF', 'motor_cmd_FL_FT',
+                   'motor_cmd_ML_TC', 'motor_cmd_ML_CF', 'motor_cmd_ML_FT',
+                  'motor_cmd_HL_TC', 'motor_cmd_HL_CF', 'motor_cmd_HL_FT',
+                  'motor_cmd_FR_TC', 'motor_cmd_FR_CF', 'motor_cmd_FR_FT',
+                  'motor_cmd_MR_TC', 'motor_cmd_MR_CF', 'motor_cmd_MR_FT',
+                  'motor_cmd_HR_TC', 'motor_cmd_HR_CF', 'motor_cmd_HR_FT']].values
+    # print(f"States shape: {states.shape}, Actions shape: {actions.shape}")
 
     states = []
     actions = []
@@ -54,25 +73,6 @@ class ExpertBuffer:
 
 
 if __name__ == "__main__":
-    # load the expert data (CoppeliaSim)
-    data = pd.read_csv("expert.csv", header=[0])
-    states = data[['body_roll', 'body_pitch', 'body_yaw', 
-                  'motor_pos_FL_TC', 'motor_pos_FL_CF', 'motor_pos_FL_FT', 
-                  'motor_pos_ML_TC', 'motor_pos_ML_CF', 'motor_pos_ML_FT',
-                  'motor_pos_HL_TC', 'motor_pos_HL_CF', 'motor_pos_HL_FT',
-                  'motor_pos_FR_TC', 'motor_pos_FR_CF', 'motor_pos_FR_FT',
-                  'motor_pos_MR_TC', 'motor_pos_MR_CF', 'motor_pos_MR_FT',
-                  'motor_pos_HR_TC', 'motor_pos_HR_CF', 'motor_pos_HR_FT',
-                  'force_FL', 'force_ML', 'force_HL', 'force_FR', 'force_MR', 'force_HR',
-                  'FL_foot_traj_z', 'ML_foot_traj_z', 'HL_foot_traj_z',
-                  'FR_foot_traj_z', 'MR_foot_traj_z', 'HR_foot_traj_z']].values
-    actions = data[['motor_cmd_FL_TC', 'motor_cmd_FL_CF', 'motor_cmd_FL_FT',
-                   'motor_cmd_ML_TC', 'motor_cmd_ML_CF', 'motor_cmd_ML_FT',
-                  'motor_cmd_HL_TC', 'motor_cmd_HL_CF', 'motor_cmd_HL_FT',
-                  'motor_cmd_FR_TC', 'motor_cmd_FR_CF', 'motor_cmd_FR_FT',
-                  'motor_cmd_MR_TC', 'motor_cmd_MR_CF', 'motor_cmd_MR_FT',
-                  'motor_cmd_HR_TC', 'motor_cmd_HR_CF', 'motor_cmd_HR_FT']].values
-    
-    print(f"States shape: {states.shape}, Actions shape: {actions.shape}")
 
-    expert_data = load_expert_data(states, actions, save_npz=False, npz_filename="expert_data.npz")
+    EXPERT_FILE = "expert_data.csv"  # Path to the expert data CSV file
+    expert_data = load_expert_data(EXPERT_FILE, save_npz=False, npz_filename="expert_data.npz")
