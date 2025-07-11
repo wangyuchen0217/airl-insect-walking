@@ -8,6 +8,11 @@ class CoppeliaSimEnv:
 
     __leg_names = ['_FL','_ML','_HL','_FR','_MR','_HR']
     __joint_names = ['/m1', '/m2', '/m3']  # ThC, CTr, FTi
+    __foot_names = ['/foot_FL', '/foot_ML', '/foot_HL', 
+                    '/foot_FR', '/foot_MR', '/foot_HR']
+    __IMU_names = ['/IMU_robot', '/IMU_ref']
+    __forcesensor_names = ['/forceSensor_FL', '/forceSensor_ML', '/forceSensor_HL', 
+                           '/forceSensor_FR', '/forceSensor_MR', '/forceSensor_HR']
 
     __joint_handle = np.zeros((6, 3), dtype=int).astype(int)  # joint handle (leg l, joint j)
     __target_positions = np.zeros((6, 3), dtype=float).astype(float)  # joint target position (leg l, joint j)
@@ -27,13 +32,15 @@ class CoppeliaSimEnv:
                 self.__joint_handle[leg, joint] = self.sim.getObject(
                     self.__joint_names[joint] + self.__leg_names[leg % 6]
                 )
+        self.IMU_robot = self.sim.getObject(self.__IMU_names[0])
+        self.IMU_ref = self.sim.getObject(self.__IMU_names[1])
         self.__initjoint_position = self.get_jointangle()
-        print("Initial joint positions:", self.__initjoint_position)
         self.set_robot_joint(np.zeros((18, 1)))
         self.update()
 
         self.reset()
         print("INFO: VrepInterfaze is initialized successfully.")
+
 
     # ---------------------- actuation ------------------------
     def set_robot_joint(self, target_pos):
@@ -55,6 +62,33 @@ class CoppeliaSimEnv:
                 positions[3 * l + j] = self.sim.getJointPosition(int(self.__joint_handle[l][j]))
         return positions
     
+    def get_bodyorientation(self):
+        orientation = np.zeros((3))
+        orientation = self.sim.getObjectOrientation(self.IMU_robot, self.IMU_ref)
+        return orientation
+    
+    def get_force(self):
+        forces = np.zeros((6))
+        for i in range(6):
+            _, forceVector, _ = self.sim.readForceSensor(self.sim.getObject(self.__forcesensor_names[i]))
+            forces[i] = max(0, np.sqrt((forceVector[0])**2 + (forceVector[1])**2 + (forceVector[2])**2) - 0.2)
+        return forces
+    
+    def get_foot_trajectory(self):
+        foot_traj = np.zeros((6))
+        for i in range(6):
+            # Get the foor trajectory z
+            foot_traj[i] = self.sim.getObjectPosition(self.sim.getObject(self.__foot_names[i]))[2]
+        return foot_traj
+    
+    def get_states(self):
+        body_orientation = self.get_bodyorientation()
+        joint_angles = self.get_jointangle()
+        forces = self.get_force()
+        foot_traj = self.get_foot_trajectory()
+        states = np.concatenate((body_orientation, joint_angles, forces, foot_traj))
+        return states
+
 
     # ---------------------- simulation control ------------------------
     def update(self):
@@ -88,14 +122,14 @@ class CoppeliaSimEnv:
     def stop(self):
         self.sim.stopSimulation()
 
-    def close(self):
-        self.socket.close()
-        self.context.term()
 
 if __name__ == "__main__":
     env = CoppeliaSimEnv()
-    # env.reset()
-    # for _ in range(10):
-    #     action = np.random.uniform(-0.5, 0.5, size=18)  # 对应你的18维动作
-    #     next_obs, reward, done, _ = env.step(action)
-    # env.close()
+    env.reset()
+    env.start()
+    for i in range(10):
+        action = np.random.uniform(-0.5, 0.5, size=18)
+        env.set_robot_joint(action)
+        next_obs = env.get_states()
+        print(f"Step {i+1}, Action: {action}, States: {next_obs}")
+    env.stop()
