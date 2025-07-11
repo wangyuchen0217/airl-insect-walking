@@ -475,33 +475,6 @@ def sysCall_cleanup():
     pass
 
 
-    # ===================================== #
-    #               collect the states and actions          #
-    # ===================================== #
-
-def get_state_action():
-    states = np.array(self.data_list['body_roll'] + self.data_list['body_pitch'] + self.data_list['body_yaw'] +
-                      self.data_list['motor_pos_FL_TC'] + self.data_list['motor_pos_FL_CF'] + self.data_list['motor_pos_FL_FT'] +
-                      self.data_list['motor_pos_ML_TC'] + self.data_list['motor_pos_ML_CF'] + self.data_list['motor_pos_ML_FT'] +
-                      self.data_list['motor_pos_HL_TC'] + self.data_list['motor_pos_HL_CF'] + self.data_list['motor_pos_HL_FT'] +
-                      self.data_list['motor_pos_FR_TC'] + self.data_list['motor_pos_FR_CF'] + self.data_list['motor_pos_FR_FT'] +
-                      self.data_list['motor_pos_MR_TC'] + self.data_list['motor_pos_MR_CF'] + self.data_list['motor_pos_MR_FT'] +
-                      self.data_list['motor_pos_HR_TC'] + self.data_list['motor_pos_HR_CF'] + self.data_list['motor_pos_HR_FT'] +
-                      self.data_list['force_FL'] + self.data_list['force_ML'] + self.data_list['force_HL'] +
-                      self.data_list['force_FR'] + self.data_list['force_MR'] + self.data_list['force_HR'] +
-                      self.data_list['FL_foot_traj_z'] + self.data_list['ML_foot_traj_z'] + self.data_list['HL_foot_traj_z'] +
-                      self.data_list['FR_foot_traj_z'] + self.data_list['MR_foot_traj_z'] + self.data_list['HR_foot_traj_z'])
-    actions = np.array(self.data_list['motor_cmd_FL_TC'] + self.data_list['motor_cmd_FL_CF'] + self.data_list['motor_cmd_FL_FT'] +
-                        self.data_list['motor_cmd_ML_TC'] + self.data_list['motor_cmd_ML_CF'] + self.data_list['motor_cmd_ML_FT'] +
-                        self.data_list['motor_cmd_HL_TC'] + self.data_list['motor_cmd_HL_CF'] + self.data_list['motor_cmd_HL_FT'] +
-                        self.data_list['motor_cmd_FR_TC'] + self.data_list['motor_cmd_FR_CF'] + self.data_list['motor_cmd_FR_FT'] +
-                        self.data_list['motor_cmd_MR_TC'] + self.data_list['motor_cmd_MR_CF'] + self.data_list['motor_cmd_MR_FT'] +
-                        self.data_list['motor_cmd_HR_TC'] + self.data_list['motor_cmd_HR_CF'] + self.data_list['motor_cmd_HR_FT'])
-    print("states shape: ", states.shape)
-    print("actions shape: ", actions.shape)
-    return states, actions
-
-
 # ============================================================================ #
 # ============================================================================ #
 # ============================================================================ #
