@@ -57,13 +57,8 @@ def main():
     sys.stdout = LoggerWriter(logging.info)
     print(f"Logging started at {current_time}")
 
-    # Connect training and testing environments in CoppeliaSim.
-    client = RemoteAPIClient('localhost', port=23000)
-    sim = client.require('sim')
-    OnTimeStep = True  # Set to True for stepping mode, False for continuous mode
-    print('Ontime :', OnTimeStep)
-    sim.setStepping(OnTimeStep)  # Enable stepping mode for the simulation
-
+    # set up the environment and communication
+    OnTimeStep=True
     env = CoppeliaSimEnv(port=23000, OnTimeStep=OnTimeStep)
     env_test = CoppeliaSimEnv(port=23001, OnTimeStep=OnTimeStep)
 
@@ -79,7 +74,7 @@ def main():
     log_parameters(ENV_ID, EXPERT_FILE, ROLLOUT_LENGTH, NUM_STEPS, EVAL_INTERVAL, 
                    GAMMA, MIX_BUFFER, BATCH_SIZE, LR_ACTOR, LR_CRITIC, LR_DISC, 
                    UNITS_ACTOR, UNITS_CRITIC, UNITS_DISC_R, UNITS_DISC_V, 
-                   EPOCH_PPO, EPOCH_DISC, CLIP_EPS, LAMBDA, COEF_ENT, MAX_GRAD_NORM, SEED)
+                   EPOCH_PPO, EPOCH_DISC, CLIP_EPS, LAMBDA, COEF_ENT, MAX_GRAD_NORM)
 
     # Load expert data from .pt files and wrap into an ExpertBuffer.
     expert_data = load_expert_data(EXPERT_FILE, save_npz=False)
