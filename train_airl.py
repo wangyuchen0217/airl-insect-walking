@@ -64,9 +64,8 @@ def main():
     print('Ontime :', OnTimeStep)
     sim.setStepping(OnTimeStep)  # Enable stepping mode for the simulation
 
-
-    # env = make_env(ENV_ID, test=False)
-    # env_test = make_env(ENV_ID, test=False)
+    env = CoppeliaSimEnv(port=23000, OnTimeStep=OnTimeStep)
+    env_test = CoppeliaSimEnv(port=23001, OnTimeStep=OnTimeStep)
 
     device = torch.device(f"cuda:{CUDA}" if torch.cuda.is_available() and CUDA >= 0 else "cpu")
     if torch.cuda.is_available():
