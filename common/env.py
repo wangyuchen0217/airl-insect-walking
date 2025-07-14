@@ -19,6 +19,8 @@ class CoppeliaSimEnv:
     __joint_handle = np.zeros((6, 3), dtype=int).astype(int)  # joint handle (leg l, joint j)
     __target_positions = np.zeros((6, 3), dtype=float).astype(float)  # joint target position (leg l, joint j)
     __initjoint_position = np.zeros((18, 1), dtype=float).astype(float)
+    __observation_space = np.zeros((3 + 18 + 6 + 6, 1), dtype=float).astype(float)  # body orientation, joint angles, forces, foot trajectory
+    __action_space = np.zeros((18, 1), dtype=float).astype(float)  # joint angles
 
     def __init__(self, port=23000, OnTimeStep=True):
         self.client = RemoteAPIClient('localhost', port=port)
@@ -55,9 +57,6 @@ class CoppeliaSimEnv:
     def set_zero(self):
         self.set_robot_joint(np.zeros(18))
 
-    def action_space(self):
-        return self.__initjoint_position.shape
-
 
     # ---------------------- get simulation data ------------------------
     def get_jointangle(self):
@@ -93,9 +92,6 @@ class CoppeliaSimEnv:
         foot_traj = self.get_foot_trajectory()
         states = np.concatenate((body_orientation, joint_angles, forces, foot_traj))
         return states
-    
-    def observation_space(self):
-        return self.get_states().shape
 
 
     # ---------------------- simulation control ------------------------
