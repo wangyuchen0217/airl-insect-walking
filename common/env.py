@@ -53,6 +53,9 @@ class CoppeliaSimEnv:
     def set_zero(self):
         self.set_robot_joint(np.zeros(18))
 
+    def action_space(self):
+        return self.__initjoint_position.shape
+
 
     # ---------------------- get simulation data ------------------------
     def get_jointangle(self):
@@ -88,6 +91,9 @@ class CoppeliaSimEnv:
         foot_traj = self.get_foot_trajectory()
         states = np.concatenate((body_orientation, joint_angles, forces, foot_traj))
         return states
+    
+    def observation_space(self):
+        return self.get_states().shape
 
 
     # ---------------------- simulation control ------------------------
@@ -106,14 +112,15 @@ class CoppeliaSimEnv:
         if zero:
             self.set_zero()
             self.update()
+        return self.get_states()
 
-    def step(self, action):
-        self.socket.send(msgpack.packb({'cmd': 'step', 'action': action.tolist()}))
-        reply = msgpack.unpackb(self.socket.recv())
-        obs = np.array(reply['obs'], dtype=np.float32)
-        reward = float(reply['reward'])
-        done = bool(reply['done'])
-        return obs, reward, done, {}  
+    def step(self,action):
+        self.set_robot_joint(action)
+        self.update() 
+        obs = self.get_states()
+        reward = 0.0
+        # terminated = self.check_termination(obs)
+        return obs, reward, False, False, {}  
 
     def start(self):
         self.sim.setStepping(self.OnTimeStep)
@@ -127,9 +134,9 @@ if __name__ == "__main__":
     env = CoppeliaSimEnv()
     env.reset()
     env.start()
-    for i in range(10):
+    for i in range(100):
         action = np.random.uniform(-0.5, 0.5, size=18)
-        env.set_robot_joint(action)
+        obs, reward, terminated, _, _ = env.step(action)
         next_obs = env.get_states()
         print(f"Step {i+1}, Action: {action}, States: {next_obs}")
     env.stop()
