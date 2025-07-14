@@ -45,7 +45,7 @@ def load_expert_data(expert_file, save_npz=False, npz_filename="expert_data.npz"
         'done': dones,
         'next_state': next_states
     }
-    print(f"Expert data states: {expert_data['state'].shape}, actions: {expert_data['action'].shape}")
+    # print(f"Expert data states: {expert_data['state'].shape}, actions: {expert_data['action'].shape}")
     print(expert_data)
 
     if save_npz:
