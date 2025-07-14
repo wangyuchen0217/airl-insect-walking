@@ -16,7 +16,7 @@ from common.buffer import SerializedBuffer
 
 # ======== Parameters (modify these as needed) =========
 NAME = "StickInsect"
-EXPERT_FILE = "experts.csv"
+EXPERT_FILE = "expert.csv"
 ENV_ID = "Medauroidea"
 CUDA = 0
 ROLLOUT_LENGTH = 3000
