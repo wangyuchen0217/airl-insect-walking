@@ -68,6 +68,7 @@ class AIRL(PPO):
         # Calculate rewards.
         rewards = self.disc.calculate_reward(
             states, dones, log_pis, next_states)
+        print(f"[Debug] Rewards: {rewards}")
         
         # add debug 5.15
         print(f"[Debug] Reward mean: {rewards.mean().item():.4f}, std: {rewards.std().item():.4f}")
