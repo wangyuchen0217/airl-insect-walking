@@ -74,7 +74,7 @@ def main():
     log_parameters(ENV_ID, EXPERT_FILE, ROLLOUT_LENGTH, NUM_STEPS, EVAL_INTERVAL, 
                    GAMMA, MIX_BUFFER, BATCH_SIZE, LR_ACTOR, LR_CRITIC, LR_DISC, 
                    UNITS_ACTOR, UNITS_CRITIC, UNITS_DISC_R, UNITS_DISC_V, 
-                   EPOCH_PPO, EPOCH_DISC, CLIP_EPS, LAMBDA, COEF_ENT, MAX_GRAD_NORM)
+                   EPOCH_PPO, EPOCH_DISC, CLIP_EPS, LAMBDA, COEF_ENT, MAX_GRAD_NORM, SEED)
 
     # Load expert data from .pt files and wrap into an ExpertBuffer.
     expert_data = load_expert_data(EXPERT_FILE, save_npz=False)
@@ -88,6 +88,7 @@ def main():
         state_shape=env.observation_space.shape,
         action_shape=env.action_space.shape,
         device=device,
+        seed=SEED,
         gamma=GAMMA,
         rollout_length=ROLLOUT_LENGTH,
         mix_buffer=MIX_BUFFER,

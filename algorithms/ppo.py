@@ -23,12 +23,12 @@ def calculate_gae(values, rewards, dones, next_values, gamma, lambd):
 
 
 class PPO(Algorithm):
-    def __init__(self, state_shape, action_shape, device, gamma=0.995,
+    def __init__(self, state_shape, action_shape, device, seed, gamma=0.995,
                  rollout_length=2048, mix_buffer=20, lr_actor=3e-4,
                  lr_critic=3e-4, units_actor=(64, 64), units_critic=(64, 64),
                  epoch_ppo=10, clip_eps=0.2, lambd=0.97, coef_ent=0.0,
                  max_grad_norm=10.0, mini_batch_size=64):
-        super().__init__(state_shape, action_shape, device, gamma)
+        super().__init__(state_shape, action_shape, device, seed, gamma)
         
         # Rollout buffer.
         self.buffer = RolloutBuffer(
