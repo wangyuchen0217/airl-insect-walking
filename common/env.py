@@ -6,7 +6,7 @@ from coppeliasim_zmqremoteapi_client import RemoteAPIClient
 
 class CoppeliaSimEnv:
 
-    _max_episode_steps = 3000
+    _max_episode_steps = 1000
 
     __leg_names = ['_FL','_ML','_HL','_FR','_MR','_HR']
     __joint_names = ['/m1', '/m2', '/m3']  # ThC, CTr, FTi
@@ -92,7 +92,6 @@ class CoppeliaSimEnv:
         forces = self.get_force()
         foot_traj = self.get_foot_trajectory()
         states = np.concatenate((body_orientation, joint_angles, forces, foot_traj))
-        print("States:", states.shape)
         return states
 
 
