@@ -7,6 +7,7 @@ from coppeliasim_zmqremoteapi_client import RemoteAPIClient
 class CoppeliaSimEnv:
 
     _max_episode_steps = 1000
+    _step_count = 0
 
     __leg_names = ['_FL','_ML','_HL','_FR','_MR','_HR']
     __joint_names = ['/m1', '/m2', '/m3']  # ThC, CTr, FTi
@@ -112,14 +113,23 @@ class CoppeliaSimEnv:
             self.set_zero()
             self.update()
         return self.get_states()
+    
+    def is_healthy(self):
+        robot_pos = self.sim.getObjectPosition(self.sim.getObject('/head'))
+        robot_height = robot_pos[2]
+        return robot_height > 0.1
 
     def step(self,action):
         self.set_robot_joint(action)
         self.update() 
         obs = self.get_states()
         reward = 0.0
-        # terminated = self.check_termination(obs)
-        return obs, reward, False, False, {}  
+
+        self._step_count += 1
+        truncated = self._step_count >= self._max_episode_steps
+        terminated = not self.is_healthy() 
+
+        return obs, reward, terminated, truncated, {}  
 
     def start(self):
         self.sim.setStepping(self.OnTimeStep)
