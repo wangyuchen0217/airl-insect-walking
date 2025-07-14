@@ -71,6 +71,7 @@ class PPO(Algorithm):
 
     def step(self, env, state, t, step):
         t += 1
+        print(f"Step {step}, t={t}, state shape: {state.shape}")
         action, log_pi = self.explore(state)
         next_state, reward, done, truncated,  info = env.step(action)
         done = done or truncated
@@ -91,6 +92,7 @@ class PPO(Algorithm):
 
     def update(self, writer):
         self.learning_steps += 1
+        print(f"Update step {self.learning_steps}")
         states, actions, rewards, dones, log_pis, next_states = self.buffer.get()
         self.update_ppo(states, actions, rewards, dones, log_pis, next_states, writer)
 
