@@ -85,8 +85,8 @@ def main():
     # Create AIRL agent.
     algo = AIRL(
         buffer_exp=expert_buffer,
-        state_shape=env.observation_space.shape,
-        action_shape=env.action_space.shape,
+        state_shape=env.__observation_space.shape,
+        action_shape=env.__action_space.shape,
         device=device,
         gamma=GAMMA,
         rollout_length=ROLLOUT_LENGTH,
