@@ -6,6 +6,8 @@ from coppeliasim_zmqremoteapi_client import RemoteAPIClient
 
 class CoppeliaSimEnv:
 
+    _max_episode_steps = 3000
+
     __leg_names = ['_FL','_ML','_HL','_FR','_MR','_HR']
     __joint_names = ['/m1', '/m2', '/m3']  # ThC, CTr, FTi
     __foot_names = ['/foot_FL', '/foot_ML', '/foot_HL', 
