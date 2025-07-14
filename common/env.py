@@ -19,9 +19,9 @@ class CoppeliaSimEnv:
     __joint_handle = np.zeros((6, 3), dtype=int).astype(int)  # joint handle (leg l, joint j)
     __target_positions = np.zeros((6, 3), dtype=float).astype(float)  # joint target position (leg l, joint j)
     __initjoint_position = np.zeros((18, 1), dtype=float).astype(float)
-    
-    observation_space = np.zeros((3 + 18 + 6 + 6, 1), dtype=float).astype(float)  # body orientation, joint angles, forces, foot trajectory
-    action_space = np.zeros((18, 1), dtype=float).astype(float)  # joint angles
+
+    observation_space = np.zeros((3 + 18 + 6 + 6, ), dtype=float).astype(float)  # body orientation, joint angles, forces, foot trajectory
+    action_space = np.zeros((18, ), dtype=float).astype(float)  # joint angles
 
     def __init__(self, port=23000, OnTimeStep=True):
         self.client = RemoteAPIClient('localhost', port=port)
@@ -92,6 +92,7 @@ class CoppeliaSimEnv:
         forces = self.get_force()
         foot_traj = self.get_foot_trajectory()
         states = np.concatenate((body_orientation, joint_angles, forces, foot_traj))
+        print("States:", states.shape)
         return states
 
 
