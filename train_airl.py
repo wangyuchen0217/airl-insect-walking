@@ -14,6 +14,7 @@ from common.base import log_parameters
 # from common.env import CoppeliaSimEnv
 from common.normalized_env import CoppeliaSimEnv
 from common.buffer import SerializedBuffer
+import torch.utils.tensorboard
 
 # ======== Parameters (modify these as needed) =========
 NAME = "StickInsect"
