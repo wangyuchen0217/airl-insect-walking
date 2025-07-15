@@ -24,6 +24,7 @@ class CoppeliaSimEnv:
     observation_space = np.zeros((3 + 18 + 6 + 6, ), dtype=float).astype(float)  # body orientation, joint angles, forces, foot trajectory
     action_space = np.zeros((18, ), dtype=float).astype(float)  # joint angles
 
+    
     def __init__(self, port=23000, OnTimeStep=True):
         self.client = RemoteAPIClient('localhost', port=port)
         self.sim = self.client.require('sim')
@@ -137,6 +138,31 @@ class CoppeliaSimEnv:
 
     def stop(self):
         self.sim.stopSimulation()
+
+
+class NormalizedEnv:
+    def __init__(self):
+        # define the action space limits from the expert data
+        self.high = np.array([
+                            -0.57568526, 0.91962415, -0.4638236, 0.71432644, 0.6131103, -0.5386828,
+                            1.1927193, 1.0053458, -0.7053654, 1.182008, -0.03557599, 2.3935604,
+                            0.9115751, 0.20103599, 2.268618, -0.27113712, -0.13196065, 2.4745364
+                        ])
+        self.low = np.array([
+                            -1.4617796, -0.01609878, -2.369329, -0.75536764, -0.2783127, -2.2406516,
+                            0.27379432,  0.17258137, -2.5969138,  0.5853528, -0.9162319,  0.31624538,
+                            -0.54989666, -0.5026367,  0.34887356, -1.2245036, -1.002201,  0.48189536
+                        ])
+
+    def normalize_action(self, action):
+        return 2.0 * (action - self.low) / (self.high - self.low) - 1.0
+    
+    def denormalize_action(self, action):
+        return (action + 1.0) * (self.high - self.low) / 2.0 + self.low
+    
+    def normalize_expert_data(self, expert_data):
+        expert_data['action'] = self.normalize_action(expert_data['action'])
+        return expert_data
 
 
 if __name__ == "__main__":

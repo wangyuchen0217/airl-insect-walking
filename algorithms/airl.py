@@ -49,6 +49,7 @@ class AIRL(PPO):
             # Samples from current policy's trajectories.
             states, _, _, dones, log_pis, next_states = \
                 self.buffer.sample(self.batch_size)
+            print(f"[Debug] Log probabilities of current policy actions: {log_pis}")
             # Samples from expert's demonstrations.
             states_exp, actions_exp, _, dones_exp, next_states_exp = \
                 self.buffer_exp.sample(self.batch_size)
@@ -56,6 +57,7 @@ class AIRL(PPO):
             with torch.no_grad():
                 log_pis_exp = self.actor.evaluate_log_pi(
                     states_exp, actions_exp)
+                print(f"[Debug] Log probabilities of expert actions: {log_pis_exp}")
             # Update discriminator.
             self.update_disc(
                 states, dones, log_pis, next_states, states_exp,

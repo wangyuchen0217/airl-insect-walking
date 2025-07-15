@@ -36,6 +36,7 @@ def atanh(x):
 
 
 def evaluate_log_pi(means, log_stds, actions):
+    print("[Debug] actions_exp max:", actions.max().item(), "min:", actions.min().item())
     noises = (atanh(actions) - means) / (log_stds.exp() + 1e-8)
     return calculate_log_pi(log_stds, noises, actions)
 
