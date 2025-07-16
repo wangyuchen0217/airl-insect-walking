@@ -100,7 +100,7 @@ class RolloutBuffer:
 
         self._p = (self._p + 1) % self.total_size
         self._n = min(self._n + 1, self.total_size)
-        print(f"RolloutBuffer: _n={self._n}, _p={self._p}, total_size={self.total_size}")
+        # print(f"RolloutBuffer: _n={self._n}, _p={self._p}, total_size={self.total_size}")
 
     def get(self):
         assert self._p % self.buffer_size == 0
