@@ -97,6 +97,8 @@ class PPO(Algorithm):
         self.update_ppo(states, actions, rewards, dones, log_pis, next_states, writer)
 
     def update_ppo(self, states, actions, rewards, dones, log_pis, next_states, writer):
+        print(f"Updating PPO")
+
         # Compute value estimates.
         with torch.no_grad():
             values = self.critic(states)

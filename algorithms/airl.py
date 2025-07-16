@@ -49,7 +49,7 @@ class AIRL(PPO):
             # Samples from current policy's trajectories.
             states, _, _, dones, log_pis, next_states = \
                 self.buffer.sample(self.batch_size)
-            print(f"[Debug] Log probabilities of current policy actions: {log_pis.flatten()}")
+            # print(f"[Debug] Log probabilities of current policy actions: {log_pis.flatten()}")
             # Samples from expert's demonstrations.
             states_exp, actions_exp, _, dones_exp, next_states_exp = \
                 self.buffer_exp.sample(self.batch_size)
@@ -57,7 +57,7 @@ class AIRL(PPO):
             with torch.no_grad():
                 log_pis_exp = self.actor.evaluate_log_pi(
                     states_exp, actions_exp)
-                print(f"[Debug] Log probabilities of expert actions: {log_pis_exp.flatten()}")
+                # print(f"[Debug] Log probabilities of expert actions: {log_pis_exp.flatten()}")
             # Update discriminator.
             self.update_disc(
                 states, dones, log_pis, next_states, states_exp,
@@ -70,7 +70,7 @@ class AIRL(PPO):
         # Calculate rewards.
         rewards = self.disc.calculate_reward(
             states, dones, log_pis, next_states)
-        print(f"[Debug] Rewards: {rewards.flatten()}")
+        # print(f"[Debug] Rewards: {rewards.flatten()}")
         
         # add debug 5.15
         print(f"[Debug] Reward mean: {rewards.mean().item():.4f}, std: {rewards.std().item():.4f}")
@@ -86,6 +86,8 @@ class AIRL(PPO):
     def update_disc(self, states, dones, log_pis, next_states,
                     states_exp, dones_exp, log_pis_exp,
                     next_states_exp, writer):
+        print(f"Update discriminator at step {self.learning_steps_disc}")
+
         # Output of discriminator is (-inf, inf), not [0, 1].
         logits_pi = self.disc(states, dones, log_pis, next_states)
         logits_exp = self.disc(
