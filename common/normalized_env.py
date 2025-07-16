@@ -145,8 +145,8 @@ class CoppeliaSimEnv:
         if zero:
             self.set_zero()
             self.update()
-        # reset the step count
-        self._step_count = 0
+        # # reset the step count
+        # self._step_count = 0
         return self.get_states()
     
     def is_healthy(self):
