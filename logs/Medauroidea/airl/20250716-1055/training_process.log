@@ -1,0 +1,349 @@
+Logging started at 20250716-1055
+Ontime :
+True
+Action space mid: [-1.01873243  0.45176268 -1.4165763  -0.0205206   0.1673988  -1.3896672
+  0.73325681  0.58896359 -1.6511396   0.8836804  -0.47590394  1.35490289
+  0.18083922 -0.15080036  1.30874578 -0.74782036 -0.56708082  1.47821588], scale: [0.44304717 0.46786146 0.9527527  0.73484704 0.4457115  0.8509844
+ 0.45946249 0.41638221 0.9457742  0.2983276  0.44032795 1.03865751
+ 0.73073588 0.35183635 0.95987222 0.47668324 0.43512017 0.99632052]
+INFO: VrepInterfaze is initialized successfully.
+Ontime :
+True
+Action space mid: [-1.01873243  0.45176268 -1.4165763  -0.0205206   0.1673988  -1.3896672
+  0.73325681  0.58896359 -1.6511396   0.8836804  -0.47590394  1.35490289
+  0.18083922 -0.15080036  1.30874578 -0.74782036 -0.56708082  1.47821588], scale: [0.44304717 0.46786146 0.9527527  0.73484704 0.4457115  0.8509844
+ 0.45946249 0.41638221 0.9457742  0.2983276  0.44032795 1.03865751
+ 0.73073588 0.35183635 0.95987222 0.47668324 0.43512017 0.99632052]
+INFO: VrepInterfaze is initialized successfully.
+NVIDIA GeForce RTX 4060 Laptop GPU
+Process ID: 22439
+Env: Medauroidea, expert.csv, Seed: 0
+Rollout length: 100
+Num steps: 1500, Eval interval: 500
+Gamma: 0.995, Mix buffer: 1, Batch size: 64
+lr_actor: 0.0001, lr_critic: 0.0001, lr_disc: 0.0001
+Units Actor: (64, 64), Units Critic: (64, 64)
+Units Disc R: (100, 100), Units Disc V: (100, 100)
+Epoch ppo: 50, Epoch disc: 3
+Clip Epsc: 0.2, Lambda: 0.97, Coef Ent: 0.05, Max Grad Norm: 10.0
+Expert buffer size: 1517
+Initial state shape: (33,)
+PPO Step 1, t=1
+Env Step: 1, Reward: -0.009355522511560466, Truncated: False, Terminated: False
+PPO Step 2, t=2
+Env Step: 2, Reward: -0.025395124578304618, Truncated: False, Terminated: False
+PPO Step 3, t=3
+Env Step: 3, Reward: 0.012301787370188055, Truncated: False, Terminated: False
+PPO Step 4, t=4
+Env Step: 4, Reward: 0.05261371726669184, Truncated: False, Terminated: False
+PPO Step 5, t=5
+Env Step: 5, Reward: 0.013076101836932974, Truncated: False, Terminated: False
+PPO Step 6, t=6
+Env Step: 6, Reward: -0.05676301328061406, Truncated: False, Terminated: False
+PPO Step 7, t=7
+Env Step: 7, Reward: -0.08673139374687056, Truncated: False, Terminated: False
+PPO Step 8, t=8
+Env Step: 8, Reward: -0.08242288551203458, Truncated: False, Terminated: False
+PPO Step 9, t=9
+Env Step: 9, Reward: -0.09367623749904519, Truncated: False, Terminated: False
+PPO Step 10, t=10
+Env Step: 10, Reward: -0.1344646398084559, Truncated: False, Terminated: True
+PPO Step 11, t=1
+Env Step: 1, Reward: -0.02228340515824101, Truncated: False, Terminated: False
+PPO Step 12, t=2
+Env Step: 2, Reward: -0.024428504365274772, Truncated: False, Terminated: False
+PPO Step 13, t=3
+Env Step: 3, Reward: 0.0036414732489697954, Truncated: False, Terminated: False
+PPO Step 14, t=4
+Env Step: 4, Reward: -0.03368237832081622, Truncated: False, Terminated: False
+PPO Step 15, t=5
+Env Step: 5, Reward: -0.03570184988457514, Truncated: False, Terminated: False
+PPO Step 16, t=6
+Env Step: 6, Reward: -0.09042358684295593, Truncated: False, Terminated: False
+PPO Step 17, t=7
+Env Step: 7, Reward: -0.16333924802075073, Truncated: False, Terminated: True
+PPO Step 18, t=1
+Env Step: 1, Reward: -0.00846527477717851, Truncated: False, Terminated: False
+PPO Step 19, t=2
+Env Step: 2, Reward: -0.01729049262715332, Truncated: False, Terminated: False
+PPO Step 20, t=3
+Env Step: 3, Reward: -0.043857425853470744, Truncated: False, Terminated: False
+PPO Step 21, t=4
+Env Step: 4, Reward: -0.0694507204235828, Truncated: False, Terminated: False
+PPO Step 22, t=5
+Env Step: 5, Reward: -0.10319587893158122, Truncated: False, Terminated: True
+PPO Step 23, t=1
+Env Step: 1, Reward: -0.024170288547999963, Truncated: False, Terminated: False
+PPO Step 24, t=2
+Env Step: 2, Reward: -0.05659465396341545, Truncated: False, Terminated: False
+PPO Step 25, t=3
+Env Step: 3, Reward: -0.08072245824808588, Truncated: False, Terminated: False
+PPO Step 26, t=4
+Env Step: 4, Reward: -0.13422065740315015, Truncated: False, Terminated: True
+PPO Step 27, t=1
+Env Step: 1, Reward: 0.010535108474125643, Truncated: False, Terminated: False
+PPO Step 28, t=2
+Env Step: 2, Reward: 0.03757247151410459, Truncated: False, Terminated: False
+PPO Step 29, t=3
+Env Step: 3, Reward: 0.008961439848071961, Truncated: False, Terminated: False
+PPO Step 30, t=4
+Env Step: 4, Reward: -0.0073509382458247785, Truncated: False, Terminated: False
+PPO Step 31, t=5
+Env Step: 5, Reward: -0.02996473416173151, Truncated: False, Terminated: False
+PPO Step 32, t=6
+Env Step: 6, Reward: -0.077270047266349, Truncated: False, Terminated: False
+PPO Step 33, t=7
+Env Step: 7, Reward: -0.1976071600541296, Truncated: False, Terminated: True
+PPO Step 34, t=1
+Env Step: 1, Reward: -0.00839516252781447, Truncated: False, Terminated: False
+PPO Step 35, t=2
+Env Step: 2, Reward: -0.033795171605628394, Truncated: False, Terminated: False
+PPO Step 36, t=3
+Env Step: 3, Reward: -0.028270996327275366, Truncated: False, Terminated: False
+PPO Step 37, t=4
+Env Step: 4, Reward: -0.036709633630001015, Truncated: False, Terminated: False
+PPO Step 38, t=5
+Env Step: 5, Reward: -0.008240390868086145, Truncated: False, Terminated: False
+PPO Step 39, t=6
+Env Step: 6, Reward: 0.04672642586136533, Truncated: False, Terminated: False
+PPO Step 40, t=7
+Env Step: 7, Reward: 0.04418402094806817, Truncated: False, Terminated: False
+PPO Step 41, t=8
+Env Step: 8, Reward: 0.005260164714449012, Truncated: False, Terminated: False
+PPO Step 42, t=9
+Env Step: 9, Reward: -0.0067644642737341165, Truncated: False, Terminated: False
+PPO Step 43, t=10
+Env Step: 10, Reward: -0.03177144827884115, Truncated: False, Terminated: False
+PPO Step 44, t=11
+Env Step: 11, Reward: -0.065273539206947, Truncated: False, Terminated: False
+PPO Step 45, t=12
+Env Step: 12, Reward: -0.12491021352302178, Truncated: False, Terminated: False
+PPO Step 46, t=13
+Env Step: 13, Reward: -0.08731132760661842, Truncated: False, Terminated: False
+PPO Step 47, t=14
+Env Step: 14, Reward: 0.0016824652699476417, Truncated: False, Terminated: False
+PPO Step 48, t=15
+Env Step: 15, Reward: 0.010344654660423558, Truncated: False, Terminated: True
+PPO Step 49, t=1
+Env Step: 1, Reward: 0.0016711176260209015, Truncated: False, Terminated: False
+PPO Step 50, t=2
+Env Step: 2, Reward: 0.03693831401504477, Truncated: False, Terminated: False
+PPO Step 51, t=3
+Env Step: 3, Reward: 0.01043394813109666, Truncated: False, Terminated: False
+PPO Step 52, t=4
+Env Step: 4, Reward: -0.03132008190177338, Truncated: False, Terminated: False
+PPO Step 53, t=5
+Env Step: 5, Reward: -0.042796183210149774, Truncated: False, Terminated: False
+PPO Step 54, t=6
+Env Step: 6, Reward: -0.1408960277624205, Truncated: False, Terminated: True
+PPO Step 55, t=1
+Env Step: 1, Reward: -0.025105553014015403, Truncated: False, Terminated: False
+PPO Step 56, t=2
+Env Step: 2, Reward: -0.0035950113324267896, Truncated: False, Terminated: False
+PPO Step 57, t=3
+Env Step: 3, Reward: 0.022046168049225656, Truncated: False, Terminated: False
+PPO Step 58, t=4
+Env Step: 4, Reward: 0.0054057657190997865, Truncated: False, Terminated: False
+PPO Step 59, t=5
+Env Step: 5, Reward: -0.031154849016576946, Truncated: False, Terminated: False
+PPO Step 60, t=6
+Env Step: 6, Reward: -0.08265099623566696, Truncated: False, Terminated: False
+PPO Step 61, t=7
+Env Step: 7, Reward: -0.1539315914185857, Truncated: False, Terminated: True
+PPO Step 62, t=1
+Env Step: 1, Reward: -0.004216075646483741, Truncated: False, Terminated: False
+PPO Step 63, t=2
+Env Step: 2, Reward: -0.0031648339264012115, Truncated: False, Terminated: False
+PPO Step 64, t=3
+Env Step: 3, Reward: -0.012614958568757384, Truncated: False, Terminated: False
+PPO Step 65, t=4
+Env Step: 4, Reward: -0.02413568868324223, Truncated: False, Terminated: False
+PPO Step 66, t=5
+Env Step: 5, Reward: -0.07601886634661215, Truncated: False, Terminated: False
+PPO Step 67, t=6
+Env Step: 6, Reward: -0.08495500293554281, Truncated: False, Terminated: False
+PPO Step 68, t=7
+Env Step: 7, Reward: -0.058422847048389404, Truncated: False, Terminated: True
+PPO Step 69, t=1
+Env Step: 1, Reward: -0.014377286219966479, Truncated: False, Terminated: False
+PPO Step 70, t=2
+Env Step: 2, Reward: -0.009138134159503153, Truncated: False, Terminated: False
+PPO Step 71, t=3
+Env Step: 3, Reward: -0.03818672461227912, Truncated: False, Terminated: False
+PPO Step 72, t=4
+Env Step: 4, Reward: -0.05917659532630681, Truncated: False, Terminated: False
+PPO Step 73, t=5
+Env Step: 5, Reward: -0.052762987022081376, Truncated: False, Terminated: False
+PPO Step 74, t=6
+Env Step: 6, Reward: -0.040328698475646796, Truncated: False, Terminated: True
+PPO Step 75, t=1
+Env Step: 1, Reward: -0.02035933390147182, Truncated: False, Terminated: False
+PPO Step 76, t=2
+Env Step: 2, Reward: -0.02736555546565045, Truncated: False, Terminated: False
+PPO Step 77, t=3
+Env Step: 3, Reward: -0.04827199467492216, Truncated: False, Terminated: False
+PPO Step 78, t=4
+Env Step: 4, Reward: -0.04200335425985413, Truncated: False, Terminated: False
+PPO Step 79, t=5
+Env Step: 5, Reward: -0.015249498987846, Truncated: False, Terminated: False
+PPO Step 80, t=6
+Env Step: 6, Reward: 0.025068954165288204, Truncated: False, Terminated: False
+PPO Step 81, t=7
+Env Step: 7, Reward: 0.010566797006696937, Truncated: False, Terminated: False
+PPO Step 82, t=8
+Env Step: 8, Reward: -0.003834761588179525, Truncated: False, Terminated: True
+PPO Step 83, t=1
+Env Step: 1, Reward: -0.02118871485767171, Truncated: False, Terminated: False
+PPO Step 84, t=2
+Env Step: 2, Reward: -0.007768714404678967, Truncated: False, Terminated: False
+PPO Step 85, t=3
+Env Step: 3, Reward: -0.018518611110411864, Truncated: False, Terminated: False
+PPO Step 86, t=4
+Env Step: 4, Reward: -0.03335062271295541, Truncated: False, Terminated: False
+PPO Step 87, t=5
+Env Step: 5, Reward: -0.05743006762519709, Truncated: False, Terminated: False
+PPO Step 88, t=6
+Env Step: 6, Reward: -0.0943180081264905, Truncated: False, Terminated: True
+PPO Step 89, t=1
+Env Step: 1, Reward: 0.0036045406905715893, Truncated: False, Terminated: False
+PPO Step 90, t=2
+Env Step: 2, Reward: -0.015111844231274763, Truncated: False, Terminated: False
+PPO Step 91, t=3
+Env Step: 3, Reward: -0.03948673723298768, Truncated: False, Terminated: False
+PPO Step 92, t=4
+Env Step: 4, Reward: -0.09494170038412353, Truncated: False, Terminated: False
+PPO Step 93, t=5
+Env Step: 5, Reward: -0.13892263879050182, Truncated: False, Terminated: True
+PPO Step 94, t=1
+Env Step: 1, Reward: 0.007677706026176789, Truncated: False, Terminated: False
+PPO Step 95, t=2
+Env Step: 2, Reward: 0.012805085301812458, Truncated: False, Terminated: False
+PPO Step 96, t=3
+Env Step: 3, Reward: -0.0022220878825551793, Truncated: False, Terminated: False
+PPO Step 97, t=4
+Env Step: 4, Reward: 0.016699797731059007, Truncated: False, Terminated: False
+PPO Step 98, t=5
+Env Step: 5, Reward: 0.005451810109042832, Truncated: False, Terminated: False
+PPO Step 99, t=6
+Env Step: 6, Reward: -0.027934867184022938, Truncated: False, Terminated: False
+PPO Step 100, t=7
+Env Step: 7, Reward: -0.0377841659493261, Truncated: False, Terminated: False
+Step 100 - Updating the algorithm
+[Debug] Log probabilities of current policy actions: tensor([ -9.2511, -10.7158, -12.3889, -12.9016, -12.9016, -13.7398, -13.1644,
+        -11.3037, -13.9403, -10.1603, -10.5652, -10.3316, -10.3316,  -9.1828,
+        -12.4590, -13.5853, -11.6528, -10.1603, -11.0309, -10.3316, -10.5451,
+        -12.8178, -10.0247, -10.7965, -11.2427, -13.7398, -10.2722, -10.1089,
+        -11.9217,  -9.8004, -10.7158, -12.3889, -10.9608, -13.4193, -10.3316,
+        -10.5761,  -8.0377, -12.1313, -12.1313, -13.7284, -11.6528, -13.3075,
+        -13.5853, -13.7398, -13.0995, -13.3075, -11.2457, -14.2937, -12.8686,
+        -11.2264,  -8.7533, -10.7829, -11.7067, -14.3978, -11.6645, -11.6645,
+        -13.9403,  -9.9728, -10.7573, -12.2471, -12.2665,  -9.8004, -11.3256,
+        -11.4507], device='cuda:0')
+[Debug] Log probabilities of expert actions: tensor([-15.8583, -23.4011, -12.1256, -14.3175, -13.0449, -15.7654, -13.3644,
+        -27.2591, -13.9904, -14.4847, -14.5278, -14.4825, -29.8029, -14.5237,
+        -13.2127, -13.6372, -14.0110, -24.9800, -11.9576, -17.1326, -15.0235,
+        -12.8713, -13.5280, -13.8265, -27.4058, -12.0887, -10.4635, -13.4677,
+        -12.9778, -13.9744, -14.4188, -12.6525, -13.3602, -12.8860, -13.6734,
+        -14.0283, -12.3078, -15.2022, -15.3178, -15.6001, -14.4052, -14.4662,
+        -13.3842, -14.3452, -14.1663, -23.4160, -13.2169, -12.9306, -13.2160,
+        -12.5981, -13.0706, -13.9744, -12.0685, -12.8761, -26.7423, -13.0828,
+        -14.1034, -14.4933, -13.3642, -13.1551, -15.3128, -15.6454, -12.9891,
+        -13.4217], device='cuda:0')
+[Debug] Log probabilities of current policy actions: tensor([ -9.9416, -13.3289, -13.7284, -10.7042, -12.4590, -13.5853, -13.9403,
+        -12.2216, -11.1054, -13.2564, -12.8179, -11.2855, -10.8342, -10.1089,
+        -13.3075, -12.4090, -11.6645, -12.2471, -12.1313, -11.0309, -11.4507,
+        -10.4606, -12.8372, -10.7965, -12.3953,  -8.8993, -11.2855, -11.5519,
+        -13.7765, -10.9767, -11.6719,  -9.6502, -11.2427, -12.1313, -10.9528,
+        -11.2427,  -9.6321, -11.4155, -11.4428, -12.9016, -12.1731, -13.7284,
+        -10.6003, -11.3256, -12.9016, -12.8179, -11.1054, -10.7965,  -8.7533,
+        -10.4606, -12.0288,  -8.8993,  -8.0377, -11.3037, -10.0247, -10.1089,
+        -12.8372, -12.1731, -13.1644, -14.3650, -13.3075, -10.5652,  -9.9738,
+        -11.2457], device='cuda:0')
+[Debug] Log probabilities of expert actions: tensor([-11.7996, -12.8727, -15.8522, -13.4967, -28.4899, -16.4060, -13.0637,
+        -13.9904, -11.3345, -13.4303, -11.9187, -14.4531, -13.6951, -13.4968,
+        -13.5731, -12.4893, -12.7351, -15.7014, -14.4715, -26.0485, -15.7714,
+        -13.3644, -11.6255, -12.4212, -13.0928, -13.0706, -13.0746, -13.3257,
+        -14.3584, -13.4886, -13.4013, -14.0456, -13.4266, -15.0318, -12.0902,
+        -12.5322, -13.1669, -25.9990, -11.7592, -12.9891, -17.1164, -13.2651,
+        -13.6928, -23.8341, -40.5637, -13.0774, -13.2797, -13.0615, -12.4089,
+        -14.1583, -23.4234, -14.0161, -12.7251, -27.2486, -13.6277, -11.3560,
+        -11.5130, -23.4027, -27.0355, -16.4158, -13.2548, -12.9955, -15.7658,
+        -15.6430], device='cuda:0')
+[Debug] Log probabilities of current policy actions: tensor([-13.9403, -11.6645,  -8.7533, -14.3978, -11.9217,  -9.9728, -10.1089,
+        -11.9485, -10.2815, -12.1731, -13.8664, -10.5451, -11.2264, -10.6619,
+         -9.6502, -13.9403, -12.5132, -10.0247, -12.9016, -11.2264, -12.3953,
+         -8.0377, -14.3650, -11.9098, -12.2665, -10.2524, -13.7572, -11.2855,
+        -11.9217,  -9.1828,  -9.2511, -11.4155, -10.6619,  -9.9738, -11.6528,
+        -11.6528,  -8.7533, -12.7359, -12.3953, -12.2665, -10.5652, -11.6726,
+        -11.9098,  -9.4661, -13.2564, -13.1644, -10.5761, -10.7042, -10.2524,
+        -11.0309, -11.3037, -11.0096, -12.8332, -10.6003, -10.6619, -11.0096,
+        -11.7067, -10.5451, -12.4590, -11.6645, -11.1054, -12.4732, -12.0288,
+        -13.9403], device='cuda:0')
+[Debug] Log probabilities of expert actions: tensor([-14.4097, -14.4605, -11.5132, -12.3332, -13.7781, -12.0375, -14.1210,
+        -24.5003, -15.6322, -29.9536, -15.7937, -13.3007, -11.6298, -15.8131,
+        -13.8065, -15.7937, -12.5764, -13.3917, -14.2698, -14.6929, -25.9126,
+        -11.8437, -13.0546, -15.7510, -13.7853, -30.5451, -29.9633, -13.0502,
+        -14.2668, -15.4914, -13.1655, -12.9778, -11.8597, -15.0523, -13.0469,
+        -29.8050, -13.9893, -14.4052, -13.4037, -12.1799, -13.3948, -13.4005,
+        -10.7137, -40.4604, -13.0904, -15.8449, -14.3990, -15.7740, -13.2256,
+        -15.7469, -23.4011, -13.2417, -15.6454, -13.0076, -14.5395, -53.8307,
+        -15.0299, -15.1154, -24.3460, -14.5395, -15.8449, -22.4897, -28.4778,
+        -12.7757], device='cuda:0')
+[Debug] Rewards: tensor([11.6051, 13.7059, 10.9618, 11.3279, 11.0060, 10.4580, 12.1693, 13.0138,
+        10.6418, 13.8604, 12.1581, 12.6951,  8.7180, 11.5791, 13.6538, 11.0005,
+        12.1540, 12.2494, 11.8555, 12.0574, 10.1723, 11.4380, 12.5546, 12.7954,
+         8.6417, 10.1624,  9.6132, 13.1341, 11.2500,  7.5292, 11.9952, 11.2533,
+        13.4200, 14.2921, 14.3196, 11.1957, 13.7936, 12.6222, 12.0226, 11.2439,
+         9.2682, 10.5195, 11.1861, 13.1516,  9.0355, 12.0730, 11.0211, 10.8147,
+        12.3671, 10.4761,  9.6331, 10.5041, 11.5815, 10.4780, 12.3363, 10.5885,
+         9.9499, 12.7838, 12.4320, 12.2398, 12.9132, 12.0428, 11.9126, 12.4297,
+        12.2519, 13.4255, 11.1337, 13.0345,  7.9224, 11.8146, 10.2434, 11.4495,
+        11.0835, 10.9817, 14.2280,  8.7471, 12.8111, 10.5152, 12.3414,  9.7080,
+        10.1169, 10.6667, 10.8570, 13.0910, 13.7120,  9.8315, 10.8415, 10.1301,
+        10.2066, 12.6687, 10.2046, 10.6091,  9.3457, 10.1040, 13.7231, 10.5859,
+        10.4642, 10.6806, 10.3414, 13.0206], device='cuda:0')
+[Debug] Reward mean: 11.4495, std: 1.4570
+PPO Step 101, t=8
+Env Step: 8, Reward: nan, Truncated: False, Terminated: True
+PPO Step 102, t=1
+Env Step: 1, Reward: nan, Truncated: False, Terminated: True
+PPO Step 103, t=1
+Env Step: 1, Reward: nan, Truncated: False, Terminated: True
+PPO Step 104, t=1
+Env Step: 1, Reward: nan, Truncated: False, Terminated: True
+PPO Step 105, t=1
+Env Step: 1, Reward: nan, Truncated: False, Terminated: True
+PPO Step 106, t=1
+Env Step: 1, Reward: nan, Truncated: False, Terminated: True
+PPO Step 107, t=1
+Env Step: 1, Reward: nan, Truncated: False, Terminated: True
+PPO Step 108, t=1
+Env Step: 1, Reward: nan, Truncated: False, Terminated: True
+PPO Step 109, t=1
+Env Step: 1, Reward: nan, Truncated: False, Terminated: True
+PPO Step 110, t=1
+Env Step: 1, Reward: nan, Truncated: False, Terminated: True
+PPO Step 111, t=1
+Env Step: 1, Reward: nan, Truncated: False, Terminated: True
+PPO Step 112, t=1
+Env Step: 1, Reward: nan, Truncated: False, Terminated: True
+PPO Step 113, t=1
+Env Step: 1, Reward: nan, Truncated: False, Terminated: True
+PPO Step 114, t=1
+Env Step: 1, Reward: nan, Truncated: False, Terminated: True
+PPO Step 115, t=1
+Env Step: 1, Reward: nan, Truncated: False, Terminated: True
+PPO Step 116, t=1
+Env Step: 1, Reward: nan, Truncated: False, Terminated: True
+PPO Step 117, t=1
+Env Step: 1, Reward: nan, Truncated: False, Terminated: True
+PPO Step 118, t=1
+Env Step: 1, Reward: nan, Truncated: False, Terminated: True
+PPO Step 119, t=1
+Env Step: 1, Reward: nan, Truncated: False, Terminated: True
+PPO Step 120, t=1
+Env Step: 1, Reward: nan, Truncated: False, Terminated: True
+PPO Step 121, t=1
+Env Step: 1, Reward: nan, Truncated: False, Terminated: True
+PPO Step 122, t=1
+Env Step: 1, Reward: nan, Truncated: False, Terminated: True
