@@ -145,8 +145,8 @@ class CoppeliaSimEnv:
         if zero:
             self.set_zero()
             self.update()
-        # # reset the step count
-        # self._step_count = 0
+        # reset the step count
+        self._step_count = 0
         return self.get_states()
     
     def is_healthy(self):
@@ -155,14 +155,16 @@ class CoppeliaSimEnv:
         return robot_height > 0.1
 
     def step(self,action):
+        # recieive the policy action and denormalize it
+        action = self.denormalize_action(action)
         self.set_robot_joint(action)
         self.update() 
         obs = self.get_states()
 
-        # # calculate the reward based on the robot's position
-        # robot_pos = self.sim.getObjectPosition(self.sim.getObject('/head'))
-        # current_x = robot_pos[0]
-        # reward = (current_x - self._previous_x) * 10
+        # calculate the reward based on the robot's position
+        robot_pos = self.sim.getObjectPosition(self.sim.getObject('/head'))
+        current_x = robot_pos[0]
+        reward = current_x * 10
         # self._previous_x = current_x
 
         reward = 0.0
@@ -170,8 +172,6 @@ class CoppeliaSimEnv:
         self._step_count += 1
         truncated = self._step_count >= self._max_episode_steps
         terminated = not self.is_healthy() 
-        # truncated = False
-        # terminated = False
         print(f"Env Step: {self._step_count}, Reward: {reward}, Truncated: {truncated}, Terminated: {terminated}")
 
         return obs, reward, terminated, truncated, {}  
