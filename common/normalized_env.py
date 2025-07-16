@@ -167,8 +167,8 @@ class CoppeliaSimEnv:
 
         self._step_count += 1
         truncated = self._step_count >= self._max_episode_steps
-        print(f"Env Step: {self._step_count}, Reward: {reward}, Truncated: {truncated}")
         terminated = not self.is_healthy() 
+        print(f"Env Step: {self._step_count}, Reward: {reward}, Truncated: {truncated}, Terminated: {terminated}")
 
         return obs, reward, terminated, truncated, {}  
 
