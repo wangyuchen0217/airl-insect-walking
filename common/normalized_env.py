@@ -138,9 +138,9 @@ class CoppeliaSimEnv:
         self.stop()
         time.sleep(1)
         self.start()
-        # # record the initial position of the robot
-        # head_pos = self.sim.getObjectPosition(self.sim.getObject('/head'))
-        # self._previous_x = head_pos[0]
+        # record the initial position of the robot
+        head_pos = self.sim.getObjectPosition(self.sim.getObject('/head'))
+        self._previous_x = head_pos[0]
         # reset the robot joints to zero or initial position
         if zero:
             self.set_zero()
@@ -165,14 +165,11 @@ class CoppeliaSimEnv:
         robot_pos = self.sim.getObjectPosition(self.sim.getObject('/head'))
         current_x = robot_pos[0]
         reward = current_x * 10
-        # self._previous_x = current_x
-
-        reward = 0.0
+        self._previous_x = current_x
 
         self._step_count += 1
         truncated = self._step_count >= self._max_episode_steps
         terminated = not self.is_healthy() 
-        print(f"Env Step: {self._step_count}, Reward: {reward}, Truncated: {truncated}, Terminated: {terminated}")
 
         return obs, reward, terminated, truncated, {}  
 
