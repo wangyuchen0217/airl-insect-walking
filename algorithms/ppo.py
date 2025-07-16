@@ -71,7 +71,7 @@ class PPO(Algorithm):
 
     def step(self, env, state, t, step):
         t += 1
-        print(f"PPO Step {step}, t={t}")
+        # print(f"PPO Step {step}, t={t}")
         action, log_pi = self.explore(state)
         next_state, reward, done, truncated,  info = env.step(action)
         done = done or truncated
