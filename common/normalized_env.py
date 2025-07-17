@@ -25,21 +25,21 @@ class CoppeliaSimEnv:
     action_space = np.zeros((18, ), dtype=float).astype(float)  # joint angles
 
     observation_space_high = np.array([
-                            0.13739218, 0.11150103, 0.10275564, -0.5804252, 0.9172944, -0.46535975,
-                            0.71234864, 0.6080562, -0.5482109, 1.1903477, 0.99666196, -0.71160483,
-                            1.1814184, -0.04038109, 2.392614, 0.90458405, 0.19099036, 2.2663376,
-                            -0.27360862, -0.13731903, 2.467077, 6.7135897, 14.320594, 13.079687,
-                            11.369307, 15.772957, 9.674799, 0.6964575, 0.19987853, 0.11533475,
-                            0.6888383, 0.24550687, 0.19796589
+                        0.26309153, 0.14352329, 0.11150103, 0.20889758, -0.5805428, 0.917541,
+                        -0.46537167, 0.71234864, 0.6082702, -0.5482097, 1.1905043, 0.9968296,
+                        -0.7116102, 1.1811888, -0.03991236, 2.3925962, 0.90482897, 0.1928462,
+                        2.266345, -0.27362847, -0.13811275, 2.4670823, 6.9036007, 14.140027,
+                        13.357503, 11.274531, 15.725126, 9.445448, 0.69686425, 0.19966786,
+                        0.11533475, 0.68759626, 0.24561436, 0.1978422
                         ])
     
     observation_space_low = np.array([
-                            -0.03240576, -0.16104962, -0.08224149, -1.459179, 0.016114, -2.3673694,
-                            -0.74743503, -0.250165, -2.2369046, 0.27852923, 0.20438556, -2.5910258,
-                            0.59673387, -0.9144462, 0.3207521, -0.54610145, -0.5054805, 0.35649034,
-                            -1.2286096, -0.99857783, 0.48643476, 0., 0., 0.,
-                            0., 0., 0., 0.0079498, 0.00920632, 0.00922272,
-                            0.00933982, 0.00873947, 0.00923299
+                        0.19126146, -0.03429405, -0.16010809, -0.08192597, -1.4591902, 0.01655765,
+                        -2.3673697, -0.7474498, -0.2489663, -2.2368977, 0.27859572, 0.20474741,
+                        -2.5910378, 0.59677696, -0.91530794, 0.32074368, -0.54582196, -0.50561714,
+                        0.35649562, -1.2296814, -0.9988971, 0.48642993, 0., 0.,
+                        0., 0., 0., 0., 0.00760507, 0.00926453,
+                        0.00918054, 0.00917197, 0.00868974, 0.00918513
                         ])
 
     action_space_high = np.array([
@@ -125,6 +125,11 @@ class CoppeliaSimEnv:
                 positions[3 * l + j] = self.sim.getJointPosition(int(self.__joint_handle[l][j]))
         return positions
     
+    def get_bodyposition(self):
+        robot_pos = self.sim.getObjectPosition(self.sim.getObject('/head'))
+        robot_z = robot_pos[2]
+        return robot_z
+
     def get_bodyorientation(self):
         orientation = np.zeros((3))
         orientation = self.sim.getObjectOrientation(self.IMU_robot, self.IMU_ref)
@@ -145,11 +150,12 @@ class CoppeliaSimEnv:
         return foot_traj
     
     def get_states(self):
+        body_z = self.get_bodyposition()
         body_orientation = self.get_bodyorientation()
         joint_angles = self.get_jointangle()
         forces = self.get_force()
         foot_traj = self.get_foot_trajectory()
-        states = np.concatenate((body_orientation, joint_angles, forces, foot_traj))
+        states = np.concatenate((body_z, body_orientation, joint_angles, forces, foot_traj))
         return states
 
 

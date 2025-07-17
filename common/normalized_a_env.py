@@ -97,6 +97,11 @@ class CoppeliaSimEnv:
                 positions[3 * l + j] = self.sim.getJointPosition(int(self.__joint_handle[l][j]))
         return positions
     
+    def get_bodyposition(self):
+        robot_pos = self.sim.getObjectPosition(self.sim.getObject('/head'))
+        robot_z = robot_pos[2]
+        return robot_z
+    
     def get_bodyorientation(self):
         orientation = np.zeros((3))
         orientation = self.sim.getObjectOrientation(self.IMU_robot, self.IMU_ref)
@@ -117,11 +122,12 @@ class CoppeliaSimEnv:
         return foot_traj
     
     def get_states(self):
+        body_z = self.get_bodyposition()
         body_orientation = self.get_bodyorientation()
         joint_angles = self.get_jointangle()
         forces = self.get_force()
         foot_traj = self.get_foot_trajectory()
-        states = np.concatenate((body_orientation, joint_angles, forces, foot_traj))
+        states = np.concatenate((body_z, body_orientation, joint_angles, forces, foot_traj))
         return states
 
 

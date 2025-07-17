@@ -43,7 +43,7 @@ class Trainer:
             state, t = self.algo.step(self.env, state, t, step)
             if self.algo.is_update(step):
                 print(f"Step {step} - Updating the algorithm")
-                self.algo.update(self.writer)
+                self.algo.update(self.writer, self.model_dir)
             if step % self.eval_interval == 0:
                 print(f"Step {step} - Evaluating the algorithm")
                 self.evaluate(step)

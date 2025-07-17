@@ -154,6 +154,7 @@ def sysCall_init():
         'sim_time': [],
         'body_x': [],
         'body_y': [],
+        'body_z': [],
         'body_roll': [],
         'body_pitch': [],
         'body_yaw': [],
@@ -372,6 +373,7 @@ def sysCall_sensing():
         self.data_list['sim_time'].append(self.sim_time)
         self.data_list['body_x'].append(self.robot_positions[0])
         self.data_list['body_y'].append(self.robot_positions[1])
+        self.data_list['body_z'].append(self.robot_positions[2])
         self.data_list['body_roll'].append( self.robot_orientations[0])
         self.data_list['body_pitch'].append(self.robot_orientations[1])
         self.data_list['body_yaw'].append(  self.robot_orientations[2])

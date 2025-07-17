@@ -80,12 +80,8 @@ class AIRL(PPO):
 
         # Update PPO using estimated rewards.
         self.update_ppo(
-            states, actions, rewards, dones, log_pis, next_states, writer)
+            states, actions, rewards, dones, log_pis, next_states, writer, model_dir)
         
-        # save models after 20,000 steps
-        if self.learning_steps % 20000 == 0:
-            self.save_models(model_dir)
-
 
     def update_disc(self, states, dones, log_pis, next_states,
                     states_exp, dones_exp, log_pis_exp,
