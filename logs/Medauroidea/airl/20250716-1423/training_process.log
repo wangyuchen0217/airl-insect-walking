@@ -1,0 +1,1642 @@
+Logging started at 20250716-1423
+Ontime :
+True
+Action space mid: [-1.01873243  0.45176268 -1.4165763  -0.0205206   0.1673988  -1.3896672
+  0.73325681  0.58896359 -1.6511396   0.8836804  -0.47590394  1.35490289
+  0.18083922 -0.15080036  1.30874578 -0.74782036 -0.56708082  1.47821588], scale: [0.44304717 0.46786146 0.9527527  0.73484704 0.4457115  0.8509844
+ 0.45946249 0.41638221 0.9457742  0.2983276  0.44032795 1.03865751
+ 0.73073588 0.35183635 0.95987222 0.47668324 0.43512017 0.99632052]
+INFO: VrepInterfaze is initialized successfully.
+Ontime :
+True
+Action space mid: [-1.01873243  0.45176268 -1.4165763  -0.0205206   0.1673988  -1.3896672
+  0.73325681  0.58896359 -1.6511396   0.8836804  -0.47590394  1.35490289
+  0.18083922 -0.15080036  1.30874578 -0.74782036 -0.56708082  1.47821588], scale: [0.44304717 0.46786146 0.9527527  0.73484704 0.4457115  0.8509844
+ 0.45946249 0.41638221 0.9457742  0.2983276  0.44032795 1.03865751
+ 0.73073588 0.35183635 0.95987222 0.47668324 0.43512017 0.99632052]
+INFO: VrepInterfaze is initialized successfully.
+NVIDIA GeForce RTX 4060 Laptop GPU
+Process ID: 51502
+Env: Medauroidea, expert.csv, Seed: 0
+Rollout length: 1000
+Num steps: 1000000, Eval interval: 10000
+Gamma: 0.995, Mix buffer: 1, Batch size: 64
+lr_actor: 0.0001, lr_critic: 0.0001, lr_disc: 0.0001
+Units Actor: (64, 64), Units Critic: (64, 64)
+Units Disc R: (100, 100), Units Disc V: (100, 100)
+Epoch ppo: 50, Epoch disc: 3
+Clip Epsc: 0.2, Lambda: 0.97, Coef Ent: 0.05, Max Grad Norm: 10.0
+Expert buffer size: 1517
+Initial state shape: (33,)
+Step 1000 - Updating the algorithm
+Update discriminator at step 1
+Update discriminator at step 2
+Update discriminator at step 3
+[Debug] Reward mean: 11.0775, std: 1.6007
+Updating PPO
+Step 2000 - Updating the algorithm
+Update discriminator at step 4
+Update discriminator at step 5
+Update discriminator at step 6
+[Debug] Reward mean: 11.2722, std: 1.4686
+Updating PPO
+Step 3000 - Updating the algorithm
+Update discriminator at step 7
+Update discriminator at step 8
+Update discriminator at step 9
+[Debug] Reward mean: 11.2398, std: 1.3875
+Updating PPO
+Step 4000 - Updating the algorithm
+Update discriminator at step 10
+Update discriminator at step 11
+Update discriminator at step 12
+[Debug] Reward mean: 11.3238, std: 1.3326
+Updating PPO
+Step 5000 - Updating the algorithm
+Update discriminator at step 13
+Update discriminator at step 14
+Update discriminator at step 15
+[Debug] Reward mean: 11.3337, std: 1.2912
+Updating PPO
+Step 6000 - Updating the algorithm
+Update discriminator at step 16
+Update discriminator at step 17
+Update discriminator at step 18
+[Debug] Reward mean: 11.2538, std: 1.2203
+Updating PPO
+Step 7000 - Updating the algorithm
+Update discriminator at step 19
+Update discriminator at step 20
+Update discriminator at step 21
+[Debug] Reward mean: 11.2541, std: 1.2751
+Updating PPO
+Step 8000 - Updating the algorithm
+Update discriminator at step 22
+Update discriminator at step 23
+Update discriminator at step 24
+[Debug] Reward mean: 11.3227, std: 1.2504
+Updating PPO
+Step 9000 - Updating the algorithm
+Update discriminator at step 25
+Update discriminator at step 26
+Update discriminator at step 27
+[Debug] Reward mean: 11.1698, std: 1.1576
+Updating PPO
+Step 10000 - Updating the algorithm
+Update discriminator at step 28
+Update discriminator at step 29
+Update discriminator at step 30
+[Debug] Reward mean: 11.1569, std: 1.1705
+Updating PPO
+Step 10000 - Evaluating the algorithm
+Num steps: 10000    Return: -15572.7   Time: 0:16:02
+Step 11000 - Updating the algorithm
+Update discriminator at step 31
+Update discriminator at step 32
+Update discriminator at step 33
+[Debug] Reward mean: 11.1184, std: 1.1935
+Updating PPO
+Step 12000 - Updating the algorithm
+Update discriminator at step 34
+Update discriminator at step 35
+Update discriminator at step 36
+[Debug] Reward mean: 11.1075, std: 1.1604
+Updating PPO
+Step 13000 - Updating the algorithm
+Update discriminator at step 37
+Update discriminator at step 38
+Update discriminator at step 39
+[Debug] Reward mean: 11.0909, std: 1.0605
+Updating PPO
+Step 14000 - Updating the algorithm
+Update discriminator at step 40
+Update discriminator at step 41
+Update discriminator at step 42
+[Debug] Reward mean: 11.0706, std: 1.0452
+Updating PPO
+Step 15000 - Updating the algorithm
+Update discriminator at step 43
+Update discriminator at step 44
+Update discriminator at step 45
+[Debug] Reward mean: 10.9538, std: 1.1463
+Updating PPO
+Step 16000 - Updating the algorithm
+Update discriminator at step 46
+Update discriminator at step 47
+Update discriminator at step 48
+[Debug] Reward mean: 10.8040, std: 1.2159
+Updating PPO
+Step 17000 - Updating the algorithm
+Update discriminator at step 49
+Update discriminator at step 50
+Update discriminator at step 51
+[Debug] Reward mean: 10.7785, std: 1.2993
+Updating PPO
+Step 18000 - Updating the algorithm
+Update discriminator at step 52
+Update discriminator at step 53
+Update discriminator at step 54
+[Debug] Reward mean: 10.7517, std: 1.1636
+Updating PPO
+Step 19000 - Updating the algorithm
+Update discriminator at step 55
+Update discriminator at step 56
+Update discriminator at step 57
+[Debug] Reward mean: 10.6017, std: 1.1871
+Updating PPO
+Step 20000 - Updating the algorithm
+Update discriminator at step 58
+Update discriminator at step 59
+Update discriminator at step 60
+[Debug] Reward mean: 10.3158, std: 1.4847
+Updating PPO
+Step 20000 - Evaluating the algorithm
+Num steps: 20000    Return: -15636.6   Time: 0:33:03
+Step 21000 - Updating the algorithm
+Update discriminator at step 61
+Update discriminator at step 62
+Update discriminator at step 63
+[Debug] Reward mean: 10.4342, std: 1.2158
+Updating PPO
+Step 22000 - Updating the algorithm
+Update discriminator at step 64
+Update discriminator at step 65
+Update discriminator at step 66
+[Debug] Reward mean: 10.3301, std: 1.3623
+Updating PPO
+Step 23000 - Updating the algorithm
+Update discriminator at step 67
+Update discriminator at step 68
+Update discriminator at step 69
+[Debug] Reward mean: 10.1982, std: 1.3285
+Updating PPO
+Step 24000 - Updating the algorithm
+Update discriminator at step 70
+Update discriminator at step 71
+Update discriminator at step 72
+[Debug] Reward mean: 10.0725, std: 1.4073
+Updating PPO
+Step 25000 - Updating the algorithm
+Update discriminator at step 73
+Update discriminator at step 74
+Update discriminator at step 75
+[Debug] Reward mean: 9.9541, std: 1.3178
+Updating PPO
+Step 26000 - Updating the algorithm
+Update discriminator at step 76
+Update discriminator at step 77
+Update discriminator at step 78
+[Debug] Reward mean: 9.9034, std: 1.5102
+Updating PPO
+Step 27000 - Updating the algorithm
+Update discriminator at step 79
+Update discriminator at step 80
+Update discriminator at step 81
+[Debug] Reward mean: 9.8131, std: 1.3315
+Updating PPO
+Step 28000 - Updating the algorithm
+Update discriminator at step 82
+Update discriminator at step 83
+Update discriminator at step 84
+[Debug] Reward mean: 9.6916, std: 1.3571
+Updating PPO
+Step 29000 - Updating the algorithm
+Update discriminator at step 85
+Update discriminator at step 86
+Update discriminator at step 87
+[Debug] Reward mean: 9.7520, std: 1.3257
+Updating PPO
+Step 30000 - Updating the algorithm
+Update discriminator at step 88
+Update discriminator at step 89
+Update discriminator at step 90
+[Debug] Reward mean: 9.4988, std: 1.4084
+Updating PPO
+Step 30000 - Evaluating the algorithm
+Num steps: 30000    Return: -16537.6   Time: 0:47:42
+Step 31000 - Updating the algorithm
+Update discriminator at step 91
+Update discriminator at step 92
+Update discriminator at step 93
+[Debug] Reward mean: 9.3412, std: 1.6045
+Updating PPO
+Step 32000 - Updating the algorithm
+Update discriminator at step 94
+Update discriminator at step 95
+Update discriminator at step 96
+[Debug] Reward mean: 9.2479, std: 1.5007
+Updating PPO
+Step 33000 - Updating the algorithm
+Update discriminator at step 97
+Update discriminator at step 98
+Update discriminator at step 99
+[Debug] Reward mean: 9.0079, std: 1.7200
+Updating PPO
+Step 34000 - Updating the algorithm
+Update discriminator at step 100
+Update discriminator at step 101
+Update discriminator at step 102
+[Debug] Reward mean: 8.9097, std: 1.6029
+Updating PPO
+Step 35000 - Updating the algorithm
+Update discriminator at step 103
+Update discriminator at step 104
+Update discriminator at step 105
+[Debug] Reward mean: 8.8432, std: 1.6778
+Updating PPO
+Step 36000 - Updating the algorithm
+Update discriminator at step 106
+Update discriminator at step 107
+Update discriminator at step 108
+[Debug] Reward mean: 8.5004, std: 1.9274
+Updating PPO
+Step 37000 - Updating the algorithm
+Update discriminator at step 109
+Update discriminator at step 110
+Update discriminator at step 111
+[Debug] Reward mean: 8.7316, std: 1.6409
+Updating PPO
+Step 38000 - Updating the algorithm
+Update discriminator at step 112
+Update discriminator at step 113
+Update discriminator at step 114
+[Debug] Reward mean: 8.2630, std: 1.8992
+Updating PPO
+Step 39000 - Updating the algorithm
+Update discriminator at step 115
+Update discriminator at step 116
+Update discriminator at step 117
+[Debug] Reward mean: 7.9519, std: 1.9100
+Updating PPO
+Step 40000 - Updating the algorithm
+Update discriminator at step 118
+Update discriminator at step 119
+Update discriminator at step 120
+[Debug] Reward mean: 7.8594, std: 1.8404
+Updating PPO
+Step 40000 - Evaluating the algorithm
+Num steps: 40000    Return: -14927.4   Time: 1:05:44
+Step 41000 - Updating the algorithm
+Update discriminator at step 121
+Update discriminator at step 122
+Update discriminator at step 123
+[Debug] Reward mean: 7.8420, std: 1.8399
+Updating PPO
+Step 42000 - Updating the algorithm
+Update discriminator at step 124
+Update discriminator at step 125
+Update discriminator at step 126
+[Debug] Reward mean: 7.5051, std: 1.9858
+Updating PPO
+Step 43000 - Updating the algorithm
+Update discriminator at step 127
+Update discriminator at step 128
+Update discriminator at step 129
+[Debug] Reward mean: 7.1892, std: 2.1995
+Updating PPO
+Step 44000 - Updating the algorithm
+Update discriminator at step 130
+Update discriminator at step 131
+Update discriminator at step 132
+[Debug] Reward mean: 7.0432, std: 2.0474
+Updating PPO
+Step 45000 - Updating the algorithm
+Update discriminator at step 133
+Update discriminator at step 134
+Update discriminator at step 135
+[Debug] Reward mean: 6.6892, std: 2.2693
+Updating PPO
+Step 46000 - Updating the algorithm
+Update discriminator at step 136
+Update discriminator at step 137
+Update discriminator at step 138
+[Debug] Reward mean: 6.8779, std: 2.1812
+Updating PPO
+Step 47000 - Updating the algorithm
+Update discriminator at step 139
+Update discriminator at step 140
+Update discriminator at step 141
+[Debug] Reward mean: 6.2882, std: 2.3672
+Updating PPO
+Step 48000 - Updating the algorithm
+Update discriminator at step 142
+Update discriminator at step 143
+Update discriminator at step 144
+[Debug] Reward mean: 6.6648, std: 2.2086
+Updating PPO
+Step 49000 - Updating the algorithm
+Update discriminator at step 145
+Update discriminator at step 146
+Update discriminator at step 147
+[Debug] Reward mean: 6.3457, std: 2.2804
+Updating PPO
+Step 50000 - Updating the algorithm
+Update discriminator at step 148
+Update discriminator at step 149
+Update discriminator at step 150
+[Debug] Reward mean: 5.9687, std: 2.4490
+Updating PPO
+Step 50000 - Evaluating the algorithm
+Num steps: 50000    Return: -14331.0   Time: 1:23:28
+Step 51000 - Updating the algorithm
+Update discriminator at step 151
+Update discriminator at step 152
+Update discriminator at step 153
+[Debug] Reward mean: 5.6944, std: 2.4206
+Updating PPO
+Step 52000 - Updating the algorithm
+Update discriminator at step 154
+Update discriminator at step 155
+Update discriminator at step 156
+[Debug] Reward mean: 5.4416, std: 2.4633
+Updating PPO
+Step 53000 - Updating the algorithm
+Update discriminator at step 157
+Update discriminator at step 158
+Update discriminator at step 159
+[Debug] Reward mean: 5.0605, std: 2.4877
+Updating PPO
+Step 54000 - Updating the algorithm
+Update discriminator at step 160
+Update discriminator at step 161
+Update discriminator at step 162
+[Debug] Reward mean: 4.8607, std: 2.5377
+Updating PPO
+Step 55000 - Updating the algorithm
+Update discriminator at step 163
+Update discriminator at step 164
+Update discriminator at step 165
+[Debug] Reward mean: 4.5626, std: 2.5795
+Updating PPO
+Step 56000 - Updating the algorithm
+Update discriminator at step 166
+Update discriminator at step 167
+Update discriminator at step 168
+[Debug] Reward mean: 4.5618, std: 2.5880
+Updating PPO
+Step 57000 - Updating the algorithm
+Update discriminator at step 169
+Update discriminator at step 170
+Update discriminator at step 171
+[Debug] Reward mean: 4.2632, std: 2.5119
+Updating PPO
+Step 58000 - Updating the algorithm
+Update discriminator at step 172
+Update discriminator at step 173
+Update discriminator at step 174
+[Debug] Reward mean: 4.1695, std: 2.5794
+Updating PPO
+Step 59000 - Updating the algorithm
+Update discriminator at step 175
+Update discriminator at step 176
+Update discriminator at step 177
+[Debug] Reward mean: 3.6088, std: 2.4813
+Updating PPO
+Step 60000 - Updating the algorithm
+Update discriminator at step 178
+Update discriminator at step 179
+Update discriminator at step 180
+[Debug] Reward mean: 3.3875, std: 2.4520
+Updating PPO
+Step 60000 - Evaluating the algorithm
+Num steps: 60000    Return: -15485.6   Time: 1:43:12
+Step 61000 - Updating the algorithm
+Update discriminator at step 181
+Update discriminator at step 182
+Update discriminator at step 183
+[Debug] Reward mean: 3.2613, std: 2.4898
+Updating PPO
+Step 62000 - Updating the algorithm
+Update discriminator at step 184
+Update discriminator at step 185
+Update discriminator at step 186
+[Debug] Reward mean: 3.2597, std: 2.5000
+Updating PPO
+Step 63000 - Updating the algorithm
+Update discriminator at step 187
+Update discriminator at step 188
+Update discriminator at step 189
+[Debug] Reward mean: 2.6771, std: 2.3805
+Updating PPO
+Step 64000 - Updating the algorithm
+Update discriminator at step 190
+Update discriminator at step 191
+Update discriminator at step 192
+[Debug] Reward mean: 2.7401, std: 2.3792
+Updating PPO
+Step 65000 - Updating the algorithm
+Update discriminator at step 193
+Update discriminator at step 194
+Update discriminator at step 195
+[Debug] Reward mean: 2.7987, std: 2.3997
+Updating PPO
+Step 66000 - Updating the algorithm
+Update discriminator at step 196
+Update discriminator at step 197
+Update discriminator at step 198
+[Debug] Reward mean: 2.6887, std: 2.3512
+Updating PPO
+Step 67000 - Updating the algorithm
+Update discriminator at step 199
+Update discriminator at step 200
+Update discriminator at step 201
+[Debug] Reward mean: 2.4703, std: 2.3151
+Updating PPO
+Step 68000 - Updating the algorithm
+Update discriminator at step 202
+Update discriminator at step 203
+Update discriminator at step 204
+[Debug] Reward mean: 2.2084, std: 2.2853
+Updating PPO
+Step 69000 - Updating the algorithm
+Update discriminator at step 205
+Update discriminator at step 206
+Update discriminator at step 207
+[Debug] Reward mean: 2.2702, std: 2.2784
+Updating PPO
+Step 70000 - Updating the algorithm
+Update discriminator at step 208
+Update discriminator at step 209
+Update discriminator at step 210
+[Debug] Reward mean: 2.2065, std: 2.3296
+Updating PPO
+Step 70000 - Evaluating the algorithm
+Num steps: 70000    Return: -19728.4   Time: 2:06:03
+Step 71000 - Updating the algorithm
+Update discriminator at step 211
+Update discriminator at step 212
+Update discriminator at step 213
+[Debug] Reward mean: 2.1900, std: 2.3060
+Updating PPO
+Step 72000 - Updating the algorithm
+Update discriminator at step 214
+Update discriminator at step 215
+Update discriminator at step 216
+[Debug] Reward mean: 2.1008, std: 2.2566
+Updating PPO
+Step 73000 - Updating the algorithm
+Update discriminator at step 217
+Update discriminator at step 218
+Update discriminator at step 219
+[Debug] Reward mean: 2.0289, std: 2.2539
+Updating PPO
+Step 74000 - Updating the algorithm
+Update discriminator at step 220
+Update discriminator at step 221
+Update discriminator at step 222
+[Debug] Reward mean: 2.0136, std: 2.2197
+Updating PPO
+Step 75000 - Updating the algorithm
+Update discriminator at step 223
+Update discriminator at step 224
+Update discriminator at step 225
+[Debug] Reward mean: 1.7456, std: 2.1031
+Updating PPO
+Step 76000 - Updating the algorithm
+Update discriminator at step 226
+Update discriminator at step 227
+Update discriminator at step 228
+[Debug] Reward mean: 1.7840, std: 2.0838
+Updating PPO
+Step 77000 - Updating the algorithm
+Update discriminator at step 229
+Update discriminator at step 230
+Update discriminator at step 231
+[Debug] Reward mean: 1.6963, std: 2.0937
+Updating PPO
+Step 78000 - Updating the algorithm
+Update discriminator at step 232
+Update discriminator at step 233
+Update discriminator at step 234
+[Debug] Reward mean: 1.7258, std: 2.1318
+Updating PPO
+Step 79000 - Updating the algorithm
+Update discriminator at step 235
+Update discriminator at step 236
+Update discriminator at step 237
+[Debug] Reward mean: 1.6363, std: 2.0742
+Updating PPO
+Step 80000 - Updating the algorithm
+Update discriminator at step 238
+Update discriminator at step 239
+Update discriminator at step 240
+[Debug] Reward mean: 1.7060, std: 2.0802
+Updating PPO
+Step 80000 - Evaluating the algorithm
+Num steps: 80000    Return: -264.1   Time: 2:30:36
+Step 81000 - Updating the algorithm
+Update discriminator at step 241
+Update discriminator at step 242
+Update discriminator at step 243
+[Debug] Reward mean: 1.6869, std: 2.1248
+Updating PPO
+Step 82000 - Updating the algorithm
+Update discriminator at step 244
+Update discriminator at step 245
+Update discriminator at step 246
+[Debug] Reward mean: 1.5349, std: 2.0423
+Updating PPO
+Step 83000 - Updating the algorithm
+Update discriminator at step 247
+Update discriminator at step 248
+Update discriminator at step 249
+[Debug] Reward mean: 1.6216, std: 2.1121
+Updating PPO
+Step 84000 - Updating the algorithm
+Update discriminator at step 250
+Update discriminator at step 251
+Update discriminator at step 252
+[Debug] Reward mean: 1.5753, std: 2.0621
+Updating PPO
+Step 85000 - Updating the algorithm
+Update discriminator at step 253
+Update discriminator at step 254
+Update discriminator at step 255
+[Debug] Reward mean: 1.5070, std: 1.9999
+Updating PPO
+Step 86000 - Updating the algorithm
+Update discriminator at step 256
+Update discriminator at step 257
+Update discriminator at step 258
+[Debug] Reward mean: 1.4701, std: 2.0339
+Updating PPO
+Step 87000 - Updating the algorithm
+Update discriminator at step 259
+Update discriminator at step 260
+Update discriminator at step 261
+[Debug] Reward mean: 1.4421, std: 2.0102
+Updating PPO
+Step 88000 - Updating the algorithm
+Update discriminator at step 262
+Update discriminator at step 263
+Update discriminator at step 264
+[Debug] Reward mean: 1.5102, std: 2.0914
+Updating PPO
+Step 89000 - Updating the algorithm
+Update discriminator at step 265
+Update discriminator at step 266
+Update discriminator at step 267
+[Debug] Reward mean: 1.3906, std: 1.9778
+Updating PPO
+Step 90000 - Updating the algorithm
+Update discriminator at step 268
+Update discriminator at step 269
+Update discriminator at step 270
+[Debug] Reward mean: 1.4659, std: 2.0598
+Updating PPO
+Step 90000 - Evaluating the algorithm
+Num steps: 90000    Return: -217.3   Time: 2:59:43
+Step 91000 - Updating the algorithm
+Update discriminator at step 271
+Update discriminator at step 272
+Update discriminator at step 273
+[Debug] Reward mean: 1.3313, std: 1.9200
+Updating PPO
+Step 92000 - Updating the algorithm
+Update discriminator at step 274
+Update discriminator at step 275
+Update discriminator at step 276
+[Debug] Reward mean: 1.3443, std: 2.0021
+Updating PPO
+Step 93000 - Updating the algorithm
+Update discriminator at step 277
+Update discriminator at step 278
+Update discriminator at step 279
+[Debug] Reward mean: 1.3633, std: 2.0013
+Updating PPO
+Step 94000 - Updating the algorithm
+Update discriminator at step 280
+Update discriminator at step 281
+Update discriminator at step 282
+[Debug] Reward mean: 1.3087, std: 1.8959
+Updating PPO
+Step 95000 - Updating the algorithm
+Update discriminator at step 283
+Update discriminator at step 284
+Update discriminator at step 285
+[Debug] Reward mean: 1.2414, std: 1.9479
+Updating PPO
+Step 96000 - Updating the algorithm
+Update discriminator at step 286
+Update discriminator at step 287
+Update discriminator at step 288
+[Debug] Reward mean: 1.2755, std: 1.9863
+Updating PPO
+Step 97000 - Updating the algorithm
+Update discriminator at step 289
+Update discriminator at step 290
+Update discriminator at step 291
+[Debug] Reward mean: 1.2865, std: 1.9877
+Updating PPO
+Step 98000 - Updating the algorithm
+Update discriminator at step 292
+Update discriminator at step 293
+Update discriminator at step 294
+[Debug] Reward mean: 1.2667, std: 1.9212
+Updating PPO
+Step 99000 - Updating the algorithm
+Update discriminator at step 295
+Update discriminator at step 296
+Update discriminator at step 297
+[Debug] Reward mean: 1.2151, std: 1.9257
+Updating PPO
+Step 100000 - Updating the algorithm
+Update discriminator at step 298
+Update discriminator at step 299
+Update discriminator at step 300
+[Debug] Reward mean: 1.2447, std: 1.9362
+Updating PPO
+Step 100000 - Evaluating the algorithm
+Num steps: 100000   Return: -186.0   Time: 3:31:41
+Step 101000 - Updating the algorithm
+Update discriminator at step 301
+Update discriminator at step 302
+Update discriminator at step 303
+[Debug] Reward mean: 1.1570, std: 1.8884
+Updating PPO
+Step 102000 - Updating the algorithm
+Update discriminator at step 304
+Update discriminator at step 305
+Update discriminator at step 306
+[Debug] Reward mean: 1.1168, std: 1.8613
+Updating PPO
+Step 103000 - Updating the algorithm
+Update discriminator at step 307
+Update discriminator at step 308
+Update discriminator at step 309
+[Debug] Reward mean: 1.1539, std: 1.8862
+Updating PPO
+Step 104000 - Updating the algorithm
+Update discriminator at step 310
+Update discriminator at step 311
+Update discriminator at step 312
+[Debug] Reward mean: 1.1852, std: 1.8945
+Updating PPO
+Step 105000 - Updating the algorithm
+Update discriminator at step 313
+Update discriminator at step 314
+Update discriminator at step 315
+[Debug] Reward mean: 1.1098, std: 1.8480
+Updating PPO
+Step 106000 - Updating the algorithm
+Update discriminator at step 316
+Update discriminator at step 317
+Update discriminator at step 318
+[Debug] Reward mean: 1.0973, std: 1.8803
+Updating PPO
+Step 107000 - Updating the algorithm
+Update discriminator at step 319
+Update discriminator at step 320
+Update discriminator at step 321
+[Debug] Reward mean: 1.1468, std: 1.8750
+Updating PPO
+Step 108000 - Updating the algorithm
+Update discriminator at step 322
+Update discriminator at step 323
+Update discriminator at step 324
+[Debug] Reward mean: 1.1064, std: 1.8360
+Updating PPO
+Step 109000 - Updating the algorithm
+Update discriminator at step 325
+Update discriminator at step 326
+Update discriminator at step 327
+[Debug] Reward mean: 1.1085, std: 1.8305
+Updating PPO
+Step 110000 - Updating the algorithm
+Update discriminator at step 328
+Update discriminator at step 329
+Update discriminator at step 330
+[Debug] Reward mean: 1.1013, std: 1.7983
+Updating PPO
+Step 110000 - Evaluating the algorithm
+Num steps: 110000   Return: -170.9   Time: 4:06:11
+Step 111000 - Updating the algorithm
+Update discriminator at step 331
+Update discriminator at step 332
+Update discriminator at step 333
+[Debug] Reward mean: 1.0369, std: 1.7812
+Updating PPO
+Step 112000 - Updating the algorithm
+Update discriminator at step 334
+Update discriminator at step 335
+Update discriminator at step 336
+[Debug] Reward mean: 1.0983, std: 1.8378
+Updating PPO
+Step 113000 - Updating the algorithm
+Update discriminator at step 337
+Update discriminator at step 338
+Update discriminator at step 339
+[Debug] Reward mean: 0.9937, std: 1.7168
+Updating PPO
+Step 114000 - Updating the algorithm
+Update discriminator at step 340
+Update discriminator at step 341
+Update discriminator at step 342
+[Debug] Reward mean: 0.9864, std: 1.6979
+Updating PPO
+Step 115000 - Updating the algorithm
+Update discriminator at step 343
+Update discriminator at step 344
+Update discriminator at step 345
+[Debug] Reward mean: 1.0968, std: 1.8159
+Updating PPO
+Step 116000 - Updating the algorithm
+Update discriminator at step 346
+Update discriminator at step 347
+Update discriminator at step 348
+[Debug] Reward mean: 1.0922, std: 1.7948
+Updating PPO
+Step 117000 - Updating the algorithm
+Update discriminator at step 349
+Update discriminator at step 350
+Update discriminator at step 351
+[Debug] Reward mean: 0.9889, std: 1.7129
+Updating PPO
+Step 118000 - Updating the algorithm
+Update discriminator at step 352
+Update discriminator at step 353
+Update discriminator at step 354
+[Debug] Reward mean: 1.0056, std: 1.7168
+Updating PPO
+Step 119000 - Updating the algorithm
+Update discriminator at step 355
+Update discriminator at step 356
+Update discriminator at step 357
+[Debug] Reward mean: 1.0472, std: 1.7746
+Updating PPO
+Step 120000 - Updating the algorithm
+Update discriminator at step 358
+Update discriminator at step 359
+Update discriminator at step 360
+[Debug] Reward mean: 1.0074, std: 1.7499
+Updating PPO
+Step 120000 - Evaluating the algorithm
+Num steps: 120000   Return: -155.5   Time: 4:44:28
+Step 121000 - Updating the algorithm
+Update discriminator at step 361
+Update discriminator at step 362
+Update discriminator at step 363
+[Debug] Reward mean: 0.9502, std: 1.6903
+Updating PPO
+Step 122000 - Updating the algorithm
+Update discriminator at step 364
+Update discriminator at step 365
+Update discriminator at step 366
+[Debug] Reward mean: 1.0090, std: 1.7069
+Updating PPO
+Step 123000 - Updating the algorithm
+Update discriminator at step 367
+Update discriminator at step 368
+Update discriminator at step 369
+[Debug] Reward mean: 0.9956, std: 1.6757
+Updating PPO
+Step 124000 - Updating the algorithm
+Update discriminator at step 370
+Update discriminator at step 371
+Update discriminator at step 372
+[Debug] Reward mean: 0.9713, std: 1.6644
+Updating PPO
+Step 125000 - Updating the algorithm
+Update discriminator at step 373
+Update discriminator at step 374
+Update discriminator at step 375
+[Debug] Reward mean: 0.9369, std: 1.6160
+Updating PPO
+Step 126000 - Updating the algorithm
+Update discriminator at step 376
+Update discriminator at step 377
+Update discriminator at step 378
+[Debug] Reward mean: 0.9256, std: 1.5829
+Updating PPO
+Step 127000 - Updating the algorithm
+Update discriminator at step 379
+Update discriminator at step 380
+Update discriminator at step 381
+[Debug] Reward mean: 0.9097, std: 1.5760
+Updating PPO
+Step 128000 - Updating the algorithm
+Update discriminator at step 382
+Update discriminator at step 383
+Update discriminator at step 384
+[Debug] Reward mean: 0.9344, std: 1.5821
+Updating PPO
+Step 129000 - Updating the algorithm
+Update discriminator at step 385
+Update discriminator at step 386
+Update discriminator at step 387
+[Debug] Reward mean: 0.9411, std: 1.5636
+Updating PPO
+Step 130000 - Updating the algorithm
+Update discriminator at step 388
+Update discriminator at step 389
+Update discriminator at step 390
+[Debug] Reward mean: 0.9299, std: 1.5581
+Updating PPO
+Step 130000 - Evaluating the algorithm
+Num steps: 130000   Return: -156.0   Time: 5:27:51
+Step 131000 - Updating the algorithm
+Update discriminator at step 391
+Update discriminator at step 392
+Update discriminator at step 393
+[Debug] Reward mean: 0.8716, std: 1.5030
+Updating PPO
+Step 132000 - Updating the algorithm
+Update discriminator at step 394
+Update discriminator at step 395
+Update discriminator at step 396
+[Debug] Reward mean: 0.8835, std: 1.5315
+Updating PPO
+Step 133000 - Updating the algorithm
+Update discriminator at step 397
+Update discriminator at step 398
+Update discriminator at step 399
+[Debug] Reward mean: 0.9486, std: 1.5694
+Updating PPO
+Step 134000 - Updating the algorithm
+Update discriminator at step 400
+Update discriminator at step 401
+Update discriminator at step 402
+[Debug] Reward mean: 0.8836, std: 1.5198
+Updating PPO
+Step 135000 - Updating the algorithm
+Update discriminator at step 403
+Update discriminator at step 404
+Update discriminator at step 405
+[Debug] Reward mean: 0.8772, std: 1.5028
+Updating PPO
+Step 136000 - Updating the algorithm
+Update discriminator at step 406
+Update discriminator at step 407
+Update discriminator at step 408
+[Debug] Reward mean: 0.8655, std: 1.4946
+Updating PPO
+Step 137000 - Updating the algorithm
+Update discriminator at step 409
+Update discriminator at step 410
+Update discriminator at step 411
+[Debug] Reward mean: 0.8606, std: 1.4495
+Updating PPO
+Step 138000 - Updating the algorithm
+Update discriminator at step 412
+Update discriminator at step 413
+Update discriminator at step 414
+[Debug] Reward mean: 0.9157, std: 1.5039
+Updating PPO
+Step 139000 - Updating the algorithm
+Update discriminator at step 415
+Update discriminator at step 416
+Update discriminator at step 417
+[Debug] Reward mean: 0.8322, std: 1.4202
+Updating PPO
+Step 140000 - Updating the algorithm
+Update discriminator at step 418
+Update discriminator at step 419
+Update discriminator at step 420
+[Debug] Reward mean: 0.8259, std: 1.3658
+Updating PPO
+Step 140000 - Evaluating the algorithm
+Num steps: 140000   Return: -140.4   Time: 6:15:18
+Step 141000 - Updating the algorithm
+Update discriminator at step 421
+Update discriminator at step 422
+Update discriminator at step 423
+[Debug] Reward mean: 0.8236, std: 1.3553
+Updating PPO
+Step 142000 - Updating the algorithm
+Update discriminator at step 424
+Update discriminator at step 425
+Update discriminator at step 426
+[Debug] Reward mean: 0.8312, std: 1.3662
+Updating PPO
+Step 143000 - Updating the algorithm
+Update discriminator at step 427
+Update discriminator at step 428
+Update discriminator at step 429
+[Debug] Reward mean: 0.8088, std: 1.3106
+Updating PPO
+Step 144000 - Updating the algorithm
+Update discriminator at step 430
+Update discriminator at step 431
+Update discriminator at step 432
+[Debug] Reward mean: 0.7923, std: 1.3219
+Updating PPO
+Step 145000 - Updating the algorithm
+Update discriminator at step 433
+Update discriminator at step 434
+Update discriminator at step 435
+[Debug] Reward mean: 0.8303, std: 1.3522
+Updating PPO
+Step 146000 - Updating the algorithm
+Update discriminator at step 436
+Update discriminator at step 437
+Update discriminator at step 438
+[Debug] Reward mean: 0.7766, std: 1.2670
+Updating PPO
+Step 147000 - Updating the algorithm
+Update discriminator at step 439
+Update discriminator at step 440
+Update discriminator at step 441
+[Debug] Reward mean: 0.8396, std: 1.3507
+Updating PPO
+Step 148000 - Updating the algorithm
+Update discriminator at step 442
+Update discriminator at step 443
+Update discriminator at step 444
+[Debug] Reward mean: 0.7650, std: 1.2847
+Updating PPO
+Step 149000 - Updating the algorithm
+Update discriminator at step 445
+Update discriminator at step 446
+Update discriminator at step 447
+[Debug] Reward mean: 0.7379, std: 1.2288
+Updating PPO
+Step 150000 - Updating the algorithm
+Update discriminator at step 448
+Update discriminator at step 449
+Update discriminator at step 450
+[Debug] Reward mean: 0.6974, std: 1.1638
+Updating PPO
+Step 150000 - Evaluating the algorithm
+Num steps: 150000   Return: -140.2   Time: 7:07:00
+Step 151000 - Updating the algorithm
+Update discriminator at step 451
+Update discriminator at step 452
+Update discriminator at step 453
+[Debug] Reward mean: 0.7645, std: 1.2408
+Updating PPO
+Step 152000 - Updating the algorithm
+Update discriminator at step 454
+Update discriminator at step 455
+Update discriminator at step 456
+[Debug] Reward mean: 0.7193, std: 1.1584
+Updating PPO
+Step 153000 - Updating the algorithm
+Update discriminator at step 457
+Update discriminator at step 458
+Update discriminator at step 459
+[Debug] Reward mean: 0.7700, std: 1.2141
+Updating PPO
+Step 154000 - Updating the algorithm
+Update discriminator at step 460
+Update discriminator at step 461
+Update discriminator at step 462
+[Debug] Reward mean: 0.7502, std: 1.1818
+Updating PPO
+Step 155000 - Updating the algorithm
+Update discriminator at step 463
+Update discriminator at step 464
+Update discriminator at step 465
+[Debug] Reward mean: 0.7646, std: 1.2062
+Updating PPO
+Step 156000 - Updating the algorithm
+Update discriminator at step 466
+Update discriminator at step 467
+Update discriminator at step 468
+[Debug] Reward mean: 0.7289, std: 1.1544
+Updating PPO
+Step 157000 - Updating the algorithm
+Update discriminator at step 469
+Update discriminator at step 470
+Update discriminator at step 471
+[Debug] Reward mean: 0.7050, std: 1.1184
+Updating PPO
+Step 158000 - Updating the algorithm
+Update discriminator at step 472
+Update discriminator at step 473
+Update discriminator at step 474
+[Debug] Reward mean: 0.7001, std: 1.1264
+Updating PPO
+Step 159000 - Updating the algorithm
+Update discriminator at step 475
+Update discriminator at step 476
+Update discriminator at step 477
+[Debug] Reward mean: 0.7171, std: 1.1100
+Updating PPO
+Step 160000 - Updating the algorithm
+Update discriminator at step 478
+Update discriminator at step 479
+Update discriminator at step 480
+[Debug] Reward mean: 0.6873, std: 1.0555
+Updating PPO
+Step 160000 - Evaluating the algorithm
+Num steps: 160000   Return: -109.0   Time: 8:05:27
+Step 161000 - Updating the algorithm
+Update discriminator at step 481
+Update discriminator at step 482
+Update discriminator at step 483
+[Debug] Reward mean: 0.6640, std: 1.0303
+Updating PPO
+Step 162000 - Updating the algorithm
+Update discriminator at step 484
+Update discriminator at step 485
+Update discriminator at step 486
+[Debug] Reward mean: 0.6744, std: 1.0607
+Updating PPO
+Step 163000 - Updating the algorithm
+Update discriminator at step 487
+Update discriminator at step 488
+Update discriminator at step 489
+[Debug] Reward mean: 0.6782, std: 1.0811
+Updating PPO
+Step 164000 - Updating the algorithm
+Update discriminator at step 490
+Update discriminator at step 491
+Update discriminator at step 492
+[Debug] Reward mean: 0.6725, std: 1.0573
+Updating PPO
+Step 165000 - Updating the algorithm
+Update discriminator at step 493
+Update discriminator at step 494
+Update discriminator at step 495
+[Debug] Reward mean: 0.6447, std: 1.0027
+Updating PPO
+Step 166000 - Updating the algorithm
+Update discriminator at step 496
+Update discriminator at step 497
+Update discriminator at step 498
+[Debug] Reward mean: 0.6501, std: 0.9748
+Updating PPO
+Step 167000 - Updating the algorithm
+Update discriminator at step 499
+Update discriminator at step 500
+Update discriminator at step 501
+[Debug] Reward mean: 0.6294, std: 0.9881
+Updating PPO
+Step 168000 - Updating the algorithm
+Update discriminator at step 502
+Update discriminator at step 503
+Update discriminator at step 504
+[Debug] Reward mean: 0.5978, std: 0.9075
+Updating PPO
+Step 169000 - Updating the algorithm
+Update discriminator at step 505
+Update discriminator at step 506
+Update discriminator at step 507
+[Debug] Reward mean: 0.6006, std: 0.9465
+Updating PPO
+Step 170000 - Updating the algorithm
+Update discriminator at step 508
+Update discriminator at step 509
+Update discriminator at step 510
+[Debug] Reward mean: 0.5875, std: 0.9054
+Updating PPO
+Step 170000 - Evaluating the algorithm
+Num steps: 170000   Return: -109.2   Time: 9:09:28
+Step 171000 - Updating the algorithm
+Update discriminator at step 511
+Update discriminator at step 512
+Update discriminator at step 513
+[Debug] Reward mean: 0.5910, std: 0.9446
+Updating PPO
+Step 172000 - Updating the algorithm
+Update discriminator at step 514
+Update discriminator at step 515
+Update discriminator at step 516
+[Debug] Reward mean: 0.5806, std: 0.9530
+Updating PPO
+Step 173000 - Updating the algorithm
+Update discriminator at step 517
+Update discriminator at step 518
+Update discriminator at step 519
+[Debug] Reward mean: 0.5946, std: 0.9699
+Updating PPO
+Step 174000 - Updating the algorithm
+Update discriminator at step 520
+Update discriminator at step 521
+Update discriminator at step 522
+[Debug] Reward mean: 0.5608, std: 0.9322
+Updating PPO
+Step 175000 - Updating the algorithm
+Update discriminator at step 523
+Update discriminator at step 524
+Update discriminator at step 525
+[Debug] Reward mean: 0.5491, std: 0.9271
+Updating PPO
+Step 176000 - Updating the algorithm
+Update discriminator at step 526
+Update discriminator at step 527
+Update discriminator at step 528
+[Debug] Reward mean: 0.5411, std: 0.9169
+Updating PPO
+Step 177000 - Updating the algorithm
+Update discriminator at step 529
+Update discriminator at step 530
+Update discriminator at step 531
+[Debug] Reward mean: 0.5185, std: 0.8922
+Updating PPO
+Step 178000 - Updating the algorithm
+Update discriminator at step 532
+Update discriminator at step 533
+Update discriminator at step 534
+[Debug] Reward mean: 0.5336, std: 0.8829
+Updating PPO
+Step 179000 - Updating the algorithm
+Update discriminator at step 535
+Update discriminator at step 536
+Update discriminator at step 537
+[Debug] Reward mean: 0.4698, std: 0.8356
+Updating PPO
+Step 180000 - Updating the algorithm
+Update discriminator at step 538
+Update discriminator at step 539
+Update discriminator at step 540
+[Debug] Reward mean: 0.4733, std: 0.7942
+Updating PPO
+Step 180000 - Evaluating the algorithm
+Num steps: 180000   Return: -93.6   Time: 10:18:45
+Step 181000 - Updating the algorithm
+Update discriminator at step 541
+Update discriminator at step 542
+Update discriminator at step 543
+[Debug] Reward mean: 0.4609, std: 0.8132
+Updating PPO
+Step 182000 - Updating the algorithm
+Update discriminator at step 544
+Update discriminator at step 545
+Update discriminator at step 546
+[Debug] Reward mean: 0.4476, std: 0.7923
+Updating PPO
+Step 183000 - Updating the algorithm
+Update discriminator at step 547
+Update discriminator at step 548
+Update discriminator at step 549
+[Debug] Reward mean: 0.4539, std: 0.7920
+Updating PPO
+Step 184000 - Updating the algorithm
+Update discriminator at step 550
+Update discriminator at step 551
+Update discriminator at step 552
+[Debug] Reward mean: 0.4077, std: 0.7370
+Updating PPO
+Step 185000 - Updating the algorithm
+Update discriminator at step 553
+Update discriminator at step 554
+Update discriminator at step 555
+[Debug] Reward mean: 0.4306, std: 0.7647
+Updating PPO
+Step 186000 - Updating the algorithm
+Update discriminator at step 556
+Update discriminator at step 557
+Update discriminator at step 558
+[Debug] Reward mean: 0.4133, std: 0.7455
+Updating PPO
+Step 187000 - Updating the algorithm
+Update discriminator at step 559
+Update discriminator at step 560
+Update discriminator at step 561
+[Debug] Reward mean: 0.4307, std: 0.7814
+Updating PPO
+Step 188000 - Updating the algorithm
+Update discriminator at step 562
+Update discriminator at step 563
+Update discriminator at step 564
+[Debug] Reward mean: 0.4060, std: 0.7240
+Updating PPO
+Step 189000 - Updating the algorithm
+Update discriminator at step 565
+Update discriminator at step 566
+Update discriminator at step 567
+[Debug] Reward mean: 0.3946, std: 0.7439
+Updating PPO
+Step 190000 - Updating the algorithm
+Update discriminator at step 568
+Update discriminator at step 569
+Update discriminator at step 570
+[Debug] Reward mean: 0.3825, std: 0.6753
+Updating PPO
+Step 190000 - Evaluating the algorithm
+Num steps: 190000   Return: -93.6   Time: 11:29:35
+Step 191000 - Updating the algorithm
+Update discriminator at step 571
+Update discriminator at step 572
+Update discriminator at step 573
+[Debug] Reward mean: 0.3664, std: 0.6950
+Updating PPO
+Step 192000 - Updating the algorithm
+Update discriminator at step 574
+Update discriminator at step 575
+Update discriminator at step 576
+[Debug] Reward mean: 0.3422, std: 0.6236
+Updating PPO
+Step 193000 - Updating the algorithm
+Update discriminator at step 577
+Update discriminator at step 578
+Update discriminator at step 579
+[Debug] Reward mean: 0.3175, std: 0.5768
+Updating PPO
+Step 194000 - Updating the algorithm
+Update discriminator at step 580
+Update discriminator at step 581
+Update discriminator at step 582
+[Debug] Reward mean: 0.3286, std: 0.5639
+Updating PPO
+Step 195000 - Updating the algorithm
+Update discriminator at step 583
+Update discriminator at step 584
+Update discriminator at step 585
+[Debug] Reward mean: 0.2918, std: 0.5364
+Updating PPO
+Step 196000 - Updating the algorithm
+Update discriminator at step 586
+Update discriminator at step 587
+Update discriminator at step 588
+[Debug] Reward mean: 0.2720, std: 0.4575
+Updating PPO
+Step 197000 - Updating the algorithm
+Update discriminator at step 589
+Update discriminator at step 590
+Update discriminator at step 591
+[Debug] Reward mean: 0.3006, std: 0.5389
+Updating PPO
+Step 198000 - Updating the algorithm
+Update discriminator at step 592
+Update discriminator at step 593
+Update discriminator at step 594
+[Debug] Reward mean: 0.2895, std: 0.5036
+Updating PPO
+Step 199000 - Updating the algorithm
+Update discriminator at step 595
+Update discriminator at step 596
+Update discriminator at step 597
+[Debug] Reward mean: 0.2813, std: 0.4767
+Updating PPO
+Step 200000 - Updating the algorithm
+Update discriminator at step 598
+Update discriminator at step 599
+Update discriminator at step 600
+[Debug] Reward mean: 0.2770, std: 0.4763
+Updating PPO
+Step 200000 - Evaluating the algorithm
+Num steps: 200000   Return: -93.6   Time: 12:42:48
+Step 201000 - Updating the algorithm
+Update discriminator at step 601
+Update discriminator at step 602
+Update discriminator at step 603
+[Debug] Reward mean: 0.2715, std: 0.4588
+Updating PPO
+Step 202000 - Updating the algorithm
+Update discriminator at step 604
+Update discriminator at step 605
+Update discriminator at step 606
+[Debug] Reward mean: 0.2611, std: 0.4567
+Updating PPO
+Step 203000 - Updating the algorithm
+Update discriminator at step 607
+Update discriminator at step 608
+Update discriminator at step 609
+[Debug] Reward mean: 0.2591, std: 0.4339
+Updating PPO
+Step 204000 - Updating the algorithm
+Update discriminator at step 610
+Update discriminator at step 611
+Update discriminator at step 612
+[Debug] Reward mean: 0.2626, std: 0.4463
+Updating PPO
+Step 205000 - Updating the algorithm
+Update discriminator at step 613
+Update discriminator at step 614
+Update discriminator at step 615
+[Debug] Reward mean: 0.2401, std: 0.4230
+Updating PPO
+Step 206000 - Updating the algorithm
+Update discriminator at step 616
+Update discriminator at step 617
+Update discriminator at step 618
+[Debug] Reward mean: 0.2540, std: 0.4462
+Updating PPO
+Step 207000 - Updating the algorithm
+Update discriminator at step 619
+Update discriminator at step 620
+Update discriminator at step 621
+[Debug] Reward mean: 0.2565, std: 0.4346
+Updating PPO
+Step 208000 - Updating the algorithm
+Update discriminator at step 622
+Update discriminator at step 623
+Update discriminator at step 624
+[Debug] Reward mean: 0.2639, std: 0.4903
+Updating PPO
+Step 209000 - Updating the algorithm
+Update discriminator at step 625
+Update discriminator at step 626
+Update discriminator at step 627
+[Debug] Reward mean: 0.2398, std: 0.4370
+Updating PPO
+Step 210000 - Updating the algorithm
+Update discriminator at step 628
+Update discriminator at step 629
+Update discriminator at step 630
+[Debug] Reward mean: 0.2539, std: 0.4524
+Updating PPO
+Step 210000 - Evaluating the algorithm
+Num steps: 210000   Return: -93.5   Time: 14:01:18
+Step 211000 - Updating the algorithm
+Update discriminator at step 631
+Update discriminator at step 632
+Update discriminator at step 633
+[Debug] Reward mean: 0.2337, std: 0.4040
+Updating PPO
+Step 212000 - Updating the algorithm
+Update discriminator at step 634
+Update discriminator at step 635
+Update discriminator at step 636
+[Debug] Reward mean: 0.2118, std: 0.3800
+Updating PPO
+Step 213000 - Updating the algorithm
+Update discriminator at step 637
+Update discriminator at step 638
+Update discriminator at step 639
+[Debug] Reward mean: 0.2094, std: 0.3851
+Updating PPO
+Step 214000 - Updating the algorithm
+Update discriminator at step 640
+Update discriminator at step 641
+Update discriminator at step 642
+[Debug] Reward mean: 0.2188, std: 0.4170
+Updating PPO
+Step 215000 - Updating the algorithm
+Update discriminator at step 643
+Update discriminator at step 644
+Update discriminator at step 645
+[Debug] Reward mean: 0.2018, std: 0.3734
+Updating PPO
+Step 216000 - Updating the algorithm
+Update discriminator at step 646
+Update discriminator at step 647
+Update discriminator at step 648
+[Debug] Reward mean: 0.2038, std: 0.3624
+Updating PPO
+Step 217000 - Updating the algorithm
+Update discriminator at step 649
+Update discriminator at step 650
+Update discriminator at step 651
+[Debug] Reward mean: 0.1960, std: 0.3232
+Updating PPO
+Step 218000 - Updating the algorithm
+Update discriminator at step 652
+Update discriminator at step 653
+Update discriminator at step 654
+[Debug] Reward mean: 0.2080, std: 0.3774
+Updating PPO
+Step 219000 - Updating the algorithm
+Update discriminator at step 655
+Update discriminator at step 656
+Update discriminator at step 657
+[Debug] Reward mean: 0.1835, std: 0.3325
+Updating PPO
+Step 220000 - Updating the algorithm
+Update discriminator at step 658
+Update discriminator at step 659
+Update discriminator at step 660
+[Debug] Reward mean: 0.1757, std: 0.2994
+Updating PPO
+Step 220000 - Evaluating the algorithm
+Num steps: 220000   Return: -93.6   Time: 15:20:31
+Step 221000 - Updating the algorithm
+Update discriminator at step 661
+Update discriminator at step 662
+Update discriminator at step 663
+[Debug] Reward mean: 0.1767, std: 0.3056
+Updating PPO
+Step 222000 - Updating the algorithm
+Update discriminator at step 664
+Update discriminator at step 665
+Update discriminator at step 666
+[Debug] Reward mean: 0.1643, std: 0.3026
+Updating PPO
+Step 223000 - Updating the algorithm
+Update discriminator at step 667
+Update discriminator at step 668
+Update discriminator at step 669
+[Debug] Reward mean: 0.1621, std: 0.2911
+Updating PPO
+Step 224000 - Updating the algorithm
+Update discriminator at step 670
+Update discriminator at step 671
+Update discriminator at step 672
+[Debug] Reward mean: 0.1530, std: 0.2633
+Updating PPO
+Step 225000 - Updating the algorithm
+Update discriminator at step 673
+Update discriminator at step 674
+Update discriminator at step 675
+[Debug] Reward mean: 0.1653, std: 0.2930
+Updating PPO
+Step 226000 - Updating the algorithm
+Update discriminator at step 676
+Update discriminator at step 677
+Update discriminator at step 678
+[Debug] Reward mean: 0.1503, std: 0.2517
+Updating PPO
+Step 227000 - Updating the algorithm
+Update discriminator at step 679
+Update discriminator at step 680
+Update discriminator at step 681
+[Debug] Reward mean: 0.1409, std: 0.2572
+Updating PPO
+Step 228000 - Updating the algorithm
+Update discriminator at step 682
+Update discriminator at step 683
+Update discriminator at step 684
+[Debug] Reward mean: 0.1434, std: 0.2701
+Updating PPO
+Step 229000 - Updating the algorithm
+Update discriminator at step 685
+Update discriminator at step 686
+Update discriminator at step 687
+[Debug] Reward mean: 0.1523, std: 0.3029
+Updating PPO
+Step 230000 - Updating the algorithm
+Update discriminator at step 688
+Update discriminator at step 689
+Update discriminator at step 690
+[Debug] Reward mean: 0.1355, std: 0.2375
+Updating PPO
+Step 230000 - Evaluating the algorithm
+Num steps: 230000   Return: -93.6   Time: 16:41:15
+Step 231000 - Updating the algorithm
+Update discriminator at step 691
+Update discriminator at step 692
+Update discriminator at step 693
+[Debug] Reward mean: 0.1281, std: 0.2136
+Updating PPO
+Step 232000 - Updating the algorithm
+Update discriminator at step 694
+Update discriminator at step 695
+Update discriminator at step 696
+[Debug] Reward mean: 0.1355, std: 0.2342
+Updating PPO
+Step 233000 - Updating the algorithm
+Update discriminator at step 697
+Update discriminator at step 698
+Update discriminator at step 699
+[Debug] Reward mean: 0.1396, std: 0.2300
+Updating PPO
+Step 234000 - Updating the algorithm
+Update discriminator at step 700
+Update discriminator at step 701
+Update discriminator at step 702
+[Debug] Reward mean: 0.1249, std: 0.2121
+Updating PPO
+Step 235000 - Updating the algorithm
+Update discriminator at step 703
+Update discriminator at step 704
+Update discriminator at step 705
+[Debug] Reward mean: 0.1189, std: 0.1917
+Updating PPO
+Step 236000 - Updating the algorithm
+Update discriminator at step 706
+Update discriminator at step 707
+Update discriminator at step 708
+[Debug] Reward mean: 0.1181, std: 0.2087
+Updating PPO
+Step 237000 - Updating the algorithm
+Update discriminator at step 709
+Update discriminator at step 710
+Update discriminator at step 711
+[Debug] Reward mean: 0.1245, std: 0.2099
+Updating PPO
+Step 238000 - Updating the algorithm
+Update discriminator at step 712
+Update discriminator at step 713
+Update discriminator at step 714
+[Debug] Reward mean: 0.1130, std: 0.2080
+Updating PPO
+Step 239000 - Updating the algorithm
+Update discriminator at step 715
+Update discriminator at step 716
+Update discriminator at step 717
+[Debug] Reward mean: 0.1108, std: 0.1966
+Updating PPO
+Step 240000 - Updating the algorithm
+Update discriminator at step 718
+Update discriminator at step 719
+Update discriminator at step 720
+[Debug] Reward mean: 0.1213, std: 0.2157
+Updating PPO
+Step 240000 - Evaluating the algorithm
+Num steps: 240000   Return: -93.5   Time: 18:03:07
+Step 241000 - Updating the algorithm
+Update discriminator at step 721
+Update discriminator at step 722
+Update discriminator at step 723
+[Debug] Reward mean: 0.1151, std: 0.1941
+Updating PPO
+Step 242000 - Updating the algorithm
+Update discriminator at step 724
+Update discriminator at step 725
+Update discriminator at step 726
+[Debug] Reward mean: 0.1123, std: 0.1950
+Updating PPO
+Step 243000 - Updating the algorithm
+Update discriminator at step 727
+Update discriminator at step 728
+Update discriminator at step 729
+[Debug] Reward mean: 0.1085, std: 0.1911
+Updating PPO
+Step 244000 - Updating the algorithm
+Update discriminator at step 730
+Update discriminator at step 731
+Update discriminator at step 732
+[Debug] Reward mean: 0.1135, std: 0.2130
+Updating PPO
+Step 245000 - Updating the algorithm
+Update discriminator at step 733
+Update discriminator at step 734
+Update discriminator at step 735
+[Debug] Reward mean: 0.1031, std: 0.1790
+Updating PPO
+Step 246000 - Updating the algorithm
+Update discriminator at step 736
+Update discriminator at step 737
+Update discriminator at step 738
+[Debug] Reward mean: 0.1049, std: 0.1912
+Updating PPO
+Step 247000 - Updating the algorithm
+Update discriminator at step 739
+Update discriminator at step 740
+Update discriminator at step 741
+[Debug] Reward mean: 0.0934, std: 0.1602
+Updating PPO
+Step 248000 - Updating the algorithm
+Update discriminator at step 742
+Update discriminator at step 743
+Update discriminator at step 744
+[Debug] Reward mean: 0.0919, std: 0.1587
+Updating PPO
+Step 249000 - Updating the algorithm
+Update discriminator at step 745
+Update discriminator at step 746
+Update discriminator at step 747
+[Debug] Reward mean: 0.0845, std: 0.1474
+Updating PPO
+Step 250000 - Updating the algorithm
+Update discriminator at step 748
+Update discriminator at step 749
+Update discriminator at step 750
+[Debug] Reward mean: 0.0933, std: 0.1929
+Updating PPO
+Step 250000 - Evaluating the algorithm
+Num steps: 250000   Return: -93.6   Time: 19:22:40
+Step 251000 - Updating the algorithm
+Update discriminator at step 751
+Update discriminator at step 752
+Update discriminator at step 753
+[Debug] Reward mean: 0.0831, std: 0.1632
+Updating PPO
+Step 252000 - Updating the algorithm
+Update discriminator at step 754
+Update discriminator at step 755
+Update discriminator at step 756
+[Debug] Reward mean: 0.0765, std: 0.1423
+Updating PPO
+Step 253000 - Updating the algorithm
+Update discriminator at step 757
+Update discriminator at step 758
+Update discriminator at step 759
+[Debug] Reward mean: 0.0685, std: 0.1310
+Updating PPO
+Step 254000 - Updating the algorithm
+Update discriminator at step 760
+Update discriminator at step 761
+Update discriminator at step 762
+[Debug] Reward mean: 0.0723, std: 0.1393
+Updating PPO
+Step 255000 - Updating the algorithm
+Update discriminator at step 763
+Update discriminator at step 764
+Update discriminator at step 765
+[Debug] Reward mean: 0.0628, std: 0.1176
+Updating PPO
+Step 256000 - Updating the algorithm
+Update discriminator at step 766
+Update discriminator at step 767
+Update discriminator at step 768
+[Debug] Reward mean: 0.0604, std: 0.1070
+Updating PPO
+Step 257000 - Updating the algorithm
+Update discriminator at step 769
+Update discriminator at step 770
+Update discriminator at step 771
+[Debug] Reward mean: 0.0610, std: 0.1187
+Updating PPO
+Step 258000 - Updating the algorithm
+Update discriminator at step 772
+Update discriminator at step 773
+Update discriminator at step 774
+[Debug] Reward mean: 0.0575, std: 0.1022
+Updating PPO
+Step 259000 - Updating the algorithm
+Update discriminator at step 775
+Update discriminator at step 776
+Update discriminator at step 777
+[Debug] Reward mean: 0.0559, std: 0.1117
+Updating PPO
+Step 260000 - Updating the algorithm
+Update discriminator at step 778
+Update discriminator at step 779
+Update discriminator at step 780
+[Debug] Reward mean: 0.0549, std: 0.1084
+Updating PPO
+Step 260000 - Evaluating the algorithm
+Num steps: 260000   Return: -93.6   Time: 20:42:14

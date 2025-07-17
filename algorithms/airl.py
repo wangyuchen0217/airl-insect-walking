@@ -40,7 +40,7 @@ class AIRL(PPO):
         self.epoch_disc = epoch_disc
 
 
-    def update(self, writer):
+    def update(self, writer, model_dir):
         self.learning_steps += 1
 
         for _ in range(self.epoch_disc):
@@ -81,6 +81,10 @@ class AIRL(PPO):
         # Update PPO using estimated rewards.
         self.update_ppo(
             states, actions, rewards, dones, log_pis, next_states, writer)
+        
+        # save models after 20,000 steps
+        if self.learning_steps % 20000 == 0:
+            self.save_models(model_dir)
 
 
     def update_disc(self, states, dones, log_pis, next_states,

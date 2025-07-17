@@ -74,5 +74,13 @@ class ExpertBuffer:
 
 if __name__ == "__main__":
 
-    EXPERT_FILE = "expert_data.csv"  # Path to the expert data CSV file
+    EXPERT_FILE = "expert.csv"  # Path to the expert data CSV file
     expert_data = load_expert_data(EXPERT_FILE, save_npz=False, npz_filename="expert_data.npz")
+
+    action_max = np.max(expert_data['action'], axis=0)
+    action_min = np.min(expert_data['action'], axis=0)
+    print(f"Action max: {action_max}, Action min: {action_min}")
+
+    state_max = np.max(expert_data['state'], axis=0)
+    state_min = np.min(expert_data['state'], axis=0)
+    print(f"State max: {state_max}, State min: {state_min}")

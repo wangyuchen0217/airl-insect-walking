@@ -12,7 +12,7 @@ import logging
 from common.base import LoggerWriter
 from common.base import log_parameters
 # from common.env import CoppeliaSimEnv
-from common.normalized_env import CoppeliaSimEnv
+from common.normalized_a_env import CoppeliaSimEnv
 from common.buffer import SerializedBuffer
 import torch.utils.tensorboard
 
@@ -22,7 +22,7 @@ EXPERT_FILE = "expert.csv"
 ENV_ID = "Medauroidea"
 CUDA = 0
 ROLLOUT_LENGTH = 1000 # 3000
-NUM_STEPS = 1*10**6
+NUM_STEPS = 17*10**4 
 EVAL_INTERVAL = 10**4
 GAMMA = 0.995
 MIX_BUFFER = 1

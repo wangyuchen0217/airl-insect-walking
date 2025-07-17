@@ -24,24 +24,6 @@ class CoppeliaSimEnv:
     observation_space = np.zeros((3 + 18 + 6 + 6, ), dtype=float).astype(float)  # body orientation, joint angles, forces, foot trajectory
     action_space = np.zeros((18, ), dtype=float).astype(float)  # joint angles
 
-    observation_space_high = np.array([
-                            0.13739218, 0.11150103, 0.10275564, -0.5804252, 0.9172944, -0.46535975,
-                            0.71234864, 0.6080562, -0.5482109, 1.1903477, 0.99666196, -0.71160483,
-                            1.1814184, -0.04038109, 2.392614, 0.90458405, 0.19099036, 2.2663376,
-                            -0.27360862, -0.13731903, 2.467077, 6.7135897, 14.320594, 13.079687,
-                            11.369307, 15.772957, 9.674799, 0.6964575, 0.19987853, 0.11533475,
-                            0.6888383, 0.24550687, 0.19796589
-                        ])
-    
-    observation_space_low = np.array([
-                            -0.03240576, -0.16104962, -0.08224149, -1.459179, 0.016114, -2.3673694,
-                            -0.74743503, -0.250165, -2.2369046, 0.27852923, 0.20438556, -2.5910258,
-                            0.59673387, -0.9144462, 0.3207521, -0.54610145, -0.5054805, 0.35649034,
-                            -1.2286096, -0.99857783, 0.48643476, 0., 0., 0.,
-                            0., 0., 0., 0.0079498, 0.00920632, 0.00922272,
-                            0.00933982, 0.00873947, 0.00923299
-                        ])
-
     action_space_high = np.array([
                             -0.57568526, 0.91962415, -0.4638236, 0.71432644, 0.6131103, -0.5386828,
                             1.1927193, 1.0053458, -0.7053654, 1.182008, -0.03557599, 2.3935604,
@@ -75,9 +57,6 @@ class CoppeliaSimEnv:
         self.update()
 
         # normalization parameters
-        self._obs_mid = (self.observation_space_high + self.observation_space_low) / 2.0
-        self._obs_scale = (self.observation_space_high - self.observation_space_low) / 2.0
-        print(f"Observation space mid: {self._obs_mid}, scale: {self._obs_scale}")
         self._action_mid = (self.action_space_high + self.action_space_low) / 2.0
         self._action_scale = (self.action_space_high - self.action_space_low) / 2.0
         print(f"Action space mid: {self._action_mid}, scale: {self._action_scale}")
@@ -87,12 +66,6 @@ class CoppeliaSimEnv:
 
 
     # ------------------- Normalization -------------------
-    def normalize_observation(self, observation):
-        return (observation - self._obs_mid) / self._obs_scale
-    
-    def denormalize_observation(self, norm_observation):
-        return norm_observation * self._obs_scale + self._obs_mid
-    
     def normalize_action(self, action):
         return (action - self._action_mid) / self._action_scale
 
@@ -100,7 +73,6 @@ class CoppeliaSimEnv:
         return norm_action * self._action_scale + self._action_mid
 
     def normalize_expert_data(self, expert_data):
-        expert_data['state'] = self.normalize_observation(expert_data['state'])
         expert_data['action'] = self.normalize_action(expert_data['action'])
         return expert_data
 
@@ -188,8 +160,6 @@ class CoppeliaSimEnv:
         self.set_robot_joint(action)
         self.update() 
         obs = self.get_states()
-        # normalize the observation for the policy
-        obs = self.normalize_observation(obs)
 
         # calculate the reward based on the robot's position
         robot_pos = self.sim.getObjectPosition(self.sim.getObject('/head'))
