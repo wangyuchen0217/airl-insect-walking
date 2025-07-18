@@ -5,17 +5,12 @@ import numpy as np
 from networks.actor import ActorNetworkPolicy 
 import logging
 from common.base import LoggerWriter
-from common.env import make_env
+from common.normalized_env import CoppeliaSimEnv
 
 def main():
-    SAVE_PATH = "/home/yuchen/airl-insect-walking/logs/StickInsect-v4/airl/20250527-1324"
-    ENV_ID = "StickInsect-v4"
-    # SAVE_PATH = "/home/yuchen/airl-insect-walking/logs/Ant-v4/airl/20250315-1418"
-    # ENV_ID = "Ant-v4"
-    # SAVE_PATH = "/home/yuchen/airl-insect-walking/logs/Hopper-v4/airl/20250313-1553"
-    # ENV_ID = "Hopper-v4"
-    NUM_EPISODES = 10
-    SEED = 123
+    SAVE_PATH = "logs/Medauroidea/airl/20250717-1210"
+    NUM_EPISODES = 5
+    SEED = 0
 
     # Log the evaluation process
     log_filename = os.path.join(SAVE_PATH, "evaluation.log")
@@ -29,8 +24,8 @@ def main():
 
     # Set the device and env
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    env = make_env(ENV_ID, test=True)
-    # env = gym.make(ENV_ID, render_mode="human", exclude_current_positions_from_observation=False)
+    OnTimeStep = True
+    env = CoppeliaSimEnv(port=23000, OnTimeStep=OnTimeStep)
     
     # Get state and action shapes from the environment
     state_shape = env.observation_space.shape    # e.g., (27,)

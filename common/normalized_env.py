@@ -128,6 +128,7 @@ class CoppeliaSimEnv:
     def get_bodyposition(self):
         robot_pos = self.sim.getObjectPosition(self.sim.getObject('/head'))
         robot_z = robot_pos[2]
+        robot_z = np.array([robot_z]).reshape((1,))
         return robot_z
 
     def get_bodyorientation(self):
