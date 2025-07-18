@@ -61,8 +61,8 @@ def main():
 
     # set up the environment and communication
     OnTimeStep=True
-    env = CoppeliaSimEnv(port=23002, OnTimeStep=OnTimeStep)
-    env_test = CoppeliaSimEnv(port=23003, OnTimeStep=OnTimeStep)
+    env = CoppeliaSimEnv(port=23000, OnTimeStep=OnTimeStep)
+    env_test = CoppeliaSimEnv(port=23001, OnTimeStep=OnTimeStep)
 
     device = torch.device(f"cuda:{CUDA}" if torch.cuda.is_available() and CUDA >= 0 else "cpu")
     if torch.cuda.is_available():
@@ -80,7 +80,9 @@ def main():
 
     # Load expert data from .pt files and wrap into an ExpertBuffer.
     expert_data = load_expert_data(EXPERT_FILE, save_npz=False)
+    # np.savetxt("expert_states.csv", expert_data['state'], delimiter=',')
     expert_data = env.normalize_expert_data(expert_data)
+    # np.savetxt("expert_states_normalized.csv", expert_data['state'], delimiter=',')
     expert_buffer = ExpertBuffer(expert_data, device)
     print(f"Expert buffer size: {expert_buffer.size}")
 
