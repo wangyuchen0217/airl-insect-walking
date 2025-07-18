@@ -1,0 +1,844 @@
+Logging started at 20250718-1409
+Ontime :
+True
+Observation space mid: [ 0.19452585  0.07307323  0.2271765   0.05461462 -0.02430353  0.06348581
+ -1.0198665   0.46704933 -1.41637068 -0.01755058  0.17965195 -1.3925537
+  0.73455001  0.60078851 -1.651324    0.88898288 -0.47761015  1.35666994
+  0.1795035  -0.15638547  1.31142031 -0.75165494 -0.56850493  1.47675611
+  3.45180035  7.0700135   6.6787515   5.6372655   7.862563    4.722724
+  0.35223466  0.10446619  0.06225765  0.34838411  0.12715205  0.10351367], scale: [1.75451445 0.19889242 0.03591504 0.08890867 0.13580456 0.14541177
+ 0.4393237  0.45049168 0.95099901 0.72989922 0.42861825 0.844344
+ 0.45595429 0.3960411  0.9397138  0.29220592 0.43769779 1.03592626
+ 0.72532547 0.34923167 0.95492469 0.47802647 0.43039217 0.99032619
+ 3.45180035 7.0700135  6.6787515  5.6372655  7.862563   4.722724
+ 0.34462959 0.09520167 0.0530771  0.33921214 0.11846231 0.09432853]
+Action space mid: [-1.01873243  0.45176268 -1.4165763  -0.0205206   0.1673988  -1.3896672
+  0.73325681  0.58896359 -1.6511396   0.8836804  -0.47590394  1.35490289
+  0.18083922 -0.15080036  1.30874578 -0.74782036 -0.56708082  1.47821588], scale: [0.44304717 0.46786146 0.9527527  0.73484704 0.4457115  0.8509844
+ 0.45946249 0.41638221 0.9457742  0.2983276  0.44032795 1.03865751
+ 0.73073588 0.35183635 0.95987222 0.47668324 0.43512017 0.99632052]
+INFO: VrepInterfaze is initialized successfully.
+Ontime :
+True
+Observation space mid: [ 0.19452585  0.07307323  0.2271765   0.05461462 -0.02430353  0.06348581
+ -1.0198665   0.46704933 -1.41637068 -0.01755058  0.17965195 -1.3925537
+  0.73455001  0.60078851 -1.651324    0.88898288 -0.47761015  1.35666994
+  0.1795035  -0.15638547  1.31142031 -0.75165494 -0.56850493  1.47675611
+  3.45180035  7.0700135   6.6787515   5.6372655   7.862563    4.722724
+  0.35223466  0.10446619  0.06225765  0.34838411  0.12715205  0.10351367], scale: [1.75451445 0.19889242 0.03591504 0.08890867 0.13580456 0.14541177
+ 0.4393237  0.45049168 0.95099901 0.72989922 0.42861825 0.844344
+ 0.45595429 0.3960411  0.9397138  0.29220592 0.43769779 1.03592626
+ 0.72532547 0.34923167 0.95492469 0.47802647 0.43039217 0.99032619
+ 3.45180035 7.0700135  6.6787515  5.6372655  7.862563   4.722724
+ 0.34462959 0.09520167 0.0530771  0.33921214 0.11846231 0.09432853]
+Action space mid: [-1.01873243  0.45176268 -1.4165763  -0.0205206   0.1673988  -1.3896672
+  0.73325681  0.58896359 -1.6511396   0.8836804  -0.47590394  1.35490289
+  0.18083922 -0.15080036  1.30874578 -0.74782036 -0.56708082  1.47821588], scale: [0.44304717 0.46786146 0.9527527  0.73484704 0.4457115  0.8509844
+ 0.45946249 0.41638221 0.9457742  0.2983276  0.44032795 1.03865751
+ 0.73073588 0.35183635 0.95987222 0.47668324 0.43512017 0.99632052]
+INFO: VrepInterfaze is initialized successfully.
+NVIDIA GeForce RTX 4060 Laptop GPU
+Process ID: 62261
+Env: Medauroidea, expert.csv, Seed: 0
+Rollout length: 1000
+Num steps: 170000, Eval interval: 5000
+Gamma: 0.995, Mix buffer: 1, Batch size: 64
+lr_actor: 0.0001, lr_critic: 0.0001, lr_disc: 0.0001
+Units Actor: (64, 64), Units Critic: (64, 64)
+Units Disc R: (100, 100), Units Disc V: (100, 100)
+Epoch ppo: 50, Epoch disc: 3
+Clip Epsc: 0.2, Lambda: 0.97, Coef Ent: 0.05, Max Grad Norm: 10.0
+Expert buffer size: 1517
+Initial state shape: (36,)
+Step 1000 - Updating the algorithm
+Update discriminator at step 1
+Update discriminator at step 2
+Update discriminator at step 3
+[Debug] Reward mean: 11.5470, std: 1.3686
+Updating PPO
+Step 2000 - Updating the algorithm
+Update discriminator at step 4
+Update discriminator at step 5
+Update discriminator at step 6
+[Debug] Reward mean: 11.2557, std: 1.5144
+Updating PPO
+Step 3000 - Updating the algorithm
+Update discriminator at step 7
+Update discriminator at step 8
+Update discriminator at step 9
+[Debug] Reward mean: 11.5513, std: 1.3083
+Updating PPO
+Step 4000 - Updating the algorithm
+Update discriminator at step 10
+Update discriminator at step 11
+Update discriminator at step 12
+[Debug] Reward mean: 11.5348, std: 1.2453
+Updating PPO
+Step 5000 - Updating the algorithm
+Update discriminator at step 13
+Update discriminator at step 14
+Update discriminator at step 15
+[Debug] Reward mean: 11.5631, std: 1.2200
+Updating PPO
+Step 5000 - Evaluating the algorithm
+Num steps: 5000     Return: -15665.3   Time: 0:11:48
+Models saved to logs/Medauroidea/airl/20250718-1409/model/step5000
+Step 6000 - Updating the algorithm
+Update discriminator at step 16
+Update discriminator at step 17
+Update discriminator at step 18
+[Debug] Reward mean: 11.5738, std: 1.1573
+Updating PPO
+Step 7000 - Updating the algorithm
+Update discriminator at step 19
+Update discriminator at step 20
+Update discriminator at step 21
+[Debug] Reward mean: 11.6810, std: 1.0617
+Updating PPO
+Step 8000 - Updating the algorithm
+Update discriminator at step 22
+Update discriminator at step 23
+Update discriminator at step 24
+[Debug] Reward mean: 11.7298, std: 1.0710
+Updating PPO
+Step 9000 - Updating the algorithm
+Update discriminator at step 25
+Update discriminator at step 26
+Update discriminator at step 27
+[Debug] Reward mean: 11.5075, std: 1.0602
+Updating PPO
+Step 10000 - Updating the algorithm
+Update discriminator at step 28
+Update discriminator at step 29
+Update discriminator at step 30
+[Debug] Reward mean: 11.5438, std: 1.1257
+Updating PPO
+Step 10000 - Evaluating the algorithm
+Num steps: 10000    Return: -15673.9   Time: 0:24:35
+Models saved to logs/Medauroidea/airl/20250718-1409/model/step10000
+Step 11000 - Updating the algorithm
+Update discriminator at step 31
+Update discriminator at step 32
+Update discriminator at step 33
+[Debug] Reward mean: 11.6322, std: 0.9718
+Updating PPO
+Step 12000 - Updating the algorithm
+Update discriminator at step 34
+Update discriminator at step 35
+Update discriminator at step 36
+[Debug] Reward mean: 11.5133, std: 1.0371
+Updating PPO
+Step 13000 - Updating the algorithm
+Update discriminator at step 37
+Update discriminator at step 38
+Update discriminator at step 39
+[Debug] Reward mean: 11.5735, std: 0.9516
+Updating PPO
+Step 14000 - Updating the algorithm
+Update discriminator at step 40
+Update discriminator at step 41
+Update discriminator at step 42
+[Debug] Reward mean: 11.4777, std: 0.9495
+Updating PPO
+Step 15000 - Updating the algorithm
+Update discriminator at step 43
+Update discriminator at step 44
+Update discriminator at step 45
+[Debug] Reward mean: 11.4358, std: 0.9002
+Updating PPO
+Step 15000 - Evaluating the algorithm
+Num steps: 15000    Return: -15769.6   Time: 0:37:46
+Models saved to logs/Medauroidea/airl/20250718-1409/model/step15000
+Step 16000 - Updating the algorithm
+Update discriminator at step 46
+Update discriminator at step 47
+Update discriminator at step 48
+[Debug] Reward mean: 11.4049, std: 0.8815
+Updating PPO
+Step 17000 - Updating the algorithm
+Update discriminator at step 49
+Update discriminator at step 50
+Update discriminator at step 51
+[Debug] Reward mean: 11.3759, std: 0.8765
+Updating PPO
+Step 18000 - Updating the algorithm
+Update discriminator at step 52
+Update discriminator at step 53
+Update discriminator at step 54
+[Debug] Reward mean: 11.3376, std: 0.8938
+Updating PPO
+Step 19000 - Updating the algorithm
+Update discriminator at step 55
+Update discriminator at step 56
+Update discriminator at step 57
+[Debug] Reward mean: 11.2419, std: 0.8732
+Updating PPO
+Step 20000 - Updating the algorithm
+Update discriminator at step 58
+Update discriminator at step 59
+Update discriminator at step 60
+[Debug] Reward mean: 11.1864, std: 0.8972
+Updating PPO
+Step 20000 - Evaluating the algorithm
+Num steps: 20000    Return: -15601.4   Time: 0:50:20
+Models saved to logs/Medauroidea/airl/20250718-1409/model/step20000
+Step 21000 - Updating the algorithm
+Update discriminator at step 61
+Update discriminator at step 62
+Update discriminator at step 63
+[Debug] Reward mean: 11.2048, std: 0.8420
+Updating PPO
+Step 22000 - Updating the algorithm
+Update discriminator at step 64
+Update discriminator at step 65
+Update discriminator at step 66
+[Debug] Reward mean: 11.2457, std: 0.8608
+Updating PPO
+Step 23000 - Updating the algorithm
+Update discriminator at step 67
+Update discriminator at step 68
+Update discriminator at step 69
+[Debug] Reward mean: 11.1677, std: 0.9237
+Updating PPO
+Step 24000 - Updating the algorithm
+Update discriminator at step 70
+Update discriminator at step 71
+Update discriminator at step 72
+[Debug] Reward mean: 10.9287, std: 0.9620
+Updating PPO
+Step 25000 - Updating the algorithm
+Update discriminator at step 73
+Update discriminator at step 74
+Update discriminator at step 75
+[Debug] Reward mean: 10.9943, std: 0.8865
+Updating PPO
+Step 25000 - Evaluating the algorithm
+Num steps: 25000    Return: -15760.0   Time: 1:03:38
+Models saved to logs/Medauroidea/airl/20250718-1409/model/step25000
+Step 26000 - Updating the algorithm
+Update discriminator at step 76
+Update discriminator at step 77
+Update discriminator at step 78
+[Debug] Reward mean: 10.9296, std: 0.9092
+Updating PPO
+Step 27000 - Updating the algorithm
+Update discriminator at step 79
+Update discriminator at step 80
+Update discriminator at step 81
+[Debug] Reward mean: 10.9576, std: 0.8922
+Updating PPO
+Step 28000 - Updating the algorithm
+Update discriminator at step 82
+Update discriminator at step 83
+Update discriminator at step 84
+[Debug] Reward mean: 10.8214, std: 0.9311
+Updating PPO
+Step 29000 - Updating the algorithm
+Update discriminator at step 85
+Update discriminator at step 86
+Update discriminator at step 87
+[Debug] Reward mean: 10.8354, std: 0.9185
+Updating PPO
+Step 30000 - Updating the algorithm
+Update discriminator at step 88
+Update discriminator at step 89
+Update discriminator at step 90
+[Debug] Reward mean: 10.6187, std: 0.9210
+Updating PPO
+Step 30000 - Evaluating the algorithm
+Num steps: 30000    Return: -15604.9   Time: 1:17:26
+Models saved to logs/Medauroidea/airl/20250718-1409/model/step30000
+Step 31000 - Updating the algorithm
+Update discriminator at step 91
+Update discriminator at step 92
+Update discriminator at step 93
+[Debug] Reward mean: 10.7118, std: 0.8903
+Updating PPO
+Step 32000 - Updating the algorithm
+Update discriminator at step 94
+Update discriminator at step 95
+Update discriminator at step 96
+[Debug] Reward mean: 10.4476, std: 0.9048
+Updating PPO
+Step 33000 - Updating the algorithm
+Update discriminator at step 97
+Update discriminator at step 98
+Update discriminator at step 99
+[Debug] Reward mean: 10.5434, std: 0.8851
+Updating PPO
+Step 34000 - Updating the algorithm
+Update discriminator at step 100
+Update discriminator at step 101
+Update discriminator at step 102
+[Debug] Reward mean: 10.4922, std: 0.9590
+Updating PPO
+Step 35000 - Updating the algorithm
+Update discriminator at step 103
+Update discriminator at step 104
+Update discriminator at step 105
+[Debug] Reward mean: 10.3400, std: 0.9006
+Updating PPO
+Step 35000 - Evaluating the algorithm
+Num steps: 35000    Return: -15596.8   Time: 1:31:03
+Models saved to logs/Medauroidea/airl/20250718-1409/model/step35000
+Step 36000 - Updating the algorithm
+Update discriminator at step 106
+Update discriminator at step 107
+Update discriminator at step 108
+[Debug] Reward mean: 10.2425, std: 0.9586
+Updating PPO
+Step 37000 - Updating the algorithm
+Update discriminator at step 109
+Update discriminator at step 110
+Update discriminator at step 111
+[Debug] Reward mean: 10.2904, std: 1.0290
+Updating PPO
+Step 38000 - Updating the algorithm
+Update discriminator at step 112
+Update discriminator at step 113
+Update discriminator at step 114
+[Debug] Reward mean: 10.1603, std: 0.9594
+Updating PPO
+Step 39000 - Updating the algorithm
+Update discriminator at step 115
+Update discriminator at step 116
+Update discriminator at step 117
+[Debug] Reward mean: 10.0905, std: 0.9808
+Updating PPO
+Step 40000 - Updating the algorithm
+Update discriminator at step 118
+Update discriminator at step 119
+Update discriminator at step 120
+[Debug] Reward mean: 10.0241, std: 0.9708
+Updating PPO
+Step 40000 - Evaluating the algorithm
+Num steps: 40000    Return: -15651.6   Time: 1:47:02
+Models saved to logs/Medauroidea/airl/20250718-1409/model/step40000
+Step 41000 - Updating the algorithm
+Update discriminator at step 121
+Update discriminator at step 122
+Update discriminator at step 123
+[Debug] Reward mean: 9.9198, std: 1.0085
+Updating PPO
+Step 42000 - Updating the algorithm
+Update discriminator at step 124
+Update discriminator at step 125
+Update discriminator at step 126
+[Debug] Reward mean: 9.8110, std: 1.0502
+Updating PPO
+Step 43000 - Updating the algorithm
+Update discriminator at step 127
+Update discriminator at step 128
+Update discriminator at step 129
+[Debug] Reward mean: 9.6226, std: 1.0839
+Updating PPO
+Step 44000 - Updating the algorithm
+Update discriminator at step 130
+Update discriminator at step 131
+Update discriminator at step 132
+[Debug] Reward mean: 9.4856, std: 1.0822
+Updating PPO
+Step 45000 - Updating the algorithm
+Update discriminator at step 133
+Update discriminator at step 134
+Update discriminator at step 135
+[Debug] Reward mean: 9.4736, std: 1.0619
+Updating PPO
+Step 45000 - Evaluating the algorithm
+Num steps: 45000    Return: -15610.1   Time: 2:02:55
+Models saved to logs/Medauroidea/airl/20250718-1409/model/step45000
+Step 46000 - Updating the algorithm
+Update discriminator at step 136
+Update discriminator at step 137
+Update discriminator at step 138
+[Debug] Reward mean: 9.2836, std: 1.1897
+Updating PPO
+Step 47000 - Updating the algorithm
+Update discriminator at step 139
+Update discriminator at step 140
+Update discriminator at step 141
+[Debug] Reward mean: 9.1609, std: 1.1361
+Updating PPO
+Step 48000 - Updating the algorithm
+Update discriminator at step 142
+Update discriminator at step 143
+Update discriminator at step 144
+[Debug] Reward mean: 9.1006, std: 1.1847
+Updating PPO
+Step 49000 - Updating the algorithm
+Update discriminator at step 145
+Update discriminator at step 146
+Update discriminator at step 147
+[Debug] Reward mean: 8.9395, std: 1.2411
+Updating PPO
+Step 50000 - Updating the algorithm
+Update discriminator at step 148
+Update discriminator at step 149
+Update discriminator at step 150
+[Debug] Reward mean: 8.7588, std: 1.2315
+Updating PPO
+Step 50000 - Evaluating the algorithm
+Num steps: 50000    Return: -15403.3   Time: 2:19:59
+Models saved to logs/Medauroidea/airl/20250718-1409/model/step50000
+Step 51000 - Updating the algorithm
+Update discriminator at step 151
+Update discriminator at step 152
+Update discriminator at step 153
+[Debug] Reward mean: 8.5176, std: 1.2589
+Updating PPO
+Step 52000 - Updating the algorithm
+Update discriminator at step 154
+Update discriminator at step 155
+Update discriminator at step 156
+[Debug] Reward mean: 8.3443, std: 1.3236
+Updating PPO
+Step 53000 - Updating the algorithm
+Update discriminator at step 157
+Update discriminator at step 158
+Update discriminator at step 159
+[Debug] Reward mean: 8.3437, std: 1.3627
+Updating PPO
+Step 54000 - Updating the algorithm
+Update discriminator at step 160
+Update discriminator at step 161
+Update discriminator at step 162
+[Debug] Reward mean: 8.1832, std: 1.3451
+Updating PPO
+Step 55000 - Updating the algorithm
+Update discriminator at step 163
+Update discriminator at step 164
+Update discriminator at step 165
+[Debug] Reward mean: 8.0407, std: 1.4224
+Updating PPO
+Step 55000 - Evaluating the algorithm
+Num steps: 55000    Return: -15632.0   Time: 2:37:03
+Models saved to logs/Medauroidea/airl/20250718-1409/model/step55000
+Step 56000 - Updating the algorithm
+Update discriminator at step 166
+Update discriminator at step 167
+Update discriminator at step 168
+[Debug] Reward mean: 7.7215, std: 1.4472
+Updating PPO
+Step 57000 - Updating the algorithm
+Update discriminator at step 169
+Update discriminator at step 170
+Update discriminator at step 171
+[Debug] Reward mean: 7.6351, std: 1.5081
+Updating PPO
+Step 58000 - Updating the algorithm
+Update discriminator at step 172
+Update discriminator at step 173
+Update discriminator at step 174
+[Debug] Reward mean: 7.4231, std: 1.4991
+Updating PPO
+Step 59000 - Updating the algorithm
+Update discriminator at step 175
+Update discriminator at step 176
+Update discriminator at step 177
+[Debug] Reward mean: 7.2403, std: 1.5015
+Updating PPO
+Step 60000 - Updating the algorithm
+Update discriminator at step 178
+Update discriminator at step 179
+Update discriminator at step 180
+[Debug] Reward mean: 6.8836, std: 1.5839
+Updating PPO
+Step 60000 - Evaluating the algorithm
+Num steps: 60000    Return: -15534.7   Time: 2:53:03
+Models saved to logs/Medauroidea/airl/20250718-1409/model/step60000
+Step 61000 - Updating the algorithm
+Update discriminator at step 181
+Update discriminator at step 182
+Update discriminator at step 183
+[Debug] Reward mean: 6.6381, std: 1.7062
+Updating PPO
+Step 62000 - Updating the algorithm
+Update discriminator at step 184
+Update discriminator at step 185
+Update discriminator at step 186
+[Debug] Reward mean: 6.5620, std: 1.7546
+Updating PPO
+Step 63000 - Updating the algorithm
+Update discriminator at step 187
+Update discriminator at step 188
+Update discriminator at step 189
+[Debug] Reward mean: 6.4980, std: 1.6858
+Updating PPO
+Step 64000 - Updating the algorithm
+Update discriminator at step 190
+Update discriminator at step 191
+Update discriminator at step 192
+[Debug] Reward mean: 6.1706, std: 1.7582
+Updating PPO
+Step 65000 - Updating the algorithm
+Update discriminator at step 193
+Update discriminator at step 194
+Update discriminator at step 195
+[Debug] Reward mean: 5.9704, std: 1.8797
+Updating PPO
+Step 65000 - Evaluating the algorithm
+Num steps: 65000    Return: -16018.6   Time: 3:10:35
+Models saved to logs/Medauroidea/airl/20250718-1409/model/step65000
+Step 66000 - Updating the algorithm
+Update discriminator at step 196
+Update discriminator at step 197
+Update discriminator at step 198
+[Debug] Reward mean: 5.7323, std: 1.8982
+Updating PPO
+Step 67000 - Updating the algorithm
+Update discriminator at step 199
+Update discriminator at step 200
+Update discriminator at step 201
+[Debug] Reward mean: 5.5008, std: 1.8756
+Updating PPO
+Step 68000 - Updating the algorithm
+Update discriminator at step 202
+Update discriminator at step 203
+Update discriminator at step 204
+[Debug] Reward mean: 5.2768, std: 1.9531
+Updating PPO
+Step 69000 - Updating the algorithm
+Update discriminator at step 205
+Update discriminator at step 206
+Update discriminator at step 207
+[Debug] Reward mean: 4.8952, std: 2.0333
+Updating PPO
+Step 70000 - Updating the algorithm
+Update discriminator at step 208
+Update discriminator at step 209
+Update discriminator at step 210
+[Debug] Reward mean: 4.7736, std: 1.9791
+Updating PPO
+Step 70000 - Evaluating the algorithm
+Num steps: 70000    Return: -1035.5   Time: 3:25:10
+Models saved to logs/Medauroidea/airl/20250718-1409/model/step70000
+Step 71000 - Updating the algorithm
+Update discriminator at step 211
+Update discriminator at step 212
+Update discriminator at step 213
+[Debug] Reward mean: 4.3018, std: 2.0959
+Updating PPO
+Step 72000 - Updating the algorithm
+Update discriminator at step 214
+Update discriminator at step 215
+Update discriminator at step 216
+[Debug] Reward mean: 4.2075, std: 2.0733
+Updating PPO
+Step 73000 - Updating the algorithm
+Update discriminator at step 217
+Update discriminator at step 218
+Update discriminator at step 219
+[Debug] Reward mean: 3.9974, std: 2.1006
+Updating PPO
+Step 74000 - Updating the algorithm
+Update discriminator at step 220
+Update discriminator at step 221
+Update discriminator at step 222
+[Debug] Reward mean: 3.7119, std: 2.1564
+Updating PPO
+Step 75000 - Updating the algorithm
+Update discriminator at step 223
+Update discriminator at step 224
+Update discriminator at step 225
+[Debug] Reward mean: 3.4546, std: 2.1867
+Updating PPO
+Step 75000 - Evaluating the algorithm
+Num steps: 75000    Return: -293.9   Time: 3:39:08
+Models saved to logs/Medauroidea/airl/20250718-1409/model/step75000
+Step 76000 - Updating the algorithm
+Update discriminator at step 226
+Update discriminator at step 227
+Update discriminator at step 228
+[Debug] Reward mean: 3.1039, std: 2.1394
+Updating PPO
+Step 77000 - Updating the algorithm
+Update discriminator at step 229
+Update discriminator at step 230
+Update discriminator at step 231
+[Debug] Reward mean: 2.9688, std: 2.1717
+Updating PPO
+Step 78000 - Updating the algorithm
+Update discriminator at step 232
+Update discriminator at step 233
+Update discriminator at step 234
+[Debug] Reward mean: 2.8339, std: 2.1575
+Updating PPO
+Step 79000 - Updating the algorithm
+Update discriminator at step 235
+Update discriminator at step 236
+Update discriminator at step 237
+[Debug] Reward mean: 2.6103, std: 2.1157
+Updating PPO
+Step 80000 - Updating the algorithm
+Update discriminator at step 238
+Update discriminator at step 239
+Update discriminator at step 240
+[Debug] Reward mean: 2.4194, std: 2.1277
+Updating PPO
+Step 80000 - Evaluating the algorithm
+Num steps: 80000    Return: -232.6   Time: 3:53:37
+Models saved to logs/Medauroidea/airl/20250718-1409/model/step80000
+Step 81000 - Updating the algorithm
+Update discriminator at step 241
+Update discriminator at step 242
+Update discriminator at step 243
+[Debug] Reward mean: 2.2815, std: 2.2850
+Updating PPO
+Step 82000 - Updating the algorithm
+Update discriminator at step 244
+Update discriminator at step 245
+Update discriminator at step 246
+[Debug] Reward mean: 2.0883, std: 2.1131
+Updating PPO
+Step 83000 - Updating the algorithm
+Update discriminator at step 247
+Update discriminator at step 248
+Update discriminator at step 249
+[Debug] Reward mean: 1.9648, std: 2.0711
+Updating PPO
+Step 84000 - Updating the algorithm
+Update discriminator at step 250
+Update discriminator at step 251
+Update discriminator at step 252
+[Debug] Reward mean: 1.8112, std: 2.0399
+Updating PPO
+Step 85000 - Updating the algorithm
+Update discriminator at step 253
+Update discriminator at step 254
+Update discriminator at step 255
+[Debug] Reward mean: 1.6650, std: 2.0768
+Updating PPO
+Step 85000 - Evaluating the algorithm
+Num steps: 85000    Return: -155.5   Time: 4:09:10
+Models saved to logs/Medauroidea/airl/20250718-1409/model/step85000
+Step 86000 - Updating the algorithm
+Update discriminator at step 256
+Update discriminator at step 257
+Update discriminator at step 258
+[Debug] Reward mean: 1.6362, std: 2.0231
+Updating PPO
+Step 87000 - Updating the algorithm
+Update discriminator at step 259
+Update discriminator at step 260
+Update discriminator at step 261
+[Debug] Reward mean: 1.4855, std: 2.0093
+Updating PPO
+Step 88000 - Updating the algorithm
+Update discriminator at step 262
+Update discriminator at step 263
+Update discriminator at step 264
+[Debug] Reward mean: 1.4797, std: 1.9511
+Updating PPO
+Step 89000 - Updating the algorithm
+Update discriminator at step 265
+Update discriminator at step 266
+Update discriminator at step 267
+[Debug] Reward mean: 1.4055, std: 2.0086
+Updating PPO
+Step 90000 - Updating the algorithm
+Update discriminator at step 268
+Update discriminator at step 269
+Update discriminator at step 270
+[Debug] Reward mean: 1.3732, std: 1.9619
+Updating PPO
+Step 90000 - Evaluating the algorithm
+Num steps: 90000    Return: -140.0   Time: 4:25:39
+Models saved to logs/Medauroidea/airl/20250718-1409/model/step90000
+Step 91000 - Updating the algorithm
+Update discriminator at step 271
+Update discriminator at step 272
+Update discriminator at step 273
+[Debug] Reward mean: 1.2767, std: 1.9059
+Updating PPO
+Step 92000 - Updating the algorithm
+Update discriminator at step 274
+Update discriminator at step 275
+Update discriminator at step 276
+[Debug] Reward mean: 1.2714, std: 1.9388
+Updating PPO
+Step 93000 - Updating the algorithm
+Update discriminator at step 277
+Update discriminator at step 278
+Update discriminator at step 279
+[Debug] Reward mean: 1.2001, std: 1.8735
+Updating PPO
+Step 94000 - Updating the algorithm
+Update discriminator at step 280
+Update discriminator at step 281
+Update discriminator at step 282
+[Debug] Reward mean: 1.1764, std: 1.9118
+Updating PPO
+Step 95000 - Updating the algorithm
+Update discriminator at step 283
+Update discriminator at step 284
+Update discriminator at step 285
+[Debug] Reward mean: 1.1471, std: 1.9147
+Updating PPO
+Step 95000 - Evaluating the algorithm
+Num steps: 95000    Return: -140.2   Time: 4:43:34
+Models saved to logs/Medauroidea/airl/20250718-1409/model/step95000
+Step 96000 - Updating the algorithm
+Update discriminator at step 286
+Update discriminator at step 287
+Update discriminator at step 288
+[Debug] Reward mean: 1.1388, std: 1.9065
+Updating PPO
+Step 97000 - Updating the algorithm
+Update discriminator at step 289
+Update discriminator at step 290
+Update discriminator at step 291
+[Debug] Reward mean: 1.1819, std: 1.9732
+Updating PPO
+Step 98000 - Updating the algorithm
+Update discriminator at step 292
+Update discriminator at step 293
+Update discriminator at step 294
+[Debug] Reward mean: 1.1117, std: 1.9302
+Updating PPO
+Step 99000 - Updating the algorithm
+Update discriminator at step 295
+Update discriminator at step 296
+Update discriminator at step 297
+[Debug] Reward mean: 1.1264, std: 1.9291
+Updating PPO
+Step 100000 - Updating the algorithm
+Update discriminator at step 298
+Update discriminator at step 299
+Update discriminator at step 300
+[Debug] Reward mean: 1.1169, std: 1.9155
+Updating PPO
+Step 100000 - Evaluating the algorithm
+Num steps: 100000   Return: -140.1   Time: 5:04:48
+Models saved to logs/Medauroidea/airl/20250718-1409/model/step100000
+Step 101000 - Updating the algorithm
+Update discriminator at step 301
+Update discriminator at step 302
+Update discriminator at step 303
+[Debug] Reward mean: 1.0618, std: 1.8658
+Updating PPO
+Step 102000 - Updating the algorithm
+Update discriminator at step 304
+Update discriminator at step 305
+Update discriminator at step 306
+[Debug] Reward mean: 1.0768, std: 1.9055
+Updating PPO
+Step 103000 - Updating the algorithm
+Update discriminator at step 307
+Update discriminator at step 308
+Update discriminator at step 309
+[Debug] Reward mean: 1.0965, std: 1.9035
+Updating PPO
+Step 104000 - Updating the algorithm
+Update discriminator at step 310
+Update discriminator at step 311
+Update discriminator at step 312
+[Debug] Reward mean: 1.0977, std: 1.9000
+Updating PPO
+Step 105000 - Updating the algorithm
+Update discriminator at step 313
+Update discriminator at step 314
+Update discriminator at step 315
+[Debug] Reward mean: 1.0643, std: 1.8501
+Updating PPO
+Step 105000 - Evaluating the algorithm
+Num steps: 105000   Return: -140.1   Time: 5:28:18
+Models saved to logs/Medauroidea/airl/20250718-1409/model/step105000
+Step 106000 - Updating the algorithm
+Update discriminator at step 316
+Update discriminator at step 317
+Update discriminator at step 318
+[Debug] Reward mean: 1.0419, std: 1.8016
+Updating PPO
+Step 107000 - Updating the algorithm
+Update discriminator at step 319
+Update discriminator at step 320
+Update discriminator at step 321
+[Debug] Reward mean: 1.0107, std: 1.7378
+Updating PPO
+Step 108000 - Updating the algorithm
+Update discriminator at step 322
+Update discriminator at step 323
+Update discriminator at step 324
+[Debug] Reward mean: 0.9668, std: 1.7135
+Updating PPO
+Step 109000 - Updating the algorithm
+Update discriminator at step 325
+Update discriminator at step 326
+Update discriminator at step 327
+[Debug] Reward mean: 0.9856, std: 1.7261
+Updating PPO
+Step 110000 - Updating the algorithm
+Update discriminator at step 328
+Update discriminator at step 329
+Update discriminator at step 330
+[Debug] Reward mean: 0.9363, std: 1.6380
+Updating PPO
+Step 110000 - Evaluating the algorithm
+Num steps: 110000   Return: -124.5   Time: 5:53:10
+Models saved to logs/Medauroidea/airl/20250718-1409/model/step110000
+Step 111000 - Updating the algorithm
+Update discriminator at step 331
+Update discriminator at step 332
+Update discriminator at step 333
+[Debug] Reward mean: 0.9471, std: 1.6418
+Updating PPO
+Step 112000 - Updating the algorithm
+Update discriminator at step 334
+Update discriminator at step 335
+Update discriminator at step 336
+[Debug] Reward mean: 0.9005, std: 1.6130
+Updating PPO
+Step 113000 - Updating the algorithm
+Update discriminator at step 337
+Update discriminator at step 338
+Update discriminator at step 339
+[Debug] Reward mean: 0.8806, std: 1.5680
+Updating PPO
+Step 114000 - Updating the algorithm
+Update discriminator at step 340
+Update discriminator at step 341
+Update discriminator at step 342
+[Debug] Reward mean: 0.8617, std: 1.5143
+Updating PPO
+Step 115000 - Updating the algorithm
+Update discriminator at step 343
+Update discriminator at step 344
+Update discriminator at step 345
+[Debug] Reward mean: 0.8466, std: 1.5257
+Updating PPO
+Step 115000 - Evaluating the algorithm
+Num steps: 115000   Return: -124.5   Time: 6:19:25
+Models saved to logs/Medauroidea/airl/20250718-1409/model/step115000
+Step 116000 - Updating the algorithm
+Update discriminator at step 346
+Update discriminator at step 347
+Update discriminator at step 348
+[Debug] Reward mean: 0.8100, std: 1.4840
+Updating PPO
+Step 117000 - Updating the algorithm
+Update discriminator at step 349
+Update discriminator at step 350
+Update discriminator at step 351
+[Debug] Reward mean: 0.8170, std: 1.5156
+Updating PPO
+Step 118000 - Updating the algorithm
+Update discriminator at step 352
+Update discriminator at step 353
+Update discriminator at step 354
+[Debug] Reward mean: 0.7604, std: 1.4235
+Updating PPO
+Step 119000 - Updating the algorithm
+Update discriminator at step 355
+Update discriminator at step 356
+Update discriminator at step 357
+[Debug] Reward mean: 0.7319, std: 1.3569
+Updating PPO
+Step 120000 - Updating the algorithm
+Update discriminator at step 358
+Update discriminator at step 359
+Update discriminator at step 360
+[Debug] Reward mean: 0.7369, std: 1.3612
+Updating PPO
+Step 120000 - Evaluating the algorithm
+Num steps: 120000   Return: -124.6   Time: 6:46:06
+Models saved to logs/Medauroidea/airl/20250718-1409/model/step120000
