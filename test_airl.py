@@ -8,7 +8,7 @@ from common.base import LoggerWriter
 from common.normalized_env import CoppeliaSimEnv
 
 def main():
-    SAVE_PATH = "logs/Medauroidea/airl/20250718-1409"
+    SAVE_PATH = "logs/Medauroidea/airl/20250718-1349"
     NUM_EPISODES = 5
     SEED = 0
 
@@ -99,7 +99,7 @@ def main():
             
         print(f"Episode {ep+1}: Return = {ep_return:.2f}, Steps = {step}")
     
-    env.close()
+    env.stop()
 
 if __name__ == "__main__":
     main()

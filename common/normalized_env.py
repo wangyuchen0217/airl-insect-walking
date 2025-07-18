@@ -152,7 +152,6 @@ class CoppeliaSimEnv:
         return foot_traj
     
     def get_states(self):
-        # body_z = self.get_bodyposition()
         body_pos = self.get_bodyposition()
         body_orientation = self.get_bodyorientation()
         joint_angles = self.get_jointangle()
