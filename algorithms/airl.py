@@ -40,7 +40,7 @@ class AIRL(PPO):
         self.epoch_disc = epoch_disc
 
 
-    def update(self, writer, model_dir):
+    def update(self, writer):
         self.learning_steps += 1
 
         for _ in range(self.epoch_disc):
@@ -80,7 +80,7 @@ class AIRL(PPO):
 
         # Update PPO using estimated rewards.
         self.update_ppo(
-            states, actions, rewards, dones, log_pis, next_states, writer, model_dir)
+            states, actions, rewards, dones, log_pis, next_states, writer)
         
 
     def update_disc(self, states, dones, log_pis, next_states,

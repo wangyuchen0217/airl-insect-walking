@@ -94,9 +94,9 @@ class PPO(Algorithm):
         self.learning_steps += 1
         print(f"Update step {self.learning_steps}")
         states, actions, rewards, dones, log_pis, next_states = self.buffer.get()
-        self.update_ppo(states, actions, rewards, dones, log_pis, next_states, writer, model_dir)
+        self.update_ppo(states, actions, rewards, dones, log_pis, next_states, writer)
 
-    def update_ppo(self, states, actions, rewards, dones, log_pis, next_states, writer, model_dir):
+    def update_ppo(self, states, actions, rewards, dones, log_pis, next_states, writer):
         print(f"Updating PPO")
 
         # Compute value estimates.
@@ -111,12 +111,6 @@ class PPO(Algorithm):
             self.learning_steps_ppo += 1
             self.update_critic(states, targets, writer)
             self.update_actor(states, actions, log_pis, gaes, writer)
-
-        # save the models after 10,000 learning steps ppo
-        if self.learning_steps_ppo % 10000 == 0:
-            save_dir = f"{model_dir}/ppo_{self.learning_steps_ppo}"
-            self.save_models(save_dir)
-
 
     def update_critic(self, states, targets, writer):
         loss_critic = (self.critic(states) - targets).pow_(2).mean()
