@@ -271,5 +271,5 @@ if __name__ == "__main__":
         action = np.random.uniform(-1, 1, size=18)
         obs, reward, terminated, _, _ = env.step(action)
         next_obs = env.get_states()
-        print(f"Step {i+1}, Action: {action}, States: {next_obs}")
+        # print(f"Step {i+1}, Action: {action}, States: {next_obs}")
     env.stop()
