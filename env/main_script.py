@@ -472,7 +472,7 @@ def sysCall_cleanup():
     # do some clean-up here
     if self.logging:
         save_data = pd.DataFrame(self.data_list)
-        save_data.to_csv('/home/yuchen/airl-insect-walking/env/output_sim.csv', index=False)
+        save_data.to_csv('/home/yuchen/airl-insect-walking/expert_friction10.csv', index=False)
 
     pass
 
