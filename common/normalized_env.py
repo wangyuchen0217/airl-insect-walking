@@ -88,41 +88,52 @@ class CoppeliaSimEnv:
 
     # ------------------- Normalization -------------------
     def normalize_observation(self, observation):
+        observation = np.atleast_2d(observation) # shape (B, obs_dim)
+        normalized = []
+
         # z height
-        robot_z = observation[0]
+        robot_z = observation[:, 0:1]
         robot_z_min = self.observation_space_low[0]
         robot_z_max = self.observation_space_high[0]
         norm_robot_z = (robot_z - robot_z_min) / (robot_z_max - robot_z_min)
+        normalized.append(norm_robot_z)
 
         # roll, pitch, yaw: use the unified standard for normalization
-        orientation = observation[1:4]
+        orientation = observation[:, 1:4]
         orientation_low = min(self.observation_space_low[1:4])
         orientation_high = max(self.observation_space_high[1:4])
         norm_orientation = (orientation - orientation_low) / (orientation_high - orientation_low)
+        normalized.append(norm_orientation)
 
         # joint angles: use seperate normalization for each joint
-        joint_angles = observation[4:22]
+        joint_angles = observation[:, 4:22]
         joint_angles_low = self.observation_space_low[4:22]
         joint_angles_high = self.observation_space_high[4:22]
         norm_joint_angles = (joint_angles - joint_angles_low) / (joint_angles_high - joint_angles_low)
+        normalized.append(norm_joint_angles)
+        # norm_joint_angles = np.zeros_like(joint_angles)
+        # for i in range(len(joint_angles)):
+        #     norm_joint_angles[i] = (joint_angles[i] - joint_angles_low[i]) / (joint_angles_high[i] - joint_angles_low[i])
 
         # forces: use the unified standard for normalization
-        forces = observation[22:28]
+        forces = observation[:, 22:28]
         forces_low = min(self.observation_space_low[22:28])
         forces_high = max(self.observation_space_high[22:28])
         norm_forces = (forces - forces_low) / (forces_high - forces_low)
+        normalized.append(norm_forces)
 
         # foot trajectory: use the unified standard for normalization
-        foot_traj = observation[28:34]
+        foot_traj = observation[:, 28:34]
         foot_traj_low = min(self.observation_space_low[28:34])
         foot_traj_high = max(self.observation_space_high[28:34])
         norm_foot_traj = (foot_traj - foot_traj_low) / (foot_traj_high - foot_traj_low)
-
-        # concatenate all normalized components
-        normalized_observation = np.concatenate((norm_robot_z, norm_orientation, 
-                                                 norm_joint_angles, norm_forces, 
-                                                 norm_foot_traj))
-        return normalized_observation
+        normalized.append(norm_foot_traj)
+        
+        # check if the observation is a single sample or a batch
+        normalized_obs = np.concatenate(normalized, axis=1)
+        if observation.shape[0] == 1:
+            return normalized_obs[0]
+        return normalized_obs
     
     def normalize_action(self, action):
         return (action - self._action_mid) / self._action_scale
