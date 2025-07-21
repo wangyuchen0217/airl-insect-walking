@@ -80,9 +80,9 @@ def main():
 
     # Load expert data from .pt files and wrap into an ExpertBuffer.
     expert_data = load_expert_data(EXPERT_FILE, save_npz=False)
-    np.savetxt("expert_states.csv", expert_data['state'], delimiter=',')
+    # np.savetxt("expert_states.csv", expert_data['state'], delimiter=',')
     expert_data = env.normalize_expert_data(expert_data)
-    np.savetxt("expert_states_normalized.csv", expert_data['state'], delimiter=',')
+    # np.savetxt("expert_states_normalized.csv", expert_data['state'], delimiter=',')
     expert_buffer = ExpertBuffer(expert_data, device)
     print(f"Expert buffer size: {expert_buffer.size}")
 
