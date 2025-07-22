@@ -241,7 +241,7 @@ class CoppeliaSimEnv:
         # normalize the observation for the policy
         obs = self.normalize_observation(obs)
         # clip the observation to the observation space bounds
-        obs = np.clip(obs, 0.0, 1.0)
+        # obs = np.clip(obs, 0.0, 1.0)
 
         # calculate the reward based on the robot's position
         robot_pos = self.sim.getObjectPosition(self.sim.getObject('/head'))
