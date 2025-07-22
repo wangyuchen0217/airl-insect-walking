@@ -18,7 +18,7 @@ import torch.utils.tensorboard
 
 # ======== Parameters (modify these as needed) =========
 NAME = "StickInsect"
-EXPERT_FILE = "expert.csv"
+EXPERT_FILE = "expert_friction10.csv"
 ENV_ID = "Medauroidea"
 CUDA = 0
 ROLLOUT_LENGTH = 1000 # 3000
@@ -61,8 +61,8 @@ def main():
 
     # set up the environment and communication
     OnTimeStep=True
-    env = CoppeliaSimEnv(port=23000, OnTimeStep=OnTimeStep)
-    env_test = CoppeliaSimEnv(port=23001, OnTimeStep=OnTimeStep)
+    env = CoppeliaSimEnv(port=23004, OnTimeStep=OnTimeStep)
+    env_test = CoppeliaSimEnv(port=23005, OnTimeStep=OnTimeStep)
 
     device = torch.device(f"cuda:{CUDA}" if torch.cuda.is_available() and CUDA >= 0 else "cpu")
     if torch.cuda.is_available():
