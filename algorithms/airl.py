@@ -72,10 +72,14 @@ class AIRL(PPO):
             states, dones, log_pis, next_states)
         # print(f"[Debug] Rewards: {rewards.flatten()}")
         
-        # add debug 5.15
-        print(f"[Debug] Reward mean: {rewards.mean().item():.4f}, std: {rewards.std().item():.4f}")
+        # add debug
+        # print(f"[Debug] Reward mean: {rewards.mean().item():.4f}, std: {rewards.std().item():.4f}")
+        writer.add_scalar(
+            'return/reward_mean', rewards.mean().item(), self.learning_steps)
+        writer.add_scalar(
+            'return/reward_std', rewards.std().item(), self.learning_steps)
 
-        # add reward normalization 5.15
+        # add reward normalization
         rewards = (rewards - rewards.mean()) / (rewards.std() + 1e-8)
 
         # Update PPO using estimated rewards.
@@ -86,7 +90,7 @@ class AIRL(PPO):
     def update_disc(self, states, dones, log_pis, next_states,
                     states_exp, dones_exp, log_pis_exp,
                     next_states_exp, writer):
-        print(f"Update discriminator at step {self.learning_steps_disc}")
+        # print(f"Update discriminator at step {self.learning_steps_disc}")
 
         # Output of discriminator is (-inf, inf), not [0, 1].
         logits_pi = self.disc(states, dones, log_pis, next_states)
