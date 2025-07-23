@@ -8,7 +8,7 @@ from common.base import LoggerWriter
 from common.normalized_env import CoppeliaSimEnv
 
 def main():
-    SAVE_PATH = "logs/Medauroidea/airl/20250721-1401"
+    SAVE_PATH = "logs/Medauroidea/airl/20250722-1835"
     NUM_EPISODES = 5
     SEED = 0
 
