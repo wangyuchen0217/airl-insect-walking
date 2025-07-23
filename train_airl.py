@@ -18,7 +18,7 @@ import torch.utils.tensorboard
 
 # ======== Parameters (modify these as needed) =========
 NAME = "StickInsect"
-EXPERT_FILE = "expert_friction10.csv"
+EXPERT_FILE = "expert.csv"
 ENV_ID = "Medauroidea"
 CUDA = 0
 ROLLOUT_LENGTH = 1000 # 3000
