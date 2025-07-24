@@ -1,0 +1,473 @@
+Logging started at 20250723-1617
+Ontime :
+True
+Action space mid: [-1.01873243  0.45176268 -1.4165763  -0.0205206   0.1673988  -1.3896672
+  0.73325681  0.58896359 -1.6511396   0.8836804  -0.47590394  1.35490289
+  0.18083922 -0.15080036  1.30874578 -0.74782036 -0.56708082  1.47821588], scale: [0.44304717 0.46786146 0.9527527  0.73484704 0.4457115  0.8509844
+ 0.45946249 0.41638221 0.9457742  0.2983276  0.44032795 1.03865751
+ 0.73073588 0.35183635 0.95987222 0.47668324 0.43512017 0.99632052]
+INFO: VrepInterfaze is initialized successfully.
+Ontime :
+True
+Action space mid: [-1.01873243  0.45176268 -1.4165763  -0.0205206   0.1673988  -1.3896672
+  0.73325681  0.58896359 -1.6511396   0.8836804  -0.47590394  1.35490289
+  0.18083922 -0.15080036  1.30874578 -0.74782036 -0.56708082  1.47821588], scale: [0.44304717 0.46786146 0.9527527  0.73484704 0.4457115  0.8509844
+ 0.45946249 0.41638221 0.9457742  0.2983276  0.44032795 1.03865751
+ 0.73073588 0.35183635 0.95987222 0.47668324 0.43512017 0.99632052]
+INFO: VrepInterfaze is initialized successfully.
+Running on CPU
+Process ID: 1125764
+Env: Medauroidea, expert.csv, Seed: 0
+Rollout length: 1000
+Num steps: 170000, Eval interval: 5000
+Gamma: 0.995, Mix buffer: 1, Batch size: 64
+lr_actor: 5e-05, lr_critic: 5e-05, lr_disc: 5e-05
+Units Actor: (64, 64), Units Critic: (64, 64)
+Units Disc R: (100, 100), Units Disc V: (100, 100)
+Epoch ppo: 50, Epoch disc: 3
+Clip Epsc: 0.2, Lambda: 0.97, Coef Ent: 0.05, Max Grad Norm: 10.0
+Expert buffer size: 1517
+Initial state shape: (34,)
+Step 1000 - Updating the algorithm
+Updating PPO
+Step 2000 - Updating the algorithm
+Updating PPO
+Step 3000 - Updating the algorithm
+Updating PPO
+Step 4000 - Updating the algorithm
+Updating PPO
+Step 5000 - Updating the algorithm
+Updating PPO
+Step 5000 - Evaluating the algorithm
+Num steps: 5000     Return: -15447.9   Time: 0:12:50
+Models saved to logs/Medauroidea/airl/20250723-1617/model/step5000
+Step 6000 - Updating the algorithm
+Updating PPO
+Step 7000 - Updating the algorithm
+Updating PPO
+Step 8000 - Updating the algorithm
+Updating PPO
+Step 9000 - Updating the algorithm
+Updating PPO
+Step 10000 - Updating the algorithm
+Updating PPO
+Step 10000 - Evaluating the algorithm
+Num steps: 10000    Return: -15533.3   Time: 0:26:48
+Models saved to logs/Medauroidea/airl/20250723-1617/model/step10000
+Step 11000 - Updating the algorithm
+Updating PPO
+Step 12000 - Updating the algorithm
+Updating PPO
+Step 13000 - Updating the algorithm
+Updating PPO
+Step 14000 - Updating the algorithm
+Updating PPO
+Step 15000 - Updating the algorithm
+Updating PPO
+Step 15000 - Evaluating the algorithm
+Num steps: 15000    Return: -15511.0   Time: 0:39:38
+Models saved to logs/Medauroidea/airl/20250723-1617/model/step15000
+Step 16000 - Updating the algorithm
+Updating PPO
+Step 17000 - Updating the algorithm
+Updating PPO
+Step 18000 - Updating the algorithm
+Updating PPO
+Step 19000 - Updating the algorithm
+Updating PPO
+Step 20000 - Updating the algorithm
+Updating PPO
+Step 20000 - Evaluating the algorithm
+Num steps: 20000    Return: -15548.1   Time: 0:52:30
+Models saved to logs/Medauroidea/airl/20250723-1617/model/step20000
+Step 21000 - Updating the algorithm
+Updating PPO
+Step 22000 - Updating the algorithm
+Updating PPO
+Step 23000 - Updating the algorithm
+Updating PPO
+Step 24000 - Updating the algorithm
+Updating PPO
+Step 25000 - Updating the algorithm
+Updating PPO
+Step 25000 - Evaluating the algorithm
+Num steps: 25000    Return: -15472.8   Time: 1:05:50
+Models saved to logs/Medauroidea/airl/20250723-1617/model/step25000
+Step 26000 - Updating the algorithm
+Updating PPO
+Step 27000 - Updating the algorithm
+Updating PPO
+Step 28000 - Updating the algorithm
+Updating PPO
+Step 29000 - Updating the algorithm
+Updating PPO
+Step 30000 - Updating the algorithm
+Updating PPO
+Step 30000 - Evaluating the algorithm
+Num steps: 30000    Return: -15625.8   Time: 1:18:40
+Models saved to logs/Medauroidea/airl/20250723-1617/model/step30000
+Step 31000 - Updating the algorithm
+Updating PPO
+Step 32000 - Updating the algorithm
+Updating PPO
+Step 33000 - Updating the algorithm
+Updating PPO
+Step 34000 - Updating the algorithm
+Updating PPO
+Step 35000 - Updating the algorithm
+Updating PPO
+Step 35000 - Evaluating the algorithm
+Num steps: 35000    Return: -15560.4   Time: 1:31:24
+Models saved to logs/Medauroidea/airl/20250723-1617/model/step35000
+Step 36000 - Updating the algorithm
+Updating PPO
+Step 37000 - Updating the algorithm
+Updating PPO
+Step 38000 - Updating the algorithm
+Updating PPO
+Step 39000 - Updating the algorithm
+Updating PPO
+Step 40000 - Updating the algorithm
+Updating PPO
+Step 40000 - Evaluating the algorithm
+Num steps: 40000    Return: -15488.4   Time: 1:45:22
+Models saved to logs/Medauroidea/airl/20250723-1617/model/step40000
+Step 41000 - Updating the algorithm
+Updating PPO
+Step 42000 - Updating the algorithm
+Updating PPO
+Step 43000 - Updating the algorithm
+Updating PPO
+Step 44000 - Updating the algorithm
+Updating PPO
+Step 45000 - Updating the algorithm
+Updating PPO
+Step 45000 - Evaluating the algorithm
+Num steps: 45000    Return: -15525.7   Time: 1:58:38
+Models saved to logs/Medauroidea/airl/20250723-1617/model/step45000
+Step 46000 - Updating the algorithm
+Updating PPO
+Step 47000 - Updating the algorithm
+Updating PPO
+Step 48000 - Updating the algorithm
+Updating PPO
+Step 49000 - Updating the algorithm
+Updating PPO
+Step 50000 - Updating the algorithm
+Updating PPO
+Step 50000 - Evaluating the algorithm
+Num steps: 50000    Return: -15501.5   Time: 2:11:44
+Models saved to logs/Medauroidea/airl/20250723-1617/model/step50000
+Step 51000 - Updating the algorithm
+Updating PPO
+Step 52000 - Updating the algorithm
+Updating PPO
+Step 53000 - Updating the algorithm
+Updating PPO
+Step 54000 - Updating the algorithm
+Updating PPO
+Step 55000 - Updating the algorithm
+Updating PPO
+Step 55000 - Evaluating the algorithm
+Num steps: 55000    Return: -15563.5   Time: 2:24:58
+Models saved to logs/Medauroidea/airl/20250723-1617/model/step55000
+Step 56000 - Updating the algorithm
+Updating PPO
+Step 57000 - Updating the algorithm
+Updating PPO
+Step 58000 - Updating the algorithm
+Updating PPO
+Step 59000 - Updating the algorithm
+Updating PPO
+Step 60000 - Updating the algorithm
+Updating PPO
+Step 60000 - Evaluating the algorithm
+Num steps: 60000    Return: -15598.7   Time: 2:37:09
+Models saved to logs/Medauroidea/airl/20250723-1617/model/step60000
+Step 61000 - Updating the algorithm
+Updating PPO
+Step 62000 - Updating the algorithm
+Updating PPO
+Step 63000 - Updating the algorithm
+Updating PPO
+Step 64000 - Updating the algorithm
+Updating PPO
+Step 65000 - Updating the algorithm
+Updating PPO
+Step 65000 - Evaluating the algorithm
+Num steps: 65000    Return: -15634.0   Time: 2:51:17
+Models saved to logs/Medauroidea/airl/20250723-1617/model/step65000
+Step 66000 - Updating the algorithm
+Updating PPO
+Step 67000 - Updating the algorithm
+Updating PPO
+Step 68000 - Updating the algorithm
+Updating PPO
+Step 69000 - Updating the algorithm
+Updating PPO
+Step 70000 - Updating the algorithm
+Updating PPO
+Step 70000 - Evaluating the algorithm
+Num steps: 70000    Return: -15589.8   Time: 3:05:59
+Models saved to logs/Medauroidea/airl/20250723-1617/model/step70000
+Step 71000 - Updating the algorithm
+Updating PPO
+Step 72000 - Updating the algorithm
+Updating PPO
+Step 73000 - Updating the algorithm
+Updating PPO
+Step 74000 - Updating the algorithm
+Updating PPO
+Step 75000 - Updating the algorithm
+Updating PPO
+Step 75000 - Evaluating the algorithm
+Num steps: 75000    Return: -15721.0   Time: 3:22:09
+Models saved to logs/Medauroidea/airl/20250723-1617/model/step75000
+Step 76000 - Updating the algorithm
+Updating PPO
+Step 77000 - Updating the algorithm
+Updating PPO
+Step 78000 - Updating the algorithm
+Updating PPO
+Step 79000 - Updating the algorithm
+Updating PPO
+Step 80000 - Updating the algorithm
+Updating PPO
+Step 80000 - Evaluating the algorithm
+Num steps: 80000    Return: -15652.0   Time: 3:37:54
+Models saved to logs/Medauroidea/airl/20250723-1617/model/step80000
+Step 81000 - Updating the algorithm
+Updating PPO
+Step 82000 - Updating the algorithm
+Updating PPO
+Step 83000 - Updating the algorithm
+Updating PPO
+Step 84000 - Updating the algorithm
+Updating PPO
+Step 85000 - Updating the algorithm
+Updating PPO
+Step 85000 - Evaluating the algorithm
+Num steps: 85000    Return: -15532.7   Time: 3:53:14
+Models saved to logs/Medauroidea/airl/20250723-1617/model/step85000
+Step 86000 - Updating the algorithm
+Updating PPO
+Step 87000 - Updating the algorithm
+Updating PPO
+Step 88000 - Updating the algorithm
+Updating PPO
+Step 89000 - Updating the algorithm
+Updating PPO
+Step 90000 - Updating the algorithm
+Updating PPO
+Step 90000 - Evaluating the algorithm
+Num steps: 90000    Return: -15724.6   Time: 4:10:52
+Models saved to logs/Medauroidea/airl/20250723-1617/model/step90000
+Step 91000 - Updating the algorithm
+Updating PPO
+Step 92000 - Updating the algorithm
+Updating PPO
+Step 93000 - Updating the algorithm
+Updating PPO
+Step 94000 - Updating the algorithm
+Updating PPO
+Step 95000 - Updating the algorithm
+Updating PPO
+Step 95000 - Evaluating the algorithm
+Num steps: 95000    Return: -15602.7   Time: 4:30:02
+Models saved to logs/Medauroidea/airl/20250723-1617/model/step95000
+Step 96000 - Updating the algorithm
+Updating PPO
+Step 97000 - Updating the algorithm
+Updating PPO
+Step 98000 - Updating the algorithm
+Updating PPO
+Step 99000 - Updating the algorithm
+Updating PPO
+Step 100000 - Updating the algorithm
+Updating PPO
+Step 100000 - Evaluating the algorithm
+Num steps: 100000   Return: -15639.2   Time: 4:50:12
+Models saved to logs/Medauroidea/airl/20250723-1617/model/step100000
+Step 101000 - Updating the algorithm
+Updating PPO
+Step 102000 - Updating the algorithm
+Updating PPO
+Step 103000 - Updating the algorithm
+Updating PPO
+Step 104000 - Updating the algorithm
+Updating PPO
+Step 105000 - Updating the algorithm
+Updating PPO
+Step 105000 - Evaluating the algorithm
+Num steps: 105000   Return: -15562.2   Time: 5:09:21
+Models saved to logs/Medauroidea/airl/20250723-1617/model/step105000
+Step 106000 - Updating the algorithm
+Updating PPO
+Step 107000 - Updating the algorithm
+Updating PPO
+Step 108000 - Updating the algorithm
+Updating PPO
+Step 109000 - Updating the algorithm
+Updating PPO
+Step 110000 - Updating the algorithm
+Updating PPO
+Step 110000 - Evaluating the algorithm
+Num steps: 110000   Return: -15515.6   Time: 5:30:11
+Models saved to logs/Medauroidea/airl/20250723-1617/model/step110000
+Step 111000 - Updating the algorithm
+Updating PPO
+Step 112000 - Updating the algorithm
+Updating PPO
+Step 113000 - Updating the algorithm
+Updating PPO
+Step 114000 - Updating the algorithm
+Updating PPO
+Step 115000 - Updating the algorithm
+Updating PPO
+Step 115000 - Evaluating the algorithm
+Num steps: 115000   Return: -15566.8   Time: 5:51:30
+Models saved to logs/Medauroidea/airl/20250723-1617/model/step115000
+Step 116000 - Updating the algorithm
+Updating PPO
+Step 117000 - Updating the algorithm
+Updating PPO
+Step 118000 - Updating the algorithm
+Updating PPO
+Step 119000 - Updating the algorithm
+Updating PPO
+Step 120000 - Updating the algorithm
+Updating PPO
+Step 120000 - Evaluating the algorithm
+Num steps: 120000   Return: -15503.5   Time: 6:13:31
+Models saved to logs/Medauroidea/airl/20250723-1617/model/step120000
+Step 121000 - Updating the algorithm
+Updating PPO
+Step 122000 - Updating the algorithm
+Updating PPO
+Step 123000 - Updating the algorithm
+Updating PPO
+Step 124000 - Updating the algorithm
+Updating PPO
+Step 125000 - Updating the algorithm
+Updating PPO
+Step 125000 - Evaluating the algorithm
+Num steps: 125000   Return: -217.2   Time: 6:31:49
+Models saved to logs/Medauroidea/airl/20250723-1617/model/step125000
+Step 126000 - Updating the algorithm
+Updating PPO
+Step 127000 - Updating the algorithm
+Updating PPO
+Step 128000 - Updating the algorithm
+Updating PPO
+Step 129000 - Updating the algorithm
+Updating PPO
+Step 130000 - Updating the algorithm
+Updating PPO
+Step 130000 - Evaluating the algorithm
+Num steps: 130000   Return: -139.7   Time: 6:50:27
+Models saved to logs/Medauroidea/airl/20250723-1617/model/step130000
+Step 131000 - Updating the algorithm
+Updating PPO
+Step 132000 - Updating the algorithm
+Updating PPO
+Step 133000 - Updating the algorithm
+Updating PPO
+Step 134000 - Updating the algorithm
+Updating PPO
+Step 135000 - Updating the algorithm
+Updating PPO
+Step 135000 - Evaluating the algorithm
+Num steps: 135000   Return: -139.8   Time: 7:09:14
+Models saved to logs/Medauroidea/airl/20250723-1617/model/step135000
+Step 136000 - Updating the algorithm
+Updating PPO
+Step 137000 - Updating the algorithm
+Updating PPO
+Step 138000 - Updating the algorithm
+Updating PPO
+Step 139000 - Updating the algorithm
+Updating PPO
+Step 140000 - Updating the algorithm
+Updating PPO
+Step 140000 - Evaluating the algorithm
+Num steps: 140000   Return: -139.8   Time: 7:28:47
+Models saved to logs/Medauroidea/airl/20250723-1617/model/step140000
+Step 141000 - Updating the algorithm
+Updating PPO
+Step 142000 - Updating the algorithm
+Updating PPO
+Step 143000 - Updating the algorithm
+Updating PPO
+Step 144000 - Updating the algorithm
+Updating PPO
+Step 145000 - Updating the algorithm
+Updating PPO
+Step 145000 - Evaluating the algorithm
+Num steps: 145000   Return: -124.3   Time: 7:48:21
+Models saved to logs/Medauroidea/airl/20250723-1617/model/step145000
+Step 146000 - Updating the algorithm
+Updating PPO
+Step 147000 - Updating the algorithm
+Updating PPO
+Step 148000 - Updating the algorithm
+Updating PPO
+Step 149000 - Updating the algorithm
+Updating PPO
+Step 150000 - Updating the algorithm
+Updating PPO
+Step 150000 - Evaluating the algorithm
+Num steps: 150000   Return: -124.3   Time: 8:08:40
+Models saved to logs/Medauroidea/airl/20250723-1617/model/step150000
+Step 151000 - Updating the algorithm
+Updating PPO
+Step 152000 - Updating the algorithm
+Updating PPO
+Step 153000 - Updating the algorithm
+Updating PPO
+Step 154000 - Updating the algorithm
+Updating PPO
+Step 155000 - Updating the algorithm
+Updating PPO
+Step 155000 - Evaluating the algorithm
+Num steps: 155000   Return: -139.9   Time: 8:29:45
+Models saved to logs/Medauroidea/airl/20250723-1617/model/step155000
+Step 156000 - Updating the algorithm
+Updating PPO
+Step 157000 - Updating the algorithm
+Updating PPO
+Step 158000 - Updating the algorithm
+Updating PPO
+Step 159000 - Updating the algorithm
+Updating PPO
+Step 160000 - Updating the algorithm
+Updating PPO
+Step 160000 - Evaluating the algorithm
+Num steps: 160000   Return: -124.3   Time: 8:52:22
+Models saved to logs/Medauroidea/airl/20250723-1617/model/step160000
+Step 161000 - Updating the algorithm
+Updating PPO
+Step 162000 - Updating the algorithm
+Updating PPO
+Step 163000 - Updating the algorithm
+Updating PPO
+Step 164000 - Updating the algorithm
+Updating PPO
+Step 165000 - Updating the algorithm
+Updating PPO
+Step 165000 - Evaluating the algorithm
+Num steps: 165000   Return: -124.3   Time: 9:16:50
+Models saved to logs/Medauroidea/airl/20250723-1617/model/step165000
+Step 166000 - Updating the algorithm
+Updating PPO
+Step 167000 - Updating the algorithm
+Updating PPO
+Step 168000 - Updating the algorithm
+Updating PPO
+Step 169000 - Updating the algorithm
+Updating PPO
+Step 170000 - Updating the algorithm
+Updating PPO
+Step 170000 - Evaluating the algorithm
+Num steps: 170000   Return: -124.3   Time: 9:43:10
+Models saved to logs/Medauroidea/airl/20250723-1617/model/step170000
+Models saved to logs/Medauroidea/airl/20250723-1617/model

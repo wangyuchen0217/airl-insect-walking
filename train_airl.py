@@ -27,15 +27,15 @@ EVAL_INTERVAL = 5000
 GAMMA = 0.995
 MIX_BUFFER = 1
 BATCH_SIZE = 64
-LR_ACTOR = 1e-4
-LR_CRITIC = 3e-4
-LR_DISC = 3e-4
+LR_ACTOR = 5e-5
+LR_CRITIC = 5e-5
+LR_DISC = 5e-5
 UNITS_ACTOR = (64, 64)
 UNITS_CRITIC = (64, 64)
 UNITS_DISC_R = (100, 100)
 UNITS_DISC_V = (100, 100)
 EPOCH_PPO = 50
-EPOCH_DISC = 1
+EPOCH_DISC = 3
 CLIP_EPS = 0.2
 LAMBDA = 0.97
 COEF_ENT = 0.05
@@ -61,8 +61,8 @@ def main():
 
     # set up the environment and communication
     OnTimeStep=True
-    env = CoppeliaSimEnv(port=23000, OnTimeStep=OnTimeStep)
-    env_test = CoppeliaSimEnv(port=23001, OnTimeStep=OnTimeStep)
+    env = CoppeliaSimEnv(port=23004, OnTimeStep=OnTimeStep)
+    env_test = CoppeliaSimEnv(port=23005, OnTimeStep=OnTimeStep)
 
     device = torch.device(f"cuda:{CUDA}" if torch.cuda.is_available() and CUDA >= 0 else "cpu")
     if torch.cuda.is_available():
