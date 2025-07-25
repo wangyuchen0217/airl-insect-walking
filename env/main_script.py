@@ -292,6 +292,13 @@ def sysCall_actuation():
         self.HR_joints_target[i] = 0 + (math.radians(self.HR_joints_csv[i] * self.HR_joints_csv_direction[i]) + math.radians(self.HR_joints_csv_offset[i])) * self.HR_joints_init_direction[i]
 
 
+        # self.FL_joints_target[1] = math.radians(5)
+        # self.ML_joints_target[1] = math.radians(5)
+        # self.HL_joints_target[1] = math.radians(5)
+        # self.FR_joints_target[1] = math.radians(5)
+        # self.MR_joints_target[1] = math.radians(5)
+        # self.HR_joints_target[1] = math.radians(5)
+
         # # # # For smooth movement
         # self.FL_joints_prev_pos[i] = self.FL_joints_target[i]
         # self.ML_joints_prev_pos[i] = self.ML_joints_target[i]
