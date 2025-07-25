@@ -13,6 +13,7 @@ def sysCall_init():
     
     self.csv_row_count = 0
     self.csv_file = "/home/yuchen/airl-insect-walking/env/Animal06_110919_00_31.csv"
+    # self.csv_file = "/home/yuchen/airl-insect-walking/env/Animal06_110919_00_31_downsampled.csv"
     self.df = pd.read_csv(self.csv_file)
     self.df_final_line = len(self.df['LF_CTr'])
     print(self.df_final_line)
@@ -491,6 +492,9 @@ def sysCall_cleanup():
 def csv_to_motor():
     if self.csv_row_count < 1371 or self.csv_row_count > 2070:
         self.csv_row_count = 1371
+
+    # if self.csv_row_count < 137 or self.csv_row_count > 207:
+    #     self.csv_row_count = 137
 
 
     if self.csv_row_count > self.df_final_line-3:
