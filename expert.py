@@ -72,5 +72,7 @@ if __name__ == "__main__":
     expert_data = load_expert_data(STATE_FILE, ACTION_FILE, save_npz=False, npz_filename="expert_data.npz")
 
     # convert action to csv
+    states = expert_data['state']
     actions = expert_data['action']
-    np.savetxt("Ant_actions.csv", actions, delimiter=",")
+    np.savetxt("experts/Ant_states.csv", states, delimiter=",")
+    np.savetxt("experts/Ant_actions.csv", actions, delimiter=",")
