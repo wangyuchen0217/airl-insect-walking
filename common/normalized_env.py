@@ -251,7 +251,8 @@ class CoppeliaSimEnv:
 
         self._step_count += 1
         truncated = self._step_count >= self._max_episode_steps
-        terminated = not self.is_healthy() 
+        terminated = False
+        # terminated = not self.is_healthy() 
 
         return obs, reward, terminated, truncated, {}  
 
