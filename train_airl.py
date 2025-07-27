@@ -14,22 +14,23 @@ from common.base import LoggerWriter
 from common.base import log_parameters
 from common.env import make_env, NormalizedEnv
 from common.buffer import SerializedBuffer
+import torch.utils.tensorboard 
 
 # ======== Parameters (modify these as needed) =========
-NAME = "StickInsect"
-STATE_FILE = "experts/" + NAME + "_states_v1u2.pt"
-ACTION_FILE = "experts/" + NAME + "_actions_v1u2.pt"
+NAME = "Ant"
+STATE_FILE = "experts/" + NAME + "_states.pt"
+ACTION_FILE = "experts/" + NAME + "_actions.pt"
 ENV_ID = NAME+"-v4"
-CUDA = 1
-ROLLOUT_LENGTH = 3000
+CUDA = 0
+ROLLOUT_LENGTH = 1000
 NUM_STEPS = 2*10**6
 EVAL_INTERVAL = 10**4
 GAMMA = 0.995
 MIX_BUFFER = 1
 BATCH_SIZE = 64
-LR_ACTOR = 5e-5
-LR_CRITIC = 5e-5
-LR_DISC = 5e-5
+LR_ACTOR = 1e-4
+LR_CRITIC = 1e-4
+LR_DISC = 1e-4
 UNITS_ACTOR = (64, 64)
 UNITS_CRITIC = (64, 64)
 UNITS_DISC_R = (100, 100)
@@ -38,10 +39,9 @@ EPOCH_PPO = 50
 EPOCH_DISC = 10
 CLIP_EPS = 0.2
 LAMBDA = 0.97
-COEF_ENT = 0.05
+COEF_ENT = 0.01
 MAX_GRAD_NORM = 10.0
 SEED = 0
-# PRETRAINED_PATH = "weights/bc_pretrained_actor.pth"
 # ========================================================
 
 def main():
