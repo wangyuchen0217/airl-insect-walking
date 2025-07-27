@@ -61,8 +61,8 @@ def main():
 
     # set up the environment and communication
     OnTimeStep=True
-    env = CoppeliaSimEnv(port=23004, OnTimeStep=OnTimeStep)
-    env_test = CoppeliaSimEnv(port=23005, OnTimeStep=OnTimeStep)
+    env = CoppeliaSimEnv(port=23000, OnTimeStep=OnTimeStep)
+    env_test = CoppeliaSimEnv(port=23001, OnTimeStep=OnTimeStep)
 
     device = torch.device(f"cuda:{CUDA}" if torch.cuda.is_available() and CUDA >= 0 else "cpu")
     if torch.cuda.is_available():
