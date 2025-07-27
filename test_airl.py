@@ -10,10 +10,10 @@ from common.base import LoggerWriter
 from common.env import make_env
 
 def main():
-    SAVE_PATH = "/home/yuchen/airl-insect-walking/logs/StickInsect-v4/airl/20250527-1324"
-    ENV_ID = "StickInsect-v4"
-    # SAVE_PATH = "/home/yuchen/airl-insect-walking/logs/Ant-v4/airl/20250315-1418"
-    # ENV_ID = "Ant-v4"
+    # SAVE_PATH = "/home/yuchen/airl-insect-walking/logs/StickInsect-v4/airl/20250527-1324"
+    # ENV_ID = "StickInsect-v4"
+    SAVE_PATH = "/home/yuchen/airl-insect-walking/logs/Ant-v4/airl/20250727-1556"
+    ENV_ID = "Ant-v4"
     # SAVE_PATH = "/home/yuchen/airl-insect-walking/logs/Hopper-v4/airl/20250313-1553"
     # ENV_ID = "Hopper-v4"
     NUM_EPISODES = 10
