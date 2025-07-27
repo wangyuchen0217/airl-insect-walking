@@ -21,7 +21,7 @@ class CoppeliaSimEnv:
     __target_positions = np.zeros((6, 3), dtype=float).astype(float)  # joint target position (leg l, joint j)
     __initjoint_position = np.zeros((18, 1), dtype=float).astype(float)
 
-    observation_space = np.zeros((3 + 18 + 6 + 6, ), dtype=float).astype(float)  # body orientation, joint angles, forces, foot trajectory
+    observation_space = np.zeros((1 + 18 + 6 + 6, ), dtype=float).astype(float)  # body orientation, joint angles, forces, foot trajectory
     action_space = np.zeros((18, ), dtype=float).astype(float)  # joint angles
 
     
