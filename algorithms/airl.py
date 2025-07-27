@@ -79,8 +79,8 @@ class AIRL(PPO):
         writer.add_scalar(
             'return/reward_std', rewards.std().item(), self.learning_steps)
 
-        # add reward normalization
-        rewards = (rewards - rewards.mean()) / (rewards.std() + 1e-8)
+        # # add reward normalization
+        # rewards = (rewards - rewards.mean()) / (rewards.std() + 1e-8)
 
         # Update PPO using estimated rewards.
         self.update_ppo(
