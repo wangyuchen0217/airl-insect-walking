@@ -28,20 +28,14 @@ def plot_reward_distribution(disc, expert_batch, policy_batch):
 
 
 def main():
-    SAVE_PATH = "logs/Medauroidea/airl/20250718-1409"
+    SAVE_PATH = "logs/Medauroidea/airl/20250723-1612"
 
     # Set the device and env
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    OnTimeStep = True
-    env = CoppeliaSimEnv(port=23002, OnTimeStep=OnTimeStep)
-    
-    # Get state and action shapes from the environment
-    state_shape = env.observation_space.shape    # e.g., (27,)
-    action_shape = env.action_space.shape          # e.g., (8,)
     
     # Instantiate the discriminator network with the same architecture as used during training
     disc = AIRLDiscrim(
-            state_shape=state_shape,
+            state_shape=((1 + 3 + 18 + 6 + 6), ),
             gamma=0.995,
             hidden_units_r=(100, 100),
             hidden_units_v=(100, 100),
@@ -68,35 +62,6 @@ def main():
             l2_norm = param.data.norm(2).item()
             print(f"{name}: mean={mean_val:.4f}, std={std_val:.4f}, L2 norm={l2_norm:.4f}")
         
-    # visualize the reward function
-    num_points = 100
-    state_grid = np.linspace(-1, 1, num_points)
-    action_grid = np.linspace(-1, 1, num_points)
-    rewards = np.zeros((num_points, num_points))
-    for i, state in enumerate(state_grid):
-        for j, action in enumerate(action_grid):
-            state = np.zeros(state_shape[0])
-            state[0] = s
-            state[1] = a
-            state_tensor = torch.tensor(state, dtype=torch.float32).to(device)
-
-            reward = disc.calculate_reward(
-                states=state_tensor.unsqueeze(0),
-                dones=torch.zeros(1, 1).to(device),
-                log_pis=torch.zeros(1, 1).to(device),
-                next_states=state_tensor.unsqueeze(0)
-            )
-            rewards[i, j] = reward
-    rewards = rewards.reshape(num_points, num_points)
-    plt.figure(figsize=(8, 6))
-    plt.imshow(rewards, extent=(-1, 1, -1, 1), origin='lower', aspect='auto', cmap='viridis')
-    plt.colorbar(label='Reward')
-    plt.title('Reward Function Visualization')
-    plt.xlabel('State')
-    plt.ylabel('Action')
-    plt.show()
-
-
 
 if __name__ == "__main__":
     main()
