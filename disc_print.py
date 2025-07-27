@@ -27,7 +27,7 @@ def plot_reward_distribution(disc, expert_batch, policy_batch):
 
 
 def main():
-    SAVE_PATH = "logs/Ant-v4/airl/20250315-1418"
+    SAVE_PATH = "logs/Ant-v4/airl/20250727-1751"
 
     # Set the device and env
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
