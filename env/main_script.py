@@ -13,7 +13,6 @@ def sysCall_init():
     
     self.csv_row_count = 0
     self.csv_file = "/home/yuchen/airl-insect-walking/env/Animal06_110919_00_31.csv"
-    # self.csv_file = "/home/yuchen/airl-insect-walking/env/Animal06_110919_00_31_downsampled.csv"
     self.df = pd.read_csv(self.csv_file)
     self.df_final_line = len(self.df['LF_CTr'])
     print(self.df_final_line)
@@ -292,12 +291,12 @@ def sysCall_actuation():
         self.HR_joints_target[i] = 0 + (math.radians(self.HR_joints_csv[i] * self.HR_joints_csv_direction[i]) + math.radians(self.HR_joints_csv_offset[i])) * self.HR_joints_init_direction[i]
 
 
-        self.FL_joints_target[2] = math.radians(-90)
-        self.ML_joints_target[2] = math.radians(-90)
-        self.HL_joints_target[2] = math.radians(-90)
-        self.FR_joints_target[2] = math.radians(90)
-        self.MR_joints_target[2] = math.radians(90)
-        self.HR_joints_target[2] = math.radians(90)
+        # self.FL_joints_target[2] = math.radians(-90)
+        # self.ML_joints_target[2] = math.radians(-90)
+        # self.HL_joints_target[2] = math.radians(-90)
+        # self.FR_joints_target[2] = math.radians(90)
+        # self.MR_joints_target[2] = math.radians(90)
+        # self.HR_joints_target[2] = math.radians(90)
 
         # # # # For smooth movement
         # self.FL_joints_prev_pos[i] = self.FL_joints_target[i]
@@ -480,7 +479,7 @@ def sysCall_cleanup():
     # do some clean-up here
     if self.logging:
         save_data = pd.DataFrame(self.data_list)
-        save_data.to_csv('/home/yuchen/airl-insect-walking/expert_friction10.csv', index=False)
+        save_data.to_csv('/home/yuchen/airl-insect-walking/expert.csv', index=False)
 
     pass
 
@@ -499,10 +498,6 @@ def sysCall_cleanup():
 def csv_to_motor():
     if self.csv_row_count < 1371 or self.csv_row_count > 2070:
         self.csv_row_count = 1371
-
-    # if self.csv_row_count < 137 or self.csv_row_count > 207:
-    #     self.csv_row_count = 137
-
 
     if self.csv_row_count > self.df_final_line-3:
         sim.stopSimulation()

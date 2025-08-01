@@ -6,20 +6,20 @@ import numpy as np
 from coppeliasim_zmqremoteapi_client import RemoteAPIClient
 from datetime import datetime
 from algorithms.airl import AIRL
-from expert import load_expert_data, ExpertBuffer
+from expert import load_expert_data, ExpertBuffer, load_expert_cutlegs_data
 from common.trainer import Trainer
 import logging
 from common.base import LoggerWriter
 from common.base import log_parameters
 # from common.env import CoppeliaSimEnv
-from common.normalized_env import CoppeliaSimEnv
+from common.normalized_env_cutlegs import CoppeliaSimEnv
 from common.buffer import SerializedBuffer
 import torch.utils.tensorboard
 
 # ======== Parameters (modify these as needed) =========
 NAME = "StickInsect"
-EXPERT_FILE = "expert.csv"
-ENV_ID = "Medauroidea"
+EXPERT_FILE = "expert_cutlegs.csv"
+ENV_ID = "Medauroidea_cutlegs"
 CUDA = 0
 ROLLOUT_LENGTH = 1000 # 3000
 NUM_STEPS = 2*10**6 
@@ -61,8 +61,8 @@ def main():
 
     # set up the environment and communication
     OnTimeStep=True
-    env = CoppeliaSimEnv(port=23000, OnTimeStep=OnTimeStep)
-    env_test = CoppeliaSimEnv(port=23001, OnTimeStep=OnTimeStep)
+    env = CoppeliaSimEnv(port=23002, OnTimeStep=OnTimeStep)
+    env_test = CoppeliaSimEnv(port=23003, OnTimeStep=OnTimeStep)
 
     device = torch.device(f"cuda:{CUDA}" if torch.cuda.is_available() and CUDA >= 0 else "cpu")
     if torch.cuda.is_available():
@@ -79,7 +79,7 @@ def main():
                    EPOCH_PPO, EPOCH_DISC, CLIP_EPS, LAMBDA, COEF_ENT, MAX_GRAD_NORM, SEED)
 
     # Load expert data from .pt files and wrap into an ExpertBuffer.
-    expert_data = load_expert_data(EXPERT_FILE, save_npz=False)
+    expert_data = load_expert_cutlegs_data(EXPERT_FILE, save_npz=False)
     # np.savetxt("expert_states.csv", expert_data['state'], delimiter=',')
     expert_data = env.normalize_expert_data(expert_data)
     # np.savetxt("expert_states_normalized.csv", expert_data['state'], delimiter=',')

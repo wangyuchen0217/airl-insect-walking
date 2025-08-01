@@ -1,0 +1,29 @@
+Ontime :
+True
+Action space mid: [-0.0205206   0.1673988  -1.3896672   0.73325681  0.58896359 -1.6511396
+  0.18083922 -0.15080036  1.30874578 -0.74782036 -0.56708082  1.47821588], scale: [0.73484704 0.4457115  0.8509844  0.45946249 0.41638221 0.9457742
+ 0.73073588 0.35183635 0.95987222 0.47668324 0.43512017 0.99632052]
+INFO: VrepInterfaze is initialized successfully.
+Loaded actor model from logs/Medauroidea_cutlegs/airl/20250728-1647/model/step1380000/actor.pth
+---  Actor Networks ---
+log_stds: torch.Size([1, 12])
+net.0.weight: torch.Size([64, 24])
+net.0.bias: torch.Size([64])
+net.2.weight: torch.Size([64, 64])
+net.2.bias: torch.Size([64])
+net.4.weight: torch.Size([12, 64])
+net.4.bias: torch.Size([12])
+---  Statistics ---
+log_stds: mean=-0.6669, std=0.2122, L2 norm=2.4150
+net.0.weight: mean=0.0008, std=0.1605, L2 norm=6.2879
+net.0.bias: mean=-0.0121, std=0.1324, L2 norm=1.0553
+net.2.weight: mean=-0.0007, std=0.1082, L2 norm=6.9248
+net.2.bias: mean=-0.0017, std=0.0846, L2 norm=0.6717
+net.4.weight: mean=0.0018, std=0.1261, L2 norm=3.4921
+net.4.bias: mean=0.0182, std=0.0867, L2 norm=0.2944
+---  Evaluation ---
+Episode 1: Return = -16761.49, Steps = 1000
+Episode 2: Return = -16761.49, Steps = 1000
+Episode 3: Return = -16761.49, Steps = 1000
+Episode 4: Return = -16761.49, Steps = 1000
+Episode 5: Return = -16761.49, Steps = 1000

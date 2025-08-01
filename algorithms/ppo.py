@@ -92,12 +92,12 @@ class PPO(Algorithm):
 
     def update(self, writer, model_dir):
         self.learning_steps += 1
-        print(f"Update step {self.learning_steps}")
+        # print(f"Update step {self.learning_steps}")
         states, actions, rewards, dones, log_pis, next_states = self.buffer.get()
         self.update_ppo(states, actions, rewards, dones, log_pis, next_states, writer)
 
     def update_ppo(self, states, actions, rewards, dones, log_pis, next_states, writer):
-        print(f"Updating PPO")
+        # print(f"Updating PPO")
 
         # Compute value estimates.
         with torch.no_grad():
