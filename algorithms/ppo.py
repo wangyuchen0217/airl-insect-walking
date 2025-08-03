@@ -167,4 +167,4 @@ class PPO(Algorithm):
         disc_path = os.path.join(save_dir, "discriminator.pth")
         torch.save(self.disc.state_dict(), disc_path)
         
-        print(f"Models saved to {save_dir}")
+        # print(f"Models saved to {save_dir}")
