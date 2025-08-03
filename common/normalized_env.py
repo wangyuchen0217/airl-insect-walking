@@ -269,7 +269,7 @@ class CoppeliaSimEnv:
 if __name__ == "__main__":
     env = CoppeliaSimEnv()
     env.reset()
-    env.start()
+    # env.start()
     for i in range(100):
         action = np.random.uniform(-1, 1, size=18)
         obs, reward, terminated, _, _ = env.step(action)
