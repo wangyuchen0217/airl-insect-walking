@@ -218,6 +218,8 @@ class CoppeliaSimEnv:
         # reset the robot joints to zero or initial position
         if zero:
             self.set_zero()
+            noise = np.random.uniform(-0.1, 0.1, size=(18, ))
+            self.set_robot_joint(noise)
             self.update()
         # reset the step count
         self._step_count = 0
