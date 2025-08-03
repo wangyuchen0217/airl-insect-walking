@@ -5,11 +5,11 @@ import numpy as np
 from networks.actor import ActorNetworkPolicy 
 import logging
 from common.base import LoggerWriter
-# from common.normalized_env import CoppeliaSimEnv
-from common.normalized_env_cutlegs import CoppeliaSimEnv
+from common.normalized_env import CoppeliaSimEnv
+# from common.normalized_env_cutlegs import CoppeliaSimEnv
 
 def main():
-    SAVE_PATH = "logs/Medauroidea_cutlegs/airl/20250728-1647"
+    SAVE_PATH = "logs/Medauroidea/airl/20250727-2010"
     NUM_EPISODES = 5
     SEED = 0
 
@@ -41,7 +41,7 @@ def main():
     ).to(device)
     
     # Load the saved actor model parameters from a .pth file
-    actor_path = f"{SAVE_PATH}/model/step1380000/actor.pth"
+    actor_path = f"{SAVE_PATH}/model/step1640000/actor.pth"
     if os.path.exists(actor_path):
         actor.load_state_dict(torch.load(actor_path, weights_only=True, map_location=device))
         print(f"Loaded actor model from {actor_path}")

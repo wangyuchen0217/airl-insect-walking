@@ -1,6 +1,31 @@
 Ontime :
 True
-Action space mid: [-0.0205206   0.1673988  -1.3896672   0.73325681  0.58896359 -1.6511396
-  0.18083922 -0.15080036  1.30874578 -0.74782036 -0.56708082  1.47821588], scale: [0.73484704 0.4457115  0.8509844  0.45946249 0.41638221 0.9457742
+Action space mid: [-1.01873243  0.45176268 -1.4165763  -0.0205206   0.1673988  -1.3896672
+  0.73325681  0.58896359 -1.6511396   0.8836804  -0.47590394  1.35490289
+  0.18083922 -0.15080036  1.30874578 -0.74782036 -0.56708082  1.47821588], scale: [0.44304717 0.46786146 0.9527527  0.73484704 0.4457115  0.8509844
+ 0.45946249 0.41638221 0.9457742  0.2983276  0.44032795 1.03865751
  0.73073588 0.35183635 0.95987222 0.47668324 0.43512017 0.99632052]
 INFO: VrepInterfaze is initialized successfully.
+Loaded actor model from logs/Medauroidea/airl/20250727-2010/model/step1640000/actor.pth
+---  Actor Networks ---
+log_stds: torch.Size([1, 18])
+net.0.weight: torch.Size([64, 34])
+net.0.bias: torch.Size([64])
+net.2.weight: torch.Size([64, 64])
+net.2.bias: torch.Size([64])
+net.4.weight: torch.Size([18, 64])
+net.4.bias: torch.Size([18])
+---  Statistics ---
+log_stds: mean=-0.5264, std=0.1570, L2 norm=2.3251
+net.0.weight: mean=0.0053, std=0.1440, L2 norm=6.7208
+net.0.bias: mean=-0.0034, std=0.1117, L2 norm=0.8867
+net.2.weight: mean=-0.0001, std=0.1150, L2 norm=7.3567
+net.2.bias: mean=0.0121, std=0.0810, L2 norm=0.6498
+net.4.weight: mean=0.0030, std=0.1336, L2 norm=4.5348
+net.4.bias: mean=-0.0085, std=0.0458, L2 norm=0.1921
+---  Evaluation ---
+Episode 1: Return = -17864.62, Steps = 1000
+Episode 2: Return = -18275.38, Steps = 1000
+Episode 3: Return = -18946.36, Steps = 1000
+Episode 4: Return = -18618.94, Steps = 1000
+Episode 5: Return = -18072.07, Steps = 1000
