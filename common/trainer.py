@@ -2,6 +2,7 @@ import os
 from datetime import timedelta
 from time import time, sleep
 from torch.utils.tensorboard import SummaryWriter
+import sys
 
 
 class Trainer:
@@ -42,10 +43,10 @@ class Trainer:
         for step in range(1, self.num_steps + 1):
             state, t = self.algo.step(self.env, state, t, step)
             if self.algo.is_update(step):
-                # print(f"Step {step} - Updating the algorithm")
+                print(f"Step {step} - Updating the algorithm", file=sys.__stdout__)
                 self.algo.update(self.writer)
             if step % self.eval_interval == 0:
-                # print(f"Step {step} - Evaluating the algorithm")
+                print(f"Step {step} - Evaluating the algorithm", file=sys.__stdout__)
                 self.evaluate(step)
                 self.algo.save_models(os.path.join(self.model_dir, f'step{step}'))
         sleep(10)
