@@ -12,7 +12,8 @@ def sysCall_init():
     # CSV file
     
     self.csv_row_count = 0
-    self.csv_file = "/home/yuchen/airl-insect-walking/env/Animal06_110919_00_31.csv"
+    # self.csv_file = "/home/yuchen/airl-insect-walking/env/Animal06_110919_00_31.csv"
+    self.csv_file = "/home/yuchen/airl-insect-walking/env/ds_loopsm.csv"
     self.df = pd.read_csv(self.csv_file)
     self.df_final_line = len(self.df['LF_CTr'])
     print(self.df_final_line)
@@ -496,13 +497,15 @@ def sysCall_cleanup():
 # See the user manual or the available code snippets for additional callback functions and details
 
 def csv_to_motor():
-    if self.csv_row_count < 1371 or self.csv_row_count > 2070:
-        self.csv_row_count = 1371
+    # if self.csv_row_count < 1371 or self.csv_row_count > 2070:
+    #     self.csv_row_count = 1371
+    if self.csv_row_count < 2 or self.csv_row_count > 64:
+        self.csv_row_count = 1
 
     if self.csv_row_count > self.df_final_line-3:
         sim.stopSimulation()
     else:
-        self.csv_row_count += 4
+        self.csv_row_count += 1
 
     print(self.csv_row_count)
 
