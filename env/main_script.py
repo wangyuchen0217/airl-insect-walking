@@ -7,7 +7,7 @@ import pandas as pd
 def sysCall_init():
     sim = require('sim')
 
-    self.logging = False
+    self.logging = True
 
     # CSV file
     
