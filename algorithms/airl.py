@@ -4,6 +4,7 @@ import torch.nn.functional as F
 from torch.optim import Adam
 from algorithms.ppo import PPO
 from networks.discrim import AIRLDiscrim
+import sys
 
 
 class AIRL(PPO):
@@ -49,7 +50,7 @@ class AIRL(PPO):
             # Samples from current policy's trajectories.
             states, _, _, dones, log_pis, next_states = \
                 self.buffer.sample(self.batch_size)
-            # print(f"[Debug] Log probabilities of current policy actions: {log_pis.flatten()}")
+            # print(f"[Debug] Log probabilities of current policy actions: {log_pis.flatten()}, file=sys.__stdout__")
             # Samples from expert's demonstrations.
             states_exp, actions_exp, _, dones_exp, next_states_exp = \
                 self.buffer_exp.sample(self.batch_size)
@@ -90,7 +91,7 @@ class AIRL(PPO):
     def update_disc(self, states, dones, log_pis, next_states,
                     states_exp, dones_exp, log_pis_exp,
                     next_states_exp, writer):
-        # print(f"Update discriminator at step {self.learning_steps_disc}")
+        # print(f"Update discriminator at step {self.learning_steps_disc}, file=sys.__stdout__")
 
         # Output of discriminator is (-inf, inf), not [0, 1].
         logits_pi = self.disc(states, dones, log_pis, next_states)

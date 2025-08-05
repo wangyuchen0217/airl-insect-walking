@@ -3,6 +3,7 @@ import msgpack
 import numpy as np
 import time
 from coppeliasim_zmqremoteapi_client import RemoteAPIClient
+import sys
 
 class CoppeliaSimEnv:
 

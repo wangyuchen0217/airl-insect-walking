@@ -11,7 +11,7 @@ def sysCall_init():
 
     # CSV file
     
-    self.time_step = 0
+    # self.time_step = 0
     self.csv_row_count = 0
     # self.csv_file = "/home/yuchen/airl-insect-walking/env/Animal06_110919_00_31.csv"
     self.csv_file = "/home/yuchen/airl-insect-walking/env/ds_loopsm.csv"
@@ -332,6 +332,7 @@ def sysCall_sensing():
     #               IMU moment              #
     # ===================================== #
     self.robot_positions = sim.getObjectPosition(self.head)
+    # print(self.IMU_ref, self.robot_positions)
     sim.setObjectPosition(self.IMU_ref, [self.robot_positions[0], self.robot_positions[1], 0.4])
     self.robot_orientations = sim.getObjectOrientation(self.IMU_robot, self.IMU_ref)
 
