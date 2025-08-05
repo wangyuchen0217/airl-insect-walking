@@ -20,6 +20,8 @@ import torch.utils.tensorboard
 NAME = "StickInsect"
 EXPERT_FILE = "expert/expert_60000.csv"
 ENV_ID = "Medauroidea_60000"
+ALGO = "airl"
+PORT = 23000 # CoppeliaSim port: default is 23000
 CUDA = 0
 ROLLOUT_LENGTH = 1000 # 3000
 NUM_STEPS = 2*10**6 
@@ -46,7 +48,7 @@ SEED = 0
 def main():
     # Create log directory.
     current_time = datetime.now().strftime("%Y%m%d-%H%M")
-    log_dir = os.path.join("logs", ENV_ID, "airl", f"{current_time}")
+    log_dir = os.path.join("logs", ENV_ID, ALGO, f"{current_time}")
     if not os.path.exists(log_dir):
         os.makedirs(log_dir)
     log_filename = os.path.join(log_dir, "training_process.log")
@@ -61,7 +63,7 @@ def main():
 
     # set up the environment and communication
     OnTimeStep=True
-    env = CoppeliaSimEnv(port=23000, OnTimeStep=OnTimeStep)
+    env = CoppeliaSimEnv(port=PORT, OnTimeStep=OnTimeStep)
 
     device = torch.device(f"cuda:{CUDA}" if torch.cuda.is_available() and CUDA >= 0 else "cpu")
     if torch.cuda.is_available():
