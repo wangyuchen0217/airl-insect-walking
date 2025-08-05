@@ -18,8 +18,8 @@ import torch.utils.tensorboard
 
 # ======== Parameters (modify these as needed) =========
 NAME = "StickInsect"
-EXPERT_FILE = "expert/expert.csv"
-ENV_ID = "Medauroidea"
+EXPERT_FILE = "expert/expert_60000.csv"
+ENV_ID = "Medauroidea_60000"
 CUDA = 0
 ROLLOUT_LENGTH = 1000 # 3000
 NUM_STEPS = 2*10**6 

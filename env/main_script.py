@@ -7,7 +7,7 @@ import pandas as pd
 def sysCall_init():
     sim = require('sim')
 
-    self.logging = True
+    self.logging = False
 
     # CSV file
     
@@ -509,35 +509,35 @@ def csv_to_motor():
         sim.stopSimulation()
     else:
         self.csv_row_count += 1
-        self.time_step += 1
+    #     self.time_step += 1
 
-    if self.time_step == 1:
-        noise = np.random.uniform(-5, 5, size=18)
-        print("Adding noise to the joints: ", noise)
-    else:
-        noise = np.zeros(18)
+    # if self.time_step == 1:
+    #     noise = np.random.uniform(-5, 5, size=18)
+    #     print("Adding noise to the joints: ", noise)
+    # else:
+    #     noise = np.zeros(18)
 
     print(self.csv_row_count)
 
 
-    self.FL_joints_csv[1] = self.df['LF_CTr'][self.csv_row_count] + noise[0]
-    self.ML_joints_csv[1] = self.df['LM_CTr'][self.csv_row_count] + noise[1]	
-    self.HL_joints_csv[1] = self.df['LH_CTr'][self.csv_row_count] + noise[2]	
-    self.FR_joints_csv[1] = self.df['RF_CTr'][self.csv_row_count] + noise[3]	
-    self.MR_joints_csv[1] = self.df['RM_CTr'][self.csv_row_count] + noise[4]	
-    self.HR_joints_csv[1] = self.df['RH_CTr'][self.csv_row_count] + noise[5]	
-    self.FL_joints_csv[0] = self.df['LF_ThC'][self.csv_row_count] + noise[6]	
-    self.ML_joints_csv[0] = self.df['LM_ThC'][self.csv_row_count] + noise[7]	
-    self.HL_joints_csv[0] = self.df['LH_ThC'][self.csv_row_count] + noise[8]	
-    self.FR_joints_csv[0] = self.df['RF_ThC'][self.csv_row_count] + noise[9]	
-    self.MR_joints_csv[0] = self.df['RM_ThC'][self.csv_row_count] + noise[10]	
-    self.HR_joints_csv[0] = self.df['RH_ThC'][self.csv_row_count] + noise[11]	
-    self.FL_joints_csv[2] = self.df['LF_FTi'][self.csv_row_count] + noise[12]	
-    self.ML_joints_csv[2] = self.df['LM_FTi'][self.csv_row_count] + noise[13]	
-    self.HL_joints_csv[2] = self.df['LH_FTi'][self.csv_row_count] + noise[14]	
-    self.FR_joints_csv[2] = self.df['RF_FTi'][self.csv_row_count] + noise[15]	
-    self.MR_joints_csv[2] = self.df['RM_FTi'][self.csv_row_count] + noise[16]	
-    self.HR_joints_csv[2] = self.df['RH_FTi'][self.csv_row_count] + noise[17]
+    self.FL_joints_csv[1] = self.df['LF_CTr'][self.csv_row_count] #+ noise[0]
+    self.ML_joints_csv[1] = self.df['LM_CTr'][self.csv_row_count] #+ noise[1]	
+    self.HL_joints_csv[1] = self.df['LH_CTr'][self.csv_row_count] #+ noise[2]	
+    self.FR_joints_csv[1] = self.df['RF_CTr'][self.csv_row_count] #+ noise[3]	
+    self.MR_joints_csv[1] = self.df['RM_CTr'][self.csv_row_count] #+ noise[4]	
+    self.HR_joints_csv[1] = self.df['RH_CTr'][self.csv_row_count] #+ noise[5]	
+    self.FL_joints_csv[0] = self.df['LF_ThC'][self.csv_row_count] #+ noise[6]	
+    self.ML_joints_csv[0] = self.df['LM_ThC'][self.csv_row_count] #+ noise[7]	
+    self.HL_joints_csv[0] = self.df['LH_ThC'][self.csv_row_count] #+ noise[8]	
+    self.FR_joints_csv[0] = self.df['RF_ThC'][self.csv_row_count] #+ noise[9]	
+    self.MR_joints_csv[0] = self.df['RM_ThC'][self.csv_row_count] #+ noise[10]	
+    self.HR_joints_csv[0] = self.df['RH_ThC'][self.csv_row_count] #+ noise[11]	
+    self.FL_joints_csv[2] = self.df['LF_FTi'][self.csv_row_count] #+ noise[12]	
+    self.ML_joints_csv[2] = self.df['LM_FTi'][self.csv_row_count] #+ noise[13]	
+    self.HL_joints_csv[2] = self.df['LH_FTi'][self.csv_row_count] #+ noise[14]	
+    self.FR_joints_csv[2] = self.df['RF_FTi'][self.csv_row_count] #+ noise[15]	
+    self.MR_joints_csv[2] = self.df['RM_FTi'][self.csv_row_count] #+ noise[16]	
+    self.HR_joints_csv[2] = self.df['RH_FTi'][self.csv_row_count] #+ noise[17]
 
     # print(row)
 
