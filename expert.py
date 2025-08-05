@@ -122,8 +122,8 @@ class ExpertBuffer:
 
 if __name__ == "__main__":
 
-    EXPERT_FILE = "expert.csv"  # Path to the expert data CSV file
-    expert_data = load_expert_cutlegs_data(EXPERT_FILE, save_npz=False, npz_filename="expert_data.npz")
+    EXPERT_FILE = "expert/expert_60000.csv"  # Path to the expert data CSV file
+    expert_data = load_expert_data(EXPERT_FILE, save_npz=False, npz_filename="expert_data.npz")
 
     action_max = np.max(expert_data['action'], axis=0)
     action_min = np.min(expert_data['action'], axis=0)
