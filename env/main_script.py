@@ -245,13 +245,46 @@ def sysCall_init():
         }
 
     # ================= Graph ================= #
-    self.graph = sim.getObject('/graph')
-    self.graph_val1 = sim.addGraphStream(self.graph, 'val1','m', 0, [1,0,0])
-    self.graph_val2 = sim.addGraphStream(self.graph, 'val2','m', 0, [0,1,0])
-    self.graph_val3 = sim.addGraphStream(self.graph, 'val3','m', 0, [0,0,1])
-    self.graph_val4 = sim.addGraphStream(self.graph, 'val4','m', 0, [1,1,0])
-    self.graph_val5 = sim.addGraphStream(self.graph, 'val5','m', 0, [0,1,1])
-    self.graph_val6 = sim.addGraphStream(self.graph, 'val6','m', 0, [1,0,1])
+    self.graph_ThC = sim.getObject('/graph_ThC')
+    self.FL_ThC = sim.addGraphStream(self.graph_ThC, 'FL_ThC','m', 0, [1,0,0])
+    self.ML_ThC = sim.addGraphStream(self.graph_ThC, 'ML_ThC','m', 0, [0,1,0])
+    self.HL_ThC = sim.addGraphStream(self.graph_ThC, 'HL_ThC','m', 0, [0,0,1])
+    self.FR_ThC = sim.addGraphStream(self.graph_ThC, 'FR_ThC','m', 0, [1,1,0])
+    self.MR_ThC = sim.addGraphStream(self.graph_ThC, 'MR_ThC','m', 0, [0,1,1])
+    self.HR_ThC = sim.addGraphStream(self.graph_ThC, 'HR_ThC','m', 0, [1,0,1])
+
+    self.graph_CTr = sim.getObject('/graph_CTr')
+    self.FL_CTr = sim.addGraphStream(self.graph_CTr, 'FL_CTr','m', 0, [1,0,0])
+    self.ML_CTr = sim.addGraphStream(self.graph_CTr, 'ML_CTr','m', 0, [0,1,0])
+    self.HL_CTr = sim.addGraphStream(self.graph_CTr, 'HL_CTr','m', 0, [0,0,1])
+    self.FR_CTr = sim.addGraphStream(self.graph_CTr, 'FR_CTr','m', 0, [1,1,0])
+    self.MR_CTr = sim.addGraphStream(self.graph_CTr, 'MR_CTr','m', 0, [0,1,1])
+    self.HR_CTr = sim.addGraphStream(self.graph_CTr, 'HR_CTr','m', 0, [1,0,1])
+
+    self.graph_FTi = sim.getObject('/graph_FTi')
+    self.FL_FTi = sim.addGraphStream(self.graph_FTi, 'FL_FTi','m', 0, [1,0,0])
+    self.ML_FTi = sim.addGraphStream(self.graph_FTi, 'ML_FTi','m', 0, [0,1,0])
+    self.HL_FTi = sim.addGraphStream(self.graph_FTi, 'HL_FTi','m', 0, [0,0,1])
+    self.FR_FTi = sim.addGraphStream(self.graph_FTi, 'FR_FTi','m', 0, [1,1,0])
+    self.MR_FTi = sim.addGraphStream(self.graph_FTi, 'MR_FTi','m', 0, [0,1,1])
+    self.HR_FTi = sim.addGraphStream(self.graph_FTi, 'HR_FTi','m', 0, [1,0,1])
+
+    self.graph_force = sim.getObject('/graph_force')
+    self.FL_force = sim.addGraphStream(self.graph_force, 'FL_force','m', 0, [1,0,0])
+    self.ML_force = sim.addGraphStream(self.graph_force, 'ML_force','m', 0, [0,1,0])
+    self.HL_force = sim.addGraphStream(self.graph_force, 'HL_force','m', 0, [0,0,1])
+    self.FR_force = sim.addGraphStream(self.graph_force, 'FR_force','m', 0, [1,1,0])
+    self.MR_force = sim.addGraphStream(self.graph_force, 'MR_force','m', 0, [0,1,1])
+    self.HR_force = sim.addGraphStream(self.graph_force, 'HR_force','m', 0, [1,0,1])
+
+    self.graph_foot = sim.getObject('/graph_foot')
+    self.FL_foot = sim.addGraphStream(self.graph_foot, 'FL_foot','m', 0, [1,0,0])
+    self.ML_foot = sim.addGraphStream(self.graph_foot, 'ML_foot','m', 0, [0,1,0])
+    self.HL_foot = sim.addGraphStream(self.graph_foot, 'HL_foot','m', 0, [0,0,1])
+    self.FR_foot = sim.addGraphStream(self.graph_foot, 'FR_foot','m', 0, [1,1,0])
+    self.MR_foot = sim.addGraphStream(self.graph_foot, 'MR_foot','m', 0, [0,1,1])
+    self.HR_foot = sim.addGraphStream(self.graph_foot, 'HR_foot','m', 0, [1,0,1])
+
 
 
 
@@ -367,16 +400,41 @@ def sysCall_sensing():
         self.HR_joints_postions[i] = sim.getJointPosition(self.HR_joints[i])
 
 
-    # =============================================== #
+    # ================ graph data ================== #
+    sim.setGraphStreamValue(self.graph_ThC, self.FL_ThC, self.FL_joints_postions[0])
+    sim.setGraphStreamValue(self.graph_ThC, self.ML_ThC, self.ML_joints_postions[0])
+    sim.setGraphStreamValue(self.graph_ThC, self.HL_ThC, self.HL_joints_postions[0])
+    sim.setGraphStreamValue(self.graph_ThC, self.FR_ThC, self.FR_joints_postions[0])
+    sim.setGraphStreamValue(self.graph_ThC, self.MR_ThC, self.MR_joints_postions[0])
+    sim.setGraphStreamValue(self.graph_ThC, self.HR_ThC, self.HR_joints_postions[0])
 
-    sim.setGraphStreamValue(self.graph, self.graph_val1,np.tanh(self.force_sensors_values_z_filter[0]))
-    # sim.setGraphStreamValue(self.graph, self.graph_val2,np.tanh(self.force_sensors_values_z_filter[1]))
-    # sim.setGraphStreamValue(self.graph, self.graph_val3,np.tanh(self.force_sensors_values_z_filter[2]))
-    # sim.setGraphStreamValue(self.graph, self.graph_val4,np.tanh(self.force_sensors_values_z_filter[3]))
-    # sim.setGraphStreamValue(self.graph, self.graph_val5,np.tanh(self.force_sensors_values_z_filter[4]))
-    # sim.setGraphStreamValue(self.graph, self.graph_val6,np.tanh(self.force_sensors_values_z_filter[5]))
+    sim.setGraphStreamValue(self.graph_CTr, self.FL_CTr, self.FL_joints_postions[1])
+    sim.setGraphStreamValue(self.graph_CTr, self.ML_CTr, self.ML_joints_postions[1])
+    sim.setGraphStreamValue(self.graph_CTr, self.HL_CTr, self.HL_joints_postions[1])
+    sim.setGraphStreamValue(self.graph_CTr, self.FR_CTr, self.FR_joints_postions[1])
+    sim.setGraphStreamValue(self.graph_CTr, self.MR_CTr, self.MR_joints_postions[1])
+    sim.setGraphStreamValue(self.graph_CTr, self.HR_CTr, self.HR_joints_postions[1])
 
+    sim.setGraphStreamValue(self.graph_FTi, self.FL_FTi, self.FL_joints_postions[2])
+    sim.setGraphStreamValue(self.graph_FTi, self.ML_FTi, self.ML_joints_postions[2])
+    sim.setGraphStreamValue(self.graph_FTi, self.HL_FTi, self.HL_joints_postions[2])
+    sim.setGraphStreamValue(self.graph_FTi, self.FR_FTi, self.FR_joints_postions[2])
+    sim.setGraphStreamValue(self.graph_FTi, self.MR_FTi, self.MR_joints_postions[2])
+    sim.setGraphStreamValue(self.graph_FTi, self.HR_FTi, self.HR_joints_postions[2])
 
+    sim.setGraphStreamValue(self.graph_force, self.FL_force, self.force_sensors_values_z_filter[0])
+    sim.setGraphStreamValue(self.graph_force, self.ML_force, self.force_sensors_values_z_filter[1])
+    sim.setGraphStreamValue(self.graph_force, self.HL_force, self.force_sensors_values_z_filter[2])
+    sim.setGraphStreamValue(self.graph_force, self.FR_force, self.force_sensors_values_z_filter[3])
+    sim.setGraphStreamValue(self.graph_force, self.MR_force, self.force_sensors_values_z_filter[4])
+    sim.setGraphStreamValue(self.graph_force, self.HR_force, self.force_sensors_values_z_filter[5])
+
+    sim.setGraphStreamValue(self.graph_foot, self.FL_foot, FL_foot_traj[2])
+    sim.setGraphStreamValue(self.graph_foot, self.ML_foot, ML_foot_traj[2])
+    sim.setGraphStreamValue(self.graph_foot, self.HL_foot, HL_foot_traj[2])
+    sim.setGraphStreamValue(self.graph_foot, self.FR_foot, FR_foot_traj[2])
+    sim.setGraphStreamValue(self.graph_foot, self.MR_foot, MR_foot_traj[2])
+    sim.setGraphStreamValue(self.graph_foot, self.HR_foot, HR_foot_traj[2])
 
 
     # ================ logging data ================== #
