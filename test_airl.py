@@ -8,25 +8,35 @@ from common.base import LoggerWriter
 from common.normalized_env import CoppeliaSimEnv
 # from common.normalized_env_cutlegs import CoppeliaSimEnv
 
+# ======== Parameters (modify these as needed) =========
+ENV_ID = "Medauroidea_60000"
+ALGO = "airl"
+FILENAME = "20250805-1907" 
+PORT = 23000 # CoppeliaSim port: default is 23000
+CUDA = 0
+NUM_EPISODES = 5
+STEP_NUM = 970000  # Choose a certain step number of the saved model or None 
+LOG = True
+# =================================================
+
 def main():
-    SAVE_PATH = "logs/Medauroidea/airl/20250727-2010"
-    NUM_EPISODES = 5
-    SEED = 0
+    SAVE_PATH = os.path.join("logs", ENV_ID, ALGO, FILENAME)
 
     # Log the evaluation process
-    log_filename = os.path.join(SAVE_PATH, "evaluation.log")
-    logging.basicConfig(
-        filename=log_filename,    
-        level=logging.INFO,
-        format='%(message)s',
-        filemode='w'
-        )
-    sys.stdout = LoggerWriter(logging.info)
+    if LOG:
+        log_filename = os.path.join(SAVE_PATH, "evaluation.log")
+        logging.basicConfig(
+            filename=log_filename,    
+            level=logging.INFO,
+            format='%(message)s',
+            filemode='w'
+            )
+        sys.stdout = LoggerWriter(logging.info)
 
     # Set the device and env
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    device = torch.device(f"cuda:{CUDA}" if torch.cuda.is_available() and CUDA >= 0 else "cpu")
     OnTimeStep = True
-    env = CoppeliaSimEnv(port=23000, OnTimeStep=OnTimeStep)
+    env = CoppeliaSimEnv(port=PORT, OnTimeStep=OnTimeStep)
     
     # Get state and action shapes from the environment
     state_shape = env.observation_space.shape    # e.g., (27,)
@@ -41,7 +51,10 @@ def main():
     ).to(device)
     
     # Load the saved actor model parameters from a .pth file
-    actor_path = f"{SAVE_PATH}/model/step1640000/actor.pth"
+    if STEP_NUM is None:
+        actor_path = f"{SAVE_PATH}/model/actor.pth"
+    else:
+        actor_path = f"{SAVE_PATH}/model/step{STEP_NUM}/actor.pth"
     if os.path.exists(actor_path):
         actor.load_state_dict(torch.load(actor_path, weights_only=True, map_location=device))
         print(f"Loaded actor model from {actor_path}")

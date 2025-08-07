@@ -46,6 +46,9 @@ class PPO(Algorithm):
             hidden_units=units_actor,
             hidden_activation=nn.Tanh()
         ).to(device)
+
+        # actor_path = 'logs/Medauroidea_60000/airl/20250805-1907/model/step970000/actor.pth'
+        # self.actor.load_state_dict(torch.load(actor_path, weights_only=True, map_location=device))
         
         # Critic.
         self.critic = CriticNetworkPolicy(
@@ -53,6 +56,9 @@ class PPO(Algorithm):
             hidden_units=units_critic,
             hidden_activation=nn.Tanh()
         ).to(device)
+
+        # critic_path = 'logs/Medauroidea_60000/airl/20250805-1907/model/step970000/critic.pth'
+        # self.critic.load_state_dict(torch.load(critic_path, weights_only=True, map_location=device))
         
         self.optim_actor = Adam(self.actor.parameters(), lr=lr_actor)
         self.optim_critic = Adam(self.critic.parameters(), lr=lr_critic)

@@ -35,6 +35,9 @@ class AIRL(PPO):
             hidden_activation_v=nn.ReLU(inplace=True)
         ).to(device)
 
+        # disc_path = 'logs/Medauroidea_60000/airl/20250805-1907/model/step970000/discriminator.pth'
+        # self.disc.load_state_dict(torch.load(disc_path, weights_only=True, map_location=device))
+
         self.learning_steps_disc = 0
         self.optim_disc = Adam(self.disc.parameters(), lr=lr_disc)
         self.batch_size = batch_size
@@ -74,7 +77,7 @@ class AIRL(PPO):
         # print(f"[Debug] Rewards: {rewards.flatten()}")
 
         # Paper reward = logit
-        # rewards = self.disc(states, dones, log_pis, next_states)
+        # rewards = self.disc(states, dones, log_pis, next_states).detach()
         
         # add debug
         # print(f"[Debug] Reward mean: {rewards.mean().item():.4f}, std: {rewards.std().item():.4f}")
