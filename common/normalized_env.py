@@ -247,10 +247,7 @@ class CoppeliaSimEnv:
         # obs = np.clip(obs, 0.0, 1.0)
 
         # calculate the reward based on the robot's position
-        robot_pos = self.sim.getObjectPosition(self.sim.getObject('/head'))
-        current_x = robot_pos[0]
-        reward = current_x * 10
-        self._previous_x = current_x
+        reward = self.sim.getObjectVelocity(self.sim.getObject('/head'))[0][0] * 100
 
         self._step_count += 1
         truncated = self._step_count >= self._max_episode_steps

@@ -24,8 +24,8 @@ net.2.bias: mean=-0.0008, std=0.0828, L2 norm=0.6570
 net.4.weight: mean=0.0036, std=0.1063, L2 norm=3.6083
 net.4.bias: mean=-0.0076, std=0.0604, L2 norm=0.2512
 ---  Evaluation ---
-Episode 1: Return = -11381.36, Steps = 1000
-Episode 2: Return = -11161.93, Steps = 1000
-Episode 3: Return = -11151.57, Steps = 1000
-Episode 4: Return = -11186.14, Steps = 1000
-Episode 5: Return = -11519.15, Steps = 1000
+Episode 1: Return = 1731.35, Steps = 1000
+Episode 2: Return = 2053.34, Steps = 1000
+Episode 3: Return = 1879.28, Steps = 1000
+Episode 4: Return = 2046.36, Steps = 1000
+Episode 5: Return = 1944.57, Steps = 1000
