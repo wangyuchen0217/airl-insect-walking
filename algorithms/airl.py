@@ -71,13 +71,13 @@ class AIRL(PPO):
         # We don't use reward signals here,
         states, actions, _, dones, log_pis, next_states = self.buffer.get()
 
-        # Calculate rewards.
-        rewards = self.disc.calculate_reward(
-            states, dones, log_pis, next_states)
-        # print(f"[Debug] Rewards: {rewards.flatten()}")
+        # # Calculate rewards.
+        # rewards = self.disc.calculate_reward(
+        #     states, dones, log_pis, next_states)
+        # # print(f"[Debug] Rewards: {rewards.flatten()}")
 
         # Paper reward = logit
-        # rewards = self.disc(states, dones, log_pis, next_states).detach()
+        rewards = self.disc(states, dones, log_pis, next_states).detach()
         
         # add debug
         # print(f"[Debug] Reward mean: {rewards.mean().item():.4f}, std: {rewards.std().item():.4f}")
