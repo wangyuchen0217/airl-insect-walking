@@ -7,11 +7,12 @@ import logging
 from common.base import LoggerWriter
 from common.normalized_env import CoppeliaSimEnv
 # from common.normalized_env_cutlegs import CoppeliaSimEnv
+import tensorboard
 
 # ======== Parameters (modify these as needed) =========
 ENV_ID = "Medauroidea_60000"
-ALGO = "airl_logit_reward"
-FILENAME = "20250805-1915" 
+ALGO = "airl"
+FILENAME = "20250806-1618" 
 PORT = 23000 # CoppeliaSim port: default is 23000
 CUDA = 0
 NUM_EPISODES = 5

@@ -22,7 +22,7 @@ class CoppeliaSimEnv:
     __target_positions = np.zeros((6, 3), dtype=float).astype(float)  # joint target position (leg l, joint j)
     __initjoint_position = np.zeros((18, 1), dtype=float).astype(float)
 
-    observation_space = np.zeros((1 + 3 + 18, ), dtype=float).astype(float)  # body orientation, joint angles, forces, foot trajectory
+    observation_space = np.zeros((1 + 3 + 18 + 6 + 6, ), dtype=float).astype(float)  # body orientation, joint angles, forces, foot trajectory
     action_space = np.zeros((18, ), dtype=float).astype(float)  # joint angles
 
     observation_space_high = np.array([
@@ -30,8 +30,8 @@ class CoppeliaSimEnv:
                         -0.59375274, 0.68826747, -0.72950184, 0.6576674, 0.42351845, -1.0316935, 
                         1.1950908, 1.2923758, -0.92522711, 1.212834, -0.079413719, 2.4614022,
                         0.98390025, -0.01020806, 2.2536771, -0.29464778, -0.14714211, 2.3562224, 
-                        # 11.376931, 23.541754, 18.792133, 10.039366, 19.01429, 18.701794,
-                        # 0.42798841, 0.14256591, 0.26136336, 0.18555231, 0.11940541, 0.29765788
+                        11.376931, 23.541754, 18.792133, 10.039366, 19.01429, 18.701794,
+                        0.42798841, 0.14256591, 0.26136336, 0.18555231, 0.11940541, 0.29765788
                         ])
     
     observation_space_low = np.array([
@@ -39,8 +39,8 @@ class CoppeliaSimEnv:
                         -1.3821081, 0.06344602, -2.3497694, -0.7023459, -0.03390659, -2.2771807,
                         0.3254354, 0.27022228, -2.5098045, 0.5459587, -0.7606447, 0.6085852,
                         -0.6877669, -0.43705025, 0.64850265, -1.2682254, -1.1273408, 0.7080512,
-                        # 0., 0., 0., 0., 0., 0.,
-                        # -0.06665716, 0.00653887, 0.00611944, 0.0062973, 0.00600731, 0.00665024
+                        0., 0., 0., 0., 0., 0.,
+                        -0.06665716, 0.00653887, 0.00611944, 0.0062973, 0.00600731, 0.00665024
                         ])
 
     action_space_high = np.array([
@@ -113,19 +113,19 @@ class CoppeliaSimEnv:
         norm_joint_angles = 2 * (joint_angles - joint_angles_low) / (joint_angles_high - joint_angles_low) - 1
         normalized.append(norm_joint_angles)
 
-        # # forces: use the unified standard for normalization
-        # forces = observation[:, 22:28]
-        # forces_low = min(self.observation_space_low[22:28])
-        # forces_high = max(self.observation_space_high[22:28])
-        # norm_forces = 2 * (forces - forces_low) / (forces_high - forces_low) - 1
-        # normalized.append(norm_forces)
+        # forces: use the unified standard for normalization
+        forces = observation[:, 22:28]
+        forces_low = min(self.observation_space_low[22:28])
+        forces_high = max(self.observation_space_high[22:28])
+        norm_forces = 2 * (forces - forces_low) / (forces_high - forces_low) - 1
+        normalized.append(norm_forces)
 
-        # # foot trajectory: use the unified standard for normalization
-        # foot_traj = observation[:, 28:34]
-        # foot_traj_low = min(self.observation_space_low[28:34])
-        # foot_traj_high = max(self.observation_space_high[28:34])
-        # norm_foot_traj = 2 * (foot_traj - foot_traj_low) / (foot_traj_high - foot_traj_low) - 1
-        # normalized.append(norm_foot_traj)
+        # foot trajectory: use the unified standard for normalization
+        foot_traj = observation[:, 28:34]
+        foot_traj_low = min(self.observation_space_low[28:34])
+        foot_traj_high = max(self.observation_space_high[28:34])
+        norm_foot_traj = 2 * (foot_traj - foot_traj_low) / (foot_traj_high - foot_traj_low) - 1
+        normalized.append(norm_foot_traj)
         
         # check if the observation is a single sample or a batch
         normalized_obs = np.concatenate(normalized, axis=1)
@@ -195,9 +195,9 @@ class CoppeliaSimEnv:
         body_pos = self.get_bodyposition()
         body_orientation = self.get_bodyorientation()
         joint_angles = self.get_jointangle()
-        # forces = self.get_force()
-        # foot_traj = self.get_foot_trajectory()
-        states = np.concatenate((body_pos, body_orientation, joint_angles)) #, forces, foot_traj
+        forces = self.get_force()
+        foot_traj = self.get_foot_trajectory()
+        states = np.concatenate((body_pos, body_orientation, joint_angles, forces, foot_traj)) #, forces, foot_traj
         return states
 
 
