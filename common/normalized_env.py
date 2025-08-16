@@ -22,10 +22,16 @@ class CoppeliaSimEnv:
     __target_positions = np.zeros((6, 3), dtype=float).astype(float)  # joint target position (leg l, joint j)
     __initjoint_position = np.zeros((18, 1), dtype=float).astype(float)
 
-    observation_space = np.zeros((1 + 3 + 18 + 6 + 6, ), dtype=float).astype(float)  # body orientation, joint angles, forces, foot trajectory
+    num_body_pos = 3
+    num_body_orientation = 3
+    num_joint_angles = 18 
+    num_forces = 6
+    num_foot_traj = 6
+    observation_space = np.zeros((num_body_pos + num_body_orientation + num_joint_angles + num_forces + num_forces, ), dtype=float).astype(float) 
     action_space = np.zeros((18, ), dtype=float).astype(float)  # joint angles
 
     observation_space_high = np.array([
+                        7.0512481, -0.013637958,
                         0.34497491, 0.35881358, 0.13376351, 0.0721476,
                         -0.59375274, 0.68826747, -0.72950184, 0.6576674, 0.42351845, -1.0316935, 
                         1.1950908, 1.2923758, -0.92522711, 1.212834, -0.079413719, 2.4614022,
@@ -35,6 +41,7 @@ class CoppeliaSimEnv:
                         ])
     
     observation_space_low = np.array([
+                        -1.5580437, -3.7254312,
                         0.17508288, -0.13590206, -0.3235115, -0.63263106, 
                         -1.3821081, 0.06344602, -2.3497694, -0.7023459, -0.03390659, -2.2771807,
                         0.3254354, 0.27022228, -2.5098045, 0.5459587, -0.7606447, 0.6085852,
@@ -93,37 +100,47 @@ class CoppeliaSimEnv:
         normalized = []
 
         # z height
-        robot_z = observation[:, 0:1]
-        robot_z_min = self.observation_space_low[0]
-        robot_z_max = self.observation_space_high[0]
+        start = 0
+        end = self.num_body_pos
+        robot_z = observation[:, start:end]
+        robot_z_min = self.observation_space_low[start:end]
+        robot_z_max = self.observation_space_high[start:end]
         norm_robot_z = 2 * (robot_z - robot_z_min) / (robot_z_max - robot_z_min) - 1
         normalized.append(norm_robot_z)
 
         # roll, pitch, yaw: use the unified standard for normalization
-        orientation = observation[:, 1:4]
-        orientation_low = min(self.observation_space_low[1:4])
-        orientation_high = max(self.observation_space_high[1:4])
+        start = self.num_body_pos
+        end = self.num_body_pos + self.num_body_orientation
+        orientation = observation[:, start:end]
+        orientation_low = min(self.observation_space_low[start:end])
+        orientation_high = max(self.observation_space_high[start:end])
         norm_orientation = 2 * (orientation - orientation_low) / (orientation_high - orientation_low) - 1
         normalized.append(norm_orientation)
 
         # joint angles: use seperate normalization for each joint
-        joint_angles = observation[:, 4:22]
-        joint_angles_low = self.observation_space_low[4:22]
-        joint_angles_high = self.observation_space_high[4:22]
+        start = self.num_body_pos + self.num_body_orientation
+        end = self.num_body_pos + self.num_body_orientation + self.num_joint_angles
+        joint_angles = observation[:, start:end]
+        joint_angles_low = self.observation_space_low[start:end]
+        joint_angles_high = self.observation_space_high[start:end]
         norm_joint_angles = 2 * (joint_angles - joint_angles_low) / (joint_angles_high - joint_angles_low) - 1
         normalized.append(norm_joint_angles)
 
         # forces: use the unified standard for normalization
-        forces = observation[:, 22:28]
-        forces_low = min(self.observation_space_low[22:28])
-        forces_high = max(self.observation_space_high[22:28])
+        start = self.num_body_pos + self.num_body_orientation + self.num_joint_angles
+        end = self.num_body_pos + self.num_body_orientation + self.num_joint_angles + self.num_forces
+        forces = observation[:, start:end]
+        forces_low = min(self.observation_space_low[start:end])
+        forces_high = max(self.observation_space_high[start:end])
         norm_forces = 2 * (forces - forces_low) / (forces_high - forces_low) - 1
         normalized.append(norm_forces)
 
         # foot trajectory: use the unified standard for normalization
-        foot_traj = observation[:, 28:34]
-        foot_traj_low = min(self.observation_space_low[28:34])
-        foot_traj_high = max(self.observation_space_high[28:34])
+        start = self.num_body_pos + self.num_body_orientation + self.num_joint_angles + self.num_forces
+        end = self.num_body_pos + self.num_body_orientation + self.num_joint_angles + self.num_forces + self.num_foot_traj
+        foot_traj = observation[:, start:end]
+        foot_traj_low = min(self.observation_space_low[start:end])
+        foot_traj_high = max(self.observation_space_high[start:end])
         norm_foot_traj = 2 * (foot_traj - foot_traj_low) / (foot_traj_high - foot_traj_low) - 1
         normalized.append(norm_foot_traj)
         
@@ -133,6 +150,9 @@ class CoppeliaSimEnv:
             return normalized_obs[0]
         return normalized_obs
     
+    # def normalize_observation(self, observation):
+    #     return (observation - self._obs_mid) / self._obs_scale
+
     def normalize_action(self, action):
         return (action - self._action_mid) / self._action_scale
 
@@ -170,7 +190,7 @@ class CoppeliaSimEnv:
         robot_pos = self.sim.getObjectPosition(self.sim.getObject('/head'))
         robot_z = robot_pos[2]
         robot_z = np.array([robot_z]).reshape((1,))
-        return robot_z
+        return robot_pos
 
     def get_bodyorientation(self):
         orientation = np.zeros((3))

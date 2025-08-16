@@ -5,25 +5,20 @@ import pandas as pd
 def load_expert_data(expert_file, save_npz=False, npz_filename="expert_data.npz"):
 
     # load the expert data (CoppeliaSim)
-    # data = pd.read_csv(expert_file, header=[0])
-    # states_np = data[['body_z', 'body_roll', 'body_pitch', 'body_yaw', 
-    #               'motor_pos_FL_TC', 'motor_pos_FL_CF', 'motor_pos_FL_FT', 
-    #               'motor_pos_ML_TC', 'motor_pos_ML_CF', 'motor_pos_ML_FT',
-    #               'motor_pos_HL_TC', 'motor_pos_HL_CF', 'motor_pos_HL_FT',
-    #               'motor_pos_FR_TC', 'motor_pos_FR_CF', 'motor_pos_FR_FT',
-    #               'motor_pos_MR_TC', 'motor_pos_MR_CF', 'motor_pos_MR_FT',
-    #               'motor_pos_HR_TC', 'motor_pos_HR_CF', 'motor_pos_HR_FT',
-    #               'force_FL', 'force_ML', 'force_HL', 'force_FR', 'force_MR', 'force_HR',
-    #               'FL_foot_traj_z', 'ML_foot_traj_z', 'HL_foot_traj_z',
-    #               'FR_foot_traj_z', 'MR_foot_traj_z', 'HR_foot_traj_z']].values
     data = pd.read_csv(expert_file, header=[0])
-    states_np = data[['body_z', 'body_roll', 'body_pitch', 'body_yaw', 
+    states_np = data[[
+                  'body_x', 'body_y',
+                  'body_z', 'body_roll', 'body_pitch', 'body_yaw', 
                   'motor_pos_FL_TC', 'motor_pos_FL_CF', 'motor_pos_FL_FT', 
                   'motor_pos_ML_TC', 'motor_pos_ML_CF', 'motor_pos_ML_FT',
                   'motor_pos_HL_TC', 'motor_pos_HL_CF', 'motor_pos_HL_FT',
                   'motor_pos_FR_TC', 'motor_pos_FR_CF', 'motor_pos_FR_FT',
                   'motor_pos_MR_TC', 'motor_pos_MR_CF', 'motor_pos_MR_FT',
-                  'motor_pos_HR_TC', 'motor_pos_HR_CF', 'motor_pos_HR_FT']].values
+                  'motor_pos_HR_TC', 'motor_pos_HR_CF', 'motor_pos_HR_FT',
+                  'force_FL', 'force_ML', 'force_HL', 'force_FR', 'force_MR', 'force_HR',
+                  'FL_foot_traj_z', 'ML_foot_traj_z', 'HL_foot_traj_z',
+                  'FR_foot_traj_z', 'MR_foot_traj_z', 'HR_foot_traj_z'
+                  ]].values
     actions_np = data[['motor_cmd_FL_TC', 'motor_cmd_FL_CF', 'motor_cmd_FL_FT',
                    'motor_cmd_ML_TC', 'motor_cmd_ML_CF', 'motor_cmd_ML_FT',
                   'motor_cmd_HL_TC', 'motor_cmd_HL_CF', 'motor_cmd_HL_FT',
