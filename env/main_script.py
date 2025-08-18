@@ -310,19 +310,19 @@ def sysCall_actuation():
     # ===================================== #
     for i in range(3):
         # # # # # Standing position
-        self.FR_joints_target[i] = math.radians(self.FR_joints_init_position_deg[i]) * self.FR_joints_init_direction[i] 
-        self.MR_joints_target[i] = math.radians(self.MR_joints_init_position_deg[i]) * self.MR_joints_init_direction[i] 
-        self.HR_joints_target[i] = math.radians(self.HR_joints_init_position_deg[i]) * self.HR_joints_init_direction[i] 
-        self.FL_joints_target[i] = math.radians(self.FL_joints_init_position_deg[i]) * self.FL_joints_init_direction[i] 
-        self.ML_joints_target[i] = math.radians(self.ML_joints_init_position_deg[i]) * self.ML_joints_init_direction[i] 
-        self.HL_joints_target[i] = math.radians(self.HL_joints_init_position_deg[i]) * self.HL_joints_init_direction[i] 
+        # self.FR_joints_target[i] = math.radians(self.FR_joints_init_position_deg[i]) * self.FR_joints_init_direction[i] 
+        # self.MR_joints_target[i] = math.radians(self.MR_joints_init_position_deg[i]) * self.MR_joints_init_direction[i] 
+        # self.HR_joints_target[i] = math.radians(self.HR_joints_init_position_deg[i]) * self.HR_joints_init_direction[i] 
+        # self.FL_joints_target[i] = math.radians(self.FL_joints_init_position_deg[i]) * self.FL_joints_init_direction[i] 
+        # self.ML_joints_target[i] = math.radians(self.ML_joints_init_position_deg[i]) * self.ML_joints_init_direction[i] 
+        # self.HL_joints_target[i] = math.radians(self.HL_joints_init_position_deg[i]) * self.HL_joints_init_direction[i] 
 
-        # self.FL_joints_target[i] = 0 + (math.radians(self.FL_joints_csv[i] * self.FL_joints_csv_direction[i]) + math.radians(self.FL_joints_csv_offset[i])) * self.FL_joints_init_direction[i]
-        # self.ML_joints_target[i] = 0 + (math.radians(self.ML_joints_csv[i] * self.ML_joints_csv_direction[i]) + math.radians(self.ML_joints_csv_offset[i])) * self.ML_joints_init_direction[i]
-        # self.HL_joints_target[i] = 0 + (math.radians(self.HL_joints_csv[i] * self.HL_joints_csv_direction[i]) + math.radians(self.HL_joints_csv_offset[i])) * self.HL_joints_init_direction[i]
-        # self.FR_joints_target[i] = 0 + (math.radians(self.FR_joints_csv[i] * self.FR_joints_csv_direction[i]) + math.radians(self.FR_joints_csv_offset[i])) * self.FR_joints_init_direction[i]
-        # self.MR_joints_target[i] = 0 + (math.radians(self.MR_joints_csv[i] * self.MR_joints_csv_direction[i]) + math.radians(self.MR_joints_csv_offset[i])) * self.MR_joints_init_direction[i]
-        # self.HR_joints_target[i] = 0 + (math.radians(self.HR_joints_csv[i] * self.HR_joints_csv_direction[i]) + math.radians(self.HR_joints_csv_offset[i])) * self.HR_joints_init_direction[i]
+        self.FL_joints_target[i] = 0 + (math.radians(self.FL_joints_csv[i] * self.FL_joints_csv_direction[i]) + math.radians(self.FL_joints_csv_offset[i])) * self.FL_joints_init_direction[i]
+        self.ML_joints_target[i] = 0 + (math.radians(self.ML_joints_csv[i] * self.ML_joints_csv_direction[i]) + math.radians(self.ML_joints_csv_offset[i])) * self.ML_joints_init_direction[i]
+        self.HL_joints_target[i] = 0 + (math.radians(self.HL_joints_csv[i] * self.HL_joints_csv_direction[i]) + math.radians(self.HL_joints_csv_offset[i])) * self.HL_joints_init_direction[i]
+        self.FR_joints_target[i] = 0 + (math.radians(self.FR_joints_csv[i] * self.FR_joints_csv_direction[i]) + math.radians(self.FR_joints_csv_offset[i])) * self.FR_joints_init_direction[i]
+        self.MR_joints_target[i] = 0 + (math.radians(self.MR_joints_csv[i] * self.MR_joints_csv_direction[i]) + math.radians(self.MR_joints_csv_offset[i])) * self.MR_joints_init_direction[i]
+        self.HR_joints_target[i] = 0 + (math.radians(self.HR_joints_csv[i] * self.HR_joints_csv_direction[i]) + math.radians(self.HR_joints_csv_offset[i])) * self.HR_joints_init_direction[i]
 
         # # # # Fix a certain joint
         # self.FL_joints_target[2] = math.radians(-90)
