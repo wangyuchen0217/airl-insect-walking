@@ -78,6 +78,8 @@ class AIRL(PPO):
 
         # Paper reward = logit
         rewards = self.disc(states, dones, log_pis, next_states).detach()
+        # debug the expert rewards
+        rewards_exp = self.disc(states_exp, dones_exp, log_pis_exp, next_states_exp).detach()
         
         # add debug
         # print(f"[Debug] Reward mean: {rewards.mean().item():.4f}, std: {rewards.std().item():.4f}")
@@ -85,6 +87,11 @@ class AIRL(PPO):
             'return/reward_mean', rewards.mean().item(), self.learning_steps)
         writer.add_scalar(
             'return/reward_std', rewards.std().item(), self.learning_steps)
+        # add debug for expert rewards
+        writer.add_scalar(
+            'return/reward_exp_mean', rewards_exp.mean().item(), self.learning_steps)
+        writer.add_scalar(
+            'return/reward_exp_std', rewards_exp.std().item(), self.learning_steps)
 
         # # add reward normalization
         # rewards = (rewards - rewards.mean()) / (rewards.std() + 1e-8)
