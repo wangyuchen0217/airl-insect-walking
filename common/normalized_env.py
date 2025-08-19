@@ -33,7 +33,7 @@ class CoppeliaSimEnv:
                                                             [1, -1, -1],
                                                             [1, -1, -1],
                                                             [1, -1, -1]])  
-    __init_pos_deg = __init_pos_deg * __init_pos_dirction
+    __init_pos_deg = __init_pos_deg * __init_pos_dirction # adjust the initial position direction
     __init_pos_rad = np.deg2rad(__init_pos_deg)  # initial joint position in radians
     __initjoint_position = __init_pos_rad
 
