@@ -41,6 +41,23 @@ def load_expert_data(expert_file, save_npz=False, npz_filename="expert_data.npz"
     rewards = np.zeros(len(states), dtype=np.float32)  # Assuming zero rewards for expert data (not affect AIRL training)
     dones = np.zeros(len(states), dtype=np.float32)  # Assuming no terminal states for expert data
 
+    # Remove the inital position offset
+    init_pos_deg = np.array([[30, 9.5, -60], 
+                                                        [ 0 ,  -2.5, -60],
+                                                        [-40, 9.5,-60],
+                                                        [30, -9.5, -60], 
+                                                        [0, 2.5, -60],
+                                                        [-40, -9.5, -60]], dtype=float).astype(float)  # initial joint position in degrees
+    init_pos_dirction = np.array([[-1, 1, 1],
+                                                            [-1, 1, 1],
+                                                            [-1, 1, 1],
+                                                            [1, -1, -1],
+                                                            [1, -1, -1],
+                                                            [1, -1, -1]])  
+    init_pos_deg = init_pos_deg * init_pos_dirction  # adjust the initial position direction
+    init_pos_rad = np.deg2rad(init_pos_deg).flatten()  # convert to radians
+    actions = actions - init_pos_rad  # remove the initial position offset
+
     expert_data = {
         'state': states,
         'action': actions,

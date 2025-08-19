@@ -20,7 +20,22 @@ class CoppeliaSimEnv:
 
     __joint_handle = np.zeros((6, 3), dtype=int).astype(int)  # joint handle (leg l, joint j)
     __target_positions = np.zeros((6, 3), dtype=float).astype(float)  # joint target position (leg l, joint j)
-    __initjoint_position = np.zeros((18, 1), dtype=float).astype(float)
+    __initjoint_position = np.zeros((6, 3), dtype=float).astype(float)  # initial joint position (leg l, joint j)
+    __init_pos_deg = np.array([[30, 9.5, -60], 
+                                                        [ 0 ,  -2.5, -60],
+                                                        [-40, 9.5,-60],
+                                                        [30, -9.5, -60], 
+                                                        [0, 2.5, -60],
+                                                        [-40, -9.5, -60]], dtype=float).astype(float)  # initial joint position in degrees
+    __init_pos_dirction = np.array([[-1, 1, 1],
+                                                            [-1, 1, 1],
+                                                            [-1, 1, 1],
+                                                            [1, -1, -1],
+                                                            [1, -1, -1],
+                                                            [1, -1, -1]])  
+    __init_pos_deg = __init_pos_deg * __init_pos_dirction
+    __init_pos_rad = np.deg2rad(__init_pos_deg)  # initial joint position in radians
+    __initjoint_position = __init_pos_rad
 
     num_body_pos = 3
     num_body_orientation = 3
@@ -51,17 +66,23 @@ class CoppeliaSimEnv:
                         ])
 
     action_space_high = np.array([
-                            -0.6365677, 0.7383754, -0.5629898, 0.7126509, 0.4248318, -0.97442925,
-                            1.2154466, 0.9925745, -0.7942549, 1.335091, 0.05542721, 2.4789333,
-                            0.90740824, 0.02254204, 2.3400767, -0.2711956, -0.20344783, 2.4733996
+                            -0.08928384,  0.97179584,  0.73880163,
+                            0.71728384,  0.46846504,  0.52528891,
+                            0.71734355,  1.09801959,  0.41873297,
+                            0.87071587,  0.19994925,  1.43173578,
+                            0.90740824,  0.06617527,  1.41971448,
+                            0.44833541, -0.02909280,  1.56461933
                         ]) 
 
     action_space_low = np.array([
-                            -1.3943146, -0.03414297, -2.380731, -0.75652057, -0.08140265, -2.466912,
-                            0.24979629, 0.19489908, -2.611817, 0.6128826, -0.80598956, 0.30839592,
-                            -0.71728384, -0.4377725, 0.52190864, -1.4154752, -0.9322133, 0.6284646
+                            -0.87071587, -0.19994925, -1.43173578,
+                            -0.90740824, -0.06617527, -1.41971448,
+                            -0.44833541,  0.02909280, -1.56461933,
+                            0.08928384, -0.97179584, -0.73880163,
+                            -0.71728384, -0.46846504, -0.52528891,
+                            -0.71734355, -1.09801959, -0.41873297
                         ])
-
+    
     def __init__(self, port=23000, OnTimeStep=True):
         self.client = RemoteAPIClient('localhost', port=port)
         self.sim = self.client.require('sim')
@@ -168,7 +189,7 @@ class CoppeliaSimEnv:
     # ---------------------- actuation ------------------------
     def set_robot_joint(self, target_pos):
         target_pos = target_pos.reshape((6, 3))
-        offset = self.__initjoint_position.reshape((6, 3))
+        offset = self.__initjoint_position
         for leg in range(0, 6):
             target_pos[leg] += offset[leg]
         self.__target_positions = target_pos
