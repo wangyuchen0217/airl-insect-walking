@@ -45,9 +45,9 @@ def load_expert_data(expert_file, save_npz=False, npz_filename="expert_data.npz"
     init_pos_deg = np.array([[30, 9.5, -60], 
                                                         [ 0 ,  -2.5, -60],
                                                         [-40, 9.5,-60],
-                                                        [30, -9.5, -60], 
-                                                        [0, 2.5, -60],
-                                                        [-40, -9.5, -60]], dtype=float).astype(float)  # initial joint position in degrees
+                                                        [30, 9.5, -60], 
+                                                        [0, -2.5, -60],
+                                                        [-40, 9.5, -60]], dtype=float).astype(float)  # initial joint position in degrees
     init_pos_dirction = np.array([[-1, 1, 1],
                                                             [-1, 1, 1],
                                                             [-1, 1, 1],
