@@ -2,7 +2,7 @@ scale: [1. 1. 1. 1. 1. 1. 1. 1.]
 mid: [0. 0. 0. 0. 0. 0. 0. 0.]
 action space high: [1. 1. 1. 1. 1. 1. 1. 1.]
 action space low: [-1. -1. -1. -1. -1. -1. -1. -1.]
-Loaded actor model from /home/yuchen/airl-insect-walking/logs/Ant-v4/airl/20250727-1751/model/actor.pth
+Loaded actor model from /home/yuchen/airl-insect-walking-main/logs/Ant-v4/airl/20250727-1751/model/actor.pth
 ---  Actor Networks ---
 log_stds: torch.Size([1, 8])
 net.0.weight: torch.Size([64, 27])
@@ -20,13 +20,9 @@ net.2.bias: mean=0.0264, std=0.1496, L2 norm=1.2061
 net.4.weight: mean=0.0030, std=0.1371, L2 norm=3.0995
 net.4.bias: mean=0.0240, std=0.1733, L2 norm=0.4635
 ---  Evaluation ---
-Episode 1: Return = 3735.89, Steps = 1000
-Episode 2: Return = 2632.58, Steps = 810
-Episode 3: Return = 3689.75, Steps = 1000
-Episode 4: Return = 646.77, Steps = 194
-Episode 5: Return = 3180.99, Steps = 1000
-Episode 6: Return = 1130.30, Steps = 1000
-Episode 7: Return = 3371.39, Steps = 1000
-Episode 8: Return = 3937.29, Steps = 1000
-Episode 9: Return = 3915.69, Steps = 1000
-Episode 10: Return = 3604.74, Steps = 1000
+Initail state: [ 0.74112136  0.9937715  -0.10452032  0.02629053 -0.02832862  0.04364716
+ -0.02023279 -0.07135721  0.07398283  0.04997852 -0.06739895 -0.06164495
+  0.01545467 -0.12949677  0.01603563  0.09225433 -0.02452037  0.07183438
+ -0.12738715  0.09307833  0.02721602 -0.13936335 -0.01876108  0.01769702
+ -0.05388882  0.01040591 -0.07004377]
+Episode 1: Return = 3540.98, Steps = 1000

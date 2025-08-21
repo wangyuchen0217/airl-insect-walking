@@ -366,6 +366,5 @@ if __name__ == "__main__":
     while not done:
         action = env.action_space.sample()  # Random action for testing
         obs, reward, done, truncated, info = env.step(action)
-        print(f"Obs: {obs}, Reward: {reward}, Done: {done}, Info: {info}")
+        # print(f"Obs: {obs}, Reward: {reward}, Done: {done}, Info: {info}")
     env.close()
-#     env.close()
