@@ -132,8 +132,15 @@ np.savetxt(actions_path, actions_trail, delimiter=",")
 # states_trail = np.loadtxt(states_path, delimiter=",")
 # actions_trail = np.loadtxt(actions_path, delimiter=",")
 
+# # make the shape (60000, 8 ) to (1, 60000, 8)
+# # add one dimension to the beginning
+# states_trail = states_trail[None, :, :]
+# actions_trail = actions_trail[None, :, :]
+# print("States shape:", states_trail.shape)
+# print("Actions shape:", actions_trail.shape)
+
 # states_trail = torch.tensor(states_trail, dtype=torch.float32)
 # actions_trail = torch.tensor(actions_trail, dtype=torch.float32)
-# torch.save(states_trail, "experts/ant_make_dataset/expert_states.pt")
-# torch.save(actions_trail, "experts/ant_make_dataset/expert_actions.pt")
+# torch.save(states_trail, "experts/Ant_make_states.pt")
+# torch.save(actions_trail, "experts/Ant_make_actions.pt")
 

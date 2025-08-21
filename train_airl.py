@@ -20,7 +20,7 @@ import torch.utils.tensorboard
 NAME = "Ant_make"
 STATE_FILE = "experts/" + NAME + "_states.pt"
 ACTION_FILE = "experts/" + NAME + "_actions.pt"
-ENV_ID = NAME+"-v4"
+ENV_ID = "Ant"+"-v4"
 CUDA = 0
 ROLLOUT_LENGTH = 1000
 NUM_STEPS = 2*10**6
