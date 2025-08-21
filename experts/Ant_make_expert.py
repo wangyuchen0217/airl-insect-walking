@@ -94,7 +94,7 @@ def expert_simulation(actions):
 
 
 #-------------Main Script-------------------#
-ACTION_PATH = "actions.csv"
+ACTION_PATH = "experts/ant_make_dataset/actions.csv"
 
 actions = load_actions(ACTION_PATH)
 actions = actions[:80]
@@ -117,8 +117,8 @@ print("States shape:", states_trail.shape)
 print("Actions shape:", actions_trail.shape)
 
 # Save the states and actions to csv files
-states_path = "expert_states.csv"
-actions_path = "expert_actions.csv"
+states_path = "experts/ant_make_dataset/expert_states.csv"
+actions_path = "experts/ant_make_dataset/expert_actions.csv"
 np.savetxt(states_path, states_trail, delimiter=",")
 np.savetxt(actions_path, actions_trail, delimiter=",")
 
