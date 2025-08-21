@@ -17,7 +17,7 @@ from common.buffer import SerializedBuffer
 import torch.utils.tensorboard 
 
 # ======== Parameters (modify these as needed) =========
-NAME = "Ant"
+NAME = "Ant_make"
 STATE_FILE = "experts/" + NAME + "_states.pt"
 ACTION_FILE = "experts/" + NAME + "_actions.pt"
 ENV_ID = NAME+"-v4"
