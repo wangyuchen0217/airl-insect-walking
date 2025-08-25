@@ -35,7 +35,7 @@ class AIRL(PPO):
             hidden_activation_v=nn.ReLU(inplace=True)
         ).to(device)
 
-        # disc_path = 'logs/Medauroidea_60000/airl/20250805-1907/model/step970000/discriminator.pth'
+        # disc_path = 'logs/Medauroidea_60000_offset/airl_logit_dx/20250822-1616/model/step1440000/discriminator.pth'
         # self.disc.load_state_dict(torch.load(disc_path, weights_only=True, map_location=device))
 
         self.learning_steps_disc = 0
@@ -78,12 +78,12 @@ class AIRL(PPO):
 
         # Paper reward = logit
         rewards = self.disc(states, dones, log_pis, next_states).detach()
-        # dx = next_states[:,0] - states[:,0]
-        # rewards = rewards + dx * 100 
+        dx = next_states[:,0] - states[:,0]
+        rewards = rewards + dx * 100 
         # debug the expert rewards
         rewards_exp = self.disc(states_exp, dones_exp, log_pis_exp, next_states_exp).detach()
-        # dx_exp = next_states_exp[:,0] - states_exp[:,0]
-        # rewards_exp = rewards_exp + dx_exp * 100
+        dx_exp = next_states_exp[:,0] - states_exp[:,0]
+        rewards_exp = rewards_exp + dx_exp * 100
         
         # add debug
         # print(f"[Debug] Reward mean: {rewards.mean().item():.4f}, std: {rewards.std().item():.4f}")
