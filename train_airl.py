@@ -20,7 +20,7 @@ import torch.utils.tensorboard
 NAME = "StickInsect"
 EXPERT_FILE = "expert/expert_60000.csv"
 ENV_ID = "Medauroidea_60000_offset"
-ALGO = "airl_logit_dx"
+ALGO = "airl_logit"
 PORT = 23000 # CoppeliaSim port: default is 23000
 CUDA = 0
 ROLLOUT_LENGTH = 1000 # 3000
@@ -37,7 +37,7 @@ UNITS_CRITIC = (64, 64)
 UNITS_DISC_R = (100, 100)
 UNITS_DISC_V = (100, 100)
 EPOCH_PPO = 50
-EPOCH_DISC = 3 # 10
+EPOCH_DISC = 10 # 10
 CLIP_EPS = 0.2
 LAMBDA = 0.97
 COEF_ENT = 0.01

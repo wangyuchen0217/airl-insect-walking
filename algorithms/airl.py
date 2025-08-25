@@ -78,12 +78,12 @@ class AIRL(PPO):
 
         # Paper reward = logit
         rewards = self.disc(states, dones, log_pis, next_states).detach()
-        dx = next_states[:,0] - states[:,0]
-        rewards = rewards + dx * 100 
+        # dx = next_states[:,0] - states[:,0]
+        # rewards = rewards + dx * 100 
         # debug the expert rewards
         rewards_exp = self.disc(states_exp, dones_exp, log_pis_exp, next_states_exp).detach()
-        dx_exp = next_states_exp[:,0] - states_exp[:,0]
-        rewards_exp = rewards_exp + dx_exp * 100
+        # dx_exp = next_states_exp[:,0] - states_exp[:,0]
+        # rewards_exp = rewards_exp + dx_exp * 100
         
         # add debug
         # print(f"[Debug] Reward mean: {rewards.mean().item():.4f}, std: {rewards.std().item():.4f}")
