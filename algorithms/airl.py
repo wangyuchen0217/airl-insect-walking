@@ -53,7 +53,6 @@ class AIRL(PPO):
             # Samples from current policy's trajectories.
             states, _, _, dones, log_pis, next_states = \
                 self.buffer.sample(self.batch_size)
-            # print(f"[Debug] Log probabilities of current policy actions: {log_pis.flatten()}, file=sys.__stdout__")
             # Samples from expert's demonstrations.
             states_exp, actions_exp, _, dones_exp, next_states_exp = \
                 self.buffer_exp.sample(self.batch_size)
@@ -61,7 +60,6 @@ class AIRL(PPO):
             with torch.no_grad():
                 log_pis_exp = self.actor.evaluate_log_pi(
                     states_exp, actions_exp)
-                # print(f"[Debug] Log probabilities of expert actions: {log_pis_exp.flatten()}")
             # Update discriminator.
             self.update_disc(
                 states, dones, log_pis, next_states, states_exp,
@@ -71,22 +69,18 @@ class AIRL(PPO):
         # We don't use reward signals here,
         states, actions, _, dones, log_pis, next_states = self.buffer.get()
 
-        # Calculate rewards.
+        # ---------- Calculate rewards: -log sigmoid(-logit) ---------- #
         # rewards = self.disc.calculate_reward(states, dones, log_pis, next_states)
-        # print(f"[Debug] Rewards: {rewards.flatten()}")
         # rewards_exp = self.disc.calculate_reward(states_exp, dones_exp, log_pis_exp, next_states_exp)
 
-        # Paper reward = logit
+        # ---------- Calculate rewards: logit ---------- #
         rewards = self.disc(states, dones, log_pis, next_states).detach()
         # dx = next_states[:,0] - states[:,0]
         # rewards = rewards + dx * 100 
-        # debug the expert rewards
         rewards_exp = self.disc(states_exp, dones_exp, log_pis_exp, next_states_exp).detach()
         # dx_exp = next_states_exp[:,0] - states_exp[:,0]
         # rewards_exp = rewards_exp + dx_exp * 100
         
-        # add debug
-        # print(f"[Debug] Reward mean: {rewards.mean().item():.4f}, std: {rewards.std().item():.4f}")
         writer.add_scalar(
             'return/reward_mean', rewards.mean().item(), self.learning_steps)
         writer.add_scalar(
@@ -96,9 +90,6 @@ class AIRL(PPO):
             'return/reward_exp_mean', rewards_exp.mean().item(), self.learning_steps)
         writer.add_scalar(
             'return/reward_exp_std', rewards_exp.std().item(), self.learning_steps)
-
-        # # add reward normalization
-        # rewards = (rewards - rewards.mean()) / (rewards.std() + 1e-8)
 
         # Update PPO using estimated rewards.
         self.update_ppo(

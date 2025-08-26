@@ -127,6 +127,54 @@ class RolloutBuffer:
             self.next_states[idxes]
         )
     
+    # -------------------- ADD: Mix samples from the previous k iterations -------------------- #
+    def sample_last_k_iters(self, batch_size, k=20, include_current=True):
+        """
+        Uniformly sample batch_size transitions from the union of the most recent K rounds.
+        K is counted as rounds, where 1 round = buffer_size transitions.
+        When include_current=True, the most recently collected round is included.
+        This function should be called at the end of each round (_p % buffer_size == 0).
+        """
+        assert self._p % self.buffer_size == 0, \
+            "Call after a rollout is complete (p % buffer_size == 0)."
+
+        # the number of completed iterations
+        effective_iters = self._n // self.buffer_size
+        if effective_iters == 0:
+            raise RuntimeError("No completed iterations to sample from.")
+
+        # check if the current round is included
+        offset0 = 0 if include_current else 1
+        available = max(0, effective_iters - offset0)
+        if available == 0:
+            raise RuntimeError("Not enough past iterations for the requested setting.")
+
+        k = min(k, available)
+
+        # Sample uniformly by round, then uniformly sample a position within that round.
+        # n=0 represents the "most recent round" (or the current round if include_current=True ).
+        # The starting point of the interval is (_p - buffer_size*(n+1)) % total_size
+        # Within that interval, offset j∈[0, buffer_size)
+        iter_choices = np.random.randint(low=0, high=k, size=batch_size)
+        intra_choices = np.random.randint(low=0, high=self.buffer_size, size=batch_size)
+
+        # Calculate the actual index 
+        # (the whole segment is circular, but this formula automatically takes the modulus)
+        idxes = np.empty(batch_size, dtype=np.int64)
+        for t in range(batch_size):
+            n = iter_choices[t] + offset0       # choose the n-th most recent round
+            start = (self._p - self.buffer_size * (n + 1)) % self.total_size
+            idxes[t] = (start + intra_choices[t]) % self.total_size
+
+        return (
+            self.states[idxes],
+            self.actions[idxes],
+            self.rewards[idxes],
+            self.dones[idxes],
+            self.log_pis[idxes],
+            self.next_states[idxes]
+        )
+    
 class ExpertBuffer:
     def __init__(self, expert_data, device='cpu'):
         """
