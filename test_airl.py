@@ -17,7 +17,7 @@ PORT = 23000 # CoppeliaSim port: default is 23000
 CUDA = 0
 NUM_EPISODES = 5
 STEP_NUM = 1250000  # Choose a certain step number of the saved model or None 
-LOG = False
+LOG = True
 # =================================================
 
 def main():
@@ -92,6 +92,8 @@ def main():
         done = False
         ep_return = 0.0
         step = 0
+        states = []
+        actions = []
         while not done:
             # Convert state to a torch tensor and add batch dimension
             state_tensor = torch.tensor(np.array(state), dtype=torch.float32, device=device).unsqueeze(0)
@@ -107,7 +109,16 @@ def main():
             done = terminated or truncated
             ep_return += reward
             step += 1 
-            
+            states.append(state)
+            actions.append(action)
+        
+        if LOG:
+            states_array = np.array(states)
+            actions_array = np.array(actions)
+            os.makedirs(os.path.join(SAVE_PATH, "eval", f"step{STEP_NUM}"), exist_ok=True)
+            # save as csv
+            np.savetxt(os.path.join(SAVE_PATH, "eval", f"step{STEP_NUM}", f"episode_{ep+1}_states.csv"), states_array, delimiter=',')
+            np.savetxt(os.path.join(SAVE_PATH, "eval", f"step{STEP_NUM}", f"episode_{ep+1}_actions.csv"), actions_array, delimiter=',')
         print(f"Episode {ep+1}: Return = {ep_return:.2f}, Steps = {step}")
     
     env.stop()

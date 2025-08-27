@@ -51,12 +51,12 @@ class AIRL(PPO):
             self.learning_steps_disc += 1
 
             # -------Samples from current policy's trajectories------ #
-            # states, _, _, dones, log_pis, next_states = \
-            #     self.buffer.sample(self.batch_size)
+            states, _, _, dones, log_pis, next_states = \
+                self.buffer.sample(self.batch_size)
             # ---------------------------------------------------------------------------- #
             # -------Samples from last k iterations-------- #
-            states, actions, _, dones, log_pis, next_states = \
-                self.buffer.sample_last_k_iters(self.batch_size, k=20, include_current=True)
+            # states, actions, _, dones, log_pis, next_states = \
+            #     self.buffer.sample_last_k_iters(self.batch_size, k=20, include_current=True)
             # ------------------------------------------------------------ #
             
             # Samples from expert's demonstrations.
@@ -65,7 +65,7 @@ class AIRL(PPO):
             # Calculate log probabilities of expert actions.
             with torch.no_grad():
                 # -------Recalculate log_pis because of the k-iter sample------ #
-                log_pis = self.actor.evaluate_log_pi(states, actions)
+                # log_pis = self.actor.evaluate_log_pi(states, actions)
                 # -------------------------------------------------------------------------------------- #
                 log_pis_exp = self.actor.evaluate_log_pi(
                     states_exp, actions_exp)
