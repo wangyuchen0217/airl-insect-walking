@@ -81,31 +81,32 @@ class AIRL(PPO):
         logit_exp = self.disc(states_exp, dones_exp, log_pis_exp, next_states_exp).detach()
 
         # f(s,s')
-        f_value = self.disc.f(states, next_states).detach()
-        f_value_exp = self.disc.f(states_exp, next_states_exp).detach()
+        f_value = self.disc.f(states, dones, next_states).detach()
+        f_value_exp = self.disc.f(states_exp, dones_exp, next_states_exp).detach()
 
         writer.add_scalar(
             'return/reward_mean', rewards.mean().item(), self.learning_steps)
         writer.add_scalar(
             'return/reward_std', rewards.std().item(), self.learning_steps)
+        
         # add debug for logit
         writer.add_scalar(
-            'stats/logit_mean', logit.mean().item(), self.learning_steps)
+            'return_debug/logit_mean', logit.mean().item(), self.learning_steps)
         writer.add_scalar(
-            'return/logit_std', logit.std().item(), self.learning_steps)
+            'return_debug/logit_std', logit.std().item(), self.learning_steps)
         writer.add_scalar(
-            'stats/logit_exp_mean', logit_exp.mean().item(), self.learning_steps)
+            'return_debug/logit_exp_mean', logit_exp.mean().item(), self.learning_steps)
         writer.add_scalar(
-            'return/logit_exp_std', logit_exp.std().item(), self.learning_steps)
+            'return_debug/logit_exp_std', logit_exp.std().item(), self.learning_steps)
         # add debug for f(s,s')
         writer.add_scalar(
-            'stats/f_value_mean', f_value.mean().item(), self.learning_steps)
+            'return_debug/f_value_mean', f_value.mean().item(), self.learning_steps)
         writer.add_scalar(
-            'stats/f_value_std', f_value.std().item(), self.learning_steps)
+            'return_debug/f_value_std', f_value.std().item(), self.learning_steps)
         writer.add_scalar(
-            'stats/f_value_exp_mean', f_value_exp.mean().item(), self.learning_steps)
+            'return_debug/f_value_exp_mean', f_value_exp.mean().item(), self.learning_steps)
         writer.add_scalar(
-            'stats/f_value_exp_std', f_value_exp.std().item(), self.learning_steps)
+            'return_debug/f_value_exp_std', f_value_exp.std().item(), self.learning_steps)
         
 
         # # add reward normalization 5.15
