@@ -11,12 +11,12 @@ import tensorboard
 
 # ======== Parameters (modify these as needed) =========
 ENV_ID = "Medauroidea_60000_offset"
-ALGO = "airl_logit_dx"
-FILENAME = "20250823-1520" 
+ALGO = "airl_logit"
+FILENAME = "20250819-1650" 
 PORT = 23000 # CoppeliaSim port: default is 23000
 CUDA = 0
 NUM_EPISODES = 5
-STEP_NUM =120000  # Choose a certain step number of the saved model or None 
+STEP_NUM = 1250000  # Choose a certain step number of the saved model or None 
 LOG = False
 # =================================================
 
@@ -106,11 +106,7 @@ def main():
             state, reward, terminated, truncated, info = next_step
             done = terminated or truncated
             ep_return += reward
-            step += 1
-            # print(f"Step: {step}, Reward: {reward:.2f}, Done: {done}")
-            
-            # Optionally, render is already enabled via render_mode="human"
-            # env.render()  # 如果需要手动调用 render，可以取消注释
+            step += 1 
             
         print(f"Episode {ep+1}: Return = {ep_return:.2f}, Steps = {step}")
     
