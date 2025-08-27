@@ -89,16 +89,30 @@ class AIRL(PPO):
         rewards_exp = self.disc(states_exp, dones_exp, log_pis_exp, next_states_exp).detach()
         # dx_exp = next_states_exp[:,0] - states_exp[:,0]
         # rewards_exp = rewards_exp + dx_exp * 100
+
+        # f(s,s')
+        f_value = self.disc.f(states, dones, next_states).detach()
+        f_value_exp = self.disc.f(states_exp, dones_exp, next_states_exp).detach()
         
         writer.add_scalar(
             'return/reward_mean', rewards.mean().item(), self.learning_steps)
         writer.add_scalar(
             'return/reward_std', rewards.std().item(), self.learning_steps)
+        
         # add debug for expert rewards
         writer.add_scalar(
-            'return/reward_exp_mean', rewards_exp.mean().item(), self.learning_steps)
+            'return_debug/reward_exp_mean', rewards_exp.mean().item(), self.learning_steps)
         writer.add_scalar(
-            'return/reward_exp_std', rewards_exp.std().item(), self.learning_steps)
+            'return_debug/reward_exp_std', rewards_exp.std().item(), self.learning_steps)
+        # add debug for f values
+        writer.add_scalar(
+            'return_debug/f_value_mean', f_value.mean().item(), self.learning_steps)
+        writer.add_scalar(
+            'return_debug/f_value_std', f_value.std().item(), self.learning_steps)
+        writer.add_scalar(
+            'return_debug/f_value_exp_mean', f_value_exp.mean().item(), self.learning_steps)
+        writer.add_scalar(
+            'return_debug/f_value_exp_std', f_value_exp.std().item(), self.learning_steps)
 
         # Update PPO using estimated rewards.
         self.update_ppo(
