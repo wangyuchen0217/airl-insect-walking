@@ -21,7 +21,7 @@ NAME = "StickInsect"
 EXPERT_FILE = "expert/expert_60000.csv"
 ENV_ID = "Medauroidea_60000_offset"
 ALGO = "airl_logit"
-PORT = 23000 # CoppeliaSim port: default is 23000
+PORT = 23001 # CoppeliaSim port: default is 23000
 CUDA = 0
 ROLLOUT_LENGTH = 1000 # 3000
 NUM_STEPS = 2*10**6 
@@ -84,6 +84,7 @@ def main():
     # np.savetxt("expert_states.csv", expert_data['state'], delimiter=',')
     expert_data = env.normalize_expert_data(expert_data)
     # np.savetxt("expert_states_normalized.csv", expert_data['state'], delimiter=',')
+    # np.savetxt("expert_actions_normalized.csv", expert_data['action'], delimiter=',')
     expert_buffer = ExpertBuffer(expert_data, device)
     print(f"Expert buffer size: {expert_buffer.size}")
 
