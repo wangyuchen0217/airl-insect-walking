@@ -21,6 +21,7 @@ NAME = "StickInsect"
 EXPERT_FILE = "expert/expert_60000.csv"
 ENV_ID = "Medauroidea_60000_offset"
 ALGO = "airl_logit"
+MEMO = ""
 PORT = 23001 # CoppeliaSim port: default is 23000
 CUDA = 0
 ROLLOUT_LENGTH = 1000 # 3000
@@ -60,6 +61,8 @@ def main():
         )
     sys.stdout = LoggerWriter(logging.info)
     print(f"Logging started at {current_time}")
+    if MEMO:
+        print(f"Memo: {MEMO}")
 
     # set up the environment and communication
     OnTimeStep=True
