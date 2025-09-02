@@ -286,8 +286,8 @@ def sysCall_init():
     self.HR_foot = sim.addGraphStream(self.graph_foot, 'HR_foot','m', 0, [1,0,1])
 
     self.graph_pose = sim.getObject('/graph_pose')
-    self.x = sim.addGraphStream(self.graph_pose, 'x','m', 0, [1,0,0])
-    self.y = sim.addGraphStream(self.graph_pose, 'y','m', 0, [0,1,0])
+    # self.x = sim.addGraphStream(self.graph_pose, 'x','m', 0, [1,0,0])
+    # self.y = sim.addGraphStream(self.graph_pose, 'y','m', 0, [0,1,0])
     self.z = sim.addGraphStream(self.graph_pose, 'z','m', 0, [0,0,1])
     self.roll = sim.addGraphStream(self.graph_pose, 'roll','m', 0, [1,1,0])
     self.pitch = sim.addGraphStream(self.graph_pose, 'pitch','m', 0, [0,1,1])
@@ -437,8 +437,8 @@ def sysCall_sensing():
     sim.setGraphStreamValue(self.graph_foot, self.MR_foot, MR_foot_traj[2])
     sim.setGraphStreamValue(self.graph_foot, self.HR_foot, HR_foot_traj[2])
 
-    sim.setGraphStreamValue(self.graph_pose, self.x, self.robot_positions[0])
-    sim.setGraphStreamValue(self.graph_pose, self.y, self.robot_positions[1])
+    # sim.setGraphStreamValue(self.graph_pose, self.x, self.robot_positions[0])
+    # sim.setGraphStreamValue(self.graph_pose, self.y, self.robot_positions[1])
     sim.setGraphStreamValue(self.graph_pose, self.z, self.robot_positions[2])
     sim.setGraphStreamValue(self.graph_pose, self.roll, self.robot_orientations[0])
     sim.setGraphStreamValue(self.graph_pose, self.pitch, self.robot_orientations[1])
