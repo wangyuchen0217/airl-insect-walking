@@ -6,47 +6,28 @@ def load_expert_data(expert_file, save_npz=False, npz_filename="expert_data.csv"
 
     # load the expert data (CoppeliaSim)
     data = pd.read_csv(expert_file, header=[0])
-    state_cols = [
-        'body_x', 'body_y',
-        'body_z', 'body_roll', 'body_pitch', 'body_yaw', 
-        'motor_pos_FL_TC', 'motor_pos_FL_CF', 'motor_pos_FL_FT', 
-        'motor_pos_ML_TC', 'motor_pos_ML_CF', 'motor_pos_ML_FT',
-        'motor_pos_HL_TC', 'motor_pos_HL_CF', 'motor_pos_HL_FT',
-        'motor_pos_FR_TC', 'motor_pos_FR_CF', 'motor_pos_FR_FT',
-        'motor_pos_MR_TC', 'motor_pos_MR_CF', 'motor_pos_MR_FT',
-        'motor_pos_HR_TC', 'motor_pos_HR_CF', 'motor_pos_HR_FT',
-        'force_FL', 'force_ML', 'force_HL', 'force_FR', 'force_MR', 'force_HR',
-        'FL_foot_traj_z', 'ML_foot_traj_z', 'HL_foot_traj_z',
-        'FR_foot_traj_z', 'MR_foot_traj_z', 'HR_foot_traj_z'
-    ]
-    action_cols = [
-        'motor_cmd_FL_TC', 'motor_cmd_FL_CF', 'motor_cmd_FL_FT',
-        'motor_cmd_ML_TC', 'motor_cmd_ML_CF', 'motor_cmd_ML_FT',
-        'motor_cmd_HL_TC', 'motor_cmd_HL_CF', 'motor_cmd_HL_FT',
-        'motor_cmd_FR_TC', 'motor_cmd_FR_CF', 'motor_cmd_FR_FT',
-        'motor_cmd_MR_TC', 'motor_cmd_MR_CF', 'motor_cmd_MR_FT',
-        'motor_cmd_HR_TC', 'motor_cmd_HR_CF', 'motor_cmd_HR_FT'
-    ]
-
-    #---- add contact columns based on force columns ----#
-    legs = ['FL', 'ML', 'HL', 'FR', 'MR', 'HR']
-    threshold = 0.5
-    for leg in legs:
-        force_col = f'force_{leg}'
-        contact_col = f'contact_{leg}'
-        # if force is not zero, contact is 1, else 0
-        # data[contact_col] = (data[force_col] != 0).astype(int)
-        data[contact_col] = (data[force_col].abs() > threshold).astype(int)
-
-    contact_cols = [f'contact_{leg}' for leg in legs]
-
-    last_force_idx = max(i for i, c in enumerate(state_cols) if c.startswith('force_'))
-    states_with_contact = state_cols[:last_force_idx + 1] + contact_cols + state_cols[last_force_idx + 1:]
-    print(f"States with contact columns: {states_with_contact}")
-    #------------------------------------------------------------------------------#
-
-    states_np = data[states_with_contact].values
-    actions_np = data[action_cols].values
+    states_np = data[[
+                                    'body_x', 'body_y',
+                                    'body_z', 'body_roll', 'body_pitch', 'body_yaw', 
+                                    'motor_pos_FL_TC', 'motor_pos_FL_CF', 'motor_pos_FL_FT', 
+                                    'motor_pos_ML_TC', 'motor_pos_ML_CF', 'motor_pos_ML_FT',
+                                    'motor_pos_HL_TC', 'motor_pos_HL_CF', 'motor_pos_HL_FT',
+                                    'motor_pos_FR_TC', 'motor_pos_FR_CF', 'motor_pos_FR_FT',
+                                    'motor_pos_MR_TC', 'motor_pos_MR_CF', 'motor_pos_MR_FT',
+                                    'motor_pos_HR_TC', 'motor_pos_HR_CF', 'motor_pos_HR_FT',
+                                    'force_FL', 'force_ML', 'force_HL', 'force_FR', 'force_MR', 'force_HR',
+                                    'FL_foot_traj_z', 'ML_foot_traj_z', 'HL_foot_traj_z',
+                                    'FR_foot_traj_z', 'MR_foot_traj_z', 'HR_foot_traj_z',
+                                    'contact_FL', 'contact_ML', 'contact_HL', 'contact_FR', 'contact_MR', 'contact_HR'
+                                ]].values
+    actions_np = data[[
+                                    'motor_cmd_FL_TC', 'motor_cmd_FL_CF', 'motor_cmd_FL_FT',
+                                    'motor_cmd_ML_TC', 'motor_cmd_ML_CF', 'motor_cmd_ML_FT',
+                                    'motor_cmd_HL_TC', 'motor_cmd_HL_CF', 'motor_cmd_HL_FT',
+                                    'motor_cmd_FR_TC', 'motor_cmd_FR_CF', 'motor_cmd_FR_FT',
+                                    'motor_cmd_MR_TC', 'motor_cmd_MR_CF', 'motor_cmd_MR_FT',
+                                    'motor_cmd_HR_TC', 'motor_cmd_HR_CF', 'motor_cmd_HR_FT'
+                                ]].values
 
     states = []
     actions = []
@@ -93,6 +74,22 @@ def load_expert_data(expert_file, save_npz=False, npz_filename="expert_data.csv"
         np.savez(npz_filename, **expert_data)
 
     return expert_data
+
+
+def add_contact_columns(expert_file, threshold=0.5, save = False, save_file="expert_60000_with_contact.csv"):
+    # load the expert data (CoppeliaSim)
+    data = pd.read_csv(expert_file, header=[0])
+
+    legs = ['FL', 'ML', 'HL', 'FR', 'MR', 'HR']
+    for leg in legs:
+        force_col = f'force_{leg}'
+        contact_col = f'contact_{leg}'
+        # if force is not zero, contact is 1, else 0
+        # data[contact_col] = (data[force_col] != 0).astype(int)
+        data[contact_col] = (data[force_col].abs() > threshold).astype(int)
+    
+    if save:
+        data.to_csv(save_file, index=False)
 
 
 def load_expert_cutlegs_data(expert_file, save_npz=False, npz_filename="expert_data.npz"):
@@ -163,7 +160,13 @@ class ExpertBuffer:
 
 if __name__ == "__main__":
 
-    EXPERT_FILE = "expert/expert_60000.csv"  # Path to the expert data CSV file
+    EXPERT_FILE = "expert/expert_60000_with_contact.csv"  # Path to the expert data CSV file
+
+    # add contact columns to the expert csv file if needed
+    ADD_CONTACT = False
+    if ADD_CONTACT:
+        add_contact_columns(EXPERT_FILE, threshold=0.5, save=False, save_file="expert/expert_60000_with_contact.csv")
+    
     expert_data = load_expert_data(EXPERT_FILE, save_npz=False, npz_filename="expert_data.npz")
 
     action_max = np.max(expert_data['action'], axis=0)
@@ -173,6 +176,9 @@ if __name__ == "__main__":
     state_max = np.max(expert_data['state'], axis=0)
     state_min = np.min(expert_data['state'], axis=0)
     print(f"State max: {state_max}, State min: {state_min}")
+
+
+
 
     # # plot force and contact
     # import matplotlib.pyplot as plt
