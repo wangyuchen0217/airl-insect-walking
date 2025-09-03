@@ -52,7 +52,7 @@ class CoppeliaSimEnv:
                         -0.54595870,  0.76064470, -0.60858520, 0.68776690,  0.43705025, -0.64850265,
                         1.26822540,  1.29237580, -0.70805120, 1.38210810, -0.06344602,  2.46140220,
                         0.98390025,  0.03390659,  2.27718070, -0.29464778, -0.14714211,  2.50980450,
-                        11.376931, 23.541754, 18.792133, 10.039366, 19.01429, 18.701794,
+                        # 11.376931, 23.541754, 18.792133, 10.039366, 19.01429, 18.701794,
                         0.42798841, 0.14256591, 0.26136336, 0.18555231, 0.11940541, 0.29765788,
                         1.0, 1.0, 1.0, 1.0, 1.0, 1.0
                         ])
@@ -63,7 +63,7 @@ class CoppeliaSimEnv:
                         -1.38210810,  0.06344602, -2.46140220, -0.98390025, -0.03390659, -2.27718070,
                         0.29464778,  0.14714211, -2.50980450, 0.54595870, -0.76064470,  0.60858520,
                         -0.68776690, -0.43705025,  0.64850265, -1.26822540, -1.29237580,  0.70805120,
-                        0., 0., 0., 0., 0., 0.,
+                        # 0., 0., 0., 0., 0., 0.,
                         -0.06665716, 0.00653887, 0.00611944, 0.0062973, 0.00600731, 0.00665024,
                         0.0, 0.0, 0.0, 0.0, 0.0, 0.0
                         ])
@@ -149,14 +149,14 @@ class CoppeliaSimEnv:
         norm_joint_angles = 2 * (joint_angles - joint_angles_low) / (joint_angles_high - joint_angles_low) - 1
         normalized.append(norm_joint_angles)
 
-        # forces: use the unified standard for normalization
-        start = self.num_body_pos + self.num_body_orientation + self.num_joint_angles
-        end = self.num_body_pos + self.num_body_orientation + self.num_joint_angles + self.num_forces
-        forces = observation[:, start:end]
-        forces_low = min(self.observation_space_low[start:end])
-        forces_high = max(self.observation_space_high[start:end])
-        norm_forces = 2 * (forces - forces_low) / (forces_high - forces_low) - 1
-        normalized.append(norm_forces)
+        # # forces: use the unified standard for normalization
+        # start = self.num_body_pos + self.num_body_orientation + self.num_joint_angles
+        # end = self.num_body_pos + self.num_body_orientation + self.num_joint_angles + self.num_forces
+        # forces = observation[:, start:end]
+        # forces_low = min(self.observation_space_low[start:end])
+        # forces_high = max(self.observation_space_high[start:end])
+        # norm_forces = 2 * (forces - forces_low) / (forces_high - forces_low) - 1
+        # normalized.append(norm_forces)
 
         # foot trajectory: use the unified standard for normalization
         start = self.num_body_pos + self.num_body_orientation + self.num_joint_angles + self.num_forces
@@ -256,7 +256,7 @@ class CoppeliaSimEnv:
         forces = self.get_force()
         foot_traj = self.get_foot_trajectory()
         contact = self.get_contact()
-        states = np.concatenate((body_pos, body_orientation, joint_angles, forces, foot_traj, contact)) #, forces, foot_traj, contact
+        states = np.concatenate((body_pos, body_orientation, joint_angles, foot_traj, contact)) #, forces, foot_traj, contact
         return states
 
 
