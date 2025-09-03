@@ -18,11 +18,11 @@ import torch.utils.tensorboard
 
 # ======== Parameters (modify these as needed) =========
 NAME = "StickInsect"
-EXPERT_FILE = "expert/expert_60000.csv"
-ENV_ID = "Medauroidea_60000_offset"
+EXPERT_FILE = "expert/expert_60000_with_contact.csv"
+ENV_ID = "Medauroidea_60000_offset_wcontact"
 ALGO = "airl_logit"
 MEMO = ""
-PORT = 23001 # CoppeliaSim port: default is 23000
+PORT = 23000 # CoppeliaSim port: default is 23000
 CUDA = 0
 ROLLOUT_LENGTH = 1000 # 3000
 NUM_STEPS = 2*10**6 
