@@ -192,3 +192,4 @@ if __name__ == "__main__":
 
     # # save expert state as csv
     # np.savetxt("expert_states.csv", expert_data['state'], delimiter=',')
+    # np.savetxt("expert_actions.csv", expert_data['action'], delimiter=',')
