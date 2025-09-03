@@ -130,9 +130,9 @@ class PPO(Algorithm):
             writer.add_scalar(
                 'loss/critic', loss_critic.item(), self.learning_steps)
             writer.add_scalar(
-                'stats/target_mean', targets.mean().item(), self.learning_steps)
+                'gae/target_mean', targets.mean().item(), self.learning_steps)
             writer.add_scalar(
-                'stats/target_std', targets.std().item(), self.learning_steps)
+                'gae/target_std', targets.std().item(), self.learning_steps)
 
 
     def update_actor(self, states, actions, log_pis_old, gaes, writer):
@@ -161,9 +161,9 @@ class PPO(Algorithm):
             writer.add_scalar(
                 'stats/ratio', ratios.mean().item(), self.learning_steps)
             writer.add_scalar(
-                'stats/gae_mean', gaes.mean().item(), self.learning_steps)
+                'gae/gae_mean', gaes.mean().item(), self.learning_steps)
             writer.add_scalar(
-                'stats/gae_std', gaes.std().item(), self.learning_steps)
+                'gae/gae_std', gaes.std().item(), self.learning_steps)
 
 
     def save_models(self, save_dir):
