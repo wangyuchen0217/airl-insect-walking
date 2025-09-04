@@ -21,8 +21,8 @@ NAME = "StickInsect"
 EXPERT_FILE = "expert/expert_60000.csv"
 ENV_ID = "Medauroidea_60000_offset"
 ALGO = "airl_logit"
-MEMO = "reward = -logit"
-PORT = 23004 # CoppeliaSim port: default is 23000
+MEMO = "using a trained actor (from 20250827-2022 step1300000)"
+PORT = 23005 # CoppeliaSim port: default is 23000
 CUDA = 0
 ROLLOUT_LENGTH = 1000 # 3000
 NUM_STEPS = 2*10**6 
