@@ -42,7 +42,7 @@ class CoppeliaSimEnv:
     num_joint_angles = 18 
     num_forces = 6
     num_foot_traj = 6
-    num_contact = 6
+    num_contact = 0
     observation_space = np.zeros((num_body_pos + num_body_orientation + num_joint_angles + num_forces + num_foot_traj + num_contact, ), dtype=float).astype(float) 
     action_space = np.zeros((18, ), dtype=float).astype(float)  # joint angles
 
@@ -54,7 +54,7 @@ class CoppeliaSimEnv:
                         0.98390025,  0.03390659,  2.27718070, -0.29464778, -0.14714211,  2.50980450,
                         11.376931, 23.541754, 18.792133, 10.039366, 19.01429, 18.701794,
                         0.42798841, 0.14256591, 0.26136336, 0.18555231, 0.11940541, 0.29765788,
-                        1.0, 1.0, 1.0, 1.0, 1.0, 1.0
+                        # 1.0, 1.0, 1.0, 1.0, 1.0, 1.0
                         ])
 
     observation_space_low = np.array([
@@ -65,7 +65,7 @@ class CoppeliaSimEnv:
                         -0.68776690, -0.43705025,  0.64850265, -1.26822540, -1.29237580,  0.70805120,
                         0., 0., 0., 0., 0., 0.,
                         -0.06665716, 0.00653887, 0.00611944, 0.0062973, 0.00600731, 0.00665024,
-                        0.0, 0.0, 0.0, 0.0, 0.0, 0.0
+                        # 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
                         ])
     
     action_space_high = np.array([
@@ -167,12 +167,12 @@ class CoppeliaSimEnv:
         norm_foot_traj = 2 * (foot_traj - foot_traj_low) / (foot_traj_high - foot_traj_low) - 1
         normalized.append(norm_foot_traj)
 
-        # contact: already 0 or 1, no need to normalize
-        start = self.num_body_pos + self.num_body_orientation + self.num_joint_angles + self.num_forces + self.num_foot_traj
-        end = self.num_body_pos + self.num_body_orientation + self.num_joint_angles + self.num_forces + self.num_foot_traj + self.num_contact
-        contact = observation[:, start:end]
-        norm_contact = contact * 2 - 1 # 0 -> -1, 1 -> 1
-        normalized.append(norm_contact)
+        # # contact: already 0 or 1, no need to normalize
+        # start = self.num_body_pos + self.num_body_orientation + self.num_joint_angles + self.num_forces + self.num_foot_traj
+        # end = self.num_body_pos + self.num_body_orientation + self.num_joint_angles + self.num_forces + self.num_foot_traj + self.num_contact
+        # contact = observation[:, start:end]
+        # norm_contact = contact * 2 - 1 # 0 -> -1, 1 -> 1
+        # normalized.append(norm_contact)
         
         # check if the observation is a single sample or a batch
         normalized_obs = np.concatenate(normalized, axis=1)
@@ -256,7 +256,7 @@ class CoppeliaSimEnv:
         forces = self.get_force()
         foot_traj = self.get_foot_trajectory()
         contact = self.get_contact()
-        states = np.concatenate((body_pos, body_orientation, joint_angles, forces, foot_traj, contact)) #, forces, foot_traj, contact
+        states = np.concatenate((body_pos, body_orientation, joint_angles, forces, foot_traj)) #, forces, foot_traj, contact
         return states
 
 
