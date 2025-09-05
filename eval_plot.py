@@ -9,12 +9,15 @@ ENV_ID = "Medauroidea_60000_offset"
 ALGO = "airl_logit"
 FILENAME = "20250819-1650" 
 STEP_NUM = 1250000 
+EPISODE = 1
+start = 200
+end = 300
 
-STATES_PATH = f"logs/{ENV_ID}/{ALGO}/{FILENAME}/eval/step{STEP_NUM}/episode_1_states.csv"
-ACTIONS_PATH = f"logs/{ENV_ID}/{ALGO}/{FILENAME}/eval/step{STEP_NUM}/episode_1_actions.csv"
+STATES_PATH = f"logs/{ENV_ID}/{ALGO}/{FILENAME}/eval/step{STEP_NUM}/episode_{EPISODE}_states.csv"
+ACTIONS_PATH = f"logs/{ENV_ID}/{ALGO}/{FILENAME}/eval/step{STEP_NUM}/episode_{EPISODE}_actions.csv"
 
-os.makedirs(f"evaluation/{ENV_ID}/{ALGO}/{FILENAME}/step{STEP_NUM}/episode_1/", exist_ok=True)
-SAVE_PATH = f"evaluation/{ENV_ID}/{ALGO}/{FILENAME}/step{STEP_NUM}/episode_1/"
+os.makedirs(f"evaluation/{ENV_ID}/{ALGO}/{FILENAME}/step{STEP_NUM}/episode_{EPISODE}/", exist_ok=True)
+SAVE_PATH = f"evaluation/{ENV_ID}/{ALGO}/{FILENAME}/step{STEP_NUM}/episode_{EPISODE}"
 
 EXPERT_STATES_PATH = "evaluation/expert_states_normalized.csv"
 EXPERT_ACTION_PATH = "evaluation/expert_actions_normalized.csv"
@@ -47,7 +50,7 @@ states.columns = [
 expert_states.columns = states.columns
 
 # ======== Plotting Functions ======== #
-def compare_policy_expert(policy, expert, variable_name, start, end, title):
+def plot_6_legs(policy, expert, variable_name, start, end, title):
     fig, axs = plt.subplots(6, 1, figsize=(6, 8))
     policy_data = policy[variable_name].values
     expert_data = expert[variable_name].values
@@ -65,7 +68,7 @@ def compare_policy_expert(policy, expert, variable_name, start, end, title):
     plt.tight_layout(rect=[0, 0, 0.85, 1])
     plt.savefig(os.path.join(SAVE_PATH, f"{title }.png"))
 
-def compare_3_joints(policy, expert, joint_label, start, end, title):
+def plot_1_joint(policy, expert, joint_label, start, end, title):
     fig, axs = plt.subplots(2, 1, figsize=(5, 4), sharex=True)
     leg_labels = ['LF', 'LM', 'LH', 'RF', 'RM', 'RH']
 
@@ -86,21 +89,38 @@ def compare_3_joints(policy, expert, joint_label, start, end, title):
     plt.tight_layout(rect=[0, 0, 0.85, 1])
     plt.savefig(os.path.join(SAVE_PATH, f"{title }.png"))
 
+def plot_pose(policy, expert, pose_name, start, end, title):
+    fig, axs = plt.subplots(2, 1, figsize=(5, 4), sharex=True)
+    for i, pose in enumerate(pose_name):
+        axs[0].plot(policy[pose][start:end], label=pose)
+        axs[1].plot(expert[pose][start:end], label=pose)
+        axs[0].set_ylabel('Policy', fontsize=16)
+        axs[1].set_ylabel('Expert', fontsize=16)
+    axs[0].set_title(title, fontsize=18)
+    axs[1].set_xlabel('Time (frames)', fontsize=16)
+
+    for ax in axs:
+        ax.tick_params(axis='both', which='major', labelsize=14)
+        ax.grid(True)
+    handles, labels = axs[0].get_legend_handles_labels()
+    fig.legend(handles, labels, fontsize=10, ncol=1, loc='outside center right')
+    plt.tight_layout(rect=[0, 0, 0.75, 1])
+    plt.savefig(os.path.join(SAVE_PATH, f"{title }.png"))
+
 # ======== Generate Plots ======== #
-start = 200
-end = 300
+plot_6_legs(actions, expert_actions, ['LF_ThC', 'LM_ThC', 'LH_ThC', 'RF_ThC', 'RM_ThC', 'RH_ThC'], start, end, 'Action: Comparision of ThC Joint')
+plot_6_legs(states, expert_states, ['LF_ThC', 'LM_ThC', 'LH_ThC', 'RF_ThC', 'RM_ThC', 'RH_ThC'], start, end, 'State: Comparision of ThC Joint State')
 
-compare_policy_expert(actions, expert_actions, ['LF_ThC', 'LM_ThC', 'LH_ThC', 'RF_ThC', 'RM_ThC', 'RH_ThC'], start, end, 'Action: Comparision of ThC Joint')
-compare_policy_expert(states, expert_states, ['LF_ThC', 'LM_ThC', 'LH_ThC', 'RF_ThC', 'RM_ThC', 'RH_ThC'], start, end, 'State: Comparision of ThC Joint State')
+plot_6_legs(actions, expert_actions, ['LF_CTr', 'LM_CTr', 'LH_CTr', 'RF_CTr', 'RM_CTr', 'RH_CTr'], start, end, 'Action: Comparision of CTr Joint')
+plot_6_legs(states, expert_states, ['LF_CTr', 'LM_CTr', 'LH_CTr', 'RF_CTr', 'RM_CTr', 'RH_CTr'], start, end, 'State: Comparision of CTr Joint')
 
-compare_policy_expert(actions, expert_actions, ['LF_CTr', 'LM_CTr', 'LH_CTr', 'RF_CTr', 'RM_CTr', 'RH_CTr'], start, end, 'Action: Comparision of CTr Joint')
-compare_policy_expert(states, expert_states, ['LF_CTr', 'LM_CTr', 'LH_CTr', 'RF_CTr', 'RM_CTr', 'RH_CTr'], start, end, 'State: Comparision of CTr Joint')
+plot_6_legs(actions, expert_actions, ['LF_FTi', 'LM_FTi', 'LH_FTi', 'RF_FTi', 'RM_FTi', 'RH_FTi'], start, end, 'Action: Comparision of FTi Joint')
+plot_6_legs(states, expert_states, ['LF_FTi', 'LM_FTi', 'LH_FTi', 'RF_FTi', 'RM_FTi', 'RH_FTi'], start, end, 'State: Comparision of FTi Joint')
 
-compare_policy_expert(actions, expert_actions, ['LF_FTi', 'LM_FTi', 'LH_FTi', 'RF_FTi', 'RM_FTi', 'RH_FTi'], start, end, 'Action: Comparision of FTi Joint')
-compare_policy_expert(states, expert_states, ['LF_FTi', 'LM_FTi', 'LH_FTi', 'RF_FTi', 'RM_FTi', 'RH_FTi'], start, end, 'State: Comparision of FTi Joint')
+plot_6_legs(states, expert_states, ['foot_traj_LF', 'foot_traj_LM', 'foot_traj_LH', 'foot_traj_RF', 'foot_traj_RM', 'foot_traj_RH'], start, end, 'State: Comparision of Foot Trajectory')
 
-compare_policy_expert(states, expert_states, ['foot_traj_LF', 'foot_traj_LM', 'foot_traj_LH', 'foot_traj_RF', 'foot_traj_RM', 'foot_traj_RH'], start, end, 'State: Comparision of Foot Trajectory')
+plot_1_joint(states, expert_states, 'ThC', start, end, 'Joints ThC')
+plot_1_joint(states, expert_states, 'CTr', start, end, 'Joints CTr')
+plot_1_joint(states, expert_states, 'FTi', start, end, 'Joints FTi')
 
-compare_3_joints(states, expert_states, 'ThC', start, end, 'Joints ThC')
-compare_3_joints(states, expert_states, 'CTr', start, end, 'Joints CTr')
-compare_3_joints(states, expert_states, 'FTi', start, end, 'Joints FTi')
+plot_pose(states, expert_states, ['body_roll', 'body_pitch', 'body_yaw'], start, end, 'State: Comparision of Body Pose')
