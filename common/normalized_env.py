@@ -86,24 +86,29 @@ class CoppeliaSimEnv:
                         -0.71734355, -0.82676823, -0.41873297
                         ])
     
-    def __init__(self, port=23000, OnTimeStep=True):
-        self.client = RemoteAPIClient('localhost', port=port)
-        self.sim = self.client.require('sim')
-        self.OnTimeStep = OnTimeStep  # Set to True for stepping mode, False for continuous mode
-        print('Ontime :', self.OnTimeStep)
-        self.sim.setStepping(self.OnTimeStep)  # Enable stepping mode for the simulation
+    def __init__(self, port=23000, OnTimeStep=True, simulation = True):
+        if simulation:
+            self.client = RemoteAPIClient('localhost', port=port)
+            self.sim = self.client.require('sim')
+            self.OnTimeStep = OnTimeStep  # Set to True for stepping mode, False for continuous mode
+            print('Ontime :', self.OnTimeStep)
+            self.sim.setStepping(self.OnTimeStep)  # Enable stepping mode for the simulation
 
-        # joint handle
-        for leg in range(self.__joint_handle.shape[0]):
-            for joint in range(self.__joint_handle.shape[1]):
-                # print(f'Getting joint handle for {self.__joint_names[joint]}{self.__leg_names[leg % 6]}')
-                self.__joint_handle[leg, joint] = self.sim.getObject(
-                    self.__joint_names[joint] + self.__leg_names[leg % 6]
-                )
-        self.IMU_robot = self.sim.getObject(self.__IMU_names[0])
-        self.IMU_ref = self.sim.getObject(self.__IMU_names[1])
-        self.set_robot_joint(np.zeros((18, 1)))
-        self.update()
+            # joint handle
+            for leg in range(self.__joint_handle.shape[0]):
+                for joint in range(self.__joint_handle.shape[1]):
+                    # print(f'Getting joint handle for {self.__joint_names[joint]}{self.__leg_names[leg % 6]}')
+                    self.__joint_handle[leg, joint] = self.sim.getObject(
+                        self.__joint_names[joint] + self.__leg_names[leg % 6]
+                    )
+            self.IMU_robot = self.sim.getObject(self.__IMU_names[0])
+            self.IMU_ref = self.sim.getObject(self.__IMU_names[1])
+            self.set_robot_joint(np.zeros((18, 1)))
+            self.update()
+
+            self.reset()
+            print("INFO: VrepInterfaze is initialized successfully.")
+
 
         # normalization parameters
         # self._obs_mid = (self.observation_space_high + self.observation_space_low) / 2.0
@@ -112,9 +117,6 @@ class CoppeliaSimEnv:
         self._action_mid = (self.action_space_high + self.action_space_low) / 2.0
         self._action_scale = (self.action_space_high - self.action_space_low) / 2.0
         print(f"Action space mid: {self._action_mid}, scale: {self._action_scale}")
-
-        self.reset()
-        print("INFO: VrepInterfaze is initialized successfully.")
 
 
     # ------------------- Normalization -------------------
@@ -182,6 +184,68 @@ class CoppeliaSimEnv:
     
     # def normalize_observation(self, observation):
     #     return (observation - self._obs_mid) / self._obs_scale
+
+    def denormalize_observation(self, normalized_obs):
+        normalized_obs = np.atleast_2d(normalized_obs)  # shape (B, obs_dim)
+        denormalized = []
+
+        # z height
+        start = 0
+        end = self.num_body_pos
+        norm_robot_z = normalized_obs[:, start:end]
+        robot_z_min = self.observation_space_low[start:end]
+        robot_z_max = self.observation_space_high[start:end]
+        robot_z = (norm_robot_z + 1) / 2 * (robot_z_max - robot_z_min) + robot_z_min
+        denormalized.append(robot_z)
+
+        # roll, pitch, yaw
+        start = end
+        end = start + self.num_body_orientation
+        norm_orientation = normalized_obs[:, start:end]
+        orientation_low = min(self.observation_space_low[start:end])
+        orientation_high = max(self.observation_space_high[start:end])
+        orientation = (norm_orientation + 1) / 2 * (orientation_high - orientation_low) + orientation_low
+        denormalized.append(orientation)
+
+        # joint angles
+        start = end
+        end = start + self.num_joint_angles
+        norm_joint_angles = normalized_obs[:, start:end]
+        joint_angles_low = self.observation_space_low[start:end]
+        joint_angles_high = self.observation_space_high[start:end]
+        joint_angles = (norm_joint_angles + 1) / 2 * (joint_angles_high - joint_angles_low) + joint_angles_low
+        denormalized.append(joint_angles)
+
+        # forces
+        start = end
+        end = start + self.num_forces
+        norm_forces = normalized_obs[:, start:end]
+        forces_low = min(self.observation_space_low[start:end])
+        forces_high = max(self.observation_space_high[start:end])
+        forces = (norm_forces + 1) / 2 * (forces_high - forces_low) + forces_low
+        denormalized.append(forces)
+
+        # foot trajectory
+        start = end
+        end = start + self.num_foot_traj
+        norm_foot_traj = normalized_obs[:, start:end]
+        foot_traj_low = min(self.observation_space_low[start:end])
+        foot_traj_high = max(self.observation_space_high[start:end])
+        foot_traj = (norm_foot_traj + 1) / 2 * (foot_traj_high - foot_traj_low) + foot_traj_low
+        denormalized.append(foot_traj)
+
+        # # contact: if you use the [-1, 1] mapping, you can invert like this:
+        # start = end
+        # end = start + self.num_contact
+        # norm_contact = normalized_obs[:, start:end]
+        # contact = (norm_contact + 1) / 2  # -1 -> 0, 1 -> 1
+        # denormalized.append(contact)
+
+        # check if the observation is a single sample or a batch
+        denormalized_obs = np.concatenate(denormalized, axis=1)
+        if normalized_obs.shape[0] == 1:
+            return denormalized_obs[0]
+        return denormalized_obs
 
     def normalize_action(self, action):
         return (action - self._action_mid) / self._action_scale
