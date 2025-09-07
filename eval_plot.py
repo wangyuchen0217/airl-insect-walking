@@ -151,20 +151,20 @@ def plot_gait(policy, expert, start, end, title):
     plt.savefig(os.path.join(SAVE_PATH, f"Gait_foot.png"))
 
 # ======== Generate Plots ======== #
-# plot_6_legs(actions, expert_actions, ['LF_ThC', 'LM_ThC', 'LH_ThC', 'RF_ThC', 'RM_ThC', 'RH_ThC'], start, end, 'Action: ThC Joint')
-# plot_6_legs(states, expert_states, ['LF_ThC', 'LM_ThC', 'LH_ThC', 'RF_ThC', 'RM_ThC', 'RH_ThC'], start, end, 'State: ThC Joint')
+plot_6_legs(actions, expert_actions, ['LF_ThC', 'LM_ThC', 'LH_ThC', 'RF_ThC', 'RM_ThC', 'RH_ThC'], start, end, 'Action: ThC Joint')
+plot_6_legs(states, expert_states, ['LF_ThC', 'LM_ThC', 'LH_ThC', 'RF_ThC', 'RM_ThC', 'RH_ThC'], start, end, 'State: ThC Joint')
 
-# plot_6_legs(actions, expert_actions, ['LF_CTr', 'LM_CTr', 'LH_CTr', 'RF_CTr', 'RM_CTr', 'RH_CTr'], start, end, 'Action: CTr Joint')
-# plot_6_legs(states, expert_states, ['LF_CTr', 'LM_CTr', 'LH_CTr', 'RF_CTr', 'RM_CTr', 'RH_CTr'], start, end, 'State: CTr Joint')
+plot_6_legs(actions, expert_actions, ['LF_CTr', 'LM_CTr', 'LH_CTr', 'RF_CTr', 'RM_CTr', 'RH_CTr'], start, end, 'Action: CTr Joint')
+plot_6_legs(states, expert_states, ['LF_CTr', 'LM_CTr', 'LH_CTr', 'RF_CTr', 'RM_CTr', 'RH_CTr'], start, end, 'State: CTr Joint')
 
-# plot_6_legs(actions, expert_actions, ['LF_FTi', 'LM_FTi', 'LH_FTi', 'RF_FTi', 'RM_FTi', 'RH_FTi'], start, end, 'Action: FTi Joint')
-# plot_6_legs(states, expert_states, ['LF_FTi', 'LM_FTi', 'LH_FTi', 'RF_FTi', 'RM_FTi', 'RH_FTi'], start, end, 'State: FTi Joint')
+plot_6_legs(actions, expert_actions, ['LF_FTi', 'LM_FTi', 'LH_FTi', 'RF_FTi', 'RM_FTi', 'RH_FTi'], start, end, 'Action: FTi Joint')
+plot_6_legs(states, expert_states, ['LF_FTi', 'LM_FTi', 'LH_FTi', 'RF_FTi', 'RM_FTi', 'RH_FTi'], start, end, 'State: FTi Joint')
 
-# plot_6_legs(states, expert_states, ['foot_traj_LF', 'foot_traj_LM', 'foot_traj_LH', 'foot_traj_RF', 'foot_traj_RM', 'foot_traj_RH'], start, end, 'State: Foot Trajectory')
+plot_6_legs(states, expert_states, ['foot_traj_LF', 'foot_traj_LM', 'foot_traj_LH', 'foot_traj_RF', 'foot_traj_RM', 'foot_traj_RH'], start, end, 'State: Foot Trajectory')
 
-# plot_1_joint(states, expert_states, 'ThC', start, end, 'Joints ThC')
-# plot_1_joint(states, expert_states, 'CTr', start, end, 'Joints CTr')
-# plot_1_joint(states, expert_states, 'FTi', start, end, 'Joints FTi')
+plot_1_joint(states, expert_states, 'ThC', start, end, 'Joints ThC')
+plot_1_joint(states, expert_states, 'CTr', start, end, 'Joints CTr')
+plot_1_joint(states, expert_states, 'FTi', start, end, 'Joints FTi')
 
-# plot_pose(states, expert_states, ['body_roll', 'body_pitch', 'body_yaw'], start, end, 'State: Body Pose')
+plot_pose(states, expert_states, ['body_roll', 'body_pitch', 'body_yaw'], start, end, 'State: Body Pose')
 plot_gait(states, expert_states, start, end, title="Policy Gait Pattern")
