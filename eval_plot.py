@@ -7,11 +7,11 @@ import os
 # ======== Parameters (modify these as needed) ========= #
 ENV_ID = "Medauroidea_60000_offset"
 ALGO = "airl_logit"
-FILENAME = "20250819-1650" 
-STEP_NUM = 1250000 
-EPISODE = 2
-start = 560
-end = 660
+FILENAME = "20250827-2022" 
+STEP_NUM = 1300000 
+EPISODE = 4
+start = 100
+end = 200
 
 STATES_PATH = f"logs/{ENV_ID}/{ALGO}/{FILENAME}/eval/step{STEP_NUM}/episode_{EPISODE}_states.csv"
 ACTIONS_PATH = f"logs/{ENV_ID}/{ALGO}/{FILENAME}/eval/step{STEP_NUM}/episode_{EPISODE}_actions.csv"
