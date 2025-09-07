@@ -112,16 +112,25 @@ def plot_pose(policy, expert, pose_name, start, end, title):
 
 def plot_gait(policy, expert, start, end, title):
     force_cols = ['force_LF', 'force_LM', 'force_LH', 'force_RF', 'force_RM', 'force_RH']
+    foot_cols = ['foot_traj_LF', 'foot_traj_LM', 'foot_traj_LH', 'foot_traj_RF', 'foot_traj_RM', 'foot_traj_RH']
     leg_labels = ['LF', 'LM', 'LH', 'RF', 'RM', 'RH']
 
-    def get_contact(data):
+    def get_contact_byforce(data):
         """Compute binary contact states (1=stance, 0=swing)."""
         contact = np.zeros((len(data), len(force_cols)))
         for i, col in enumerate(force_cols):
             contact[:, i] = (data[col].abs() > 0.5).astype(int)
         return contact[start:end]
-    contact_policy = get_contact(policy)
-    contact_expert = get_contact(expert)
+    
+    def get_contact_byfoot(data):
+        """Compute binary contact states (1=stance, 0=swing)."""
+        contact = np.zeros((len(data), len(foot_cols)))
+        for i, col in enumerate(foot_cols):
+            contact[:, i] = (data[col].abs() < 0.02).astype(int)
+        return contact[start:end]
+    
+    contact_policy = get_contact_byfoot(policy)
+    contact_expert = get_contact_byfoot(expert)
 
     fig, axs = plt.subplots(2, 1, figsize=(5, 6), sharey=True)
     axs[0].imshow(contact_policy.T, aspect="auto", cmap="Greys", interpolation="nearest")
@@ -139,23 +148,23 @@ def plot_gait(policy, expert, start, end, title):
     axs[1].tick_params(axis='both', which='major', labelsize=14)
 
     plt.tight_layout(rect=[0, 0, 1, 1])
-    plt.savefig(os.path.join(SAVE_PATH, f"Gait.png"))
+    plt.savefig(os.path.join(SAVE_PATH, f"Gait_foot.png"))
 
 # ======== Generate Plots ======== #
-plot_6_legs(actions, expert_actions, ['LF_ThC', 'LM_ThC', 'LH_ThC', 'RF_ThC', 'RM_ThC', 'RH_ThC'], start, end, 'Action: ThC Joint')
-plot_6_legs(states, expert_states, ['LF_ThC', 'LM_ThC', 'LH_ThC', 'RF_ThC', 'RM_ThC', 'RH_ThC'], start, end, 'State: ThC Joint')
+# plot_6_legs(actions, expert_actions, ['LF_ThC', 'LM_ThC', 'LH_ThC', 'RF_ThC', 'RM_ThC', 'RH_ThC'], start, end, 'Action: ThC Joint')
+# plot_6_legs(states, expert_states, ['LF_ThC', 'LM_ThC', 'LH_ThC', 'RF_ThC', 'RM_ThC', 'RH_ThC'], start, end, 'State: ThC Joint')
 
-plot_6_legs(actions, expert_actions, ['LF_CTr', 'LM_CTr', 'LH_CTr', 'RF_CTr', 'RM_CTr', 'RH_CTr'], start, end, 'Action: CTr Joint')
-plot_6_legs(states, expert_states, ['LF_CTr', 'LM_CTr', 'LH_CTr', 'RF_CTr', 'RM_CTr', 'RH_CTr'], start, end, 'State: CTr Joint')
+# plot_6_legs(actions, expert_actions, ['LF_CTr', 'LM_CTr', 'LH_CTr', 'RF_CTr', 'RM_CTr', 'RH_CTr'], start, end, 'Action: CTr Joint')
+# plot_6_legs(states, expert_states, ['LF_CTr', 'LM_CTr', 'LH_CTr', 'RF_CTr', 'RM_CTr', 'RH_CTr'], start, end, 'State: CTr Joint')
 
-plot_6_legs(actions, expert_actions, ['LF_FTi', 'LM_FTi', 'LH_FTi', 'RF_FTi', 'RM_FTi', 'RH_FTi'], start, end, 'Action: FTi Joint')
-plot_6_legs(states, expert_states, ['LF_FTi', 'LM_FTi', 'LH_FTi', 'RF_FTi', 'RM_FTi', 'RH_FTi'], start, end, 'State: FTi Joint')
+# plot_6_legs(actions, expert_actions, ['LF_FTi', 'LM_FTi', 'LH_FTi', 'RF_FTi', 'RM_FTi', 'RH_FTi'], start, end, 'Action: FTi Joint')
+# plot_6_legs(states, expert_states, ['LF_FTi', 'LM_FTi', 'LH_FTi', 'RF_FTi', 'RM_FTi', 'RH_FTi'], start, end, 'State: FTi Joint')
 
-plot_6_legs(states, expert_states, ['foot_traj_LF', 'foot_traj_LM', 'foot_traj_LH', 'foot_traj_RF', 'foot_traj_RM', 'foot_traj_RH'], start, end, 'State: Foot Trajectory')
+# plot_6_legs(states, expert_states, ['foot_traj_LF', 'foot_traj_LM', 'foot_traj_LH', 'foot_traj_RF', 'foot_traj_RM', 'foot_traj_RH'], start, end, 'State: Foot Trajectory')
 
-plot_1_joint(states, expert_states, 'ThC', start, end, 'Joints ThC')
-plot_1_joint(states, expert_states, 'CTr', start, end, 'Joints CTr')
-plot_1_joint(states, expert_states, 'FTi', start, end, 'Joints FTi')
+# plot_1_joint(states, expert_states, 'ThC', start, end, 'Joints ThC')
+# plot_1_joint(states, expert_states, 'CTr', start, end, 'Joints CTr')
+# plot_1_joint(states, expert_states, 'FTi', start, end, 'Joints FTi')
 
-plot_pose(states, expert_states, ['body_roll', 'body_pitch', 'body_yaw'], start, end, 'State: Body Pose')
+# plot_pose(states, expert_states, ['body_roll', 'body_pitch', 'body_yaw'], start, end, 'State: Body Pose')
 plot_gait(states, expert_states, start, end, title="Policy Gait Pattern")
