@@ -9,7 +9,7 @@ ENV_ID = "Medauroidea_60000_offset"
 ALGO = "airl_logit"
 FILENAME = "20250827-2022" 
 STEP_NUM = 1300000 
-EPISODE = 4
+EPISODE = 5
 start = 100
 end = 200
 
