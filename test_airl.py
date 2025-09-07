@@ -13,7 +13,7 @@ import tensorboard
 ENV_ID = "Medauroidea_60000_offset"
 ALGO = "airl_logit"
 FILENAME = "20250829-1606" 
-PORT = 23000 # CoppeliaSim port: default is 23000
+PORT = 23002 # CoppeliaSim port: default is 23000
 CUDA = 0
 NUM_EPISODES = 5
 STEP_NUM = 490000  # Choose a certain step number of the saved model or None 
