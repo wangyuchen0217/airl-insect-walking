@@ -3,6 +3,7 @@ buffers/
 nohup/
 
 expert/expert_60000.csv
-expert/expert_60000_with_contact.csv
+expert/expert_60000_wcontact_force.csv
+expert/expert_60000_wcontact_foot.csv
 
 logs/
