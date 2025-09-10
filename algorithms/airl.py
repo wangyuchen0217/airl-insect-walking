@@ -73,8 +73,8 @@ class AIRL(PPO):
         states, actions, _, dones, log_pis, next_states = self.buffer.get()
 
         # Calculate rewards.
-        rewards = self.disc.calculate_reward(
-            states, dones, log_pis, next_states)
+        # rewards = self.disc.calculate_reward(
+        #     states, dones, log_pis, next_states)
         
         # logit
         logit = self.disc(states, dones, log_pis, next_states).detach()
@@ -138,7 +138,7 @@ class AIRL(PPO):
 
         # Update PPO using estimated rewards.
         self.update_ppo(
-            states, actions, rewards, dones, log_pis, next_states, writer)
+            states, actions, logit, dones, log_pis, next_states, writer)
 
 
     def update_disc(self, states, dones, log_pis, next_states,
