@@ -11,7 +11,7 @@ from common.trainer import Trainer
 import logging
 from common.base import LoggerWriter
 from common.base import log_parameters
-from common.normalized_env import CoppeliaSimEnv
+from common.normalized_env_new import CoppeliaSimEnv
 # from common.normalized_env_cutlegs import CoppeliaSimEnv
 from common.buffer import SerializedBuffer
 import torch.utils.tensorboard
