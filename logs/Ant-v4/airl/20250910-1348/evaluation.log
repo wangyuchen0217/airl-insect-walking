@@ -1,0 +1,28 @@
+Loaded actor model from /home/yuchen/airl-insect-walking-main/logs/Ant-v4/airl/20250910-1348/model/actor.pth
+---  Actor Networks ---
+log_stds: torch.Size([1, 8])
+net.0.weight: torch.Size([64, 27])
+net.0.bias: torch.Size([64])
+net.2.weight: torch.Size([64, 64])
+net.2.bias: torch.Size([64])
+net.4.weight: torch.Size([8, 64])
+net.4.bias: torch.Size([8])
+---  Statistics ---
+log_stds: mean=-0.8198, std=0.1845, L2 norm=2.3696
+net.0.weight: mean=-0.0023, std=0.1847, L2 norm=7.6776
+net.0.bias: mean=-0.0213, std=0.1916, L2 norm=1.5305
+net.2.weight: mean=-0.0012, std=0.1199, L2 norm=7.6729
+net.2.bias: mean=0.0190, std=0.1521, L2 norm=1.2171
+net.4.weight: mean=0.0020, std=0.1115, L2 norm=2.5204
+net.4.bias: mean=0.0304, std=0.1310, L2 norm=0.3571
+---  Evaluation ---
+Episode 1: Return = 1.21, Steps = 9
+Episode 2: Return = 3.04, Steps = 8
+Episode 3: Return = 5.68, Steps = 9
+Episode 4: Return = 13.16, Steps = 10
+Episode 5: Return = 9.60, Steps = 9
+Episode 6: Return = 8.94, Steps = 8
+Episode 7: Return = 6.10, Steps = 9
+Episode 8: Return = 5.69, Steps = 9
+Episode 9: Return = 8.70, Steps = 9
+Episode 10: Return = 3.65, Steps = 9

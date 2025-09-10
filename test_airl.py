@@ -12,7 +12,7 @@ from common.env import make_env
 def main():
     # SAVE_PATH = "/home/yuchen/airl-insect-walking/logs/StickInsect-v4/airl/20250527-1324"
     # ENV_ID = "StickInsect-v4"
-    SAVE_PATH = "/home/yuchen/airl-insect-walking-main/logs/Ant-v4/airl/20250827-2001"
+    SAVE_PATH = "/home/yuchen/airl-insect-walking-main/logs/Ant-v4/airl/20250910-1348"
     ENV_ID = "Ant-v4"
     # SAVE_PATH = "/home/yuchen/airl-insect-walking/logs/Hopper-v4/airl/20250313-1553"
     # ENV_ID = "Hopper-v4"
