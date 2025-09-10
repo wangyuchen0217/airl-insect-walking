@@ -76,7 +76,7 @@ class CoppeliaSimEnv:
                     ObsField('forces',        6,  'get_force',          'shared',
                                 low=0.0,
                                 high=max([11.376931, 23.541754, 18.792133, 10.039366, 19.01429, 18.701794]),
-                                include=True),  
+                                include=False),  
 
                     ObsField('foot_traj',     6,  'get_foot_trajectory','shared',
                                 low=min([-0.06665716, 0.00653887, 0.00611944, 0.0062973, 0.00600731, 0.00665024]), 
@@ -85,7 +85,7 @@ class CoppeliaSimEnv:
 
                     ObsField('contact',       6,  'get_contact',        'binary',
                                 low=None, high=None, 
-                                include=False))
+                                include=True))
 
     action_space_high = np.array([
                         -0.08928384,  0.64018328,  0.73880163,

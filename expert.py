@@ -15,10 +15,10 @@ def load_expert_data(expert_file, save_npz=False, npz_filename="expert_data.csv"
                                     'motor_pos_FR_TC', 'motor_pos_FR_CF', 'motor_pos_FR_FT',
                                     'motor_pos_MR_TC', 'motor_pos_MR_CF', 'motor_pos_MR_FT',
                                     'motor_pos_HR_TC', 'motor_pos_HR_CF', 'motor_pos_HR_FT',
-                                    'force_FL', 'force_ML', 'force_HL', 'force_FR', 'force_MR', 'force_HR',
+                                    # 'force_FL', 'force_ML', 'force_HL', 'force_FR', 'force_MR', 'force_HR',
                                     'FL_foot_traj_z', 'ML_foot_traj_z', 'HL_foot_traj_z',
                                     'FR_foot_traj_z', 'MR_foot_traj_z', 'HR_foot_traj_z',
-                                    # 'contact_FL', 'contact_ML', 'contact_HL', 'contact_FR', 'contact_MR', 'contact_HR'
+                                    'contact_FL', 'contact_ML', 'contact_HL', 'contact_FR', 'contact_MR', 'contact_HR'
                                 ]].values
     actions_np = data[[
                                     'motor_cmd_FL_TC', 'motor_cmd_FL_CF', 'motor_cmd_FL_FT',
