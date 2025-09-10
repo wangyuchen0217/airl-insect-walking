@@ -53,7 +53,7 @@ class CoppeliaSimEnv:
                     ObsField('body_pos',      3,  'get_bodyposition',   'per_dim',
                                 low=np.array([-1.5580437, -3.7254312,  0.17508288]),
                                 high=np.array([ 7.0512481, -0.013637958, 0.34497491]), 
-                                include=True),
+                                include=True), # True, False
 
                     ObsField('orientation',   3,  'get_bodyorientation','shared',
                                 low=min([-0.13590206, -0.3235115, -0.63263106]),  
