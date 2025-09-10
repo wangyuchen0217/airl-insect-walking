@@ -1,14 +1,7 @@
 Logging started at 20250727-1751
-scale: [1. 1. 1. 1. 1. 1. 1. 1.]
-mid: [0. 0. 0. 0. 0. 0. 0. 0.]
-action space high: [1. 1. 1. 1. 1. 1. 1. 1.]
-action space low: [-1. -1. -1. -1. -1. -1. -1. -1.]
-scale: [1. 1. 1. 1. 1. 1. 1. 1.]
-mid: [0. 0. 0. 0. 0. 0. 0. 0.]
-action space high: [1. 1. 1. 1. 1. 1. 1. 1.]
-action space low: [-1. -1. -1. -1. -1. -1. -1. -1.]
 NVIDIA GeForce RTX 4060 Laptop GPU
 Process ID: 18068
+Memo: Using NormalizedEnv
 Env: Ant-v4, experts/Ant_states.pt, experts/Ant_actions.pt, Seed: 0
 Rollout length: 1000
 Num steps: 2000000, Eval interval: 10000

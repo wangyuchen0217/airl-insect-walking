@@ -1,6 +1,7 @@
 Logging started at 20250314-2354
 NVIDIA RTX A6000
 Process ID: 1296789
+Memo: Using pt RL rollour buffer data, succeed!
 Env: Ant-v4, Ant_states.pt, Ant_actions.pt, Seed: 0
 Rollout length: 1000
 Num steps: 2000000, Eval interval: 10000

@@ -1,6 +1,7 @@
 Logging started at 20250315-1418
 NVIDIA RTX A6000
 Process ID: 2187597
+Memo: Using pt file expert data, succeed!
 Env: Ant-v4, Ant_states.pt, Ant_actions.pt, Seed: 0
 Rollout length: 1000
 Num steps: 2000000, Eval interval: 10000

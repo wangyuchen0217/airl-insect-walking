@@ -120,6 +120,10 @@ class PPO(Algorithm):
         if self.learning_steps_ppo % self.epoch_ppo == 0:
             writer.add_scalar(
                 'loss/critic', loss_critic.item(), self.learning_steps)
+            writer.add_scalar(
+                'gae/target_mean', targets.mean().item(), self.learning_steps)
+            writer.add_scalar(
+                'gae/target_std', targets.std().item(), self.learning_steps)
 
 
     def update_actor(self, states, actions, log_pis_old, gaes, writer):
@@ -145,6 +149,12 @@ class PPO(Algorithm):
                 'loss/actor', loss_actor.item(), self.learning_steps)
             writer.add_scalar(
                 'stats/entropy', entropy.item(), self.learning_steps)
+            writer.add_scalar(
+                'stats/ratio', ratios.mean().item(), self.learning_steps)
+            writer.add_scalar(
+                'gae/gae_mean', gaes.mean().item(), self.learning_steps)
+            writer.add_scalar(
+                'gae/gae_std', gaes.std().item(), self.learning_steps)
 
 
     def save_models(self, save_dir):

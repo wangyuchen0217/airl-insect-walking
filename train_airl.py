@@ -21,6 +21,7 @@ NAME = "Ant"
 STATE_FILE = "experts/" + NAME + "_states.pt"
 ACTION_FILE = "experts/" + NAME + "_actions.pt"
 ENV_ID = NAME+"-v4"
+MEMO = ""
 CUDA = 0
 ROLLOUT_LENGTH = 1000
 NUM_STEPS = 2*10**6
@@ -59,6 +60,8 @@ def main():
         )
     sys.stdout = LoggerWriter(logging.info)
     print(f"Logging started at {current_time}")
+    if MEMO:
+        print(f"Memo: {MEMO}")
 
     # Create training and testing environments.
     env = make_env(ENV_ID, test=False)
