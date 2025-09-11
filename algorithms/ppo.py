@@ -124,6 +124,10 @@ class PPO(Algorithm):
                 'gae/target_mean', targets.mean().item(), self.learning_steps)
             writer.add_scalar(
                 'gae/target_std', targets.std().item(), self.learning_steps)
+            writer.add_scalar(
+                'gae/value_mean', self.critic(states).mean().item(), self.learning_steps)
+            writer.add_scalar(
+                'gae/value_std', self.critic(states).std().item(), self.learning_steps)
 
 
     def update_actor(self, states, actions, log_pis_old, gaes, writer):
