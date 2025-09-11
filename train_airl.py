@@ -18,11 +18,11 @@ import torch.utils.tensorboard
 
 # ======== Parameters (modify these as needed) =========
 NAME = "StickInsect"
-EXPERT_FILE = "expert/expert_60000_wcontact_foot.csv"
-ENV_ID = "Medauroidea_60000_offset_wcontact_foot"
-ALGO = "airl_losspi"
-MEMO = "Visulize the learned parameters during training: g_value, h_value, f(s,s'), logit, gae, target"
-PORT = 23001 # CoppeliaSim port: default is 23000
+EXPERT_FILE = "expert/expert_60000.csv"
+ENV_ID = "Medauroidea_60000_offset"
+ALGO = "airl_logit"
+MEMO = "Re-train to visulize the learned parameters during training: g_value, h_value, f(s,s'), logit, gae, target, v(s)"
+PORT = 23002 # CoppeliaSim port: default is 23000
 CUDA = 0
 ROLLOUT_LENGTH = 1000 # 3000
 NUM_STEPS = 2*10**6 
