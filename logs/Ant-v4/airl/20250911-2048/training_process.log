@@ -1,5 +1,6 @@
 Logging started at 20250911-2048
 Memo: Using -logsigmoid(-logit) as reward. Monitor the tensorboard for training process: gae, target, g_value, h_value, f(s,s'), logit, and v(s) ( v(s) is added )
+               A very good template for tensorboard visualization.
 NVIDIA GeForce RTX 4060 Laptop GPU
 Process ID: 631616
 Env: Ant-v4, experts/Ant_states.pt, experts/Ant_actions.pt, Seed: 0
