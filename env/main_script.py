@@ -567,15 +567,29 @@ def sysCall_cleanup():
 
 def csv_to_motor():
 
+    # ------------original csv reading method ------------- #
     # if self.csv_row_count < 1371 or self.csv_row_count > 2070:
     #     self.csv_row_count = 1371
-    if self.csv_row_count < 2 or self.csv_row_count > 64:
-        self.csv_row_count = 1
 
-    if self.csv_row_count > self.df_final_line-3:
+    # ------------downsampled csv reading method ------------- #
+    # if self.csv_row_count < 2 or self.csv_row_count > 64:
+    #     self.csv_row_count = 1
+
+    # if self.csv_row_count > self.df_final_line-3:
+    #     sim.stopSimulation()
+    # else:
+    #     self.csv_row_count += 1
+
+    # ------------no looping method ------------- #
+    if self.csv_row_count < 2:
+        self.csv_row_count = 2
+    
+    if self.csv_row_count > 64:
         sim.stopSimulation()
     else:
         self.csv_row_count += 1
+
+
     #     self.time_step += 1
 
     # if self.time_step == 1:
