@@ -6,10 +6,10 @@ import os
 
 # ======== Parameters (modify these as needed) ========= #
 ENV_ID = "Medauroidea_60000_offset"
-ALGO = "airl_logit"
-FILENAME = "20250827-2022" 
-STEP_NUM = 1300000 
-EPISODE = 5
+ALGO = "airl_losspi"
+FILENAME = "20250911-2133" 
+STEP_NUM = 110000 
+EPISODE = 3
 start = 100
 end = 200
 
@@ -19,8 +19,8 @@ ACTIONS_PATH = f"logs/{ENV_ID}/{ALGO}/{FILENAME}/eval/step{STEP_NUM}/episode_{EP
 os.makedirs(f"evaluation/{ENV_ID}/{ALGO}/{FILENAME}/step{STEP_NUM}/episode_{EPISODE}/", exist_ok=True)
 SAVE_PATH = f"evaluation/{ENV_ID}/{ALGO}/{FILENAME}/step{STEP_NUM}/episode_{EPISODE}"
 
-EXPERT_STATES_PATH = "evaluation/expert_states_normalized.csv"
-EXPERT_ACTION_PATH = "evaluation/expert_actions_normalized.csv"
+EXPERT_STATES_PATH = f"evaluation/{ENV_ID}/expert_states_normalized.csv"
+EXPERT_ACTION_PATH = f"evaluation/{ENV_ID}/expert_actions_normalized.csv"
 
 # ======== Read Data ======== #
 states = pd.read_csv(STATES_PATH, header=None, index_col=None)
@@ -45,7 +45,8 @@ states.columns = [
                   'LF_ThC', 'LF_CTr', 'LF_FTi', 'LM_ThC', 'LM_CTr', 'LM_FTi', 'LH_ThC', 'LH_CTr', 'LH_FTi',
                   'RF_ThC', 'RF_CTr', 'RF_FTi', 'RM_ThC', 'RM_CTr', 'RM_FTi', 'RH_ThC', 'RH_CTr', 'RH_FTi',
                   'force_LF', 'force_LM', 'force_LH', 'force_RF', 'force_RM', 'force_RH',
-                  'foot_traj_LF', 'foot_traj_LM', 'foot_traj_LH', 'foot_traj_RF', 'foot_traj_RM', 'foot_traj_RH'
+                  'foot_traj_LF', 'foot_traj_LM', 'foot_traj_LH', 'foot_traj_RF', 'foot_traj_RM', 'foot_traj_RH',
+                #   'contact_FL', 'contact_ML', 'contact_HL', 'contact_FR', 'contact_MR', 'contact_HR'
                   ]
 expert_states.columns = states.columns
 
