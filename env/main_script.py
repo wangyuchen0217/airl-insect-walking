@@ -14,7 +14,7 @@ def sysCall_init():
     # self.time_step = 0
     self.csv_row_count = 0
     # self.csv_file = "/home/yuchen/airl-insect-walking/env/Animal06_110919_00_31.csv"
-    self.csv_file = "/home/yuchen/airl-insect-walking/env/ds_loopsm.csv"
+    self.csv_file = "/home/yuchen/airl-insect-walking/env/ds_sm.csv"
     self.df = pd.read_csv(self.csv_file)
     self.df_final_line = len(self.df['LF_CTr'])
     print(self.df_final_line)
@@ -523,7 +523,7 @@ def sysCall_sensing():
         self.data_list['body_roll'].append(self.robot_orientations[0])
         self.data_list['body_pitch'].append(self.robot_orientations[1])
         self.data_list['body_yaw'].append( self.robot_orientations[2])
-        
+
         self.data_list['motor_cmd_FL_TC'].append(self.FL_joints_target[0])
         self.data_list['motor_cmd_FL_CF'].append(self.FL_joints_target[1])
         self.data_list['motor_cmd_FL_FT'].append(self.FL_joints_target[2])
