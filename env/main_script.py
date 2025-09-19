@@ -43,6 +43,8 @@ def sysCall_init():
                                  self.MR_foot_contact_sensor,
                                  self.HR_foot_contact_sensor]
     
+    self.ground = sim.getObject('/Floor')
+    
     # Define Object Handle
 
     self.abdomen = sim.getObject('/abdomen')
@@ -241,7 +243,14 @@ def sysCall_init():
         'MR_foot_traj_z': [],
         'HR_foot_traj_x': [],
         'HR_foot_traj_y': [],
-        'HR_foot_traj_z': []
+        'HR_foot_traj_z': [],
+
+        'contact_FL': [],
+        'contact_ML': [],
+        'contact_HL': [],
+        'contact_FR': [],
+        'contact_MR': [],
+        'contact_HR': []
         }
 
     # ================= Graph ================= #
@@ -373,7 +382,7 @@ def sysCall_sensing():
 
 
     # ===================================== #
-    #               Foot contact            #
+    #               foot force            #
     # ===================================== #
     for i in range(6):
         result, forceVector, torqueVector = sim.readForceSensor(self.foot_contact_sensors[i])
@@ -388,7 +397,28 @@ def sysCall_sensing():
     MR_foot_traj = sim.getObjectPosition(self.foots[4])
     HR_foot_traj = sim.getObjectPosition(self.foots[5])
 
-    
+
+    # ===================================== #
+    #               contact info          #
+    # ===================================== #
+    def is_in_contact(foot):
+        i = 0
+        while True:
+            res = sim.getContactInfo(sim.handle_all, foot, i)
+            if res is None:
+                break
+            coll, point, rForce, n = res
+            # if coll is None then there is no contact
+            if not coll or len(coll) < 2:
+                break
+            # print("[CONTACT]", coll, point, rForce, n)
+            if (coll[0] == foot and coll[1] == self.ground) or (coll[1] == foot and coll[0] == self.ground):
+                return 1
+            i += 1
+        return 0
+
+    contact_flags = [is_in_contact(foot) for foot in self.foots]
+    print("[CONTACT FLAGS]", contact_flags)
 
     # ===================================== #
     #               motor position          #
@@ -538,6 +568,13 @@ def sysCall_sensing():
         self.data_list['HR_foot_traj_y'].append(HR_foot_traj[1])
         self.data_list['HR_foot_traj_z'].append(HR_foot_traj[2])
 
+        self.data_list['contact_FL'].append(contact_flags[0])
+        self.data_list['contact_ML'].append(contact_flags[1])
+        self.data_list['contact_HL'].append(contact_flags[2])
+        self.data_list['contact_FR'].append(contact_flags[3])
+        self.data_list['contact_MR'].append(contact_flags[4])
+        self.data_list['contact_HR'].append(contact_flags[5])
+
     pass
 # ============================================================================ #
 # ============================================================================ #
@@ -549,7 +586,7 @@ def sysCall_cleanup():
     # do some clean-up here
     if self.logging:
         save_data = pd.DataFrame(self.data_list)
-        save_data.to_csv('/home/yuchen/airl-insect-walking/expert29.csv', index=False)
+        save_data.to_csv('/home/yuchen/airl-insect-walking/experttemp.csv', index=False)
 
     pass
 
