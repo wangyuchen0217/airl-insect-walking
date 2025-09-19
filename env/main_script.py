@@ -568,12 +568,12 @@ def sysCall_sensing():
         self.data_list['HR_foot_traj_y'].append(HR_foot_traj[1])
         self.data_list['HR_foot_traj_z'].append(HR_foot_traj[2])
 
-        self.data_list['contact_FL'].append(contact_flags[0])
-        self.data_list['contact_ML'].append(contact_flags[1])
-        self.data_list['contact_HL'].append(contact_flags[2])
-        self.data_list['contact_FR'].append(contact_flags[3])
-        self.data_list['contact_MR'].append(contact_flags[4])
-        self.data_list['contact_HR'].append(contact_flags[5])
+        self.data_list['contact_info_FL'].append(contact_flags[0])
+        self.data_list['contact_info_ML'].append(contact_flags[1])
+        self.data_list['contact_info_HL'].append(contact_flags[2])
+        self.data_list['contact_info_FR'].append(contact_flags[3])
+        self.data_list['contact_info_MR'].append(contact_flags[4])
+        self.data_list['contact_info_HR'].append(contact_flags[5])
 
     pass
 # ============================================================================ #
