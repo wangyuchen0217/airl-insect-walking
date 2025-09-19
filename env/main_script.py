@@ -7,7 +7,7 @@ import pandas as pd
 def sysCall_init():
     sim = require('sim')
 
-    self.logging = False
+    self.logging = True
 
     # CSV file
     
@@ -78,7 +78,6 @@ def sysCall_init():
     self.ML_joints_init_position_deg = [0 ,  -2.5, -60]
     self.HL_joints_init_position_deg = [-40, 9.5,-60]
 
-    
     self.FL_joints_target = [0, 0, 0]
     self.ML_joints_target = [0, 0, 0]
     self.HL_joints_target = [0, 0, 0]
@@ -92,7 +91,13 @@ def sysCall_init():
     self.FR_joints_postions = [0, 0, 0]
     self.MR_joints_postions = [0, 0, 0]
     self.HR_joints_postions = [0, 0, 0]
-    
+
+    self.FL_joints_velocity = [0, 0, 0]
+    self.ML_joints_velocity = [0, 0, 0]
+    self.HL_joints_velocity = [0, 0, 0]
+    self.FR_joints_velocity = [0, 0, 0]
+    self.MR_joints_velocity = [0, 0, 0]
+    self.HR_joints_velocity = [0, 0, 0]
 
     self.FL_joints_csv = [0, 0, 0]
     self.ML_joints_csv = [0, 0, 0]
@@ -121,7 +126,6 @@ def sysCall_init():
     self.FR_joints_prev_pos = [0, 0, 0]
     self.MR_joints_prev_pos = [0, 0, 0]
     self.HR_joints_prev_pos = [0, 0, 0]
-
 
     self.FL_joints_init_direction = [-1,  1, 1]
     self.ML_joints_init_direction = [-1,  1, 1]
@@ -200,6 +204,32 @@ def sysCall_init():
         'motor_pos_HR_CF': [],
         'motor_pos_HR_FT': [],
 
+        'qvel_body_x': [],
+        'qvel_body_y': [],
+        'qvel_body_z': [],
+        'qvel_body_roll': [],
+        'qvel_body_pitch': [],
+        'qvel_body_yaw': [],
+
+        'qvel_FL_TC': [],
+        'qvel_FL_CF': [],
+        'qvel_FL_FT': [],
+        'qvel_ML_TC': [],
+        'qvel_ML_CF': [],
+        'qvel_ML_FT': [],
+        'qvel_HL_TC': [],
+        'qvel_HL_CF': [],
+        'qvel_HL_FT': [],
+        'qvel_FR_TC': [],
+        'qvel_FR_CF': [],
+        'qvel_FR_FT': [],
+        'qvel_MR_TC': [],
+        'qvel_MR_CF': [],
+        'qvel_MR_FT': [],
+        'qvel_HR_TC': [],
+        'qvel_HR_CF': [],
+        'qvel_HR_FT': [],
+        
         'force_FL': [],
         'force_ML': [],
         'force_HL': [],
@@ -245,12 +275,12 @@ def sysCall_init():
         'HR_foot_traj_y': [],
         'HR_foot_traj_z': [],
 
-        'contact_FL': [],
-        'contact_ML': [],
-        'contact_HL': [],
-        'contact_FR': [],
-        'contact_MR': [],
-        'contact_HR': []
+        'contact_info_FL': [],
+        'contact_info_ML': [],
+        'contact_info_HL': [],
+        'contact_info_FR': [],
+        'contact_info_MR': [],
+        'contact_info_HR': []
         }
 
     # ================= Graph ================= #
@@ -380,6 +410,8 @@ def sysCall_sensing():
     sim.setObjectPosition(self.IMU_ref, [self.robot_positions[0], self.robot_positions[1], 0.4])
     self.robot_orientations = sim.getObjectOrientation(self.IMU_robot, self.IMU_ref)
 
+    self.robot_velocities = sim.getObjectVelocity(self.head)
+
 
     # ===================================== #
     #               foot force            #
@@ -418,7 +450,7 @@ def sysCall_sensing():
         return 0
 
     contact_flags = [is_in_contact(foot) for foot in self.foots]
-    print("[CONTACT FLAGS]", contact_flags)
+    # print("[CONTACT FLAGS]", contact_flags)
 
     # ===================================== #
     #               motor position          #
@@ -430,6 +462,13 @@ def sysCall_sensing():
         self.FR_joints_postions[i] = sim.getJointPosition(self.FR_joints[i])
         self.MR_joints_postions[i] = sim.getJointPosition(self.MR_joints[i])
         self.HR_joints_postions[i] = sim.getJointPosition(self.HR_joints[i])
+
+        self.FL_joints_velocity[i] = sim.getJointVelocity(self.FL_joints[i])
+        self.ML_joints_velocity[i] = sim.getJointVelocity(self.ML_joints[i])
+        self.HL_joints_velocity[i] = sim.getJointVelocity(self.HL_joints[i])
+        self.FR_joints_velocity[i] = sim.getJointVelocity(self.FR_joints[i])
+        self.MR_joints_velocity[i] = sim.getJointVelocity(self.MR_joints[i])
+        self.HR_joints_velocity[i] = sim.getJointVelocity(self.HR_joints[i])
 
 
     # ================ graph data ================== #
@@ -484,6 +523,7 @@ def sysCall_sensing():
         self.data_list['body_roll'].append(self.robot_orientations[0])
         self.data_list['body_pitch'].append(self.robot_orientations[1])
         self.data_list['body_yaw'].append( self.robot_orientations[2])
+        
         self.data_list['motor_cmd_FL_TC'].append(self.FL_joints_target[0])
         self.data_list['motor_cmd_FL_CF'].append(self.FL_joints_target[1])
         self.data_list['motor_cmd_FL_FT'].append(self.FL_joints_target[2])
@@ -522,6 +562,32 @@ def sysCall_sensing():
         self.data_list['motor_pos_HR_CF'].append(self.HR_joints_postions[1])
         self.data_list['motor_pos_HR_FT'].append(self.HR_joints_postions[2])
 
+        self.data_list['qvel_body_x'].append(self.robot_velocities[0][0])
+        self.data_list['qvel_body_y'].append(self.robot_velocities[0][1])
+        self.data_list['qvel_body_z'].append(self.robot_velocities[0][2])
+        self.data_list['qvel_body_roll'].append(self.robot_velocities[1][0])
+        self.data_list['qvel_body_pitch'].append(self.robot_velocities[1][1])
+        self.data_list['qvel_body_yaw'].append(self.robot_velocities[1][2])
+
+        self.data_list['qvel_FL_TC'].append(self.FL_joints_velocity[0])
+        self.data_list['qvel_FL_CF'].append(self.FL_joints_velocity[1])
+        self.data_list['qvel_FL_FT'].append(self.FL_joints_velocity[2])
+        self.data_list['qvel_ML_TC'].append(self.ML_joints_velocity[0])
+        self.data_list['qvel_ML_CF'].append(self.ML_joints_velocity[1])
+        self.data_list['qvel_ML_FT'].append(self.ML_joints_velocity[2])
+        self.data_list['qvel_HL_TC'].append(self.HL_joints_velocity[0])
+        self.data_list['qvel_HL_CF'].append(self.HL_joints_velocity[1])
+        self.data_list['qvel_HL_FT'].append(self.HL_joints_velocity[2])
+        self.data_list['qvel_FR_TC'].append(self.FR_joints_velocity[0])
+        self.data_list['qvel_FR_CF'].append(self.FR_joints_velocity[1])
+        self.data_list['qvel_FR_FT'].append(self.FR_joints_velocity[2])
+        self.data_list['qvel_MR_TC'].append(self.MR_joints_velocity[0])
+        self.data_list['qvel_MR_CF'].append(self.MR_joints_velocity[1])
+        self.data_list['qvel_MR_FT'].append(self.MR_joints_velocity[2])
+        self.data_list['qvel_HR_TC'].append(self.HR_joints_velocity[0])
+        self.data_list['qvel_HR_CF'].append(self.HR_joints_velocity[1])
+        self.data_list['qvel_HR_FT'].append(self.HR_joints_velocity[2])
+
         self.data_list['force_FL'].append(self.force_sensors_values_z_filter[0])
         self.data_list['force_ML'].append(self.force_sensors_values_z_filter[1])
         self.data_list['force_HL'].append(self.force_sensors_values_z_filter[2])
@@ -547,7 +613,6 @@ def sysCall_sensing():
         self.data_list['force_HR_x'].append(self.force_sensors_values_xyz[5][0])
         self.data_list['force_HR_y'].append(self.force_sensors_values_xyz[5][1])
         self.data_list['force_HR_z'].append(self.force_sensors_values_xyz[5][2])
-
 
         self.data_list['FL_foot_traj_x'].append(FL_foot_traj[0])
         self.data_list['FL_foot_traj_y'].append(FL_foot_traj[1])
