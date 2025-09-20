@@ -651,7 +651,14 @@ def sysCall_cleanup():
     # do some clean-up here
     if self.logging:
         save_data = pd.DataFrame(self.data_list)
-        save_data.to_csv('/home/yuchen/airl-insect-walking/experttemp.csv', index=False)
+        # save_data.to_csv('/home/yuchen/airl-insect-walking/experttemp.csv', index=False)
+        
+        # ------------write-in mode ------------- #
+        # judge if the file exists
+        path = '/home/yuchen/airl-insect-walking/experttemp.csv'
+        file_exists = os.path.isfile(path)
+        # if not, create the file and write the header, if yes, append without writing the header
+        save_data.to_csv(path, mode='a', index=False, header=not file_exists)
 
     pass
 
