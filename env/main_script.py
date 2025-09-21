@@ -649,11 +649,14 @@ def sysCall_sensing():
 
 def sysCall_cleanup():
     # do some clean-up here
-    if self.logging:
-        save_data = pd.DataFrame(self.data_list)
-        # save_data.to_csv('/home/yuchen/airl-insect-walking/experttemp.csv', index=False)
+    # ------------normal mode ------------- #
+    # if self.logging:
+    #     save_data = pd.DataFrame(self.data_list)
+    #     save_data.to_csv('/home/yuchen/airl-insect-walking/experttemp.csv', index=False)
         
-        # ------------write-in mode ------------- #
+    # ------------write-in mode ------------- #
+    if self.logging and len(self.data_list) > 0:
+        save_data = pd.DataFrame(self.data_list)
         # judge if the file exists
         path = '/home/yuchen/airl-insect-walking/experttemp.csv'
         file_exists = os.path.isfile(path)
