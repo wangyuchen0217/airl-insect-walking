@@ -294,11 +294,11 @@ class CoppeliaSimEnv:
         return foot_traj
     
     def get_contact(self):
-        # data[contact_col] = (data[force_col].abs() > threshold).astype(int)
+        # contact filtered by force sensor
         contact = np.zeros((6))
         forces = self.get_force()
         for i in range(6):
-            contact[i] = 1 if forces[i] > 0.5 else 0
+            contact[i] = 1 if forces[i] > 0.27 else 0
         return contact
     
     def get_states(self):
