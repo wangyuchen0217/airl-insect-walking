@@ -684,22 +684,22 @@ def csv_to_motor():
     #     self.csv_row_count = 1371
 
     # ------------downsampled csv reading method ------------- #
-    # if self.csv_row_count < 2 or self.csv_row_count > 64:
-    #     self.csv_row_count = 1
+    if self.csv_row_count < 2 or self.csv_row_count > 64:
+        self.csv_row_count = 1
 
-    # if self.csv_row_count > self.df_final_line-3:
-    #     sim.stopSimulation()
-    # else:
-    #     self.csv_row_count += 1
-
-    # ------------no looping method ------------- #
-    if self.csv_row_count < 2:
-        self.csv_row_count = 2
-    
-    if self.csv_row_count > 64:
+    if self.csv_row_count > self.df_final_line-3:
         sim.stopSimulation()
     else:
         self.csv_row_count += 1
+
+    # ------------no looping method ------------- #
+    # if self.csv_row_count < 2:
+    #     self.csv_row_count = 2
+    
+    # if self.csv_row_count > 64:
+    #     sim.stopSimulation()
+    # else:
+    #     self.csv_row_count += 1
 
     # ------------add noise to collect the dataset ------------- #
     # self.time_step += 1
