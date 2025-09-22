@@ -99,6 +99,67 @@ def add_contact_columns(expert_file, save = False, save_file="expert_60000_with_
     if save:
         data.to_csv(save_file, index=False)
 
+def symmetric_lr_bounds(low_1d: np.ndarray,
+                        high_1d: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
+    """
+    Make left-right symmetric bounds for 6 legs × 3 joints (TC, CF, FT) in the order:
+      [FL_TC, FL_CF, FL_FT,
+       ML_TC, ML_CF, ML_FT,
+       HL_TC, HL_CF, HL_FT,
+       FR_TC, FR_CF, FR_FT,
+       MR_TC, MR_CF, MR_FT,
+       HR_TC, HR_CF, HR_FT]
+
+    Returns:
+        new_low_1d, new_high_1d with the same shape/order as inputs,
+        where each L/R pair shares the same outer (min-of-mins / max-of-maxes) bounds
+        under the canonical sign defined by init_pos_direction. No ±M symmetry is enforced.
+    """
+    init_pos_direction = np.array([[-1, 1, 1],   # FL
+                                                                [-1, 1, 1],   # ML
+                                                                [-1, 1, 1],   # HL
+                                                                [ 1,-1,-1],   # FR
+                                                                [ 1,-1,-1],   # MR
+                                                                [ 1,-1,-1]], dtype=float)   # HR
+                                        
+    low = low_1d.reshape(6, 3).astype(float).copy()
+    high = high_1d.reshape(6, 3).astype(float).copy()
+    S = init_pos_direction.astype(float)
+    assert low.shape == (6,3) and high.shape == (6,3) and S.shape == (6,3)
+
+    # 1) Map to canonical sign space
+    low_c = low * S
+    high_c = high * S
+    # Ensure proper ordering after possible sign flip
+    low_c, high_c = np.minimum(low_c, high_c), np.maximum(low_c, high_c)
+
+    # 2) For each L/R pair, take outer bounds in canonical space
+    pairs = [(0,3),  # FL ↔ FR
+             (1,4),  # ML ↔ MR
+             (2,5)]  # HL ↔ HR
+
+    new_low_c  = low_c.copy()
+    new_high_c = high_c.copy()
+
+    for iL, iR in pairs:
+        # per joint (TC, CF, FT)
+        pair_low  = np.minimum(low_c[iL],  low_c[iR])
+        pair_high = np.maximum(high_c[iL], high_c[iR])
+        new_low_c[iL]  = pair_low
+        new_low_c[iR]  = pair_low
+        new_high_c[iL] = pair_high
+        new_high_c[iR] = pair_high
+
+    # 3) Map back to original sign space and ensure ordering
+    new_low  = new_low_c  * S
+    new_high = new_high_c * S
+
+    # After sign re-application, enforce low <= high
+    final_low  = np.minimum(new_low,  new_high)
+    final_high = np.maximum(new_low,  new_high)
+    print("Low (Symmetrical) :", final_low.reshape(-1))
+    print("High (Symmetrical) :", final_high.reshape(-1))
+
 
 class ExpertBuffer:
     def __init__(self, expert_data, device):
@@ -137,6 +198,8 @@ if __name__ == "__main__":
     state_min = np.min(expert_data['state'], axis=0)
     print(f"State max: {state_max}, State min: {state_min}")
 
+    # # make the action bounds symmetric for left and right legs
+    # symmetric_lr_bounds(action_max, action_min)
 
 
 
