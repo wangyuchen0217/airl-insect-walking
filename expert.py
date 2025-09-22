@@ -15,9 +15,15 @@ def load_expert_data(expert_file, save_npz=False, npz_filename="expert_data.csv"
                                     'motor_pos_FR_TC', 'motor_pos_FR_CF', 'motor_pos_FR_FT',
                                     'motor_pos_MR_TC', 'motor_pos_MR_CF', 'motor_pos_MR_FT',
                                     'motor_pos_HR_TC', 'motor_pos_HR_CF', 'motor_pos_HR_FT',
-                                    # 'force_FL', 'force_ML', 'force_HL', 'force_FR', 'force_MR', 'force_HR',
-                                    'FL_foot_traj_z', 'ML_foot_traj_z', 'HL_foot_traj_z',
-                                    'FR_foot_traj_z', 'MR_foot_traj_z', 'HR_foot_traj_z',
+                                    'qvel_body_x', 'qvel_body_y', 'qvel_body_z', 'qvel_body_roll', 'qvel_body_pitch', 'qvel_body_yaw',
+                                    'qvel_FL_TC', 'qvel_FL_CF', 'qvel_FL_FT',
+                                    'qvel_ML_TC', 'qvel_ML_CF', 'qvel_ML_FT',
+                                    'qvel_HL_TC', 'qvel_HL_CF', 'qvel_HL_FT',
+                                    'qvel_FR_TC', 'qvel_FR_CF', 'qvel_FR_FT',
+                                    'qvel_MR_TC', 'qvel_MR_CF', 'qvel_MR_FT',
+                                    'qvel_HR_TC', 'qvel_HR_CF', 'qvel_HR_FT',
+                                    'force_FL', 'force_ML', 'force_HL', 'force_FR', 'force_MR', 'force_HR',
+                                    'FL_foot_traj_z', 'ML_foot_traj_z', 'HL_foot_traj_z', 'FR_foot_traj_z', 'MR_foot_traj_z', 'HR_foot_traj_z',
                                     'contact_FL', 'contact_ML', 'contact_HL', 'contact_FR', 'contact_MR', 'contact_HR'
                                 ]].values
     actions_np = data[[
@@ -83,12 +89,12 @@ def add_contact_columns(expert_file, save = False, save_file="expert_60000_with_
     legs = ['FL', 'ML', 'HL', 'FR', 'MR', 'HR']
     for leg in legs:
         force_col = f'force_{leg}'
-        foot_col = f'{leg}_foot_traj_z'
+        # foot_col = f'{leg}_foot_traj_z'
         contact_col = f'contact_{leg}'
-        # # if force is not zero, contact is 1, else 0
-        # data[contact_col] = (data[force_col].abs() > threshold).astype(int)
-        # if foot height is less than 0.02, contact is 1, else 0
-        data[contact_col] = (data[foot_col].abs() < 0.02).astype(int)
+        # if force is not zero, contact is 1, else 0
+        data[contact_col] = (data[force_col].abs() > 0.27).astype(int)
+        # # if foot height is less than 0.02, contact is 1, else 0
+        # data[contact_col] = (data[foot_col].abs() < 0.02).astype(int)
     
     if save:
         data.to_csv(save_file, index=False)
@@ -114,12 +120,12 @@ class ExpertBuffer:
 
 if __name__ == "__main__":
 
-    EXPERT_FILE = "expert/expert_60000.csv"  # Path to the expert data CSV file
+    EXPERT_FILE = "expert/expert_66k_aug3c_fcontact.csv"  # Path to the expert data CSV file
 
     # add contact columns to the expert csv file if needed
-    ADD_CONTACT = True
+    ADD_CONTACT = False
     if ADD_CONTACT:
-        add_contact_columns(EXPERT_FILE, save=True, save_file="expert/expert_60000_wcontact_foot.csv")
+        add_contact_columns(EXPERT_FILE, save=True, save_file="expert/expert_66k_aug3c_fcontact.csv")
     
     expert_data = load_expert_data(EXPERT_FILE, save_npz=False, npz_filename="expert_data.npz")
 
