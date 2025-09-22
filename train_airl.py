@@ -6,7 +6,7 @@ import numpy as np
 from coppeliasim_zmqremoteapi_client import RemoteAPIClient
 from datetime import datetime
 from algorithms.airl import AIRL
-from expert import load_expert_data, ExpertBuffer, load_expert_cutlegs_data
+from expert import load_expert_data, ExpertBuffer
 from common.trainer import Trainer
 import logging
 from common.base import LoggerWriter
@@ -18,10 +18,10 @@ import torch.utils.tensorboard
 
 # ======== Parameters (modify these as needed) =========
 NAME = "StickInsect"
-EXPERT_FILE = "expert/expert_60000_wcontact_foot.csv"
-ENV_ID = "Medauroidea_60000_offset_wcontact_foot"
-ALGO = "airl_losspi"
-MEMO = "Train by -logsigmoid(-logit) as reward. Visulize the learned parameters during training: g_value, h_value, f(s,s'), logit, gae, target, v(s)"
+EXPERT_FILE = "expert/expert_66k_aug3c_fcontact.csv"
+ENV_ID = "Medauroidea_66k_aug3c"
+ALGO = "airl_logit"
+MEMO = "states: body, joint, contact(force)"
 PORT = 23000 # CoppeliaSim port: default is 23000
 CUDA = 0
 ROLLOUT_LENGTH = 1000 # 3000
