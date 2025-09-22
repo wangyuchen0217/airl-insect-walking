@@ -53,7 +53,7 @@ class CoppeliaSimEnv:
                     ObsField('body_pos',      3,  'get_bodyposition',   'per_dim',
                                 low=np.array([-1.5743479, -0.13103247, 0.19342157]), 
                                 high=np.array([-0.01882718, 0.49992156, 0.2718982]), 
-                                include=True), # True, False
+                                include=False), # True, False
 
                     ObsField('orientation',   3,  'get_bodyorientation','shared',
                                 low=min([-0.1253066, -0.21079601, -0.14037536]),  
@@ -77,7 +77,7 @@ class CoppeliaSimEnv:
                     ObsField('qvel_body', 6, 'get_qvel_body', 'shared',
                                 low=min([-0.13889849, -0.41793427, -0.7163129, -1.5593499, -1.6832889, -1.5487039]),
                                 high=max([0.86493146, 0.5213626, 0.32529727, 1.3493888, 1.0914965, 1.5461688]), 
-                                include=False),
+                                include=True),
 
                     ObsField('qvel_joints', 18, 'get_qvel_joints', 'per_dim',
                             low=np.array([
@@ -90,7 +90,7 @@ class CoppeliaSimEnv:
                                 4.32833147, 6.36295366, 4.85788155, 6.34015036, 5.73144054, 6.28769588,
                                 6.40328217, 3.32265925, 6.28675842, 6.27953339, 3.38050628, 6.29043961
                             ]),
-                            include=False),
+                            include=True),
 
                     ObsField('forces',        6,  'get_force',          'shared',
                                 low=0.0,
@@ -278,6 +278,19 @@ class CoppeliaSimEnv:
         orientation = np.zeros((3))
         orientation = self.sim.getObjectOrientation(self.IMU_robot, self.IMU_ref)
         return orientation
+    
+    def get_qvel_body(self):
+        qvel_body = np.zeros((6))
+        qvel_body_get = self.sim.getObjectVelocity(self.sim.getObject('/head'))
+        qvel_body = np.array(qvel_body_get[0] + qvel_body_get[1]).reshape((6,))
+        return qvel_body
+
+    def get_qvel_joints(self):
+        qvel_joints = np.zeros((18))
+        for l in range(self.__joint_handle.shape[0]):
+            for j in range(self.__joint_handle.shape[1]):
+                qvel_joints[3 * l + j] = self.sim.getJointVelocity(int(self.__joint_handle[l][j]))
+        return qvel_joints
     
     def get_force(self):
         forces = np.zeros((6))
