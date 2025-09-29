@@ -47,7 +47,7 @@ class PPO(Algorithm):
             hidden_activation=nn.Tanh()
         ).to(device)
 
-        # actor_path = 'logs/Medauroidea_60000_offset/airl_logit/20250827-2022/model/step1300000/actor.pth'
+        # actor_path = 'logs/Medauroidea_66k_aug3c/airl_logit/20250922-1956/model/step870000/actor.pth'
         # self.actor.load_state_dict(torch.load(actor_path, weights_only=True, map_location=device))
         
         # Critic.
@@ -57,7 +57,7 @@ class PPO(Algorithm):
             hidden_activation=nn.Tanh()
         ).to(device)
 
-        # critic_path = 'logs/Medauroidea_60000_offset_wcontact/airl_logit/20250903-2230/model/step500000/critic.pth'
+        # critic_path = 'logs/Medauroidea_66k_aug3c/airl_logit/20250922-1956/model/step870000/critic.pth'
         # self.critic.load_state_dict(torch.load(critic_path, weights_only=True, map_location=device))
         
         self.optim_actor = Adam(self.actor.parameters(), lr=lr_actor)

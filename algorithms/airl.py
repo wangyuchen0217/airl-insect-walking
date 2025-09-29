@@ -35,7 +35,7 @@ class AIRL(PPO):
             hidden_activation_v=nn.ReLU(inplace=True)
         ).to(device)
 
-        # disc_path = 'logs/Medauroidea_60000_offset_wcontact/airl_logit/20250903-2230/model/step500000/discriminator.pth'
+        # disc_path = 'logs/Medauroidea_66k_aug3c/airl_logit/20250922-1956/model/step870000/discriminator.pth'
         # self.disc.load_state_dict(torch.load(disc_path, weights_only=True, map_location=device))
 
         self.learning_steps_disc = 0
