@@ -77,7 +77,7 @@ class CoppeliaSimEnv:
                     ObsField('qvel_body', 6, 'get_qvel_body', 'shared',
                                 low=min([-0.13889849, -0.41793427, -0.7163129, -1.5593499, -1.6832889, -1.5487039]),
                                 high=max([0.86493146, 0.5213626, 0.32529727, 1.3493888, 1.0914965, 1.5461688]), 
-                                include=True),
+                                include=False),
 
                     ObsField('qvel_joints', 18, 'get_qvel_joints', 'per_dim',
                             low=np.array([
@@ -90,21 +90,21 @@ class CoppeliaSimEnv:
                                 4.32833147, 6.36295366, 4.85788155, 6.34015036, 5.73144054, 6.28769588,
                                 6.40328217, 3.32265925, 6.28675842, 6.27953339, 3.38050628, 6.29043961
                             ]),
-                            include=True),
+                            include=False),
 
                     ObsField('forces',        6,  'get_force',          'shared',
                                 low=0.0,
                                 high=max([11.871004, 22.840376, 20.059353, 14.028709, 28.488878, 13.580413]),
-                                include=False),  
+                                include=True),  
 
                     ObsField('foot_traj',     6,  'get_foot_trajectory','shared',
                                 low=min([0.00600649, 0.00653866, 0.00605668, 0.00703868, 0.00606308, 0.00643684]), 
                                 high=max([0.30520386, 0.16491821, 0.10601486, 0.29555720, 0.08111896, 0.12053363]),
-                                include=False),   
+                                include=True),   
                             
                     ObsField('contact',       6,  'get_contact',        'binary',
                                 low=None, high=None, 
-                                include=True))
+                                include=False))
 
     action_space_high = np.array([
                         -0.08928384, 0.64018328, 0.73880163, 
