@@ -14,7 +14,7 @@ def sysCall_init():
     self.time_step = 0
     self.csv_row_count = 0
     # self.csv_file = "/home/yuchen/airl-insect-walking/env/Animal06_110919_00_31.csv"
-    self.csv_file = "/home/yuchen/airl-insect-walking/env/ds_sm.csv"
+    self.csv_file = "/home/yuchen/airl-insect-walking/env/ds_loopsm.csv"
     self.df = pd.read_csv(self.csv_file)
     self.df_final_line = len(self.df['LF_CTr'])
     print(self.df_final_line)
