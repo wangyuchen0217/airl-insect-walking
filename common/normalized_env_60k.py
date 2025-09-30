@@ -50,9 +50,9 @@ class CoppeliaSimEnv:
 
     OBS_SPEC: tuple[ObsField, ...] = (
 
-                    ObsField('body_pos',      3,  'get_bodyposition',   'per_dim',
-                                low=np.array([-1.5580437, -3.7254312,  0.17508288]),
-                                high=np.array([ 7.0512481, -0.013637958, 0.34497491]), 
+                    ObsField('body_pos',      1,  'get_bodyposition',   'per_dim',
+                                low=np.array([-0.17508288]),  # np.array([-1.5580437, -3.7254312,  0.17508288]), 
+                                high=np.array([0.34497491]),  # np.array([ 7.0512481, -0.013637958, 0.34497491]), 
                                 include=True), # True, False
 
                     ObsField('orientation',   3,  'get_bodyorientation','shared',
@@ -81,7 +81,7 @@ class CoppeliaSimEnv:
                     ObsField('foot_traj',     6,  'get_foot_trajectory','shared',
                                 low=min([-0.06665716, 0.00653887, 0.00611944, 0.0062973, 0.00600731, 0.00665024]), 
                                 high=max([0.42798841, 0.14256591, 0.26136336, 0.18555231, 0.11940541, 0.29765788]),
-                                include=True), 
+                                include=False), 
                             
                     ObsField('contact',       6,  'get_contact',        'binary',
                                 low=None, high=None, 
