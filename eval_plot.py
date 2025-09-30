@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-from common.normalized_env_new import CoppeliaSimEnv
+from common.normalized_env_66k import CoppeliaSimEnv
 import os
 
 # ======== Parameters (modify these as needed) ========= #
