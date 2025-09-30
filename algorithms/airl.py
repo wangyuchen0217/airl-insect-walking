@@ -76,7 +76,7 @@ class AIRL(PPO):
             )
 
         # We don't use reward signals here,
-        states, actions, _, dones, log_pis, next_states = self.buffer.get()
+        states, actions, env_r, dones, log_pis, next_states = self.buffer.get()
 
         # ---------- Calculate rewards: -log sigmoid(-logit) ---------- #
         # rewards = self.disc.calculate_reward(states, dones, log_pis, next_states)
@@ -86,6 +86,8 @@ class AIRL(PPO):
         logits = self.disc(states, dones, log_pis, next_states).detach()
         # dx = next_states[:,0] - states[:,0]
         # rewards = rewards + dx * 100 
+        # vx_100 = env_r
+        # logits = logits + vx_100
         logits_exp = self.disc(states_exp, dones_exp, log_pis_exp, next_states_exp).detach()
         # dx_exp = next_states_exp[:,0] - states_exp[:,0]
         # rewards_exp = rewards_exp + dx_exp * 100
