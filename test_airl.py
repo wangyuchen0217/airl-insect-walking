@@ -10,13 +10,13 @@ from common.normalized_env_66k import CoppeliaSimEnv
 import tensorboard
 
 # ======== Parameters (modify these as needed) =========
-ENV_ID = "Medauroidea_66k_aug3c_uneven"
+ENV_ID = "Medauroidea_66k_aug3c"
 ALGO = "airl_logit"
-FILENAME = "20250922-1940" 
-PORT = 23001 # CoppeliaSim port: default is 23000
+FILENAME = "20250929-1233" 
+PORT = 23004 # CoppeliaSim port: default is 23000
 CUDA = 0
 NUM_EPISODES = 5
-STEP_NUM =90000  # Choose a certain step number of the saved model or None 
+STEP_NUM =1020000  # Choose a certain step number of the saved model or None 
 LOG = False
 # =================================================
 
