@@ -18,8 +18,8 @@ import torch.utils.tensorboard
 
 # ======== Parameters (modify these as needed) =========
 NAME = "StickInsect"
-EXPERT_FILE = "expert/expert_60000_wcontact_force.csv"
-ENV_ID = "Medauroidea_60000_offset_wcontact_force"
+EXPERT_FILE = "expert/expert_66k_aug3c_fcontact.csv"
+ENV_ID = "Medauroidea_66k_aug3c_uneven"
 ALGO = "airl_logit"
 MEMO = "body(w/o x,y) + joint + contact(force) "
 PORT = 23002 # CoppeliaSim port: default is 23000
