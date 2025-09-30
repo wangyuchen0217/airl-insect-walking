@@ -182,12 +182,12 @@ class ExpertBuffer:
 
 if __name__ == "__main__":
 
-    EXPERT_FILE = "expert/expert_66k_aug3c_fcontact.csv"  # Path to the expert data CSV file
+    EXPERT_FILE = "expert/expert_60000.csv"  # Path to the expert data CSV file
 
     # add contact columns to the expert csv file if needed
     ADD_CONTACT = False
     if ADD_CONTACT:
-        add_contact_columns(EXPERT_FILE, save=True, save_file="expert/expert_66k_aug3c_fcontact.csv")
+        add_contact_columns(EXPERT_FILE, save=True, save_file="expert/expert_60k_fcontact.csv")
     
     expert_data = load_expert_data(EXPERT_FILE, save_npz=False, npz_filename="expert_data.npz")
 
