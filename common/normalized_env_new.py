@@ -77,7 +77,7 @@ class CoppeliaSimEnv:
                     ObsField('qvel_body', 6, 'get_qvel_body', 'shared',
                                 low=min([-0.13889849, -0.41793427, -0.7163129, -1.5593499, -1.6832889, -1.5487039]),
                                 high=max([0.86493146, 0.5213626, 0.32529727, 1.3493888, 1.0914965, 1.5461688]), 
-                                include=True),
+                                include=False),
 
                     ObsField('qvel_joints', 18, 'get_qvel_joints', 'per_dim',
                             low=np.array([
@@ -90,7 +90,7 @@ class CoppeliaSimEnv:
                                 4.32833147, 6.36295366, 4.85788155, 6.34015036, 5.73144054, 6.28769588,
                                 6.40328217, 3.32265925, 6.28675842, 6.27953339, 3.38050628, 6.29043961
                             ]),
-                            include=True),
+                            include=False),
 
                     ObsField('forces',        6,  'get_force',          'shared',
                                 low=0.0,

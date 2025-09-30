@@ -18,11 +18,11 @@ import torch.utils.tensorboard
 
 # ======== Parameters (modify these as needed) =========
 NAME = "StickInsect"
-EXPERT_FILE = "expert/expert_66k_aug3c_fcontact.csv"
-ENV_ID = "Medauroidea_66k_aug3c"
+EXPERT_FILE = "expert/expert_60000_wcontact_force.csv"
+ENV_ID = "Medauroidea_60000_offset_wcontact_force"
 ALGO = "airl_logit"
-MEMO = "states: body(w/o x,y) + joint + contact(force)"
-PORT = 23001 # CoppeliaSim port: default is 23000
+MEMO = "body(w/o x,y) + joint + contact(force) "
+PORT = 23002 # CoppeliaSim port: default is 23000
 CUDA = 0
 ROLLOUT_LENGTH = 1000 # 3000
 NUM_STEPS = 2*10**6 
@@ -86,8 +86,8 @@ def main():
     expert_data = load_expert_data(EXPERT_FILE, save_npz=False)
     # np.savetxt("expert_states.csv", expert_data['state'], delimiter=',')
     expert_data = env.normalize_expert_data(expert_data)
-    np.savetxt("expert_states_normalized.csv", expert_data['state'], delimiter=',')
-    np.savetxt("expert_actions_normalized.csv", expert_data['action'], delimiter=',')
+    # np.savetxt("expert_states_normalized.csv", expert_data['state'], delimiter=',')
+    # np.savetxt("expert_actions_normalized.csv", expert_data['action'], delimiter=',')
     expert_buffer = ExpertBuffer(expert_data, device)
     print(f"Expert buffer size: {expert_buffer.size}")
 
