@@ -187,7 +187,7 @@ if __name__ == "__main__":
     # add contact columns to the expert csv file if needed
     ADD_CONTACT = False
     if ADD_CONTACT:
-        add_contact_columns(EXPERT_FILE, save=True, save_file="expert/expert_60k_fcontact.csv")
+        add_contact_columns(EXPERT_FILE, save=True, save_file="expert/expert_60000_fcontact.csv")
     
     expert_data = load_expert_data(EXPERT_FILE, save_npz=False, npz_filename="expert_data.npz")
 
