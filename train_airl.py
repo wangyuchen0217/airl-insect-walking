@@ -11,18 +11,18 @@ from common.trainer import Trainer
 import logging
 from common.base import LoggerWriter
 from common.base import log_parameters
-from common.normalized_env_60k import CoppeliaSimEnv
+from common.normalized_env_66k import CoppeliaSimEnv
 # from common.normalized_env_cutlegs import CoppeliaSimEnv
 from common.buffer import SerializedBuffer
 import torch.utils.tensorboard
 
 # ======== Parameters (modify these as needed) =========
 NAME = "StickInsect"
-EXPERT_FILE = "expert/expert_60000_fcontact.csv"
-ENV_ID = "Medauroidea_60000_fcontact"
-ALGO = "airl_logit"
-MEMO = "body(w/o x,y) + joint + contact(force) continue from 20250930-1445 step860000"
-PORT = 23000 # CoppeliaSim port: default is 23000
+EXPERT_FILE = "expert/expert_66k_aug3c_fcontact.csv"
+ENV_ID = "Medauroidea_66k_aug3c"
+ALGO = "airl_logit_vx"
+MEMO = "vx * 10, body(w/o x,y) + joint + contact(force) "
+PORT = 23001 # CoppeliaSim port: default is 23000
 CUDA = 0
 ROLLOUT_LENGTH = 1000 # 3000
 NUM_STEPS = 2*10**6 
