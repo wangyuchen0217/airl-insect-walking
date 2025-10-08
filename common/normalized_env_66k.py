@@ -153,7 +153,7 @@ class CoppeliaSimEnv:
         # normalization parameters for action space
         self._action_mid = (self.action_space_high + self.action_space_low) / 2.0
         self._action_scale = (self.action_space_high - self.action_space_low) / 2.0
-        print(f"Action space mid: {self._action_mid}, scale: {self._action_scale}")
+        # print(f"Action space mid: {self._action_mid}, scale: {self._action_scale}")
 
 
     # ------------------- Build obs layout ------------------- #
