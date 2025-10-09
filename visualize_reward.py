@@ -6,9 +6,10 @@ from networks.actor import ActorNetworkPolicy
 from networks.discrim import AIRLDiscrim
 import logging
 from common.base import LoggerWriter
-from common.normalized_env_66k import CoppeliaSimEnv
+from common.normalized_env_60k import CoppeliaSimEnv
 import matplotlib.pyplot as plt
 import math
+import pandas as pd 
 
 
 # ----------------------------- helpers: ranges & grid -----------------------------------
@@ -20,8 +21,10 @@ def _get_base_state(env, mode="center", median_state=None):
       - "reset":  one observation from env.reset()
       - "given":  use provided 'median_state' (e.g., dataset median)
     """
-    low = np.asarray(env.observation_space_low, dtype=np.float32)
-    high = np.asarray(env.observation_space_high, dtype=np.float32)
+    # low = np.asarray(env.observation_space_low, dtype=np.float32)
+    # high = np.asarray(env.observation_space_high, dtype=np.float32)
+    low = np.zeros(env.observation_space.shape, dtype=np.float32)
+    high = np.ones(env.observation_space.shape, dtype=np.float32)
     if mode == "center":
         return (low + high) / 2.0
     elif mode == "reset":
@@ -43,8 +46,10 @@ def _get_axis_range(env, dim, mode="space", data_percentiles=None, p_low=1, p_hi
       - "space": use observation_space.low/high
       - "data":  use percentiles from provided data samples (array of that dim)
     """
-    low = float(env.observation_space_low[dim])
-    high = float(env.observation_space_high[dim])
+    # low = float(env.observation_space_low[dim])
+    # high = float(env.observation_space_high[dim])
+    low = np.zeros(env.observation_space.shape, dtype=np.float32)[dim]
+    high = np.ones(env.observation_space.shape, dtype=np.float32)[dim]
     if mode == "space" or data_percentiles is None:
         return low, high
     v = np.asarray(data_percentiles, dtype=np.float32).reshape(-1)
@@ -174,32 +179,24 @@ def _make_next_states(method, env, actor, states, device, gamma=0.99, n_samples=
         raise ValueError(f"Unknown next_state method: {method}")
     
 # -------------------------------- plotting utility ----------------------------------------
-def _save_heatmap(Z, xs, ys, extent, xlabel, ylabel, title, save_path,
-                  center_zero=True, vclip_percentile=(1, 99)):
+def _save_heatmap(Z, xs, ys, extent, xlabel, ylabel, title, save_path):
     """
-    Save a 2D heatmap from matrix Z of shape [len(ys), len(xs)].
+    Save a 2D heatmap where the colorbar range is simply [min(Z), max(Z)].
+    No percentile clipping, no manual centering.
     """
-    # percentile clipping
     Znp = np.asarray(Z, dtype=np.float32)
-    if vclip_percentile is not None:
-        lo = np.percentile(Znp, vclip_percentile[0])
-        hi = np.percentile(Znp, vclip_percentile[1])
-        if hi > lo:
-            Znp = np.clip(Znp, lo, hi)
+
+    vmin = float(np.nanmin(Znp))  # use data-driven range
+    vmax = float(np.nanmax(Znp))
 
     plt.figure(figsize=(6.0, 5.2))
     im = plt.imshow(
         Znp, origin="lower",
         extent=[extent[0], extent[1], extent[2], extent[3]],
-        aspect="auto"
+        aspect="auto",
+        vmin=vmin, vmax=vmax   # <- colorbar bounds from actual values
     )
-    if center_zero:
-        # set symmetric color limits around zero if possible
-        m = max(abs(Znp.min()), abs(Znp.max()))
-        im.set_clim(-m, m)
-        plt.title(f"{title} (centered)")
-    else:
-        plt.title(title)
+    plt.title(title)
     cbar = plt.colorbar(im)
     cbar.set_label("value")
     plt.xlabel(xlabel)
@@ -226,11 +223,12 @@ def visualize_g_heatmap(env, disc, device, dim_x, dim_y,
     # g(s): [N,1] or [N]
     g = disc.g(s)
     g = g.view(grid_size, grid_size).detach().cpu().numpy()
+    print("g:", g)
+    print("g shape:", g.shape)
     _save_heatmap(
         g, xs, ys, [extent[0], extent[1], extent[2], extent[3]],
         xlabel=f"s[{dim_x}]", ylabel=f"s[{dim_y}]",
-        title="g(s) ~ recovered reward", save_path=save_path,
-        center_zero=True
+        title="g(s) ~ recovered reward", save_path=save_path
     )
 
 @torch.no_grad()
@@ -259,8 +257,7 @@ def visualize_f_heatmap(env, disc, device, dim_x, dim_y, gamma,
     _save_heatmap(
         f, xs, ys, [extent[0], extent[1], extent[2], extent[3]],
         xlabel=f"s[{dim_x}]", ylabel=f"s[{dim_y}]",
-        title="f(s,s') = g(s)+γh(s')-h(s)", save_path=save_path,
-        center_zero=True
+        title="f(s,s') = g(s)+γh(s')-h(s)", save_path=save_path
     )
 
 @torch.no_grad()
@@ -304,23 +301,98 @@ def visualize_logit_heatmap(env, disc, actor, device, dim_x, dim_y, gamma,
             acc += (f_val - log_pi)
         logit = acc / float(samples_per_state)
 
+    logit = disc(s, 0, log_pi, s_next)
+    print("logit:", logit)
+    print("logit shape:", logit.shape)
+
     Z = logit.view(grid_size, grid_size).detach().cpu().numpy()
     _save_heatmap(
         Z, xs, ys, [extent[0], extent[1], extent[2], extent[3]],
         xlabel=f"s[{dim_x}]", ylabel=f"s[{dim_y}]",
-        title="logit(s,a,s')", save_path=save_path,
-        center_zero=True
+        title="logit(s,a,s')", save_path=save_path
     )
 # ======================= end of Visualizers =======================
-    
+
+
+
+
+
+
+
+
+
+
+
+
+def load_expert_data(expert_file):
+
+    # load the expert data (CoppeliaSim)
+    data = pd.read_csv(expert_file, header=None)
+    states_np = data[[
+                                    'body_x', 'body_y',
+                                    'body_z', 
+                                    'body_roll', 'body_pitch', 'body_yaw', 
+                                    'motor_pos_FL_TC', 'motor_pos_FL_CF', 'motor_pos_FL_FT', 
+                                    'motor_pos_ML_TC', 'motor_pos_ML_CF', 'motor_pos_ML_FT',
+                                    'motor_pos_HL_TC', 'motor_pos_HL_CF', 'motor_pos_HL_FT',
+                                    'motor_pos_FR_TC', 'motor_pos_FR_CF', 'motor_pos_FR_FT',
+                                    'motor_pos_MR_TC', 'motor_pos_MR_CF', 'motor_pos_MR_FT',
+                                    'motor_pos_HR_TC', 'motor_pos_HR_CF', 'motor_pos_HR_FT',
+                                    # 'qvel_body_x', 'qvel_body_y', 'qvel_body_z', 'qvel_body_roll', 'qvel_body_pitch', 'qvel_body_yaw',
+                                    # 'qvel_FL_TC', 'qvel_FL_CF', 'qvel_FL_FT',
+                                    # 'qvel_ML_TC', 'qvel_ML_CF', 'qvel_ML_FT',
+                                    # 'qvel_HL_TC', 'qvel_HL_CF', 'qvel_HL_FT',
+                                    # 'qvel_FR_TC', 'qvel_FR_CF', 'qvel_FR_FT',
+                                    # 'qvel_MR_TC', 'qvel_MR_CF', 'qvel_MR_FT',
+                                    # 'qvel_HR_TC', 'qvel_HR_CF', 'qvel_HR_FT',
+                                    'force_FL', 'force_ML', 'force_HL', 'force_FR', 'force_MR', 'force_HR',
+                                    'FL_foot_traj_z', 'ML_foot_traj_z', 'HL_foot_traj_z', 'FR_foot_traj_z', 'MR_foot_traj_z', 'HR_foot_traj_z',
+                                    # 'contact_FL', 'contact_ML', 'contact_HL', 'contact_FR', 'contact_MR', 'contact_HR'
+                                ]].values
+    actions_np = data[[
+                                    'motor_cmd_FL_TC', 'motor_cmd_FL_CF', 'motor_cmd_FL_FT',
+                                    'motor_cmd_ML_TC', 'motor_cmd_ML_CF', 'motor_cmd_ML_FT',
+                                    'motor_cmd_HL_TC', 'motor_cmd_HL_CF', 'motor_cmd_HL_FT',
+                                    'motor_cmd_FR_TC', 'motor_cmd_FR_CF', 'motor_cmd_FR_FT',
+                                    'motor_cmd_MR_TC', 'motor_cmd_MR_CF', 'motor_cmd_MR_FT',
+                                    'motor_cmd_HR_TC', 'motor_cmd_HR_CF', 'motor_cmd_HR_FT'
+                                ]].values
+
+    states = []
+    actions = []
+    next_states = []
+    for i in range(len(states_np) - 1):
+        states.append(states_np[i])
+        actions.append(actions_np[i])
+        next_states.append(states_np[i + 1])
+
+    states = np.array(states, dtype=np.float32)
+    actions = np.array(actions, dtype=np.float32)
+    next_states = np.array(next_states, dtype=np.float32)
+    rewards = np.zeros(len(states), dtype=np.float32)  # Assuming zero rewards for expert data (not affect AIRL training)
+    dones = np.zeros(len(states), dtype=np.float32)  # Assuming no terminal states for expert data
+
+    expert_data = {
+        'state': states,
+        'action': actions,
+        'reward': rewards,
+        'done': dones,
+        'next_state': next_states
+    }
+    # print(f"Expert data states: {expert_data['state'].shape}, actions: {expert_data['action'].shape}")
+    # print(expert_data)
+
+    return expert_data
+
+
 # ======== Parameters (modify these as needed) =========
-ENV_ID = "Medauroidea_66k_aug3c_uneven"
+ENV_ID = "Medauroidea_60000_offset"
 ALGO = "airl_logit"
-FILENAME = "20250930-1352" 
+FILENAME = "20250819-1650" 
 PORT = 23000 # CoppeliaSim port: default is 23000
 CUDA = 0
 NUM_EPISODES = 5
-STEP_NUM =350000  # Choose a certain step number of the saved model or None 
+STEP_NUM =1250000  # Choose a certain step number of the saved model or None 
 # =================================================
 
 
@@ -334,6 +406,7 @@ env = CoppeliaSimEnv(port=PORT, OnTimeStep=OnTimeStep, simulation = False)
 # Get state and action shapes from the environment
 state_shape = env.observation_space.shape    # e.g., (28,)
 action_shape = env.action_space.shape          # e.g., (18,)
+print(f"State shape: {state_shape}, Action shape: {action_shape}")
 
 # Instantiate the Actor network with the same architecture as used during training
 actor = ActorNetworkPolicy(
@@ -366,7 +439,7 @@ if os.path.exists(actor_path):
     print(f"Loaded discriminator model from {disc_path}")
 
 # ---------- Visualization calls (choose state dims you care about) ----------
-dim_x, dim_y = 0, 1        # pick two interpretable state indices
+dim_x, dim_y = 2, 21       # pick two interpretable state indices
 grid = 120                 # 80~160 is common
 gamma = 0.995              # use your training gamma
 
