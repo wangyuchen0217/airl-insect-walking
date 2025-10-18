@@ -14,7 +14,7 @@ def sysCall_init():
     self.time_step = 0
     self.csv_row_count = 0
     # self.csv_file = "/home/yuchen/airl-insect-walking/env/Animal06_110919_00_31.csv"
-    self.csv_file = "/home/yuchen/airl-insect-walking/env/ds_loopsm.csv"
+    self.csv_file = "/home/yuchen/airl-insect-walking/env/ds_sm.csv"
     self.df = pd.read_csv(self.csv_file)
     self.df_final_line = len(self.df['LF_CTr'])
     print(self.df_final_line)
@@ -711,6 +711,7 @@ def csv_to_motor():
 
 
     print(self.csv_row_count)
+    # print(sim.getObjectVelocity(sim.getObject('/head'))[0][0] * 100)
 
     self.FL_joints_csv[1] = self.df['LF_CTr'][self.csv_row_count] # + noise[0]
     self.ML_joints_csv[1] = self.df['LM_CTr'][self.csv_row_count] # + noise[1]	
