@@ -12,12 +12,12 @@ import tensorboard
 # ======== Parameters (modify these as needed) =========
 ENV_ID = "Medauroidea_66k_aug3c"
 ALGO = "airl_logit_vx"
-FILENAME = "20251007-1541" 
+FILENAME = "20251007-1539" 
 PORT = 23000 # CoppeliaSim port: default is 23000
 CUDA = 0
 NUM_EPISODES = 5
-STEP_NUM =410000  # Choose a certain step number of the saved model or None 
-LOG = False
+STEP_NUM =90000  # Choose a certain step number of the saved model or None 
+LOG = True
 # =================================================
 
 def main():
@@ -94,6 +94,7 @@ def main():
         step = 0
         states = []
         actions = []
+        velocities = []
         while not done:
             # Convert state to a torch tensor and add batch dimension
             state_tensor = torch.tensor(np.array(state), dtype=torch.float32, device=device).unsqueeze(0)
@@ -111,6 +112,7 @@ def main():
             step += 1 
             states.append(state)
             actions.append(action)
+            velocities.append(reward)
         
         if LOG:
             states_array = np.array(states)
@@ -119,6 +121,7 @@ def main():
             # save as csv
             np.savetxt(os.path.join(SAVE_PATH, "eval", f"step{STEP_NUM}", f"episode_{ep+1}_states.csv"), states_array, delimiter=',')
             np.savetxt(os.path.join(SAVE_PATH, "eval", f"step{STEP_NUM}", f"episode_{ep+1}_actions.csv"), actions_array, delimiter=',')
+            np.savetxt(os.path.join(SAVE_PATH, "eval", f"step{STEP_NUM}", f"episode_{ep+1}_velocities.csv"), np.array(velocities), delimiter=',')
         print(f"Episode {ep+1}: Return = {ep_return:.2f}, Steps = {step}")
     
     env.stop()

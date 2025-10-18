@@ -5,11 +5,11 @@ from common.normalized_env_66k import CoppeliaSimEnv
 import os
 
 # ======== Parameters (modify these as needed) ========= #
-ENV_ID = "Medauroidea_60000_offset"
-ALGO = "airl_losspi"
-FILENAME = "20250911-2133" 
-STEP_NUM = 110000 
-EPISODE = 3
+ENV_ID = "Medauroidea_66k_aug3c"
+ALGO = "airl_logit_vx"
+FILENAME = "20251007-1539" 
+STEP_NUM = 90000 
+EPISODE = 1
 start = 100
 end = 200
 
