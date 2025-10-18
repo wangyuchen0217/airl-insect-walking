@@ -40,13 +40,13 @@ expert_states = pd.DataFrame(env.denormalize_observation(expert_states))
 expert_actions = env.denormalize_action(expert_actions)
 
 states.columns = [
-                  'body_x', 'body_y',
+                #   'body_x', 'body_y',
                   'body_z', 'body_roll', 'body_pitch', 'body_yaw', 
                   'LF_ThC', 'LF_CTr', 'LF_FTi', 'LM_ThC', 'LM_CTr', 'LM_FTi', 'LH_ThC', 'LH_CTr', 'LH_FTi',
                   'RF_ThC', 'RF_CTr', 'RF_FTi', 'RM_ThC', 'RM_CTr', 'RM_FTi', 'RH_ThC', 'RH_CTr', 'RH_FTi',
-                  'force_LF', 'force_LM', 'force_LH', 'force_RF', 'force_RM', 'force_RH',
-                  'foot_traj_LF', 'foot_traj_LM', 'foot_traj_LH', 'foot_traj_RF', 'foot_traj_RM', 'foot_traj_RH',
-                #   'contact_FL', 'contact_ML', 'contact_HL', 'contact_FR', 'contact_MR', 'contact_HR'
+                #   'force_LF', 'force_LM', 'force_LH', 'force_RF', 'force_RM', 'force_RH',
+                #   'foot_traj_LF', 'foot_traj_LM', 'foot_traj_LH', 'foot_traj_RF', 'foot_traj_RM', 'foot_traj_RH',
+                  'contact_FL', 'contact_ML', 'contact_HL', 'contact_FR', 'contact_MR', 'contact_HR'
                   ]
 expert_states.columns = states.columns
 
