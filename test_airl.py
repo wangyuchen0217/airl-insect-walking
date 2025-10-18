@@ -17,7 +17,7 @@ PORT = 23000 # CoppeliaSim port: default is 23000
 CUDA = 0
 NUM_EPISODES = 5
 STEP_NUM =90000  # Choose a certain step number of the saved model or None 
-LOG = True
+LOG = False
 # =================================================
 
 def main():
