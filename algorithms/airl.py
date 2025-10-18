@@ -84,8 +84,6 @@ class AIRL(PPO):
 
         # ---------- Calculate rewards: logit ---------- #
         logits = self.disc(states, dones, log_pis, next_states).detach()
-        # dx = next_states[:,0] - states[:,0]
-        # rewards = rewards + dx * 100 
         # vx_100 = env_r
         # rewards = logits + vx_100
         logits_exp = self.disc(states_exp, dones_exp, log_pis_exp, next_states_exp).detach()
