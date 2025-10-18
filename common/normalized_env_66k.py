@@ -357,9 +357,10 @@ class CoppeliaSimEnv:
         return noise_obs
     
     def is_healthy(self):
-        robot_pos = self.sim.getObjectPosition(self.sim.getObject('/head'))
-        robot_height = robot_pos[2]
-        return robot_height > 0.0
+        robot_height = self.sim.getObjectPosition(self.sim.getObject('/head'))[2]
+        LF_foot_height = self.sim.getObjectPosition(self.sim.getObject('/foot_FL'))[2]
+        RF_foot_height = self.sim.getObjectPosition(self.sim.getObject('/foot_FR'))[2]
+        return robot_height > 0.0 and LF_foot_height > 0.0 and RF_foot_height > 0.0
 
     def step(self,action):
         # recieive the policy action and denormalize it
