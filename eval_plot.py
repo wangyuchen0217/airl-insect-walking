@@ -9,7 +9,7 @@ ENV_ID = "Medauroidea_66k_aug3c"
 ALGO = "airl_logit_vx"
 FILENAME = "20251007-1539" 
 STEP_NUM = 90000 
-EPISODE = 1
+EPISODE = 1 # 1 or 5
 start = 100
 end = 200
 
