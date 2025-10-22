@@ -84,8 +84,8 @@ class AIRL(PPO):
 
         # ---------- Calculate rewards: logit ---------- #
         logits = self.disc(states, dones, log_pis, next_states).detach()
-        # vx_100 = env_r
-        # rewards = logits + vx_100
+        vx_100 = env_r
+        rewards = logits + vx_100
         logits_exp = self.disc(states_exp, dones_exp, log_pis_exp, next_states_exp).detach()
         # dx_exp = next_states_exp[:,0] - states_exp[:,0]
         # rewards_exp = rewards_exp + dx_exp * 100
@@ -114,10 +114,10 @@ class AIRL(PPO):
             'return/f_value_exp_std', f_value_exp.std().item(), self.learning_steps)
         
         # # add debug for reward: losspi
-        # writer.add_scalar(
-        #     'return/reward_mean', rewards.mean().item(), self.learning_steps)
-        # writer.add_scalar(
-        #     'return/reward_std', rewards.std().item(), self.learning_steps)
+        writer.add_scalar(
+            'return/reward_mean', rewards.mean().item(), self.learning_steps)
+        writer.add_scalar(
+            'return/reward_std', rewards.std().item(), self.learning_steps)
         
         # add debug for g(s) outputs
         g_value = self.disc.g(states).detach()
@@ -148,7 +148,7 @@ class AIRL(PPO):
 
         # Update PPO using estimated rewards.
         self.update_ppo(
-            states, actions, logits, dones, log_pis, next_states, writer)
+            states, actions, rewards, dones, log_pis, next_states, writer)
         
 
     def update_disc(self, states, dones, log_pis, next_states,
