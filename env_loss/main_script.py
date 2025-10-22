@@ -367,7 +367,8 @@ def sysCall_actuation():
         self.ML_joints_target[i] = 0 + (math.radians(self.ML_joints_csv[i] * self.ML_joints_csv_direction[i]) + math.radians(self.ML_joints_csv_offset[i])) * self.ML_joints_init_direction[i]
         self.HL_joints_target[i] = 0 + (math.radians(self.HL_joints_csv[i] * self.HL_joints_csv_direction[i]) + math.radians(self.HL_joints_csv_offset[i])) * self.HL_joints_init_direction[i]
         self.FR_joints_target[i] = 0 + (math.radians(self.FR_joints_csv[i] * self.FR_joints_csv_direction[i]) + math.radians(self.FR_joints_csv_offset[i])) * self.FR_joints_init_direction[i]
-        self.MR_joints_target[i] = 0 + (math.radians(self.MR_joints_csv[i] * self.MR_joints_csv_direction[i]) + math.radians(self.MR_joints_csv_offset[i])) * self.MR_joints_init_direction[i]
+        # self.MR_joints_target[i] = 0 + (math.radians(self.MR_joints_csv[i] * self.MR_joints_csv_direction[i]) + math.radians(self.MR_joints_csv_offset[i])) * self.MR_joints_init_direction[i]
+        self.MR_joints_target[i] = 0 + math.radians(self.MR_joints_csv_offset[i]) * self.MR_joints_init_direction[i]
         self.HR_joints_target[i] = 0 + (math.radians(self.HR_joints_csv[i] * self.HR_joints_csv_direction[i]) + math.radians(self.HR_joints_csv_offset[i])) * self.HR_joints_init_direction[i]
 
         # # # # Fix a certain joint
@@ -504,7 +505,8 @@ def sysCall_sensing():
     sim.setGraphStreamValue(self.graph_foot, self.ML_foot, ML_foot_traj[2])
     sim.setGraphStreamValue(self.graph_foot, self.HL_foot, HL_foot_traj[2])
     sim.setGraphStreamValue(self.graph_foot, self.FR_foot, FR_foot_traj[2])
-    sim.setGraphStreamValue(self.graph_foot, self.MR_foot, MR_foot_traj[2])
+    # sim.setGraphStreamValue(self.graph_foot, self.MR_foot, MR_foot_traj[2])
+    sim.setGraphStreamValue(self.graph_foot, self.MR_foot, 0)
     sim.setGraphStreamValue(self.graph_foot, self.HR_foot, HR_foot_traj[2])
 
     # sim.setGraphStreamValue(self.graph_pose, self.x, self.robot_positions[0])
