@@ -5,8 +5,8 @@ import numpy as np
 from networks.actor import ActorNetworkPolicy 
 import logging
 from common.base import LoggerWriter
-# from common.normalized_env_66k import CoppeliaSimEnv
-from common.normalized_env_66k_legloss import CoppeliaSimEnv
+from common.normalized_env_66k import CoppeliaSimEnv
+# from common.normalized_env_66k_legloss import CoppeliaSimEnv
 import tensorboard
 
 # ======== Parameters (modify these as needed) =========

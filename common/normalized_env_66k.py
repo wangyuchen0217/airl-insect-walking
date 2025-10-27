@@ -375,6 +375,12 @@ class CoppeliaSimEnv:
 
         # calculate the reward based on the robot's position
         reward = self.sim.getObjectVelocity(self.sim.getObject('/head'))[0][0] * 100
+        
+        # # calculate the average contact gate
+        # contacts6 = self.get_contact()
+        # eps = 0.2
+        # gate = eps + (1.0 - eps) * (float(sum(contacts6)) / 6.0)
+        # reward = reward * gate
 
         self._step_count += 1
         truncated = self._step_count >= self._max_episode_steps
