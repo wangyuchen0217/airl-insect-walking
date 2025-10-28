@@ -17,6 +17,8 @@ fig_width = 3
 
 STATES_PATH = f"logs/{ENV_ID}/{ALGO}/{FILENAME}/eval/step{STEP_NUM}/episode_{EPISODE}_states.csv"
 ACTIONS_PATH = f"logs/{ENV_ID}/{ALGO}/{FILENAME}/eval/step{STEP_NUM}/episode_{EPISODE}_actions.csv"
+VEL_PATH = f"logs/{ENV_ID}/{ALGO}/{FILENAME}/eval/step{STEP_NUM}/episode_{EPISODE}_velocities.csv"
+FOOT_TRAJ_PATH = f"logs/{ENV_ID}/{ALGO}/{FILENAME}/eval/step{STEP_NUM}/episode_{EPISODE}_foot_trajs.csv"
 
 os.makedirs(f"evaluation/{ENV_ID}/{ALGO}/{FILENAME}/step{STEP_NUM}/episode_{EPISODE}/", exist_ok=True)
 SAVE_PATH = f"evaluation/{ENV_ID}/{ALGO}/{FILENAME}/step{STEP_NUM}/episode_{EPISODE}"
@@ -26,6 +28,8 @@ states = pd.read_csv(STATES_PATH, header=None, index_col=None)
 actions = pd.read_csv(ACTIONS_PATH, header=None, index_col=None)
 actions.columns = ['LF_ThC', 'LF_CTr', 'LF_FTi', 'LM_ThC', 'LM_CTr', 'LM_FTi', 'LH_ThC', 'LH_CTr', 'LH_FTi',
                                      'RF_ThC', 'RF_CTr', 'RF_FTi', 'RM_ThC', 'RM_CTr', 'RM_FTi', 'RH_ThC', 'RH_CTr', 'RH_FTi']
+velocities = pd.read_csv(VEL_PATH, header=None, index_col=None)
+foot_trajs = pd.read_csv(FOOT_TRAJ_PATH, header=None, index_col=None)
 
 # ======== Denormalize Data ======== #
 env = CoppeliaSimEnv(simulation = False)
@@ -114,6 +118,32 @@ def plot_gait(policy, start, end, title):
     plt.tight_layout()
     plt.savefig(os.path.join(SAVE_PATH, f"{title}.png"))
 
+
+def plot_vel(policy, start, end, title):
+    plt.figure(figsize=(fig_length, fig_width))
+    plt.plot(policy[start:end])
+    plt.title(title, fontsize=18)
+    plt.xlabel('Time (frames)', fontsize=16)
+    plt.ylabel('Vel (cm/s)', fontsize=16)
+    plt.tick_params(axis='both', which='major', labelsize=14)
+    plt.grid(True)
+    plt.tight_layout()
+    plt.savefig(os.path.join(SAVE_PATH, f"{title}.png"))
+
+
+def plot_foot_trajs(policy, start, end, title):
+    fig, axs = plt.subplots(6, 1, figsize=(fig_length, fig_width*3))
+    foot_labels = ['foot_traj_LF', 'foot_traj_LM', 'foot_traj_LH', 'foot_traj_RF', 'foot_traj_RM', 'foot_traj_RH']
+    for i, foot in enumerate(foot_labels):
+        axs[i].plot(policy[i][start:end])
+        axs[i].set_ylabel(foot[-2:], fontsize=16)
+        axs[i].tick_params(axis='both', which='major', labelsize=14)
+        axs[i].grid()
+    axs[0].set_title('Foot Trajectory (m)', fontsize=18)
+    axs[-1].set_xlabel('Time (frames)', fontsize=16)
+    plt.tight_layout()
+    plt.savefig(os.path.join(SAVE_PATH, f"{title}.png"))
+
 # ======== Generate Plots ======== #
 
 # plot_6_legs(states, expert_states, ['foot_traj_LF', 'foot_traj_LM', 'foot_traj_LH', 'foot_traj_RF', 'foot_traj_RM', 'foot_traj_RH'], start, end, 'State: Foot Trajectory')
@@ -124,3 +154,6 @@ plot_1_joint(states, 'FTi', start, end, 'Joints FTi')
 
 plot_pose(states, ['body_roll', 'body_pitch', 'body_yaw'], start, end, 'Body Pose')
 plot_gait(states, start, end, title="Gait Pattern")
+
+plot_vel(velocities, start, end, title="Velocity")
+plot_foot_trajs(foot_trajs, start, end, title="Foot Trajectories")
