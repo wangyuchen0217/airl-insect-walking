@@ -10,14 +10,14 @@ from common.normalized_env_66k import CoppeliaSimEnv
 import tensorboard
 
 # ======== Parameters (modify these as needed) =========
-ENV_ID = "Medauroidea_66k_aug3c_uneven_legloss"
+ENV_ID = "Medauroidea_66k_aug3c"
 ALGO = "airl_logit_vx"
-FILENAME = "20251022-1712" 
-PORT = 23000 # CoppeliaSim port: default is 23000
+FILENAME = "20251007-1539" 
+PORT = 23002 # CoppeliaSim port: default is 23000
 CUDA = 0
 NUM_EPISODES = 5
-STEP_NUM =950000  # Choose a certain step number of the saved model or None 
-LOG = False
+STEP_NUM =90000  # Choose a certain step number of the saved model or None 
+LOG = True
 # =================================================
 
 def main():
@@ -95,6 +95,8 @@ def main():
         states = []
         actions = []
         velocities = []
+        foot_trajs = []
+        foot_names = ['/foot_FL', '/foot_ML', '/foot_HL', '/foot_FR', '/foot_MR', '/foot_HR']
         while not done:
             # Convert state to a torch tensor and add batch dimension
             state_tensor = torch.tensor(np.array(state), dtype=torch.float32, device=device).unsqueeze(0)
@@ -110,9 +112,16 @@ def main():
             done = terminated or truncated
             ep_return += reward
             step += 1 
+
+            foot_traj = []
+            for i in range(6):
+                foot_traj_sig = env.sim.getObjectPosition(env.sim.getObject(foot_names[i]))[2]
+                foot_traj.append(foot_traj_sig)
+            
             states.append(state)
             actions.append(action)
             velocities.append(reward)
+            foot_trajs.append(foot_traj)
         
         if LOG:
             states_array = np.array(states)
@@ -122,6 +131,7 @@ def main():
             np.savetxt(os.path.join(SAVE_PATH, "eval", f"step{STEP_NUM}", f"episode_{ep+1}_states.csv"), states_array, delimiter=',')
             np.savetxt(os.path.join(SAVE_PATH, "eval", f"step{STEP_NUM}", f"episode_{ep+1}_actions.csv"), actions_array, delimiter=',')
             np.savetxt(os.path.join(SAVE_PATH, "eval", f"step{STEP_NUM}", f"episode_{ep+1}_velocities.csv"), np.array(velocities), delimiter=',')
+            np.savetxt(os.path.join(SAVE_PATH, "eval", f"step{STEP_NUM}", f"episode_{ep+1}_foot_trajs.csv"), np.array(foot_trajs), delimiter=',')
         print(f"Episode {ep+1}: Return = {ep_return:.2f}, Steps = {step}")
     
     env.stop()
