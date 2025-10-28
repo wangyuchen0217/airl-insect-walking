@@ -9,9 +9,9 @@ ENV_ID = "Medauroidea_66k_aug3c"
 ALGO = "airl_logit_vx"
 FILENAME = "20251007-1539" 
 STEP_NUM = 90000 
-EPISODE = 1 # 1 or 5
-start = 100
-end = 200
+EPISODE = 5 # 1 or 5
+start = 0 # 100
+end = 310 #200
 
 STATES_PATH = f"logs/{ENV_ID}/{ALGO}/{FILENAME}/eval/step{STEP_NUM}/episode_{EPISODE}_states.csv"
 ACTIONS_PATH = f"logs/{ENV_ID}/{ALGO}/{FILENAME}/eval/step{STEP_NUM}/episode_{EPISODE}_actions.csv"
@@ -44,15 +44,15 @@ states.columns = [
                   'body_z', 'body_roll', 'body_pitch', 'body_yaw', 
                   'LF_ThC', 'LF_CTr', 'LF_FTi', 'LM_ThC', 'LM_CTr', 'LM_FTi', 'LH_ThC', 'LH_CTr', 'LH_FTi',
                   'RF_ThC', 'RF_CTr', 'RF_FTi', 'RM_ThC', 'RM_CTr', 'RM_FTi', 'RH_ThC', 'RH_CTr', 'RH_FTi',
-                #   'force_LF', 'force_LM', 'force_LH', 'force_RF', 'force_RM', 'force_RH',
+                  'force_LF', 'force_LM', 'force_LH', 'force_RF', 'force_RM', 'force_RH',
                 #   'foot_traj_LF', 'foot_traj_LM', 'foot_traj_LH', 'foot_traj_RF', 'foot_traj_RM', 'foot_traj_RH',
-                  'contact_FL', 'contact_ML', 'contact_HL', 'contact_FR', 'contact_MR', 'contact_HR'
+                #   'contact_FL', 'contact_ML', 'contact_HL', 'contact_FR', 'contact_MR', 'contact_HR'
                   ]
 expert_states.columns = states.columns
 
 # ======== Plotting Functions ======== #
 def plot_6_legs(policy, expert, variable_name, start, end, title):
-    fig, axs = plt.subplots(6, 1, figsize=(6, 8))
+    fig, axs = plt.subplots(6, 1, figsize=(15, 8))
     policy_data = policy[variable_name].values
     expert_data = expert[variable_name].values
     ylabel = ['LF', 'LM', 'LH', 'RF', 'RM', 'RH']
@@ -71,7 +71,7 @@ def plot_6_legs(policy, expert, variable_name, start, end, title):
 
 
 def plot_1_joint(policy, expert, joint_label, start, end, title):
-    fig, axs = plt.subplots(2, 1, figsize=(5, 4), sharex=True)
+    fig, axs = plt.subplots(2, 1, figsize=(15, 6), sharex=True)
     leg_labels = ['LF', 'LM', 'LH', 'RF', 'RM', 'RH']
 
     for i, leg in enumerate(leg_labels):
@@ -93,7 +93,7 @@ def plot_1_joint(policy, expert, joint_label, start, end, title):
 
 
 def plot_pose(policy, expert, pose_name, start, end, title):
-    fig, axs = plt.subplots(2, 1, figsize=(5, 4), sharex=True)
+    fig, axs = plt.subplots(2, 1, figsize=(15, 6), sharex=True)
     for i, pose in enumerate(pose_name):
         axs[0].plot(policy[pose][start:end], label=pose)
         axs[1].plot(expert[pose][start:end], label=pose)
@@ -120,7 +120,7 @@ def plot_gait(policy, expert, start, end, title):
         """Compute binary contact states (1=stance, 0=swing)."""
         contact = np.zeros((len(data), len(force_cols)))
         for i, col in enumerate(force_cols):
-            contact[:, i] = (data[col].abs() > 0.5).astype(int)
+            contact[:, i] = (data[col].abs() > 0.27).astype(int)
         return contact[start:end]
     
     def get_contact_byfoot(data):
@@ -130,10 +130,10 @@ def plot_gait(policy, expert, start, end, title):
             contact[:, i] = (data[col].abs() < 0.02).astype(int)
         return contact[start:end]
     
-    contact_policy = get_contact_byfoot(policy)
-    contact_expert = get_contact_byfoot(expert)
+    contact_policy = get_contact_byforce(policy)
+    contact_expert = get_contact_byforce(expert)
 
-    fig, axs = plt.subplots(2, 1, figsize=(5, 6), sharey=True)
+    fig, axs = plt.subplots(2, 1, figsize=(15, 6), sharey=True)
     axs[0].imshow(contact_policy.T, aspect="auto", cmap="Greys", interpolation="nearest")
     axs[0].set_title("Policy Gait", fontsize=18)
     axs[0].set_xlabel("Time (frames)", fontsize=16)
@@ -149,19 +149,19 @@ def plot_gait(policy, expert, start, end, title):
     axs[1].tick_params(axis='both', which='major', labelsize=14)
 
     plt.tight_layout(rect=[0, 0, 1, 1])
-    plt.savefig(os.path.join(SAVE_PATH, f"Gait_foot.png"))
+    plt.savefig(os.path.join(SAVE_PATH, f"Gait_force.png"))
 
 # ======== Generate Plots ======== #
-plot_6_legs(actions, expert_actions, ['LF_ThC', 'LM_ThC', 'LH_ThC', 'RF_ThC', 'RM_ThC', 'RH_ThC'], start, end, 'Action: ThC Joint')
-plot_6_legs(states, expert_states, ['LF_ThC', 'LM_ThC', 'LH_ThC', 'RF_ThC', 'RM_ThC', 'RH_ThC'], start, end, 'State: ThC Joint')
+# plot_6_legs(actions, expert_actions, ['LF_ThC', 'LM_ThC', 'LH_ThC', 'RF_ThC', 'RM_ThC', 'RH_ThC'], start, end, 'Action: ThC Joint')
+# plot_6_legs(states, expert_states, ['LF_ThC', 'LM_ThC', 'LH_ThC', 'RF_ThC', 'RM_ThC', 'RH_ThC'], start, end, 'State: ThC Joint')
 
-plot_6_legs(actions, expert_actions, ['LF_CTr', 'LM_CTr', 'LH_CTr', 'RF_CTr', 'RM_CTr', 'RH_CTr'], start, end, 'Action: CTr Joint')
-plot_6_legs(states, expert_states, ['LF_CTr', 'LM_CTr', 'LH_CTr', 'RF_CTr', 'RM_CTr', 'RH_CTr'], start, end, 'State: CTr Joint')
+# plot_6_legs(actions, expert_actions, ['LF_CTr', 'LM_CTr', 'LH_CTr', 'RF_CTr', 'RM_CTr', 'RH_CTr'], start, end, 'Action: CTr Joint')
+# plot_6_legs(states, expert_states, ['LF_CTr', 'LM_CTr', 'LH_CTr', 'RF_CTr', 'RM_CTr', 'RH_CTr'], start, end, 'State: CTr Joint')
 
-plot_6_legs(actions, expert_actions, ['LF_FTi', 'LM_FTi', 'LH_FTi', 'RF_FTi', 'RM_FTi', 'RH_FTi'], start, end, 'Action: FTi Joint')
-plot_6_legs(states, expert_states, ['LF_FTi', 'LM_FTi', 'LH_FTi', 'RF_FTi', 'RM_FTi', 'RH_FTi'], start, end, 'State: FTi Joint')
+# plot_6_legs(actions, expert_actions, ['LF_FTi', 'LM_FTi', 'LH_FTi', 'RF_FTi', 'RM_FTi', 'RH_FTi'], start, end, 'Action: FTi Joint')
+# plot_6_legs(states, expert_states, ['LF_FTi', 'LM_FTi', 'LH_FTi', 'RF_FTi', 'RM_FTi', 'RH_FTi'], start, end, 'State: FTi Joint')
 
-plot_6_legs(states, expert_states, ['foot_traj_LF', 'foot_traj_LM', 'foot_traj_LH', 'foot_traj_RF', 'foot_traj_RM', 'foot_traj_RH'], start, end, 'State: Foot Trajectory')
+# plot_6_legs(states, expert_states, ['foot_traj_LF', 'foot_traj_LM', 'foot_traj_LH', 'foot_traj_RF', 'foot_traj_RM', 'foot_traj_RH'], start, end, 'State: Foot Trajectory')
 
 plot_1_joint(states, expert_states, 'ThC', start, end, 'Joints ThC')
 plot_1_joint(states, expert_states, 'CTr', start, end, 'Joints CTr')
