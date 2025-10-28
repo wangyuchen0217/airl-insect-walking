@@ -9,9 +9,11 @@ ENV_ID = "Medauroidea_66k_aug3c"
 ALGO = "airl_logit_vx"
 FILENAME = "20251007-1539" 
 STEP_NUM = 90000 
-EPISODE = 5 # 1 or 5
+EPISODE = 2 # 1 or 5
 start = 0 # 100
 end = 310 #200
+fig_length = 15
+fig_width = 3
 
 STATES_PATH = f"logs/{ENV_ID}/{ALGO}/{FILENAME}/eval/step{STEP_NUM}/episode_{EPISODE}_states.csv"
 ACTIONS_PATH = f"logs/{ENV_ID}/{ALGO}/{FILENAME}/eval/step{STEP_NUM}/episode_{EPISODE}_actions.csv"
@@ -19,25 +21,16 @@ ACTIONS_PATH = f"logs/{ENV_ID}/{ALGO}/{FILENAME}/eval/step{STEP_NUM}/episode_{EP
 os.makedirs(f"evaluation/{ENV_ID}/{ALGO}/{FILENAME}/step{STEP_NUM}/episode_{EPISODE}/", exist_ok=True)
 SAVE_PATH = f"evaluation/{ENV_ID}/{ALGO}/{FILENAME}/step{STEP_NUM}/episode_{EPISODE}"
 
-EXPERT_STATES_PATH = f"evaluation/{ENV_ID}/expert_states_normalized.csv"
-EXPERT_ACTION_PATH = f"evaluation/{ENV_ID}/expert_actions_normalized.csv"
-
 # ======== Read Data ======== #
 states = pd.read_csv(STATES_PATH, header=None, index_col=None)
 actions = pd.read_csv(ACTIONS_PATH, header=None, index_col=None)
 actions.columns = ['LF_ThC', 'LF_CTr', 'LF_FTi', 'LM_ThC', 'LM_CTr', 'LM_FTi', 'LH_ThC', 'LH_CTr', 'LH_FTi',
                                      'RF_ThC', 'RF_CTr', 'RF_FTi', 'RM_ThC', 'RM_CTr', 'RM_FTi', 'RH_ThC', 'RH_CTr', 'RH_FTi']
 
-expert_states = pd.read_csv(EXPERT_STATES_PATH, header=None, index_col=None)
-expert_actions = pd.read_csv(EXPERT_ACTION_PATH, header=None, index_col=None)
-expert_actions.columns = actions.columns
-
 # ======== Denormalize Data ======== #
 env = CoppeliaSimEnv(simulation = False)
 states = pd.DataFrame(env.denormalize_observation(states))
 actions = env.denormalize_action(actions)
-expert_states = pd.DataFrame(env.denormalize_observation(expert_states))
-expert_actions = env.denormalize_action(expert_actions)
 
 states.columns = [
                 #   'body_x', 'body_y',
@@ -48,11 +41,10 @@ states.columns = [
                 #   'foot_traj_LF', 'foot_traj_LM', 'foot_traj_LH', 'foot_traj_RF', 'foot_traj_RM', 'foot_traj_RH',
                 #   'contact_FL', 'contact_ML', 'contact_HL', 'contact_FR', 'contact_MR', 'contact_HR'
                   ]
-expert_states.columns = states.columns
 
 # ======== Plotting Functions ======== #
 def plot_6_legs(policy, expert, variable_name, start, end, title):
-    fig, axs = plt.subplots(6, 1, figsize=(15, 8))
+    fig, axs = plt.subplots(6, 1, figsize=(fig_length, fig_width))
     policy_data = policy[variable_name].values
     expert_data = expert[variable_name].values
     ylabel = ['LF', 'LM', 'LH', 'RF', 'RM', 'RH']
@@ -70,50 +62,38 @@ def plot_6_legs(policy, expert, variable_name, start, end, title):
     plt.savefig(os.path.join(SAVE_PATH, f"{title}.png"))
 
 
-def plot_1_joint(policy, expert, joint_label, start, end, title):
-    fig, axs = plt.subplots(2, 1, figsize=(15, 6), sharex=True)
+def plot_1_joint(policy, joint_label, start, end, title):
+    plt.figure(figsize=(fig_length, fig_width))
     leg_labels = ['LF', 'LM', 'LH', 'RF', 'RM', 'RH']
-
-    for i, leg in enumerate(leg_labels):
+    for leg in leg_labels:
         label = f"{leg}_{joint_label}"
-        axs[0].plot(policy[label][start:end], label=leg)
-        axs[1].plot(expert[label][start:end], label=leg)
-        axs[0].set_ylabel('Policy', fontsize=16)
-        axs[1].set_ylabel('Expert', fontsize=16)
-    axs[0].set_title(title, fontsize=18)
-    axs[1].set_xlabel('Time (frames)', fontsize=16)
-
-    for ax in axs:
-        ax.tick_params(axis='both', which='major', labelsize=14)
-        ax.grid(True)
-    handles, labels = axs[0].get_legend_handles_labels()
-    fig.legend(handles, labels, fontsize=10, ncol=1, loc='outside center right')
-    plt.tight_layout(rect=[0, 0, 0.85, 1])
+        plt.plot(policy[label][start:end], label=leg)
+    plt.title(title, fontsize=18)
+    plt.xlabel('Time (frames)', fontsize=16)
+    plt.ylabel('Joint Angle (rad)', fontsize=16)
+    plt.tick_params(axis='both', which='major', labelsize=14)
+    plt.grid(True)
+    plt.legend(bbox_to_anchor=(1, 1), loc='upper left')
+    plt.tight_layout()
     plt.savefig(os.path.join(SAVE_PATH, f"{title}.png"))
 
 
-def plot_pose(policy, expert, pose_name, start, end, title):
-    fig, axs = plt.subplots(2, 1, figsize=(15, 6), sharex=True)
-    for i, pose in enumerate(pose_name):
-        axs[0].plot(policy[pose][start:end], label=pose)
-        axs[1].plot(expert[pose][start:end], label=pose)
-        axs[0].set_ylabel('Policy', fontsize=16)
-        axs[1].set_ylabel('Expert', fontsize=16)
-    axs[0].set_title(title, fontsize=18)
-    axs[1].set_xlabel('Time (frames)', fontsize=16)
-
-    for ax in axs:
-        ax.tick_params(axis='both', which='major', labelsize=14)
-        ax.grid(True)
-    handles, labels = axs[0].get_legend_handles_labels()
-    fig.legend(handles, labels, fontsize=10, ncol=1, loc='outside center right')
-    plt.tight_layout(rect=[0, 0, 0.75, 1])
+def plot_pose(policy, pose_name, start, end, title):
+    plt.figure(figsize=(fig_length, fig_width))
+    for pose in pose_name:
+        plt.plot(policy[pose][start:end], label=f"Policy {pose}")
+    plt.title(title, fontsize=18)
+    plt.xlabel('Time (frames)', fontsize=16)
+    plt.ylabel('Angle (rad)', fontsize=16)
+    plt.tick_params(axis='both', which='major', labelsize=14)
+    plt.grid(True)
+    plt.legend(bbox_to_anchor=(1, 1), loc='upper left')
+    plt.tight_layout()
     plt.savefig(os.path.join(SAVE_PATH, f"{title}.png"))
 
 
-def plot_gait(policy, expert, start, end, title):
+def plot_gait(policy, start, end, title):
     force_cols = ['force_LF', 'force_LM', 'force_LH', 'force_RF', 'force_RM', 'force_RH']
-    foot_cols = ['foot_traj_LF', 'foot_traj_LM', 'foot_traj_LH', 'foot_traj_RF', 'foot_traj_RM', 'foot_traj_RH']
     leg_labels = ['LF', 'LM', 'LH', 'RF', 'RM', 'RH']
 
     def get_contact_byforce(data):
@@ -122,50 +102,25 @@ def plot_gait(policy, expert, start, end, title):
         for i, col in enumerate(force_cols):
             contact[:, i] = (data[col].abs() > 0.27).astype(int)
         return contact[start:end]
-    
-    def get_contact_byfoot(data):
-        """Compute binary contact states (1=stance, 0=swing)."""
-        contact = np.zeros((len(data), len(foot_cols)))
-        for i, col in enumerate(foot_cols):
-            contact[:, i] = (data[col].abs() < 0.02).astype(int)
-        return contact[start:end]
-    
     contact_policy = get_contact_byforce(policy)
-    contact_expert = get_contact_byforce(expert)
 
-    fig, axs = plt.subplots(2, 1, figsize=(15, 6), sharey=True)
-    axs[0].imshow(contact_policy.T, aspect="auto", cmap="Greys", interpolation="nearest")
-    axs[0].set_title("Policy Gait", fontsize=18)
-    axs[0].set_xlabel("Time (frames)", fontsize=16)
-    axs[0].set_yticks(range(len(leg_labels)))
-    axs[0].set_yticklabels(leg_labels, fontsize=14)
-    axs[0].tick_params(axis='both', which='major', labelsize=14)
-
-    axs[1].imshow(contact_expert.T, aspect="auto", cmap="Greys", interpolation="nearest")
-    axs[1].set_title("Expert Gait", fontsize=18)
-    axs[1].set_xlabel("Time (frames)", fontsize=16)
-    axs[1].set_yticks(range(len(leg_labels)))
-    axs[1].set_yticklabels(leg_labels, fontsize=14)
-    axs[1].tick_params(axis='both', which='major', labelsize=14)
-
-    plt.tight_layout(rect=[0, 0, 1, 1])
-    plt.savefig(os.path.join(SAVE_PATH, f"Gait_force.png"))
+    plt.figure(figsize=(fig_length, fig_width))
+    plt.imshow(contact_policy.T, aspect="auto", cmap="Greys", interpolation="nearest")
+    plt.title("Policy Gait", fontsize=18)
+    plt.xlabel("Time (frames)", fontsize=16)
+    plt.ylabel("Legs", fontsize=16)
+    plt.yticks(range(len(leg_labels)), leg_labels, fontsize=14)
+    plt.tick_params(axis='both', which='major', labelsize=14)
+    plt.tight_layout()
+    plt.savefig(os.path.join(SAVE_PATH, f"{title}.png"))
 
 # ======== Generate Plots ======== #
-# plot_6_legs(actions, expert_actions, ['LF_ThC', 'LM_ThC', 'LH_ThC', 'RF_ThC', 'RM_ThC', 'RH_ThC'], start, end, 'Action: ThC Joint')
-# plot_6_legs(states, expert_states, ['LF_ThC', 'LM_ThC', 'LH_ThC', 'RF_ThC', 'RM_ThC', 'RH_ThC'], start, end, 'State: ThC Joint')
-
-# plot_6_legs(actions, expert_actions, ['LF_CTr', 'LM_CTr', 'LH_CTr', 'RF_CTr', 'RM_CTr', 'RH_CTr'], start, end, 'Action: CTr Joint')
-# plot_6_legs(states, expert_states, ['LF_CTr', 'LM_CTr', 'LH_CTr', 'RF_CTr', 'RM_CTr', 'RH_CTr'], start, end, 'State: CTr Joint')
-
-# plot_6_legs(actions, expert_actions, ['LF_FTi', 'LM_FTi', 'LH_FTi', 'RF_FTi', 'RM_FTi', 'RH_FTi'], start, end, 'Action: FTi Joint')
-# plot_6_legs(states, expert_states, ['LF_FTi', 'LM_FTi', 'LH_FTi', 'RF_FTi', 'RM_FTi', 'RH_FTi'], start, end, 'State: FTi Joint')
 
 # plot_6_legs(states, expert_states, ['foot_traj_LF', 'foot_traj_LM', 'foot_traj_LH', 'foot_traj_RF', 'foot_traj_RM', 'foot_traj_RH'], start, end, 'State: Foot Trajectory')
 
-plot_1_joint(states, expert_states, 'ThC', start, end, 'Joints ThC')
-plot_1_joint(states, expert_states, 'CTr', start, end, 'Joints CTr')
-plot_1_joint(states, expert_states, 'FTi', start, end, 'Joints FTi')
+plot_1_joint(states, 'ThC', start, end, 'Joints ThC')
+plot_1_joint(states, 'CTr', start, end, 'Joints CTr')
+plot_1_joint(states, 'FTi', start, end, 'Joints FTi')
 
-plot_pose(states, expert_states, ['body_roll', 'body_pitch', 'body_yaw'], start, end, 'State: Body Pose')
-plot_gait(states, expert_states, start, end, title="Policy Gait Pattern")
+plot_pose(states, ['body_roll', 'body_pitch', 'body_yaw'], start, end, 'Body Pose')
+plot_gait(states, start, end, title="Gait Pattern")
