@@ -29,7 +29,7 @@ class CoppeliaSimEnv:
     __forcesensor_names = ['/forceSensor_FL', '/forceSensor_ML', '/forceSensor_HL', 
                            '/forceSensor_FR', '/forceSensor_MR', '/forceSensor_HR']
 
-    __joint_handle = np.zeros((5, 3), dtype=int).astype(int)  # joint handle (leg l, joint j)
+    __joint_handle = np.zeros((6, 3), dtype=int).astype(int)  # joint handle (leg l, joint j)
     __target_positions = np.zeros((5, 3), dtype=float).astype(float)  # joint target position (leg l, joint j)
     __initjoint_position = np.zeros((5, 3), dtype=float).astype(float)  # initial joint position (leg l, joint j)
     __init_pos_deg = np.array([[30, 9.5, -60], 
@@ -55,10 +55,15 @@ class CoppeliaSimEnv:
                                 high=np.array([0.2718982]),  # np.array([-0.01882718, 0.49992156, 0.2718982]), 
                                 include=True), # True, False
 
+                    # ObsField('orientation',   3,  'get_bodyorientation','shared',
+                    #             low=min([-0.1253066, -0.21079601, -0.14037536]),  
+                    #             high=max([0.17421827, 0.03616637, 0.56608814]),
+                    #             include=True),
+
                     ObsField('orientation',   3,  'get_bodyorientation','shared',
-                                low=min([-0.1253066, -0.21079601, -0.14037536]),  
-                                high=max([0.17421827, 0.03616637, 0.56608814]),
-                                include=True),
+                                low=min([-0.5, -0.5, -1.5]),  
+                                high=max([0.5, 0.5, 1.5]),
+                                include=True),                                
 
                     ObsField('joint_angles', 15, 'get_jointangle', 'per_dim',
                                 low=np.array([
@@ -333,9 +338,11 @@ class CoppeliaSimEnv:
 
     # ---------------------- simulation control ------------------------ #
     def update(self):
-        for leg in range(self.__joint_handle.shape[0]):
-            for joint in range(self.__joint_handle.shape[1]):
-                self.sim.setJointTargetPosition(int(self.__joint_handle[leg][joint]),
+        # remove RM leg (row 4)
+        self.__target_handle = np.delete(self.__joint_handle, 4, axis=0)
+        for leg in range(self.__target_handle.shape[0]):
+            for joint in range(self.__target_handle.shape[1]):
+                self.sim.setJointTargetPosition(int(self.__target_handle[leg][joint]),
                                                 self.__target_positions[leg][joint])
         if self.OnTimeStep:
             self.sim.step()
