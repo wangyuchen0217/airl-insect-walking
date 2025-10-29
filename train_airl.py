@@ -11,18 +11,18 @@ from common.trainer import Trainer
 import logging
 from common.base import LoggerWriter
 from common.base import log_parameters
-# from common.normalized_env_66k import CoppeliaSimEnv
-from common.normalized_env_66k_legloss import CoppeliaSimEnv
+from common.normalized_env_66k import CoppeliaSimEnv
+# from common.normalized_env_66k_legloss import CoppeliaSimEnv
 from common.buffer import SerializedBuffer
 import torch.utils.tensorboard
 
 # ======== Parameters (modify these as needed) =========
 NAME = "StickInsect"
 EXPERT_FILE = "expert/expert_66k_aug3c_fcontact.csv"
-ENV_ID = "Medauroidea_66k_aug3c_uneven_legloss"
+ENV_ID = "Medauroidea_66k_aug3c"
 ALGO = "airl_logit_vx"
-MEMO = "RM leg loss, flat, logit + vx * 100, body(w/o x,y) + joint + contact(force), use new orientation range"
-PORT = 23002 # CoppeliaSim port: default is 23000
+MEMO = "vx * 100, body(w/o x,y) + joint + contact(force) , use new orientation range"
+PORT = 23000 # CoppeliaSim port: default is 23000
 CUDA = 0
 ROLLOUT_LENGTH = 1000 # 3000
 NUM_STEPS = 2*10**6 

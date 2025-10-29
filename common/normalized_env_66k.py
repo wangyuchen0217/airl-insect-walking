@@ -60,6 +60,11 @@ class CoppeliaSimEnv:
                                 high=max([0.17421827, 0.03616637, 0.56608814]),
                                 include=True),
 
+                    # ObsField('orientation',   3,  'get_bodyorientation','shared',
+                    #             low=min([-0.5, -0.5, -1.5]),  
+                    #             high=max([0.5, 0.5, 1.5]),
+                    #             include=True),               
+
                     ObsField('joint_angles', 18, 'get_jointangle', 'per_dim',
                                 low=np.array([
                                     -1.3860602,  0.06034265, -2.4969175, -0.9650939, -0.0351965 , -2.3240883,  
