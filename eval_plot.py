@@ -1,18 +1,18 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-# from common.normalized_env_66k import CoppeliaSimEnv
-from common.normalized_env_66k_legloss import CoppeliaSimEnv
+from common.normalized_env_66k import CoppeliaSimEnv
+# from common.normalized_env_66k_legloss import CoppeliaSimEnv
 import os
 
 # ======== Parameters (modify these as needed) ========= #
-ENV_ID = "Medauroidea_66k_aug3c_uneven_legloss"
+ENV_ID = "Medauroidea_66k_aug3c"
 ALGO = "airl_logit_vx"
-FILENAME = "20251022-1712" 
-STEP_NUM = 950000 
-EPISODE = 4 # 
+FILENAME = "20251007-1539" 
+STEP_NUM = 90000 
+EPISODE = 2 # 
 start = 0 # 
-end = 500 #2
+end = 310 #2
 fig_length = 15
 fig_width = 3
 
@@ -28,8 +28,8 @@ SAVE_PATH = f"evaluation/{ENV_ID}/{ALGO}/{FILENAME}/step{STEP_NUM}/episode_{EPIS
 states = pd.read_csv(STATES_PATH, header=None, index_col=None)
 actions = pd.read_csv(ACTIONS_PATH, header=None, index_col=None)
 actions.columns = ['LF_ThC', 'LF_CTr', 'LF_FTi', 'LM_ThC', 'LM_CTr', 'LM_FTi', 'LH_ThC', 'LH_CTr', 'LH_FTi',
-                                    #  'RF_ThC', 'RF_CTr', 'RF_FTi', 'RM_ThC', 'RM_CTr', 'RM_FTi', 'RH_ThC', 'RH_CTr', 'RH_FTi']
-                                     'RF_ThC', 'RF_CTr', 'RF_FTi', 'RH_ThC', 'RH_CTr', 'RH_FTi']
+                                     'RF_ThC', 'RF_CTr', 'RF_FTi', 'RM_ThC', 'RM_CTr', 'RM_FTi', 'RH_ThC', 'RH_CTr', 'RH_FTi']
+                                    #  'RF_ThC', 'RF_CTr', 'RF_FTi', 'RH_ThC', 'RH_CTr', 'RH_FTi']
 velocities = pd.read_csv(VEL_PATH, header=None, index_col=None)
 foot_trajs = pd.read_csv(FOOT_TRAJ_PATH, header=None, index_col=None)
 
@@ -42,8 +42,8 @@ states.columns = [
                 #   'body_x', 'body_y',
                   'body_z', 'body_roll', 'body_pitch', 'body_yaw', 
                   'LF_ThC', 'LF_CTr', 'LF_FTi', 'LM_ThC', 'LM_CTr', 'LM_FTi', 'LH_ThC', 'LH_CTr', 'LH_FTi',
-                #   'RF_ThC', 'RF_CTr', 'RF_FTi', 'RM_ThC', 'RM_CTr', 'RM_FTi', 'RH_ThC', 'RH_CTr', 'RH_FTi',
-                  'RF_ThC', 'RF_CTr', 'RF_FTi', 'RH_ThC', 'RH_CTr', 'RH_FTi',
+                  'RF_ThC', 'RF_CTr', 'RF_FTi', 'RM_ThC', 'RM_CTr', 'RM_FTi', 'RH_ThC', 'RH_CTr', 'RH_FTi',
+                #   'RF_ThC', 'RF_CTr', 'RF_FTi', 'RH_ThC', 'RH_CTr', 'RH_FTi',
                   'force_LF', 'force_LM', 'force_LH', 'force_RF', 'force_RM', 'force_RH',
                 #   'foot_traj_LF', 'foot_traj_LM', 'foot_traj_LH', 'foot_traj_RF', 'foot_traj_RM', 'foot_traj_RH',
                 #   'contact_FL', 'contact_ML', 'contact_HL', 'contact_FR', 'contact_MR', 'contact_HR'
@@ -71,8 +71,8 @@ def plot_6_legs(policy, expert, variable_name, start, end, title):
 
 def plot_1_joint(policy, joint_label, start, end, title):
     plt.figure(figsize=(fig_length, fig_width))
-    # leg_labels = ['LF', 'LM', 'LH', 'RF', 'RM', 'RH']
-    leg_labels = ['LF', 'LM', 'LH', 'RF', 'RH']
+    leg_labels = ['LF', 'LM', 'LH', 'RF', 'RM', 'RH']
+    # leg_labels = ['LF', 'LM', 'LH', 'RF', 'RH']
     for leg in leg_labels:
         label = f"{leg}_{joint_label}"
         plt.plot(policy[label][start:end], label=leg)
@@ -100,8 +100,9 @@ def plot_pose(policy, pose_name, start, end, title):
     plt.savefig(os.path.join(SAVE_PATH, f"{title}.png"))
 
 
-def plot_gait(policy, start, end, title):
+def plot_gait(policy, foot_trajs, start, end, title):
     force_cols = ['force_LF', 'force_LM', 'force_LH', 'force_RF', 'force_RM', 'force_RH']
+    foot_cols = ['foot_traj_LF', 'foot_traj_LM', 'foot_traj_LH', 'foot_traj_RF', 'foot_traj_RM', 'foot_traj_RH']
     leg_labels = ['LF', 'LM', 'LH', 'RF', 'RM', 'RH']
 
     def get_contact_byforce(data):
@@ -110,7 +111,16 @@ def plot_gait(policy, start, end, title):
         for i, col in enumerate(force_cols):
             contact[:, i] = (data[col].abs() > 0.27).astype(int)
         return contact[start:end]
+
+    def get_contact_byfoot(data):
+        """Compute binary contact states (1=stance, 0=swing)."""
+        contact = np.zeros((len(data), len(foot_cols)))
+        for i, col in enumerate(foot_cols):
+            contact[:, i] = (data[i].abs() < 0.02).astype(int)
+        return contact[start:end]
+    
     contact_policy = get_contact_byforce(policy)
+    contact_foot_trajs = get_contact_byfoot(foot_trajs)
 
     plt.figure(figsize=(fig_length, fig_width))
     plt.imshow(contact_policy.T, aspect="auto", cmap="Greys", interpolation="nearest")
@@ -120,7 +130,17 @@ def plot_gait(policy, start, end, title):
     plt.yticks(range(len(leg_labels)), leg_labels, fontsize=14)
     plt.tick_params(axis='both', which='major', labelsize=14)
     plt.tight_layout()
-    plt.savefig(os.path.join(SAVE_PATH, f"{title}.png"))
+    plt.savefig(os.path.join(SAVE_PATH, f"{title} Force.png"))
+
+    plt.figure(figsize=(fig_length, fig_width))
+    plt.imshow(contact_foot_trajs.T, aspect="auto", cmap="Greys", interpolation="nearest")
+    plt.title("Policy Gait", fontsize=18)
+    plt.xlabel("Time (frames)", fontsize=16)
+    plt.ylabel("Legs", fontsize=16)
+    plt.yticks(range(len(leg_labels)), leg_labels, fontsize=14)
+    plt.tick_params(axis='both', which='major', labelsize=14)
+    plt.tight_layout()
+    plt.savefig(os.path.join(SAVE_PATH, f"{title} Foot Trajs.png"))
 
 
 def plot_vel(policy, start, end, title):
@@ -157,7 +177,7 @@ plot_1_joint(states, 'CTr', start, end, 'Joints CTr')
 plot_1_joint(states, 'FTi', start, end, 'Joints FTi')
 
 plot_pose(states, ['body_roll', 'body_pitch', 'body_yaw'], start, end, 'Body Pose')
-plot_gait(states, start, end, title="Gait Pattern")
+plot_gait(states, foot_trajs, start, end, title="Gait Pattern")
 
 plot_vel(velocities, start, end, title="Velocity")
 plot_foot_trajs(foot_trajs, start, end, title="Foot Trajectories")
