@@ -19,9 +19,9 @@ import torch.utils.tensorboard
 # ======== Parameters (modify these as needed) =========
 NAME = "StickInsect"
 EXPERT_FILE = "expert/expert_66k_aug3c_fcontact.csv"
-ENV_ID = "Medauroidea_66k_aug3c_uneven_legloss"
+ENV_ID = "Medauroidea_66k_aug3c_legloss"
 ALGO = "airl_logit_vx"
-MEMO = "RM leg loss, flat, logit + vx * 100, body(w/o x,y) + joint + contact(force)"
+MEMO = "LF/RL loss, logit + vx * 100, body(w/o x,y) + joint + contact(force)"
 PORT = 23001 # CoppeliaSim port: default is 23000
 CUDA = 0
 ROLLOUT_LENGTH = 1000 # 3000
