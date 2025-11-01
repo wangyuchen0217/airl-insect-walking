@@ -9,12 +9,12 @@ import os
 ENV_ID = "Medauroidea_66k_aug3c"
 ALGO = "airl_logit_vx"
 FILENAME = "20251007-1539" 
-STEP_NUM = 90000 
+STEP_NUM = "90000-1"  
 EPISODE = 2 # 
 start = 0 # 
 end = 310 #2
-fig_length = 15
-fig_width = 3
+fig_length = 10
+fig_width = 2.5
 
 STATES_PATH = f"logs/{ENV_ID}/{ALGO}/{FILENAME}/eval/step{STEP_NUM}/episode_{EPISODE}_states.csv"
 ACTIONS_PATH = f"logs/{ENV_ID}/{ALGO}/{FILENAME}/eval/step{STEP_NUM}/episode_{EPISODE}_actions.csv"
@@ -43,7 +43,6 @@ states.columns = [
                   'body_z', 'body_roll', 'body_pitch', 'body_yaw', 
                   'LF_ThC', 'LF_CTr', 'LF_FTi', 'LM_ThC', 'LM_CTr', 'LM_FTi', 'LH_ThC', 'LH_CTr', 'LH_FTi',
                   'RF_ThC', 'RF_CTr', 'RF_FTi', 'RM_ThC', 'RM_CTr', 'RM_FTi', 'RH_ThC', 'RH_CTr', 'RH_FTi',
-                #   'RF_ThC', 'RF_CTr', 'RF_FTi', 'RH_ThC', 'RH_CTr', 'RH_FTi',
                   'force_LF', 'force_LM', 'force_LH', 'force_RF', 'force_RM', 'force_RH',
                 #   'foot_traj_LF', 'foot_traj_LM', 'foot_traj_LH', 'foot_traj_RF', 'foot_traj_RM', 'foot_traj_RH',
                 #   'contact_FL', 'contact_ML', 'contact_HL', 'contact_FR', 'contact_MR', 'contact_HR'
@@ -93,9 +92,10 @@ def plot_pose(policy, pose_name, start, end, title):
     plt.title(title, fontsize=18)
     plt.xlabel('Time (frames)', fontsize=16)
     plt.ylabel('Angle (rad)', fontsize=16)
+    plt.xlim(start, end)
     plt.tick_params(axis='both', which='major', labelsize=14)
     plt.grid(True)
-    plt.legend(bbox_to_anchor=(1, 1), loc='upper left')
+    plt.legend(loc='upper right')
     plt.tight_layout()
     plt.savefig(os.path.join(SAVE_PATH, f"{title}.png"))
 
@@ -149,6 +149,7 @@ def plot_vel(policy, start, end, title):
     plt.title(title, fontsize=18)
     plt.xlabel('Time (frames)', fontsize=16)
     plt.ylabel('Vel (cm/s)', fontsize=16)
+    plt.xlim(start, end)
     plt.tick_params(axis='both', which='major', labelsize=14)
     plt.grid(True)
     plt.tight_layout()
