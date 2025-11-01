@@ -12,12 +12,12 @@ import tensorboard
 # ======== Parameters (modify these as needed) =========
 ENV_ID = "Medauroidea_66k_aug3c_uneven_legloss"
 ALGO = "airl_logit_vx"
-FILENAME = "20251022-1712" 
+FILENAME = "20251029-2122" 
 PORT = 23000 # CoppeliaSim port: default is 23000
 CUDA = 0
 NUM_EPISODES = 5
-STEP_NUM =950000  # Choose a certain step number of the saved model or None 
-LOG = True
+STEP_NUM =790000  # Choose a certain step number of the saved model or None 
+LOG = False
 # =================================================
 
 def main():
