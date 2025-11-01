@@ -30,6 +30,7 @@ class CoppeliaSimEnv:
                            '/forceSensor_FR', '/forceSensor_MR', '/forceSensor_HR']
 
     __joint_handle = np.zeros((6, 3), dtype=int).astype(int)  # joint handle (leg l, joint j)
+    '''-----------------------------------need to adjust for the leg loss-----------------------------------'''
     __target_positions = np.zeros((5, 3), dtype=float).astype(float)  # joint target position (leg l, joint j)
     __initjoint_position = np.zeros((5, 3), dtype=float).astype(float)  # initial joint position (leg l, joint j)
     '''-----------------------------------need to adjust for the leg loss-----------------------------------'''
@@ -50,7 +51,7 @@ class CoppeliaSimEnv:
     __init_pos_deg = __init_pos_deg * __init_pos_dirction # adjust the initial position direction
     __init_pos_rad = np.deg2rad(__init_pos_deg)  # initial joint position in radians
     __initjoint_position = __init_pos_rad
-    
+
     '''-----------------------------------need to adjust for the leg loss-----------------------------------'''
     OBS_SPEC: tuple[ObsField, ...] = (
 
