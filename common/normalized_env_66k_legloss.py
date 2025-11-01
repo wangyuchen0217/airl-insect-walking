@@ -31,22 +31,22 @@ class CoppeliaSimEnv:
 
     __joint_handle = np.zeros((6, 3), dtype=int).astype(int)  # joint handle (leg l, joint j)
     '''-----------------------------------need to adjust for the leg loss-----------------------------------'''
-    __target_positions = np.zeros((5, 3), dtype=float).astype(float)  # joint target position (leg l, joint j)
-    __initjoint_position = np.zeros((5, 3), dtype=float).astype(float)  # initial joint position (leg l, joint j)
+    __target_positions = np.zeros((4, 3), dtype=float).astype(float)  # joint target position (leg l, joint j)
+    __initjoint_position = np.zeros((4, 3), dtype=float).astype(float)  # initial joint position (leg l, joint j)
     '''-----------------------------------need to adjust for the leg loss-----------------------------------'''
     __init_pos_deg = np.array([
                                                         # [30, 9.5, -60], 
                                                         [ 0 ,  -2.5, -60],
                                                         [-40, 9.5,-60],
-                                                        # [30, 9.5, -60], 
-                                                        [0, -2.5, -60],
+                                                        [30, 9.5, -60], 
+                                                        # [0, -2.5, -60],
                                                         [-40, 9.5, -60]], dtype=float).astype(float)  # initial joint position in degrees
     __init_pos_dirction = np.array([
                                                             # [-1, 1, 1],
                                                             [-1, 1, 1],
                                                             [-1, 1, 1],
-                                                            # [1, -1, -1],
                                                             [1, -1, -1],
+                                                            # [1, -1, -1],
                                                             [1, -1, -1]])  
     __init_pos_deg = __init_pos_deg * __init_pos_dirction # adjust the initial position direction
     __init_pos_rad = np.deg2rad(__init_pos_deg)  # initial joint position in radians
@@ -75,16 +75,16 @@ class CoppeliaSimEnv:
                                     # -1.3860602,  0.06034265, -2.4969175, 
                                     -0.9650939, -0.0351965 , -2.3240883,  
                                     0.28500196, 0.15376441, -2.507828, 
-                                    # 0.5072578, -0.7540891 ,  0.5758628,  
-                                    -0.6832747, -0.6967423 ,  0.64540935, 
+                                    0.5072578, -0.7540891 ,  0.5758628,  
+                                    # -0.6832747, -0.6967423 ,  0.64540935, 
                                     -1.2671623, -1.0010364 ,  0.58814275  
                                 ]),
                                 high=np.array([
                                     # -0.5072578 ,  0.7540891 , -0.5758628, 
                                     0.6832747 ,  0.6967423 , -0.64540935, 
                                     1.2671623 ,  1.0010364 , -0.58814275, 
-                                    # 1.3860602 , -0.06034265,  2.4969175,  
-                                    0.9650939 ,  0.0351965 ,  2.3240883, 
+                                    1.3860602 , -0.06034265,  2.4969175,  
+                                    # 0.9650939 ,  0.0351965 ,  2.3240883, 
                                     -0.28500196, -0.15376441,  2.507828    
                                 ]),
                                 include=True
@@ -126,8 +126,8 @@ class CoppeliaSimEnv:
                         # -0.08928384, 0.64018328, 0.73880163, 
                         0.71728384, 0.53050838, 0.52528891,
                         0.61509333, 0.76640703, 0.46057537, 
-                        # 0.87071587, 0.19994925, 1.43173578,
-                        0.90740824, 0.03776942, 1.30299309, 
+                        0.87071587, 0.19994925, 1.43173578,
+                        # 0.90740824, 0.03776942, 1.30299309, 
                         0.44833541, 0.00427082, 1.59938887
                         ])
 
@@ -135,8 +135,8 @@ class CoppeliaSimEnv:
                         # -0.87071587, -0.19994925, -1.43173578, 
                         -0.90740824, -0.03776942, -1.30299309,
                         -0.44833541, -0.00427082, -1.59938887, 
-                        # 0.08928384, -0.64018328, -0.73880163,
-                        -0.71728384, -0.53050838, -0.52528891, 
+                        0.08928384, -0.64018328, -0.73880163,
+                        # -0.71728384, -0.53050838, -0.52528891, 
                         -0.61509333, -0.76640703, -0.46057537
                         ])
     
@@ -288,9 +288,9 @@ class CoppeliaSimEnv:
         # remove the MR data
         # positions = np.delete(positions, [12,13,14])
         # remove the LF/RL data
-        positions = np.delete(positions, [0,1,2,9,10,11])
+        # positions = np.delete(positions, [0,1,2,9,10,11])
         # remove the LF/RM data
-        # positions = np.delete(positions, [0,1,2,12,13,14])
+        positions = np.delete(positions, [0,1,2,12,13,14])
         return positions
     
     def get_bodyposition(self):
@@ -319,9 +319,9 @@ class CoppeliaSimEnv:
         # remove the MR data
         # qvel_joints = np.delete(qvel_joints, [12,13,14])
         # remove the LF/RL data
-        qvel_joints = np.delete(qvel_joints, [0,1,2,9,10,11])
+        # qvel_joints = np.delete(qvel_joints, [0,1,2,9,10,11])
         # remove the LF/RM data
-        # qvel_joints = np.delete(qvel_joints, [0,1,2,12,13,14])
+        qvel_joints = np.delete(qvel_joints, [0,1,2,12,13,14])
         return qvel_joints
     '''-----------------------------------need to adjust for the leg loss-----------------------------------''' 
     def get_force(self):
@@ -332,9 +332,9 @@ class CoppeliaSimEnv:
         # remove the RM data
         # forces = np.delete(forces, 4)
         # remove the LF/RF data
-        forces = np.delete(forces, [0,3])
+        # forces = np.delete(forces, [0,3])
         # remove the LF/RM data
-        # forces = np.delete(forces, [0,4])
+        forces = np.delete(forces, [0,4])
         return forces
     
     def get_foot_trajectory(self):
@@ -345,9 +345,9 @@ class CoppeliaSimEnv:
         # remove the RM data
         # foot_traj = np.delete(foot_traj, 4)
         # remove the LF/RF data
-        foot_traj = np.delete(foot_traj, [0,3])
+        # foot_traj = np.delete(foot_traj, [0,3])
         # remove the LF/RM data
-        # foot_traj = np.delete(foot_traj, [0,4])
+        foot_traj = np.delete(foot_traj, [0,4])
         return foot_traj
     
     def get_contact(self):
@@ -375,9 +375,9 @@ class CoppeliaSimEnv:
         # remove RM leg (row 4)
         # self.__target_handle = np.delete(self.__joint_handle, 4, axis=0)
         # remove LF and RL legs (rows 0 and 3)
-        self.__target_handle = np.delete(self.__joint_handle, [0,3], axis=0)
+        # self.__target_handle = np.delete(self.__joint_handle, [0,3], axis=0)
         # remove LF and RM legs (rows 0 and 4)
-        # self.__target_handle = np.delete(self.__joint_handle, [0,4], axis=0)
+        self.__target_handle = np.delete(self.__joint_handle, [0,4], axis=0)
         for leg in range(self.__target_handle.shape[0]):
             for joint in range(self.__target_handle.shape[1]):
                 self.sim.setJointTargetPosition(int(self.__target_handle[leg][joint]),
@@ -410,7 +410,7 @@ class CoppeliaSimEnv:
     def is_healthy(self):
         robot_height = self.sim.getObjectPosition(self.sim.getObject('/head'))[2]
         LF_foot_height = self.sim.getObjectPosition(self.sim.getObject('/foot_ML'))[2]
-        RF_foot_height = self.sim.getObjectPosition(self.sim.getObject('/foot_MR'))[2]
+        RF_foot_height = self.sim.getObjectPosition(self.sim.getObject('/foot_FR'))[2]
         return robot_height > 0.0 and LF_foot_height > 0.0 and RF_foot_height > 0.0
 
     def step(self,action):
