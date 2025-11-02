@@ -12,7 +12,7 @@ FILENAME = "20251007-1539"
 STEP_NUM = "90000-1"  
 EPISODE = 2 # 
 start = 0 # 
-end = 310 #2
+end = 350 #2
 fig_length = 10
 fig_width = 2.5
 
