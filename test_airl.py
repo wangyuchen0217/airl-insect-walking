@@ -5,18 +5,19 @@ import numpy as np
 from networks.actor import ActorNetworkPolicy 
 import logging
 from common.base import LoggerWriter
-from common.normalized_env_66k import CoppeliaSimEnv
+# from common.normalized_env_66k import CoppeliaSimEnv
 # from common.normalized_env_66k_legloss import CoppeliaSimEnv
+from common.normalized_env_66k_RM_error import CoppeliaSimEnv
 import tensorboard
 
 # ======== Parameters (modify these as needed) =========
-ENV_ID = "Medauroidea_66k_aug3c_uneven_flat"
+ENV_ID = "Medauroidea_66k_aug3c_uneven_legloss"
 ALGO = "airl_logit_vx"
-FILENAME = "20251018-2026" 
+FILENAME = "20251022-1712" 
 PORT = 23000 # CoppeliaSim port: default is 23000
 CUDA = 0
 NUM_EPISODES = 5
-STEP_NUM =190000  # Choose a certain step number of the saved model or None 
+STEP_NUM =950000  # Choose a certain step number of the saved model or None 
 LOG = True
 # =================================================
 
@@ -97,6 +98,8 @@ def main():
         velocities = []
         foot_trajs = []
         foot_names = ['/foot_FL', '/foot_ML', '/foot_HL', '/foot_FR', '/foot_MR', '/foot_HR']
+        RH_joints = []
+        RH_names = ['/m1_HR', '/m2_HR', '/m3_HR']
         while not done:
             # Convert state to a torch tensor and add batch dimension
             state_tensor = torch.tensor(np.array(state), dtype=torch.float32, device=device).unsqueeze(0)
@@ -117,11 +120,17 @@ def main():
             for i in range(6):
                 foot_traj_sig = env.sim.getObjectPosition(env.sim.getObject(foot_names[i]))[2]
                 foot_traj.append(foot_traj_sig)
+
+            # RH_joint = []
+            # for i in range(3):
+            #     RH_joint_sig = env.sim.getJointPosition(env.sim.getObject(RH_names[i]))
+            #     RH_joint.append(RH_joint_sig)
             
             states.append(state)
             actions.append(action)
             velocities.append(reward)
             foot_trajs.append(foot_traj)
+            # RH_joints.append(RH_joint)
         
         if LOG:
             states_array = np.array(states)
@@ -132,6 +141,7 @@ def main():
             np.savetxt(os.path.join(SAVE_PATH, "eval", f"step{STEP_NUM}", f"episode_{ep+1}_actions.csv"), actions_array, delimiter=',')
             np.savetxt(os.path.join(SAVE_PATH, "eval", f"step{STEP_NUM}", f"episode_{ep+1}_velocities.csv"), np.array(velocities), delimiter=',')
             np.savetxt(os.path.join(SAVE_PATH, "eval", f"step{STEP_NUM}", f"episode_{ep+1}_foot_trajs.csv"), np.array(foot_trajs), delimiter=',')
+            # np.savetxt(os.path.join(SAVE_PATH, "eval", f"step{STEP_NUM}", f"episode_{ep+1}_RH_joints.csv"), np.array(RH_joints), delimiter=',')
         print(f"Episode {ep+1}: Return = {ep_return:.2f}, Steps = {step}")
     
     env.stop()
