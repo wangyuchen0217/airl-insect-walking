@@ -1,18 +1,19 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-from common.normalized_env_66k import CoppeliaSimEnv
+# from common.normalized_env_66k import CoppeliaSimEnv
 # from common.normalized_env_66k_legloss import CoppeliaSimEnv
+from common.normalized_env_66k_RM_error import CoppeliaSimEnv
 import os
 
 # ======== Parameters (modify these as needed) ========= #
-ENV_ID = "Medauroidea_66k_aug3c_uneven_flat"
+ENV_ID = "Medauroidea_66k_aug3c_uneven_legloss"
 ALGO = "airl_logit_vx"
-FILENAME = "20251018-2026" 
-STEP_NUM = "190000"  
-EPISODE = 5 # 
+FILENAME = "20251022-1712" 
+STEP_NUM = "950000"  
+EPISODE = 1 # 
 start = 0 # 
-end = 350 #2
+end = 310 #
 fig_length = 10
 fig_width = 2.5
 
@@ -20,6 +21,8 @@ STATES_PATH = f"logs/{ENV_ID}/{ALGO}/{FILENAME}/eval/step{STEP_NUM}/episode_{EPI
 ACTIONS_PATH = f"logs/{ENV_ID}/{ALGO}/{FILENAME}/eval/step{STEP_NUM}/episode_{EPISODE}_actions.csv"
 VEL_PATH = f"logs/{ENV_ID}/{ALGO}/{FILENAME}/eval/step{STEP_NUM}/episode_{EPISODE}_velocities.csv"
 FOOT_TRAJ_PATH = f"logs/{ENV_ID}/{ALGO}/{FILENAME}/eval/step{STEP_NUM}/episode_{EPISODE}_foot_trajs.csv"
+'''-----------------------------------need to adjust for the leg loss-----------------------------------'''
+RH_PATH = f"logs/{ENV_ID}/{ALGO}/{FILENAME}/eval/step{STEP_NUM}/episode_{EPISODE}_RH_joints.csv"
 
 os.makedirs(f"evaluation/{ENV_ID}/{ALGO}/{FILENAME}/step{STEP_NUM}/episode_{EPISODE}/", exist_ok=True)
 SAVE_PATH = f"evaluation/{ENV_ID}/{ALGO}/{FILENAME}/step{STEP_NUM}/episode_{EPISODE}"
@@ -27,26 +30,47 @@ SAVE_PATH = f"evaluation/{ENV_ID}/{ALGO}/{FILENAME}/step{STEP_NUM}/episode_{EPIS
 # ======== Read Data ======== #
 states = pd.read_csv(STATES_PATH, header=None, index_col=None)
 actions = pd.read_csv(ACTIONS_PATH, header=None, index_col=None)
-actions.columns = ['LF_ThC', 'LF_CTr', 'LF_FTi', 'LM_ThC', 'LM_CTr', 'LM_FTi', 'LH_ThC', 'LH_CTr', 'LH_FTi',
-                                     'RF_ThC', 'RF_CTr', 'RF_FTi', 'RM_ThC', 'RM_CTr', 'RM_FTi', 'RH_ThC', 'RH_CTr', 'RH_FTi']
-                                    #  'RF_ThC', 'RF_CTr', 'RF_FTi', 'RH_ThC', 'RH_CTr', 'RH_FTi']
+'''-----------------------------------need to adjust for the leg loss-----------------------------------'''
+actions.columns = [
+                                    'LF_ThC', 'LF_CTr', 'LF_FTi', 
+                                    'LM_ThC', 'LM_CTr', 'LM_FTi', 
+                                    'LH_ThC', 'LH_CTr', 'LH_FTi',
+                                    'RF_ThC', 'RF_CTr', 'RF_FTi', 
+                                    # 'RM_ThC', 'RM_CTr', 'RM_FTi', 
+                                    'RH_ThC', 'RH_CTr', 'RH_FTi'
+                                    ]
 velocities = pd.read_csv(VEL_PATH, header=None, index_col=None)
 foot_trajs = pd.read_csv(FOOT_TRAJ_PATH, header=None, index_col=None)
+
+'''-----------------------------------need to adjust for the leg loss-----------------------------------'''
+rh = pd.read_csv(RH_PATH, header=None, index_col=None)
+rh.columns = ['RH_ThC', 'RH_CTr', 'RH_FTi']
 
 # ======== Denormalize Data ======== #
 env = CoppeliaSimEnv(simulation = False)
 states = pd.DataFrame(env.denormalize_observation(states))
 actions = env.denormalize_action(actions)
 
+'''-----------------------------------need to adjust for the leg loss-----------------------------------'''
 states.columns = [
                 #   'body_x', 'body_y',
-                  'body_z', 'body_roll', 'body_pitch', 'body_yaw', 
-                  'LF_ThC', 'LF_CTr', 'LF_FTi', 'LM_ThC', 'LM_CTr', 'LM_FTi', 'LH_ThC', 'LH_CTr', 'LH_FTi',
-                  'RF_ThC', 'RF_CTr', 'RF_FTi', 'RM_ThC', 'RM_CTr', 'RM_FTi', 'RH_ThC', 'RH_CTr', 'RH_FTi',
+                  'body_z', 
+                  'body_roll', 'body_pitch', 'body_yaw', 
+                  'LF_ThC', 'LF_CTr', 'LF_FTi', 
+                  'LM_ThC', 'LM_CTr', 'LM_FTi', 
+                  'LH_ThC', 'LH_CTr', 'LH_FTi',
+                  'RF_ThC', 'RF_CTr', 'RF_FTi', 
+                  'RM_ThC', 'RM_CTr', 'RM_FTi', 
+                #   'RH_ThC', 'RH_CTr', 'RH_FTi',
                   'force_LF', 'force_LM', 'force_LH', 'force_RF', 'force_RM', 'force_RH',
                 #   'foot_traj_LF', 'foot_traj_LM', 'foot_traj_LH', 'foot_traj_RF', 'foot_traj_RM', 'foot_traj_RH',
                 #   'contact_FL', 'contact_ML', 'contact_HL', 'contact_FR', 'contact_MR', 'contact_HR'
                   ]
+
+'''-----------------------------------need to adjust for the leg loss-----------------------------------'''
+states['RH_ThC'] = rh['RH_ThC']
+states['RH_CTr'] = rh['RH_CTr']
+states['RH_FTi'] = rh['RH_FTi']
 
 # ======== Plotting Functions ======== #
 def plot_6_legs(policy, expert, variable_name, start, end, title):
@@ -71,7 +95,6 @@ def plot_6_legs(policy, expert, variable_name, start, end, title):
 def plot_1_joint(policy, joint_label, start, end, title):
     plt.figure(figsize=(fig_length, fig_width))
     leg_labels = ['LF', 'LM', 'LH', 'RF', 'RM', 'RH']
-    # leg_labels = ['LF', 'LM', 'LH', 'RF', 'RH']
     for leg in leg_labels:
         label = f"{leg}_{joint_label}"
         plt.plot(policy[label][start:end], label=leg)
@@ -157,6 +180,8 @@ def plot_vel(policy, start, end, title):
 
 
 def plot_foot_trajs(policy, start, end, title):
+    '''-----------------------------------need to adjust for the leg loss-----------------------------------'''
+    foot_trajs.iloc[:, 4] = 0
     fig, axs = plt.subplots(6, 1, figsize=(fig_length, fig_width*3))
     foot_labels = ['foot_traj_LF', 'foot_traj_LM', 'foot_traj_LH', 'foot_traj_RF', 'foot_traj_RM', 'foot_traj_RH']
     for i, foot in enumerate(foot_labels):
