@@ -270,6 +270,8 @@ class CoppeliaSimEnv:
         for l in range(self.__joint_handle.shape[0]):
             for j in range(self.__joint_handle.shape[1]):
                 positions[3 * l + j] = self.sim.getJointPosition(int(self.__joint_handle[l][j]))
+        # delete the CTr and FTi 
+        # positions = np.delete(positions, [1,2,4,5,7,8,10,11,13,14,16,17])
         return positions
     
     def get_bodyposition(self):
