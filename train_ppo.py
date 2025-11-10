@@ -1,0 +1,120 @@
+import os
+os.environ["NUMEXPR_MAX_THREADS"] = "8"
+import sys
+import torch
+import numpy as np
+from coppeliasim_zmqremoteapi_client import RemoteAPIClient
+from datetime import datetime
+from algorithms.ppo_dependent import PPO
+from expert import load_expert_data, ExpertBuffer
+from common.trainer import Trainer
+import logging
+from common.base import LoggerWriter
+from common.base import log_parameters
+from common.normalized_env_66k import CoppeliaSimEnv
+# from common.normalized_env_66k_legloss import CoppeliaSimEnv
+from common.buffer import SerializedBuffer
+import torch.utils.tensorboard
+
+# ======== Parameters (modify these as needed) =========
+NAME = "StickInsect"
+EXPERT_FILE = "expert/expert_66k_aug3c_fcontact.csv"
+ENV_ID = "Medauroidea_66k_aug3c"
+ALGO = "ppo"
+MEMO = "vx * 100, body(w/o x,y) + joint + contact(force)"
+PORT = 23001 # CoppeliaSim port: default is 23000
+CUDA = 0
+ROLLOUT_LENGTH = 1000 # 3000
+NUM_STEPS = 2*10**6 
+EVAL_INTERVAL = 10**4
+GAMMA = 0.995
+MIX_BUFFER = 1
+BATCH_SIZE = 64
+LR_ACTOR = 3e-4
+LR_CRITIC =1e-4
+LR_DISC = None
+UNITS_ACTOR = (64, 64)
+UNITS_CRITIC = (64, 64)
+UNITS_DISC_R = None
+UNITS_DISC_V = None
+EPOCH_PPO = 50
+EPOCH_DISC = None
+CLIP_EPS = 0.2
+LAMBDA = 0.97
+COEF_ENT = 0.01
+MAX_GRAD_NORM = 10.0
+SEED = 0
+# =================================================
+
+def main():
+    # Create log directory.
+    current_time = datetime.now().strftime("%Y%m%d-%H%M")
+    log_dir = os.path.join("logs", ENV_ID, ALGO, f"{current_time}")
+    if not os.path.exists(log_dir):
+        os.makedirs(log_dir)
+    log_filename = os.path.join(log_dir, "training_process.log")
+    logging.basicConfig(
+        filename=log_filename,    
+        level=logging.INFO,
+        format='%(message)s',
+        filemode='w'
+        )
+    sys.stdout = LoggerWriter(logging.info)
+    print(f"Logging started at {current_time}")
+    if MEMO:
+        print(f"Memo: {MEMO}")
+
+    # set up the environment and communication
+    OnTimeStep=True
+    env = CoppeliaSimEnv(port=PORT, OnTimeStep=OnTimeStep)
+
+    device = torch.device(f"cuda:{CUDA}" if torch.cuda.is_available() and CUDA >= 0 else "cpu")
+    if torch.cuda.is_available():
+        print(torch.cuda.get_device_name(CUDA))
+    else:
+        print("Running on CPU")
+    print(f"Process ID: {os.getpid()}")
+    np.random.seed(SEED)
+    torch.manual_seed(SEED)
+
+    log_parameters(ENV_ID, EXPERT_FILE, ROLLOUT_LENGTH, NUM_STEPS, EVAL_INTERVAL, 
+                   GAMMA, MIX_BUFFER, BATCH_SIZE, LR_ACTOR, LR_CRITIC, LR_DISC, 
+                   UNITS_ACTOR, UNITS_CRITIC, UNITS_DISC_R, UNITS_DISC_V, 
+                   EPOCH_PPO, EPOCH_DISC, CLIP_EPS, LAMBDA, COEF_ENT, MAX_GRAD_NORM, SEED)
+
+    # Create PPO agent.
+    algo = PPO(
+        state_shape=env.observation_space.shape,
+        action_shape=env.action_space.shape,
+        device=device,
+        seed=SEED,
+        gamma=GAMMA,
+        rollout_length=ROLLOUT_LENGTH,
+        mix_buffer=MIX_BUFFER,
+        lr_actor=LR_ACTOR,
+        lr_critic=LR_CRITIC,
+        units_actor=UNITS_ACTOR,
+        units_critic=UNITS_CRITIC,
+        epoch_ppo=EPOCH_PPO,
+        clip_eps=CLIP_EPS,
+        lambd=LAMBDA,
+        coef_ent=COEF_ENT,
+        max_grad_norm=MAX_GRAD_NORM,
+        mini_batch_size=BATCH_SIZE
+    )
+
+    trainer = Trainer(
+        env=env,
+        env_test=env,
+        algo=algo,
+        log_dir=log_dir,
+        num_steps=NUM_STEPS,
+        eval_interval=EVAL_INTERVAL
+    )
+    trainer.train()
+
+    # Save the final model.
+    algo.save_models(trainer.model_dir)
+
+if __name__ == "__main__":
+    main()
