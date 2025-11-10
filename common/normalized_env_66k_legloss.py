@@ -38,21 +38,20 @@ class CoppeliaSimEnv:
                                                         # [30, 9.5, -60], 
                                                         [ 0 ,  -2.5, -60],
                                                         [-40, 9.5,-60],
-                                                        [30, 9.5, -60], 
-                                                        # [0, -2.5, -60],
+                                                        # [30, 9.5, -60], 
+                                                        [0, -2.5, -60],
                                                         [-40, 9.5, -60]], dtype=float).astype(float)  # initial joint position in degrees
     __init_pos_dirction = np.array([
                                                             # [-1, 1, 1],
                                                             [-1, 1, 1],
                                                             [-1, 1, 1],
-                                                            [1, -1, -1],
                                                             # [1, -1, -1],
+                                                            [1, -1, -1],
                                                             [1, -1, -1]])  
     __init_pos_deg = __init_pos_deg * __init_pos_dirction # adjust the initial position direction
     __init_pos_rad = np.deg2rad(__init_pos_deg)  # initial joint position in radians
     __initjoint_position = __init_pos_rad
 
-    '''-----------------------------------need to adjust for the leg loss-----------------------------------'''
     OBS_SPEC: tuple[ObsField, ...] = (
 
                     ObsField('body_pos',      1,  'get_bodyposition',   'per_dim',
@@ -70,21 +69,21 @@ class CoppeliaSimEnv:
                     #             high=max([0.5, 0.5, 1.5]),
                     #             include=True),                                
 
-                    ObsField('joint_angles', 12, 'get_jointangle', 'per_dim',
+                    ObsField('joint_angles', 18, 'get_jointangle', 'per_dim',
                                 low=np.array([
-                                    # -1.3860602,  0.06034265, -2.4969175, 
+                                    -1.3860602,  0.06034265, -2.4969175, 
                                     -0.9650939, -0.0351965 , -2.3240883,  
                                     0.28500196, 0.15376441, -2.507828, 
                                     0.5072578, -0.7540891 ,  0.5758628,  
-                                    # -0.6832747, -0.6967423 ,  0.64540935, 
+                                    -0.6832747, -0.6967423 ,  0.64540935, 
                                     -1.2671623, -1.0010364 ,  0.58814275  
                                 ]),
                                 high=np.array([
-                                    # -0.5072578 ,  0.7540891 , -0.5758628, 
+                                    -0.5072578 ,  0.7540891 , -0.5758628, 
                                     0.6832747 ,  0.6967423 , -0.64540935, 
                                     1.2671623 ,  1.0010364 , -0.58814275, 
                                     1.3860602 , -0.06034265,  2.4969175,  
-                                    # 0.9650939 ,  0.0351965 ,  2.3240883, 
+                                    0.9650939 ,  0.0351965 ,  2.3240883, 
                                     -0.28500196, -0.15376441,  2.507828    
                                 ]),
                                 include=True
@@ -118,16 +117,17 @@ class CoppeliaSimEnv:
                                 high=max([0.30520386, 0.16491821, 0.10601486, 0.29555720, 0.08111896, 0.12053363]),
                                 include=False),   
                    
-                    ObsField('contact',       4,  'get_contact',        'binary',
+                    ObsField('contact',       6,  'get_contact',        'binary',
                                 low=None, high=None, 
                                 include=True))
 
+    '''-----------------------------------need to adjust for the leg loss-----------------------------------'''
     action_space_high = np.array([
                         # -0.08928384, 0.64018328, 0.73880163, 
                         0.71728384, 0.53050838, 0.52528891,
                         0.61509333, 0.76640703, 0.46057537, 
-                        0.87071587, 0.19994925, 1.43173578,
-                        # 0.90740824, 0.03776942, 1.30299309, 
+                        # 0.87071587, 0.19994925, 1.43173578,
+                        0.90740824, 0.03776942, 1.30299309, 
                         0.44833541, 0.00427082, 1.59938887
                         ])
 
@@ -135,8 +135,8 @@ class CoppeliaSimEnv:
                         # -0.87071587, -0.19994925, -1.43173578, 
                         -0.90740824, -0.03776942, -1.30299309,
                         -0.44833541, -0.00427082, -1.59938887, 
-                        0.08928384, -0.64018328, -0.73880163,
-                        # -0.71728384, -0.53050838, -0.52528891, 
+                        # 0.08928384, -0.64018328, -0.73880163,
+                        -0.71728384, -0.53050838, -0.52528891, 
                         -0.61509333, -0.76640703, -0.46057537
                         ])
     
@@ -279,7 +279,7 @@ class CoppeliaSimEnv:
 
 
     # ---------------------- get simulation data ------------------------ #
-    '''-----------------------------------need to adjust for the leg loss-----------------------------------'''
+    '''-----------------------------------need to adjust for the leg loss (update: no need now)-----------------------------------'''
     def get_jointangle(self):
         positions = np.zeros((18))
         for l in range(self.__joint_handle.shape[0]):
@@ -290,7 +290,7 @@ class CoppeliaSimEnv:
         # remove the LF/RL data
         # positions = np.delete(positions, [0,1,2,9,10,11])
         # remove the LF/RM data
-        positions = np.delete(positions, [0,1,2,12,13,14])
+        # positions = np.delete(positions, [0,1,2,12,13,14])
         return positions
     
     def get_bodyposition(self):
@@ -323,7 +323,7 @@ class CoppeliaSimEnv:
         # remove the LF/RM data
         qvel_joints = np.delete(qvel_joints, [0,1,2,12,13,14])
         return qvel_joints
-    '''-----------------------------------need to adjust for the leg loss-----------------------------------''' 
+    '''-----------------------------------need to adjust for the leg loss (update: no need now)-----------------------------------''' 
     def get_force(self):
         forces = np.zeros((6))
         for i in range(6):
@@ -334,7 +334,7 @@ class CoppeliaSimEnv:
         # remove the LF/RF data
         # forces = np.delete(forces, [0,3])
         # remove the LF/RM data
-        forces = np.delete(forces, [0,4])
+        # forces = np.delete(forces, [0,4])
         return forces
     
     def get_foot_trajectory(self):
@@ -352,9 +352,9 @@ class CoppeliaSimEnv:
     
     def get_contact(self):
         # contact filtered by force sensor
-        contact = np.zeros((self.leg_avaiable_num))
+        contact = np.zeros((6))
         forces = self.get_force()
-        for i in range(self.leg_avaiable_num):
+        for i in range(6):
             contact[i] = 1 if forces[i] > 0.27 else 0
         return contact
     
@@ -375,9 +375,9 @@ class CoppeliaSimEnv:
         # remove RM leg (row 4)
         # self.__target_handle = np.delete(self.__joint_handle, 4, axis=0)
         # remove LF and RL legs (rows 0 and 3)
-        # self.__target_handle = np.delete(self.__joint_handle, [0,3], axis=0)
+        self.__target_handle = np.delete(self.__joint_handle, [0,3], axis=0)
         # remove LF and RM legs (rows 0 and 4)
-        self.__target_handle = np.delete(self.__joint_handle, [0,4], axis=0)
+        # self.__target_handle = np.delete(self.__joint_handle, [0,4], axis=0)
         for leg in range(self.__target_handle.shape[0]):
             for joint in range(self.__target_handle.shape[1]):
                 self.sim.setJointTargetPosition(int(self.__target_handle[leg][joint]),
@@ -410,7 +410,7 @@ class CoppeliaSimEnv:
     def is_healthy(self):
         robot_height = self.sim.getObjectPosition(self.sim.getObject('/head'))[2]
         LF_foot_height = self.sim.getObjectPosition(self.sim.getObject('/foot_ML'))[2]
-        RF_foot_height = self.sim.getObjectPosition(self.sim.getObject('/foot_FR'))[2]
+        RF_foot_height = self.sim.getObjectPosition(self.sim.getObject('/foot_MR'))[2]
         return robot_height > 0.0 and LF_foot_height > 0.0 and RF_foot_height > 0.0
 
     def step(self,action):
