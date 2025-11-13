@@ -10,3 +10,5 @@ expert/
 logs/
 
 evaluation/
+
+ros2_ws/
