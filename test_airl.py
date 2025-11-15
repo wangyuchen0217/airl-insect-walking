@@ -12,13 +12,13 @@ from common.normalized_env_red_mirror import CoppeliaSimEnv
 import tensorboard
 
 # ======== Parameters (modify these as needed) =========
-ENV_ID = "Medauroidea_66k_aug3c"
-ALGO = "airl_logit_vx"
-FILENAME = "20251101-1111" 
-PORT = 23000 # CoppeliaSim port: default is 23000
+ENV_ID = "RedMirror_66k_aug3c"
+ALGO = "ppo-transfer"
+FILENAME = "20251115-1605" 
+PORT = 23002 # CoppeliaSim port: default is 23000
 CUDA = 0
 NUM_EPISODES = 5
-STEP_NUM = 460000  # Choose a certain step number of the saved model or None 
+STEP_NUM = 250000  # Choose a certain step number of the saved model or None 
 LOG = False
 # =================================================
 

@@ -63,12 +63,18 @@ class PPO(Algorithm):
             hidden_activation=nn.Tanh()
         ).to(device)
 
+        # actor_path = 'logs/RedMirror_66k_aug3c/ppo-transfer/20251115-1605/model/step250000/actor.pth'
+        # self.actor.load_state_dict(torch.load(actor_path, weights_only=True, map_location=device))
+
         # Critic
         self.critic = CriticNetworkPolicy(
             state_shape=state_shape,
             hidden_units=units_critic,
             hidden_activation=nn.Tanh()
         ).to(device)
+
+        # critic_path = 'logs/RedMirror_66k_aug3c/ppo-transfer/20251115-1605/model/step250000/critic.pth'
+        # self.critic.load_state_dict(torch.load(critic_path, weights_only=True, map_location=device))
 
         self.optim_actor = Adam(self.actor.parameters(), lr=lr_actor)
         self.optim_critic = Adam(self.critic.parameters(), lr=lr_critic)

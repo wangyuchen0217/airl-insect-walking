@@ -22,9 +22,9 @@ import torch.utils.tensorboard
 NAME = "StickInsect"
 EXPERT_FILE = None
 ENV_ID = "RedMirror_66k_aug3c"
-ALGO = "ppo"
-MEMO = "Memo: g(s) + vx * 100, body(w/o x,y,z) + joint + contact(force), g(s) from 'logs/Medauroidea_66k_aug3c/airl_logit_vx/20251101-1111/model/step460000/discriminator.pth'"
-PORT = 23002 # CoppeliaSim port: default is 23000
+ALGO = "ppo-transfer"
+MEMO = "Memo: Continue after 20251115-1605 step 250000, g(s) + vx * 100, body(w/o x,y,z) + joint + contact(force), g(s) from 'logs/Medauroidea_66k_aug3c/airl_logit_vx/20251101-1111/model/step460000/discriminator.pth'"
+PORT = 23001 # CoppeliaSim port: default is 23000
 CUDA = 0
 ROLLOUT_LENGTH = 1000 # 3000
 NUM_STEPS = 2*10**6 
