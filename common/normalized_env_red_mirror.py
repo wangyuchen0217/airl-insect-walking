@@ -368,8 +368,8 @@ class CoppeliaSimEnv:
         time.sleep(1)
         self.start()
         # record the initial position of the robot
-        # head_pos = self.sim.getObjectPosition(self.sim.getObject('/head'))
-        # self._previous_x = head_pos[0]
+        robot_pos = self.sim.getObjectPosition(self.sim.getObject('/robot_body'))
+        self._previous_x = robot_pos[0]
         # reset the robot joints to zero or initial position
         if zero:
             self.set_zero()
@@ -403,8 +403,7 @@ class CoppeliaSimEnv:
         # obs = np.clip(obs, 0.0, 1.0)
 
         # calculate the reward based on the robot's position
-        # reward = self.sim.getObjectVelocity(self.sim.getObject('/head'))[0][0] * 100
-        reward = 0
+        reward = self.sim.getObjectVelocity(self.sim.getObject('/robot_body'))[0][0] * 100
         
         # # calculate the average contact gate
         # contacts6 = self.get_contact()
