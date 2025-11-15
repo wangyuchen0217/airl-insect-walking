@@ -8,7 +8,7 @@ def load_expert_data(expert_file, save_npz=False, npz_filename="expert_data.csv"
     data = pd.read_csv(expert_file, header=[0])
     states_np = data[[
                                     # 'body_x', 'body_y',
-                                    'body_z', 
+                                    # 'body_z', 
                                     'body_roll', 'body_pitch', 'body_yaw', 
                                     'motor_pos_FL_TC', 'motor_pos_FL_CF', 'motor_pos_FL_FT', 
                                     'motor_pos_ML_TC', 'motor_pos_ML_CF', 'motor_pos_ML_FT',
