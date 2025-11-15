@@ -262,16 +262,16 @@ class CoppeliaSimEnv:
     def set_robot_joint(self, target_pos):
         target_pos = target_pos.reshape((6, 3))
         target_dirction = np.array([
-                                                    [1, 1, -1],
-                                                    [1, 1, -1],
-                                                    [1, 1, -1],
+                                                    [1, -1, -1],
+                                                    [1, -1, -1],
+                                                    [1, -1, -1],
                                                     [1, 1, 1],
                                                     [1, 1, 1],
                                                     [1, 1, 1]])  
+        target_pos = target_pos * target_dirction
         offset = self.__initjoint_position
         for leg in range(0, 6):
             target_pos[leg] += offset[leg]
-        target_pos = target_pos * target_dirction
         self.__target_positions = target_pos
 
     def set_zero(self):
@@ -286,6 +286,14 @@ class CoppeliaSimEnv:
                 positions[3 * l + j] = self.sim.getJointPosition(int(self.__joint_handle[l][j]))
         # delete the CTr and FTi 
         # positions = np.delete(positions, [1,2,4,5,7,8,10,11,13,14,16,17])
+        joint_direction = np.array([
+                                            [1, -1, -1],
+                                            [1, -1, -1],
+                                            [1, -1, -1],
+                                            [1, 1, 1],
+                                            [1, 1, 1],
+                                            [1, 1, 1]]).reshape((18,))
+        positions = positions * joint_direction
         return positions
     
     def get_bodyposition(self):
