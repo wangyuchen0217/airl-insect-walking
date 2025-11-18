@@ -13,12 +13,12 @@ import tensorboard
 
 # ======== Parameters (modify these as needed) =========
 ENV_ID = "RedMirror_66k_aug3c"
-ALGO = "ppo-transfer"
-FILENAME = "20251115-1605" 
-PORT = 23002 # CoppeliaSim port: default is 23000
+ALGO = "ppo"
+FILENAME = "20251115-1218" 
+PORT = 23000 # CoppeliaSim port: default is 23000
 CUDA = 0
 NUM_EPISODES = 5
-STEP_NUM = 250000  # Choose a certain step number of the saved model or None 
+STEP_NUM = 370000  # Choose a certain step number of the saved model or None 
 LOG = False
 # =================================================
 
