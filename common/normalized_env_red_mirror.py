@@ -1,9 +1,9 @@
-import zmq
-import msgpack
+# import zmq
+# import msgpack
 import numpy as np
 import time
 from coppeliasim_zmqremoteapi_client import RemoteAPIClient
-import sys
+# import sys
 from dataclasses import dataclass
 
 @dataclass(frozen=True)
