@@ -6,19 +6,19 @@ from networks.actor import ActorNetworkPolicy
 import logging
 from common.base import LoggerWriter
 # from common.normalized_env_66k import CoppeliaSimEnv
-# from common.normalized_env_red_mirror import CoppeliaSimEnv
-from common.normalized_env_66k_legloss import CoppeliaSimEnv
+from common.normalized_env_red_mirror import CoppeliaSimEnv
+# from common.normalized_env_66k_legloss import CoppeliaSimEnv
 # from common.normalized_env_66k_RM_error import CoppeliaSimEnv
 import tensorboard
 
 # ======== Parameters (modify these as needed) =========
-ENV_ID = "Medauroidea_66k_aug3c_legloss"
-ALGO = "airl_logit_vx"
-FILENAME = "20251103-1924" 
+ENV_ID = "RedMirror_66k_aug3c"
+ALGO = "ppo-transfer"
+FILENAME = "20251115-2125" 
 PORT = 23000 # CoppeliaSim port: default is 23000
 CUDA = 0
-NUM_EPISODES = 5
-STEP_NUM = 840000  # Choose a certain step number of the saved model or None 
+NUM_EPISODES = 1
+STEP_NUM = 790000  # Choose a certain step number of the saved model or None 
 LOG = False
 # =================================================
 
