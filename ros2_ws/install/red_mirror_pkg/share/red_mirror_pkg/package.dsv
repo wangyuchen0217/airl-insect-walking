@@ -1,0 +1,6 @@
+source;share/red_mirror_pkg/hook/pythonpath.ps1
+source;share/red_mirror_pkg/hook/pythonpath.dsv
+source;share/red_mirror_pkg/hook/pythonpath.sh
+source;share/red_mirror_pkg/hook/ament_prefix_path.ps1
+source;share/red_mirror_pkg/hook/ament_prefix_path.dsv
+source;share/red_mirror_pkg/hook/ament_prefix_path.sh

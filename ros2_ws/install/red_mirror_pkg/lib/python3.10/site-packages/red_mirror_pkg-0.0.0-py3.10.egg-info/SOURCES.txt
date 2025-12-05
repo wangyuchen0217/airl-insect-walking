@@ -1,0 +1,17 @@
+package.xml
+setup.cfg
+setup.py
+../../build/red_mirror_pkg/red_mirror_pkg.egg-info/PKG-INFO
+../../build/red_mirror_pkg/red_mirror_pkg.egg-info/SOURCES.txt
+../../build/red_mirror_pkg/red_mirror_pkg.egg-info/dependency_links.txt
+../../build/red_mirror_pkg/red_mirror_pkg.egg-info/entry_points.txt
+../../build/red_mirror_pkg/red_mirror_pkg.egg-info/requires.txt
+../../build/red_mirror_pkg/red_mirror_pkg.egg-info/top_level.txt
+../../build/red_mirror_pkg/red_mirror_pkg.egg-info/zip-safe
+red_mirror_pkg/__init__.py
+red_mirror_pkg/red_mirror_dynamixel_node.py
+red_mirror_pkg/red_mirror_esp32_node.py
+resource/red_mirror_pkg
+test/test_copyright.py
+test/test_flake8.py
+test/test_pep257.py

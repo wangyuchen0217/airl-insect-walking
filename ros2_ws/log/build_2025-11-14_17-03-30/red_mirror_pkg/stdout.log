@@ -1,0 +1,26 @@
+running egg_info
+writing ../../build/red_mirror_pkg/red_mirror_pkg.egg-info/PKG-INFO
+writing dependency_links to ../../build/red_mirror_pkg/red_mirror_pkg.egg-info/dependency_links.txt
+writing entry points to ../../build/red_mirror_pkg/red_mirror_pkg.egg-info/entry_points.txt
+writing requirements to ../../build/red_mirror_pkg/red_mirror_pkg.egg-info/requires.txt
+writing top-level names to ../../build/red_mirror_pkg/red_mirror_pkg.egg-info/top_level.txt
+reading manifest file '../../build/red_mirror_pkg/red_mirror_pkg.egg-info/SOURCES.txt'
+writing manifest file '../../build/red_mirror_pkg/red_mirror_pkg.egg-info/SOURCES.txt'
+running build
+running build_py
+copying red_mirror_pkg/red_mirror_esp32_node.py -> /home/yuchen/airl-insect-walking/ros2_ws/build/red_mirror_pkg/build/lib/red_mirror_pkg
+copying red_mirror_pkg/red_mirror_dynamixel_node.py -> /home/yuchen/airl-insect-walking/ros2_ws/build/red_mirror_pkg/build/lib/red_mirror_pkg
+running install
+running install_lib
+copying /home/yuchen/airl-insect-walking/ros2_ws/build/red_mirror_pkg/build/lib/red_mirror_pkg/red_mirror_esp32_node.py -> /home/yuchen/airl-insect-walking/ros2_ws/install/red_mirror_pkg/lib/python3.10/site-packages/red_mirror_pkg
+copying /home/yuchen/airl-insect-walking/ros2_ws/build/red_mirror_pkg/build/lib/red_mirror_pkg/red_mirror_dynamixel_node.py -> /home/yuchen/airl-insect-walking/ros2_ws/install/red_mirror_pkg/lib/python3.10/site-packages/red_mirror_pkg
+byte-compiling /home/yuchen/airl-insect-walking/ros2_ws/install/red_mirror_pkg/lib/python3.10/site-packages/red_mirror_pkg/red_mirror_esp32_node.py to red_mirror_esp32_node.cpython-310.pyc
+byte-compiling /home/yuchen/airl-insect-walking/ros2_ws/install/red_mirror_pkg/lib/python3.10/site-packages/red_mirror_pkg/red_mirror_dynamixel_node.py to red_mirror_dynamixel_node.cpython-310.pyc
+running install_data
+running install_egg_info
+removing '/home/yuchen/airl-insect-walking/ros2_ws/install/red_mirror_pkg/lib/python3.10/site-packages/red_mirror_pkg-0.0.0-py3.10.egg-info' (and everything under it)
+Copying ../../build/red_mirror_pkg/red_mirror_pkg.egg-info to /home/yuchen/airl-insect-walking/ros2_ws/install/red_mirror_pkg/lib/python3.10/site-packages/red_mirror_pkg-0.0.0-py3.10.egg-info
+running install_scripts
+Installing red_mirror_dynamixel_node script to /home/yuchen/airl-insect-walking/ros2_ws/install/red_mirror_pkg/lib/red_mirror_pkg
+Installing red_mirror_esp32_node script to /home/yuchen/airl-insect-walking/ros2_ws/install/red_mirror_pkg/lib/red_mirror_pkg
+writing list of installed files to '/home/yuchen/airl-insect-walking/ros2_ws/build/red_mirror_pkg/install.log'

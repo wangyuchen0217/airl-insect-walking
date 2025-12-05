@@ -1,0 +1,20 @@
+[0.299s] Invoking command in '/home/yuchen/airl-insect-walking/ros2_ws/build/robot_policy': PYTHONPATH=/home/yuchen/airl-insect-walking/ros2_ws/build/robot_policy/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/yuchen/airl-insect-walking/ros2_ws/install/robot_policy/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/yuchen/airl-insect-walking/ros2_ws/build/robot_policy/build --no-deps symlink_data
+[0.420s] running develop
+[0.485s] running egg_info
+[0.485s] writing robot_policy.egg-info/PKG-INFO
+[0.485s] writing dependency_links to robot_policy.egg-info/dependency_links.txt
+[0.485s] writing entry points to robot_policy.egg-info/entry_points.txt
+[0.485s] writing requirements to robot_policy.egg-info/requires.txt
+[0.485s] writing top-level names to robot_policy.egg-info/top_level.txt
+[0.486s] reading manifest file 'robot_policy.egg-info/SOURCES.txt'
+[0.487s] writing manifest file 'robot_policy.egg-info/SOURCES.txt'
+[0.487s] running build_ext
+[0.487s] Creating /home/yuchen/airl-insect-walking/ros2_ws/install/robot_policy/lib/python3.10/site-packages/robot-policy.egg-link (link to .)
+[0.488s] Installing fake_contact_states script to /home/yuchen/airl-insect-walking/ros2_ws/install/robot_policy/lib/robot_policy
+[0.488s] Installing fake_imu_states script to /home/yuchen/airl-insect-walking/ros2_ws/install/robot_policy/lib/robot_policy
+[0.488s] Installing fake_joint_states script to /home/yuchen/airl-insect-walking/ros2_ws/install/robot_policy/lib/robot_policy
+[0.488s] Installing policy_node script to /home/yuchen/airl-insect-walking/ros2_ws/install/robot_policy/lib/robot_policy
+[0.488s] 
+[0.488s] Installed /home/yuchen/airl-insect-walking/ros2_ws/build/robot_policy
+[0.488s] running symlink_data
+[0.502s] Invoked command in '/home/yuchen/airl-insect-walking/ros2_ws/build/robot_policy' returned '0': PYTHONPATH=/home/yuchen/airl-insect-walking/ros2_ws/build/robot_policy/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/yuchen/airl-insect-walking/ros2_ws/install/robot_policy/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/yuchen/airl-insect-walking/ros2_ws/build/robot_policy/build --no-deps symlink_data

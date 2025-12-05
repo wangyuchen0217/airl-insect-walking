@@ -1,0 +1,177 @@
+[0.051s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'build']
+[0.051s] DEBUG:colcon:Parsed command line arguments: Namespace(log_base=None, log_level=None, verb_name='build', build_base='build', install_base='install', merge_install=False, symlink_install=False, test_result_base=None, continue_on_error=False, executor='parallel', parallel_workers=16, event_handlers=None, ignore_user_meta=False, metas=['./colcon.meta'], base_paths=['.'], packages_ignore=None, packages_ignore_regex=None, paths=None, packages_up_to=None, packages_up_to_regex=None, packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_select_by_dep=None, packages_skip_by_dep=None, packages_skip_up_to=None, packages_select_build_failed=False, packages_skip_build_finished=False, packages_select_test_failures=False, packages_skip_test_passed=False, packages_select=None, packages_skip=None, packages_select_regex=None, packages_skip_regex=None, packages_start=None, packages_end=None, allow_overriding=[], cmake_args=None, cmake_target=None, cmake_target_skip_unavailable=False, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, ament_cmake_args=None, catkin_cmake_args=None, catkin_skip_building_tests=False, verb_parser=<colcon_defaults.argument_parser.defaults.DefaultArgumentsDecorator object at 0x752ad6c68070>, verb_extension=<colcon_core.verb.build.BuildVerb object at 0x752ad6c33730>, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0x752ad6c33730>>)
+[0.123s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[0.123s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[0.123s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[0.123s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[0.123s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) discover
+[0.123s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[0.123s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/home/yuchen/airl-insect-walking/ros2_ws'
+[0.124s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ignore', 'ignore_ament_install']
+[0.124s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore'
+[0.124s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore_ament_install'
+[0.124s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_pkg']
+[0.124s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_pkg'
+[0.124s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_meta']
+[0.124s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_meta'
+[0.124s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ros']
+[0.124s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ros'
+[0.130s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['cmake', 'python']
+[0.130s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'cmake'
+[0.130s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python'
+[0.130s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['python_setup_py']
+[0.130s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python_setup_py'
+[0.130s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extensions ['ignore', 'ignore_ament_install']
+[0.130s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extension 'ignore'
+[0.130s] Level 1:colcon.colcon_core.package_identification:_identify(build) ignored
+[0.130s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extensions ['ignore', 'ignore_ament_install']
+[0.130s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extension 'ignore'
+[0.130s] Level 1:colcon.colcon_core.package_identification:_identify(install) ignored
+[0.130s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extensions ['ignore', 'ignore_ament_install']
+[0.130s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extension 'ignore'
+[0.130s] Level 1:colcon.colcon_core.package_identification:_identify(log) ignored
+[0.130s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ignore', 'ignore_ament_install']
+[0.130s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore'
+[0.130s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore_ament_install'
+[0.130s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_pkg']
+[0.130s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_pkg'
+[0.130s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_meta']
+[0.130s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_meta'
+[0.130s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ros']
+[0.130s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ros'
+[0.130s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['cmake', 'python']
+[0.130s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'cmake'
+[0.130s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python'
+[0.130s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['python_setup_py']
+[0.130s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python_setup_py'
+[0.130s] Level 1:colcon.colcon_core.package_identification:_identify(src/red_mirror_pkg) by extensions ['ignore', 'ignore_ament_install']
+[0.130s] Level 1:colcon.colcon_core.package_identification:_identify(src/red_mirror_pkg) by extension 'ignore'
+[0.130s] Level 1:colcon.colcon_core.package_identification:_identify(src/red_mirror_pkg) by extension 'ignore_ament_install'
+[0.130s] Level 1:colcon.colcon_core.package_identification:_identify(src/red_mirror_pkg) by extensions ['colcon_pkg']
+[0.130s] Level 1:colcon.colcon_core.package_identification:_identify(src/red_mirror_pkg) by extension 'colcon_pkg'
+[0.130s] Level 1:colcon.colcon_core.package_identification:_identify(src/red_mirror_pkg) by extensions ['colcon_meta']
+[0.130s] Level 1:colcon.colcon_core.package_identification:_identify(src/red_mirror_pkg) by extension 'colcon_meta'
+[0.130s] Level 1:colcon.colcon_core.package_identification:_identify(src/red_mirror_pkg) by extensions ['ros']
+[0.130s] Level 1:colcon.colcon_core.package_identification:_identify(src/red_mirror_pkg) by extension 'ros'
+[0.132s] DEBUG:colcon.colcon_core.package_identification:Package 'src/red_mirror_pkg' with type 'ros.ament_python' and name 'red_mirror_pkg'
+[0.132s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot_policy) by extensions ['ignore', 'ignore_ament_install']
+[0.132s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot_policy) by extension 'ignore'
+[0.132s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot_policy) by extension 'ignore_ament_install'
+[0.132s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot_policy) by extensions ['colcon_pkg']
+[0.132s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot_policy) by extension 'colcon_pkg'
+[0.132s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot_policy) by extensions ['colcon_meta']
+[0.132s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot_policy) by extension 'colcon_meta'
+[0.132s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot_policy) by extensions ['ros']
+[0.132s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot_policy) by extension 'ros'
+[0.132s] DEBUG:colcon.colcon_core.package_identification:Package 'src/robot_policy' with type 'ros.ament_python' and name 'robot_policy'
+[0.132s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
+[0.132s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) discover
+[0.132s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) using defaults
+[0.132s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) discover
+[0.132s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) using defaults
+[0.142s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) check parameters
+[0.142s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) discover
+[0.143s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 2 installed packages in /home/yuchen/airl-insect-walking/ros2_ws/install
+[0.144s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 271 installed packages in /opt/ros/humble
+[0.149s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) using defaults
+[0.165s] Level 5:colcon.colcon_core.verb:set package 'red_mirror_pkg' build argument 'cmake_args' from command line to 'None'
+[0.165s] Level 5:colcon.colcon_core.verb:set package 'red_mirror_pkg' build argument 'cmake_target' from command line to 'None'
+[0.165s] Level 5:colcon.colcon_core.verb:set package 'red_mirror_pkg' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.165s] Level 5:colcon.colcon_core.verb:set package 'red_mirror_pkg' build argument 'cmake_clean_cache' from command line to 'False'
+[0.165s] Level 5:colcon.colcon_core.verb:set package 'red_mirror_pkg' build argument 'cmake_clean_first' from command line to 'False'
+[0.165s] Level 5:colcon.colcon_core.verb:set package 'red_mirror_pkg' build argument 'cmake_force_configure' from command line to 'False'
+[0.165s] Level 5:colcon.colcon_core.verb:set package 'red_mirror_pkg' build argument 'ament_cmake_args' from command line to 'None'
+[0.165s] Level 5:colcon.colcon_core.verb:set package 'red_mirror_pkg' build argument 'catkin_cmake_args' from command line to 'None'
+[0.165s] Level 5:colcon.colcon_core.verb:set package 'red_mirror_pkg' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.165s] DEBUG:colcon.colcon_core.verb:Building package 'red_mirror_pkg' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/yuchen/airl-insect-walking/ros2_ws/build/red_mirror_pkg', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/yuchen/airl-insect-walking/ros2_ws/install/red_mirror_pkg', 'merge_install': False, 'path': '/home/yuchen/airl-insect-walking/ros2_ws/src/red_mirror_pkg', 'symlink_install': False, 'test_result_base': None}
+[0.165s] Level 5:colcon.colcon_core.verb:set package 'robot_policy' build argument 'cmake_args' from command line to 'None'
+[0.165s] Level 5:colcon.colcon_core.verb:set package 'robot_policy' build argument 'cmake_target' from command line to 'None'
+[0.165s] Level 5:colcon.colcon_core.verb:set package 'robot_policy' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.165s] Level 5:colcon.colcon_core.verb:set package 'robot_policy' build argument 'cmake_clean_cache' from command line to 'False'
+[0.165s] Level 5:colcon.colcon_core.verb:set package 'robot_policy' build argument 'cmake_clean_first' from command line to 'False'
+[0.165s] Level 5:colcon.colcon_core.verb:set package 'robot_policy' build argument 'cmake_force_configure' from command line to 'False'
+[0.165s] Level 5:colcon.colcon_core.verb:set package 'robot_policy' build argument 'ament_cmake_args' from command line to 'None'
+[0.165s] Level 5:colcon.colcon_core.verb:set package 'robot_policy' build argument 'catkin_cmake_args' from command line to 'None'
+[0.165s] Level 5:colcon.colcon_core.verb:set package 'robot_policy' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.165s] DEBUG:colcon.colcon_core.verb:Building package 'robot_policy' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/yuchen/airl-insect-walking/ros2_ws/build/robot_policy', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/yuchen/airl-insect-walking/ros2_ws/install/robot_policy', 'merge_install': False, 'path': '/home/yuchen/airl-insect-walking/ros2_ws/src/robot_policy', 'symlink_install': False, 'test_result_base': None}
+[0.165s] INFO:colcon.colcon_core.executor:Executing jobs using 'parallel' executor
+[0.166s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete
+[0.166s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/yuchen/airl-insect-walking/ros2_ws/src/red_mirror_pkg' with build type 'ament_python'
+[0.166s] Level 1:colcon.colcon_core.shell:create_environment_hook('red_mirror_pkg', 'ament_prefix_path')
+[0.167s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[0.167s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/yuchen/airl-insect-walking/ros2_ws/install/red_mirror_pkg/share/red_mirror_pkg/hook/ament_prefix_path.ps1'
+[0.168s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/yuchen/airl-insect-walking/ros2_ws/install/red_mirror_pkg/share/red_mirror_pkg/hook/ament_prefix_path.dsv'
+[0.168s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/yuchen/airl-insect-walking/ros2_ws/install/red_mirror_pkg/share/red_mirror_pkg/hook/ament_prefix_path.sh'
+[0.168s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.168s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.170s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/yuchen/airl-insect-walking/ros2_ws/src/robot_policy' with build type 'ament_python'
+[0.170s] Level 1:colcon.colcon_core.shell:create_environment_hook('robot_policy', 'ament_prefix_path')
+[0.170s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/yuchen/airl-insect-walking/ros2_ws/install/robot_policy/share/robot_policy/hook/ament_prefix_path.ps1'
+[0.170s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/yuchen/airl-insect-walking/ros2_ws/install/robot_policy/share/robot_policy/hook/ament_prefix_path.dsv'
+[0.170s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/yuchen/airl-insect-walking/ros2_ws/install/robot_policy/share/robot_policy/hook/ament_prefix_path.sh'
+[0.171s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.171s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.290s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/yuchen/airl-insect-walking/ros2_ws/src/red_mirror_pkg'
+[0.290s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.290s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.411s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/yuchen/airl-insect-walking/ros2_ws/src/robot_policy'
+[0.411s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.412s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.576s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/yuchen/airl-insect-walking/ros2_ws/src/red_mirror_pkg': PYTHONPATH=/home/yuchen/airl-insect-walking/ros2_ws/build/red_mirror_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/yuchen/airl-insect-walking/ros2_ws/install/red_mirror_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/red_mirror_pkg build --build-base /home/yuchen/airl-insect-walking/ros2_ws/build/red_mirror_pkg/build install --record /home/yuchen/airl-insect-walking/ros2_ws/build/red_mirror_pkg/install.log --single-version-externally-managed install_data
+[0.578s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/yuchen/airl-insect-walking/ros2_ws/src/robot_policy': PYTHONPATH=/home/yuchen/airl-insect-walking/ros2_ws/build/robot_policy/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/yuchen/airl-insect-walking/ros2_ws/install/robot_policy/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/robot_policy build --build-base /home/yuchen/airl-insect-walking/ros2_ws/build/robot_policy/build install --record /home/yuchen/airl-insect-walking/ros2_ws/build/robot_policy/install.log --single-version-externally-managed install_data
+[0.718s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/yuchen/airl-insect-walking/ros2_ws/src/red_mirror_pkg' returned '0': PYTHONPATH=/home/yuchen/airl-insect-walking/ros2_ws/build/red_mirror_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/yuchen/airl-insect-walking/ros2_ws/install/red_mirror_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/red_mirror_pkg build --build-base /home/yuchen/airl-insect-walking/ros2_ws/build/red_mirror_pkg/build install --record /home/yuchen/airl-insect-walking/ros2_ws/build/red_mirror_pkg/install.log --single-version-externally-managed install_data
+[0.720s] Level 1:colcon.colcon_core.environment:checking '/home/yuchen/airl-insect-walking/ros2_ws/install/red_mirror_pkg' for CMake module files
+[0.721s] Level 1:colcon.colcon_core.environment:checking '/home/yuchen/airl-insect-walking/ros2_ws/install/red_mirror_pkg' for CMake config files
+[0.721s] Level 1:colcon.colcon_core.environment:checking '/home/yuchen/airl-insect-walking/ros2_ws/install/red_mirror_pkg/lib'
+[0.722s] Level 1:colcon.colcon_core.environment:checking '/home/yuchen/airl-insect-walking/ros2_ws/install/red_mirror_pkg/bin'
+[0.722s] Level 1:colcon.colcon_core.environment:checking '/home/yuchen/airl-insect-walking/ros2_ws/install/red_mirror_pkg/lib/pkgconfig/red_mirror_pkg.pc'
+[0.722s] Level 1:colcon.colcon_core.environment:checking '/home/yuchen/airl-insect-walking/ros2_ws/install/red_mirror_pkg/lib/python3.10/site-packages'
+[0.722s] Level 1:colcon.colcon_core.shell:create_environment_hook('red_mirror_pkg', 'pythonpath')
+[0.722s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/yuchen/airl-insect-walking/ros2_ws/install/red_mirror_pkg/share/red_mirror_pkg/hook/pythonpath.ps1'
+[0.723s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/yuchen/airl-insect-walking/ros2_ws/install/red_mirror_pkg/share/red_mirror_pkg/hook/pythonpath.dsv'
+[0.723s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/yuchen/airl-insect-walking/ros2_ws/install/red_mirror_pkg/share/red_mirror_pkg/hook/pythonpath.sh'
+[0.724s] Level 1:colcon.colcon_core.environment:checking '/home/yuchen/airl-insect-walking/ros2_ws/install/red_mirror_pkg/bin'
+[0.724s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(red_mirror_pkg)
+[0.724s] INFO:colcon.colcon_core.shell:Creating package script '/home/yuchen/airl-insect-walking/ros2_ws/install/red_mirror_pkg/share/red_mirror_pkg/package.ps1'
+[0.725s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/yuchen/airl-insect-walking/ros2_ws/install/red_mirror_pkg/share/red_mirror_pkg/package.dsv'
+[0.725s] INFO:colcon.colcon_core.shell:Creating package script '/home/yuchen/airl-insect-walking/ros2_ws/install/red_mirror_pkg/share/red_mirror_pkg/package.sh'
+[0.726s] INFO:colcon.colcon_core.shell:Creating package script '/home/yuchen/airl-insect-walking/ros2_ws/install/red_mirror_pkg/share/red_mirror_pkg/package.bash'
+[0.726s] INFO:colcon.colcon_core.shell:Creating package script '/home/yuchen/airl-insect-walking/ros2_ws/install/red_mirror_pkg/share/red_mirror_pkg/package.zsh'
+[0.727s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/yuchen/airl-insect-walking/ros2_ws/install/red_mirror_pkg/share/colcon-core/packages/red_mirror_pkg)
+[0.728s] Level 1:colcon.colcon_core.environment:checking '/home/yuchen/airl-insect-walking/ros2_ws/install/robot_policy' for CMake module files
+[0.728s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/yuchen/airl-insect-walking/ros2_ws/src/robot_policy' returned '0': PYTHONPATH=/home/yuchen/airl-insect-walking/ros2_ws/build/robot_policy/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/yuchen/airl-insect-walking/ros2_ws/install/robot_policy/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/robot_policy build --build-base /home/yuchen/airl-insect-walking/ros2_ws/build/robot_policy/build install --record /home/yuchen/airl-insect-walking/ros2_ws/build/robot_policy/install.log --single-version-externally-managed install_data
+[0.728s] Level 1:colcon.colcon_core.environment:checking '/home/yuchen/airl-insect-walking/ros2_ws/install/robot_policy' for CMake config files
+[0.729s] Level 1:colcon.colcon_core.environment:checking '/home/yuchen/airl-insect-walking/ros2_ws/install/robot_policy/lib'
+[0.729s] Level 1:colcon.colcon_core.environment:checking '/home/yuchen/airl-insect-walking/ros2_ws/install/robot_policy/bin'
+[0.729s] Level 1:colcon.colcon_core.environment:checking '/home/yuchen/airl-insect-walking/ros2_ws/install/robot_policy/lib/pkgconfig/robot_policy.pc'
+[0.729s] Level 1:colcon.colcon_core.environment:checking '/home/yuchen/airl-insect-walking/ros2_ws/install/robot_policy/lib/python3.10/site-packages'
+[0.729s] Level 1:colcon.colcon_core.shell:create_environment_hook('robot_policy', 'pythonpath')
+[0.729s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/yuchen/airl-insect-walking/ros2_ws/install/robot_policy/share/robot_policy/hook/pythonpath.ps1'
+[0.729s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/yuchen/airl-insect-walking/ros2_ws/install/robot_policy/share/robot_policy/hook/pythonpath.dsv'
+[0.729s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/yuchen/airl-insect-walking/ros2_ws/install/robot_policy/share/robot_policy/hook/pythonpath.sh'
+[0.730s] Level 1:colcon.colcon_core.environment:checking '/home/yuchen/airl-insect-walking/ros2_ws/install/robot_policy/bin'
+[0.730s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(robot_policy)
+[0.730s] INFO:colcon.colcon_core.shell:Creating package script '/home/yuchen/airl-insect-walking/ros2_ws/install/robot_policy/share/robot_policy/package.ps1'
+[0.730s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/yuchen/airl-insect-walking/ros2_ws/install/robot_policy/share/robot_policy/package.dsv'
+[0.730s] INFO:colcon.colcon_core.shell:Creating package script '/home/yuchen/airl-insect-walking/ros2_ws/install/robot_policy/share/robot_policy/package.sh'
+[0.730s] INFO:colcon.colcon_core.shell:Creating package script '/home/yuchen/airl-insect-walking/ros2_ws/install/robot_policy/share/robot_policy/package.bash'
+[0.731s] INFO:colcon.colcon_core.shell:Creating package script '/home/yuchen/airl-insect-walking/ros2_ws/install/robot_policy/share/robot_policy/package.zsh'
+[0.731s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/yuchen/airl-insect-walking/ros2_ws/install/robot_policy/share/colcon-core/packages/robot_policy)
+[0.731s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:closing loop
+[0.731s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:loop closed
+[0.731s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete finished with '0'
+[0.731s] DEBUG:colcon.colcon_core.event_reactor:joining thread
+[0.734s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[0.734s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[0.734s] INFO:colcon.colcon_notification.desktop_notification:Sending desktop notification using 'notify2'
+[0.743s] DEBUG:colcon.colcon_core.event_reactor:joined thread
+[0.743s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/yuchen/airl-insect-walking/ros2_ws/install/local_setup.ps1'
+[0.744s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/yuchen/airl-insect-walking/ros2_ws/install/_local_setup_util_ps1.py'
+[0.745s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/yuchen/airl-insect-walking/ros2_ws/install/setup.ps1'
+[0.745s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/yuchen/airl-insect-walking/ros2_ws/install/local_setup.sh'
+[0.746s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/yuchen/airl-insect-walking/ros2_ws/install/_local_setup_util_sh.py'
+[0.746s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/yuchen/airl-insect-walking/ros2_ws/install/setup.sh'
+[0.747s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/yuchen/airl-insect-walking/ros2_ws/install/local_setup.bash'
+[0.747s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/yuchen/airl-insect-walking/ros2_ws/install/setup.bash'
+[0.748s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/yuchen/airl-insect-walking/ros2_ws/install/local_setup.zsh'
+[0.748s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/yuchen/airl-insect-walking/ros2_ws/install/setup.zsh'

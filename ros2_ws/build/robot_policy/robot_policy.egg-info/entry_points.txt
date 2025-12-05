@@ -1,0 +1,6 @@
+[console_scripts]
+fake_contact_states = robot_policy.fake_contact_states:main
+fake_imu_states = robot_policy.fake_imu_states:main
+fake_joint_states = robot_policy.fake_joint_states:main
+policy_node = robot_policy.policy_node:main
+

@@ -1,0 +1,39 @@
+running egg_info
+creating ../../build/red_mirror_pkg/red_mirror_pkg.egg-info
+writing ../../build/red_mirror_pkg/red_mirror_pkg.egg-info/PKG-INFO
+writing dependency_links to ../../build/red_mirror_pkg/red_mirror_pkg.egg-info/dependency_links.txt
+writing entry points to ../../build/red_mirror_pkg/red_mirror_pkg.egg-info/entry_points.txt
+writing requirements to ../../build/red_mirror_pkg/red_mirror_pkg.egg-info/requires.txt
+writing top-level names to ../../build/red_mirror_pkg/red_mirror_pkg.egg-info/top_level.txt
+writing manifest file '../../build/red_mirror_pkg/red_mirror_pkg.egg-info/SOURCES.txt'
+reading manifest file '../../build/red_mirror_pkg/red_mirror_pkg.egg-info/SOURCES.txt'
+writing manifest file '../../build/red_mirror_pkg/red_mirror_pkg.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/yuchen/airl-insect-walking/ros2_ws/build/red_mirror_pkg/build
+creating /home/yuchen/airl-insect-walking/ros2_ws/build/red_mirror_pkg/build/lib
+creating /home/yuchen/airl-insect-walking/ros2_ws/build/red_mirror_pkg/build/lib/red_mirror_pkg
+copying red_mirror_pkg/red_mirror_esp32_node.py -> /home/yuchen/airl-insect-walking/ros2_ws/build/red_mirror_pkg/build/lib/red_mirror_pkg
+copying red_mirror_pkg/red_mirror_dynamixel_node.py -> /home/yuchen/airl-insect-walking/ros2_ws/build/red_mirror_pkg/build/lib/red_mirror_pkg
+copying red_mirror_pkg/__init__.py -> /home/yuchen/airl-insect-walking/ros2_ws/build/red_mirror_pkg/build/lib/red_mirror_pkg
+running install
+running install_lib
+creating /home/yuchen/airl-insect-walking/ros2_ws/install/red_mirror_pkg/lib/python3.10/site-packages/red_mirror_pkg
+copying /home/yuchen/airl-insect-walking/ros2_ws/build/red_mirror_pkg/build/lib/red_mirror_pkg/red_mirror_esp32_node.py -> /home/yuchen/airl-insect-walking/ros2_ws/install/red_mirror_pkg/lib/python3.10/site-packages/red_mirror_pkg
+copying /home/yuchen/airl-insect-walking/ros2_ws/build/red_mirror_pkg/build/lib/red_mirror_pkg/red_mirror_dynamixel_node.py -> /home/yuchen/airl-insect-walking/ros2_ws/install/red_mirror_pkg/lib/python3.10/site-packages/red_mirror_pkg
+copying /home/yuchen/airl-insect-walking/ros2_ws/build/red_mirror_pkg/build/lib/red_mirror_pkg/__init__.py -> /home/yuchen/airl-insect-walking/ros2_ws/install/red_mirror_pkg/lib/python3.10/site-packages/red_mirror_pkg
+byte-compiling /home/yuchen/airl-insect-walking/ros2_ws/install/red_mirror_pkg/lib/python3.10/site-packages/red_mirror_pkg/red_mirror_esp32_node.py to red_mirror_esp32_node.cpython-310.pyc
+byte-compiling /home/yuchen/airl-insect-walking/ros2_ws/install/red_mirror_pkg/lib/python3.10/site-packages/red_mirror_pkg/red_mirror_dynamixel_node.py to red_mirror_dynamixel_node.cpython-310.pyc
+byte-compiling /home/yuchen/airl-insect-walking/ros2_ws/install/red_mirror_pkg/lib/python3.10/site-packages/red_mirror_pkg/__init__.py to __init__.cpython-310.pyc
+running install_data
+creating /home/yuchen/airl-insect-walking/ros2_ws/install/red_mirror_pkg/share/ament_index
+creating /home/yuchen/airl-insect-walking/ros2_ws/install/red_mirror_pkg/share/ament_index/resource_index
+creating /home/yuchen/airl-insect-walking/ros2_ws/install/red_mirror_pkg/share/ament_index/resource_index/packages
+copying resource/red_mirror_pkg -> /home/yuchen/airl-insect-walking/ros2_ws/install/red_mirror_pkg/share/ament_index/resource_index/packages
+copying package.xml -> /home/yuchen/airl-insect-walking/ros2_ws/install/red_mirror_pkg/share/red_mirror_pkg
+running install_egg_info
+Copying ../../build/red_mirror_pkg/red_mirror_pkg.egg-info to /home/yuchen/airl-insect-walking/ros2_ws/install/red_mirror_pkg/lib/python3.10/site-packages/red_mirror_pkg-0.0.0-py3.10.egg-info
+running install_scripts
+Installing red_mirror_dynamixel_node script to /home/yuchen/airl-insect-walking/ros2_ws/install/red_mirror_pkg/lib/red_mirror_pkg
+Installing red_mirror_esp32_node script to /home/yuchen/airl-insect-walking/ros2_ws/install/red_mirror_pkg/lib/red_mirror_pkg
+writing list of installed files to '/home/yuchen/airl-insect-walking/ros2_ws/build/red_mirror_pkg/install.log'

@@ -1,0 +1,47 @@
+[0.406s] Invoking command in '/home/yuchen/airl-insect-walking/ros2_ws/build/robot_policy': PYTHONPATH=/home/yuchen/airl-insect-walking/ros2_ws/build/robot_policy/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/yuchen/airl-insect-walking/ros2_ws/install/robot_policy/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --uninstall --editable --build-directory /home/yuchen/airl-insect-walking/ros2_ws/build/robot_policy/build
+[0.525s] running develop
+[0.596s] Removing /home/yuchen/airl-insect-walking/ros2_ws/install/robot_policy/lib/python3.10/site-packages/robot-policy.egg-link (link to .)
+[0.614s] Invoked command in '/home/yuchen/airl-insect-walking/ros2_ws/build/robot_policy' returned '0': PYTHONPATH=/home/yuchen/airl-insect-walking/ros2_ws/build/robot_policy/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/yuchen/airl-insect-walking/ros2_ws/install/robot_policy/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --uninstall --editable --build-directory /home/yuchen/airl-insect-walking/ros2_ws/build/robot_policy/build
+[0.615s] Invoking command in '/home/yuchen/airl-insect-walking/ros2_ws/src/robot_policy': PYTHONPATH=/home/yuchen/airl-insect-walking/ros2_ws/build/robot_policy/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/yuchen/airl-insect-walking/ros2_ws/install/robot_policy/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/robot_policy build --build-base /home/yuchen/airl-insect-walking/ros2_ws/build/robot_policy/build install --record /home/yuchen/airl-insect-walking/ros2_ws/build/robot_policy/install.log --single-version-externally-managed install_data --force
+[0.787s] running egg_info
+[0.787s] writing ../../build/robot_policy/robot_policy.egg-info/PKG-INFO
+[0.787s] writing dependency_links to ../../build/robot_policy/robot_policy.egg-info/dependency_links.txt
+[0.787s] writing entry points to ../../build/robot_policy/robot_policy.egg-info/entry_points.txt
+[0.788s] writing requirements to ../../build/robot_policy/robot_policy.egg-info/requires.txt
+[0.788s] writing top-level names to ../../build/robot_policy/robot_policy.egg-info/top_level.txt
+[0.789s] reading manifest file '../../build/robot_policy/robot_policy.egg-info/SOURCES.txt'
+[0.789s] writing manifest file '../../build/robot_policy/robot_policy.egg-info/SOURCES.txt'
+[0.789s] running build
+[0.789s] running build_py
+[0.789s] copying robot_policy/red_mirror_esp32_node.py -> /home/yuchen/airl-insect-walking/ros2_ws/build/robot_policy/build/lib/robot_policy
+[0.789s] copying robot_policy/policy_node.py -> /home/yuchen/airl-insect-walking/ros2_ws/build/robot_policy/build/lib/robot_policy
+[0.789s] copying robot_policy/red_mirror_dynamixel_node.py -> /home/yuchen/airl-insect-walking/ros2_ws/build/robot_policy/build/lib/robot_policy
+[0.789s] running install
+[0.790s] running install_lib
+[0.790s] creating /home/yuchen/airl-insect-walking/ros2_ws/install/robot_policy/lib/python3.10/site-packages/robot_policy
+[0.790s] copying /home/yuchen/airl-insect-walking/ros2_ws/build/robot_policy/build/lib/robot_policy/fake_contact_states.py -> /home/yuchen/airl-insect-walking/ros2_ws/install/robot_policy/lib/python3.10/site-packages/robot_policy
+[0.790s] copying /home/yuchen/airl-insect-walking/ros2_ws/build/robot_policy/build/lib/robot_policy/fake_joint_states.py -> /home/yuchen/airl-insect-walking/ros2_ws/install/robot_policy/lib/python3.10/site-packages/robot_policy
+[0.790s] copying /home/yuchen/airl-insect-walking/ros2_ws/build/robot_policy/build/lib/robot_policy/red_mirror_esp32_node.py -> /home/yuchen/airl-insect-walking/ros2_ws/install/robot_policy/lib/python3.10/site-packages/robot_policy
+[0.790s] copying /home/yuchen/airl-insect-walking/ros2_ws/build/robot_policy/build/lib/robot_policy/policy_node.py -> /home/yuchen/airl-insect-walking/ros2_ws/install/robot_policy/lib/python3.10/site-packages/robot_policy
+[0.790s] copying /home/yuchen/airl-insect-walking/ros2_ws/build/robot_policy/build/lib/robot_policy/fake_imu_states.py -> /home/yuchen/airl-insect-walking/ros2_ws/install/robot_policy/lib/python3.10/site-packages/robot_policy
+[0.790s] copying /home/yuchen/airl-insect-walking/ros2_ws/build/robot_policy/build/lib/robot_policy/red_mirror_dynamixel_node.py -> /home/yuchen/airl-insect-walking/ros2_ws/install/robot_policy/lib/python3.10/site-packages/robot_policy
+[0.790s] copying /home/yuchen/airl-insect-walking/ros2_ws/build/robot_policy/build/lib/robot_policy/__init__.py -> /home/yuchen/airl-insect-walking/ros2_ws/install/robot_policy/lib/python3.10/site-packages/robot_policy
+[0.791s] byte-compiling /home/yuchen/airl-insect-walking/ros2_ws/install/robot_policy/lib/python3.10/site-packages/robot_policy/fake_contact_states.py to fake_contact_states.cpython-310.pyc
+[0.791s] byte-compiling /home/yuchen/airl-insect-walking/ros2_ws/install/robot_policy/lib/python3.10/site-packages/robot_policy/fake_joint_states.py to fake_joint_states.cpython-310.pyc
+[0.791s] byte-compiling /home/yuchen/airl-insect-walking/ros2_ws/install/robot_policy/lib/python3.10/site-packages/robot_policy/red_mirror_esp32_node.py to red_mirror_esp32_node.cpython-310.pyc
+[0.792s] byte-compiling /home/yuchen/airl-insect-walking/ros2_ws/install/robot_policy/lib/python3.10/site-packages/robot_policy/policy_node.py to policy_node.cpython-310.pyc
+[0.793s] byte-compiling /home/yuchen/airl-insect-walking/ros2_ws/install/robot_policy/lib/python3.10/site-packages/robot_policy/fake_imu_states.py to fake_imu_states.cpython-310.pyc
+[0.794s] byte-compiling /home/yuchen/airl-insect-walking/ros2_ws/install/robot_policy/lib/python3.10/site-packages/robot_policy/red_mirror_dynamixel_node.py to red_mirror_dynamixel_node.cpython-310.pyc
+[0.794s] byte-compiling /home/yuchen/airl-insect-walking/ros2_ws/install/robot_policy/lib/python3.10/site-packages/robot_policy/__init__.py to __init__.cpython-310.pyc
+[0.794s] running install_data
+[0.795s] copying resource/robot_policy -> /home/yuchen/airl-insect-walking/ros2_ws/install/robot_policy/share/ament_index/resource_index/packages
+[0.795s] copying package.xml -> /home/yuchen/airl-insect-walking/ros2_ws/install/robot_policy/share/robot_policy
+[0.795s] running install_egg_info
+[0.796s] Copying ../../build/robot_policy/robot_policy.egg-info to /home/yuchen/airl-insect-walking/ros2_ws/install/robot_policy/lib/python3.10/site-packages/robot_policy-0.0.1-py3.10.egg-info
+[0.796s] running install_scripts
+[0.812s] Installing fake_contact_states script to /home/yuchen/airl-insect-walking/ros2_ws/install/robot_policy/lib/robot_policy
+[0.812s] Installing fake_imu_states script to /home/yuchen/airl-insect-walking/ros2_ws/install/robot_policy/lib/robot_policy
+[0.812s] Installing fake_joint_states script to /home/yuchen/airl-insect-walking/ros2_ws/install/robot_policy/lib/robot_policy
+[0.812s] Installing policy_node script to /home/yuchen/airl-insect-walking/ros2_ws/install/robot_policy/lib/robot_policy
+[0.812s] writing list of installed files to '/home/yuchen/airl-insect-walking/ros2_ws/build/robot_policy/install.log'
+[0.837s] Invoked command in '/home/yuchen/airl-insect-walking/ros2_ws/src/robot_policy' returned '0': PYTHONPATH=/home/yuchen/airl-insect-walking/ros2_ws/build/robot_policy/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/yuchen/airl-insect-walking/ros2_ws/install/robot_policy/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/robot_policy build --build-base /home/yuchen/airl-insect-walking/ros2_ws/build/robot_policy/build install --record /home/yuchen/airl-insect-walking/ros2_ws/build/robot_policy/install.log --single-version-externally-managed install_data --force

@@ -1,0 +1,4 @@
+[console_scripts]
+red_mirror_dynamixel_node = red_mirror_pkg.red_mirror_dynamixel_node:main
+red_mirror_esp32_node = red_mirror_pkg.red_mirror_esp32_node:main
+

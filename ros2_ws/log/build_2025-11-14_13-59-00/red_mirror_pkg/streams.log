@@ -1,0 +1,25 @@
+[0.411s] Invoking command in '/home/yuchen/airl-insect-walking/ros2_ws/src/red_mirror_pkg': CONDA_PROMPT_MODIFIER=(base) PYTHONPATH=/home/yuchen/airl-insect-walking/ros2_ws/build/red_mirror_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/yuchen/airl-insect-walking/ros2_ws/install/red_mirror_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/red_mirror_pkg build --build-base /home/yuchen/airl-insect-walking/ros2_ws/build/red_mirror_pkg/build install --record /home/yuchen/airl-insect-walking/ros2_ws/build/red_mirror_pkg/install.log --single-version-externally-managed install_data
+[0.527s] running egg_info
+[0.527s] writing ../../build/red_mirror_pkg/red_mirror_pkg.egg-info/PKG-INFO
+[0.527s] writing dependency_links to ../../build/red_mirror_pkg/red_mirror_pkg.egg-info/dependency_links.txt
+[0.527s] writing entry points to ../../build/red_mirror_pkg/red_mirror_pkg.egg-info/entry_points.txt
+[0.527s] writing requirements to ../../build/red_mirror_pkg/red_mirror_pkg.egg-info/requires.txt
+[0.527s] writing top-level names to ../../build/red_mirror_pkg/red_mirror_pkg.egg-info/top_level.txt
+[0.528s] reading manifest file '../../build/red_mirror_pkg/red_mirror_pkg.egg-info/SOURCES.txt'
+[0.528s] writing manifest file '../../build/red_mirror_pkg/red_mirror_pkg.egg-info/SOURCES.txt'
+[0.528s] running build
+[0.528s] running build_py
+[0.529s] copying red_mirror_pkg/red_mirror_dynamixel_node.py -> /home/yuchen/airl-insect-walking/ros2_ws/build/red_mirror_pkg/build/lib/red_mirror_pkg
+[0.529s] running install
+[0.529s] running install_lib
+[0.529s] copying /home/yuchen/airl-insect-walking/ros2_ws/build/red_mirror_pkg/build/lib/red_mirror_pkg/red_mirror_dynamixel_node.py -> /home/yuchen/airl-insect-walking/ros2_ws/install/red_mirror_pkg/lib/python3.10/site-packages/red_mirror_pkg
+[0.529s] byte-compiling /home/yuchen/airl-insect-walking/ros2_ws/install/red_mirror_pkg/lib/python3.10/site-packages/red_mirror_pkg/red_mirror_dynamixel_node.py to red_mirror_dynamixel_node.cpython-310.pyc
+[0.530s] running install_data
+[0.530s] running install_egg_info
+[0.531s] removing '/home/yuchen/airl-insect-walking/ros2_ws/install/red_mirror_pkg/lib/python3.10/site-packages/red_mirror_pkg-0.0.0-py3.10.egg-info' (and everything under it)
+[0.532s] Copying ../../build/red_mirror_pkg/red_mirror_pkg.egg-info to /home/yuchen/airl-insect-walking/ros2_ws/install/red_mirror_pkg/lib/python3.10/site-packages/red_mirror_pkg-0.0.0-py3.10.egg-info
+[0.532s] running install_scripts
+[0.543s] Installing red_mirror_dynamixel_node script to /home/yuchen/airl-insect-walking/ros2_ws/install/red_mirror_pkg/lib/red_mirror_pkg
+[0.543s] Installing red_mirror_esp32_node script to /home/yuchen/airl-insect-walking/ros2_ws/install/red_mirror_pkg/lib/red_mirror_pkg
+[0.543s] writing list of installed files to '/home/yuchen/airl-insect-walking/ros2_ws/build/red_mirror_pkg/install.log'
+[0.558s] Invoked command in '/home/yuchen/airl-insect-walking/ros2_ws/src/red_mirror_pkg' returned '0': CONDA_PROMPT_MODIFIER=(base) PYTHONPATH=/home/yuchen/airl-insect-walking/ros2_ws/build/red_mirror_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/yuchen/airl-insect-walking/ros2_ws/install/red_mirror_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/red_mirror_pkg build --build-base /home/yuchen/airl-insect-walking/ros2_ws/build/red_mirror_pkg/build install --record /home/yuchen/airl-insect-walking/ros2_ws/build/red_mirror_pkg/install.log --single-version-externally-managed install_data

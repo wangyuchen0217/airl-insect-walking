@@ -1,0 +1,12 @@
+Metadata-Version: 2.1
+Name: robot-policy
+Version: 0.0.1
+Summary: A minimal policy runner that outputs joint position commands.
+Home-page: UNKNOWN
+Maintainer: yuchen
+Maintainer-email: you@example.com
+License: Apache-2.0
+Platform: UNKNOWN
+
+UNKNOWN
+
