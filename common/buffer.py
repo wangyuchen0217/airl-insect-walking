@@ -1,3 +1,13 @@
+'''
+This module implements various types of experience replay buffers for reinforcement learning.
+It includes:
+- SerializedBuffer: Loads a pre-saved buffer from disk and allows sampling.
+- Buffer: A standard replay buffer that supports appending new experiences and saving to disk.
+- RolloutBuffer: A buffer designed for storing rollouts, with functionality to sample from the most recent K iterations.
+- ExpertBuffer: A buffer for storing expert demonstration data.
+'''
+
+
 import numpy as np
 import torch
 import os

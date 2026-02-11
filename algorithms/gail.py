@@ -1,3 +1,7 @@
+'''
+This file implements the GAIL algorithm. (not used in current version)
+'''
+
 import torch
 from torch import nn
 import torch.nn.functional as F

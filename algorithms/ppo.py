@@ -1,7 +1,14 @@
+'''
+This module implements the Proximal Policy Optimization (PPO) algorithm,
+which is integrated to an AIRL training framework for learning from expert demonstrations. 
+The PPO algorithm is responsible for updating the policy and value networks based on the rewards provided by the AIRL discriminator, 
+which serves as a learned reward function to guide the agent's learning process.
+'''
+
+
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from torch.utils.data import DataLoader, TensorDataset
 from torch.optim import Adam
 from common.buffer import RolloutBuffer
 from common.base import Algorithm

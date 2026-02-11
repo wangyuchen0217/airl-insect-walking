@@ -1,3 +1,7 @@
+'''
+This module implements the Soft Actor-Critic (SAC) algorithm. (not used in current version)
+'''
+
 import os
 import torch
 from torch import nn

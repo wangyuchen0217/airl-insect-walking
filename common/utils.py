@@ -1,3 +1,10 @@
+'''
+This module provides utility functions for reinforcement learning algorithms,
+including soft updates of network parameters, disabling gradients,
+adding random noise to actions, and collecting demonstration data.
+'''
+
+
 from tqdm import tqdm
 import numpy as np
 import torch

@@ -2,39 +2,38 @@
 
 This project implements Adversarial Inverse Reinforcement Learning (AIRL) and Soft Actor-Critic (SAC) in MuJoCo-based continuous control environments. The framework supports both imitation learning and standard reinforcement learning pipelines. It is designed for investigating locomotion strategies, including future applications to a custom stick insect simulation model.
 
+This repository implements Adversarial Inverse Reinforcement Learning (AIRL)
+for insect-inspired hexapod locomotion using MuJoCo.
+The goal is to learn transferable reward functions from biological gait data.
 
-## Overview
+## Project Structure
+airl-insect-walking/
+├── algorithms/               # modules of airl/ppo etc.
+├── common/               # 
+├── irl/                # AIRL / MaxEnt IRL algorithms
+├── policies/           # Policy networks (PPO, SAC)
+├── data/               # Demonstration trajectories
+├── configs/            # YAML configuration files
+├── scripts/            # Training and evaluation scripts
+└── README.md
 
-- **Algorithms**: 
-  - [x] AIRL (Adversarial Inverse Reinforcement Learning)
-  - [x] SAC (Soft Actor-Critic)
 
-- **Simulation Environment**: [MuJoCo](https://mujoco.org/)
-- **Verified Environments for AIRL**:
-  - Ant-v4: `logs/Ant-v4/airl/20250314-2354` and `logs/Ant-v4/airl/20250315-1418`
-  - Hopper-v4: `logs/Hopper-v4/airl/20250313-1539`
-- **Verified Environments for SAC**:
-  - Ant-v4: `logs/Ant-v4/sac/20250314-1353` and `logs/Ant-v4/sac/20250314-1354`
-  - Hopper-v4: `logs/Hopper-v4/sac/20250314-1353`
-- **In Progress**:
-  - Custom stick insect locomotion model (currently under development and debugging)
-    **xml**：
-    - StickInsect-v1 integrator="implicitfast", actuator: pos & vel
-    - StickInsect-v4 integrator="RK4", actuator: pos
-    - StickInsect-v4u1 integrator="RK4", actuator: pos, update the kv and kp
-    - StickInsect-v4u2integrator="implicitfast", actuator: pos, update the kv and kp, time_step=0.02
-    - StickInsect-v5 integrator="RK4", actuator: pos, ctrlrange revised
-    **env**:
-    - StickInsect-v4
-    - StickInsect-v5 action=data.ctrl - qpos[:N]
-    **expert data**：
-    - SrickInsect_states/actions.pt: all 3 insects, v4 env
+## Installation
 
-    - SrickInsect_states/actions_v1.pt: w/o 1st insect, v4 env, without xy
-    - SrickInsect_states/actions_v1u1.pt: w/o 1st insect, v4 env, without xy, update kpkv
-    - SrickInsect_states/actions_v1u2.pt: w/o 1st insect, v4 env, without xy, update kpkv, change fps
+```bash
+conda create -n airl python=3.10
+conda activate airl
+pip install -r requirements.txt
 
-    - SrickInsect_states/actions_v2.pt: w/o 1st insect, v5 env, v5 xml, with xy
+```md
+- MuJoCo >= 2.3
+- CUDA 12.3 (optional, for GPU training)
 
-    - SrickInsect_states/actions_v3.pt: w/o 1st insect, v5 env, v5 xml, without xy
-    - SrickInsect_states/actions_v3u1.pt: w/o 1st insect, v5 env, without xy, update kpkv
+
+## Quick Start
+
+Train AIRL on Ant-v4:
+```bash
+python scripts/train_airl.py --env Ant-v4 --config configs/airl.yaml
+
+python scripts/eval_policy.py --checkpoint logs/ant/airl/model.pt

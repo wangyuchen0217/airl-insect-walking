@@ -1,3 +1,8 @@
+'''
+This Trainer class manages the training and evaluation loop for a reinforcement learning algorithm.
+'''
+
+
 import os
 from datetime import timedelta
 from time import time, sleep

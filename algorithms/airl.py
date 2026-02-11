@@ -1,10 +1,16 @@
+'''
+This module implements the Adversarial Inverse Reinforcement Learning (AIRL) algorithm,
+which extends the Proximal Policy Optimization (PPO) framework by incorporating a discriminator
+to differentiate between expert and agent-generated trajectories.
+'''
+
+
 import torch
 from torch import nn
 import torch.nn.functional as F
 from torch.optim import Adam
 from algorithms.ppo import PPO
 from networks.discrim import AIRLDiscrim
-import sys
 
 
 class AIRL(PPO):

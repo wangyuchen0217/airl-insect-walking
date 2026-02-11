@@ -1,3 +1,8 @@
+'''
+This PPO implementation is modified for transfer learning using a pre-trained AIRL discriminator reward network g(s).
+'''
+
+
 import torch
 import torch.nn as nn
 import torch.nn.functional as F

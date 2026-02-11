@@ -1,3 +1,9 @@
+'''
+This module defines an abstract base class for reinforcement learning algorithms,
+including methods for exploration, exploitation, model saving, and logging parameters.
+'''
+
+
 from abc import ABC, abstractmethod
 import os
 import numpy as np

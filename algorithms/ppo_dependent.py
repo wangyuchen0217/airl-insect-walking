@@ -1,3 +1,8 @@
+'''
+This module implements the Proximal Policy Optimization (PPO) algorithm,
+which is used for individually training reinforcement learning agents as a control group.
+'''
+
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
