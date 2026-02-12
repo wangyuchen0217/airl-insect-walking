@@ -1,3 +1,11 @@
+'''
+This module defines a CoppeliaSim environment class that interfaces with the CoppeliaSim simulator using ZeroMQ.
+It provides functionalities for normalizing and denormalizing observations and actions, controlling the robot's joints,
+and retrieving simulation data such as joint angles, body position, orientation, forces, foot trajectory, and contact states.
+Applicable for: expert/expert_60000.csv etc.
+'''
+
+
 import zmq
 import msgpack
 import numpy as np

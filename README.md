@@ -1,7 +1,5 @@
 # AIRL-Insect-Walking
 
-This project implements Adversarial Inverse Reinforcement Learning (AIRL) and Soft Actor-Critic (SAC) in MuJoCo-based continuous control environments. The framework supports both imitation learning and standard reinforcement learning pipelines. It is designed for investigating locomotion strategies, including future applications to a custom stick insect simulation model.
-
 This repository implements Adversarial Inverse Reinforcement Learning (AIRL)
 for insect-inspired hexapod locomotion using MuJoCo.
 The goal is to learn transferable reward functions from biological gait data.
@@ -9,13 +7,25 @@ The goal is to learn transferable reward functions from biological gait data.
 ## Project Structure
 airl-insect-walking/
 ├── algorithms/               # modules of airl/ppo etc.
-├── common/               # 
-├── irl/                # AIRL / MaxEnt IRL algorithms
-├── policies/           # Policy networks (PPO, SAC)
-├── data/               # Demonstration trajectories
-├── configs/            # YAML configuration files
-├── scripts/            # Training and evaluation scripts
-└── README.md
+├── common/               # base modules and CoppeliaSim environment interfaces 
+├── env/               # CoppeliaSim main scripts
+├── env_legloss/               # CoppeliaSim main scripts for leg loss scenarios
+├── evaluation/               # evaluation records
+├── expert/               # expert demonstrations
+├── logs/               # training logs
+├── networks/               # modules for building Actor, Critic, Discriminator neural networks
+├── ros2_ws/               # ros2 interfaces and logs
+├── .gitignore
+├── eval_plot.ipynb               # plots the evaluation results of foot trajectories etc. (part of the trail)
+├── eval_plot.py               # plots the evaluation results of body pose, velocity and gaits etc. (the whole trail)
+├── expert.py               # load the expert demonstration (add contact columns, create a symmetric action bounds)
+├── gait_analysis.ipynb               # plots the duty factor, phase difference, synchronization matrix etc. (part of the trail)
+├── intra-limb analysis.ipynb               # r
+├── README.md
+├── test_airl.py               # r
+├── train_airl.py               # r
+├── train_ppo.py               # r
+└── visualize_reward.py               # r
 
 
 ## Installation

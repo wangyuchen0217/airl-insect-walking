@@ -1,3 +1,9 @@
+'''
+This script provides the module for loading expert demonstration data from the original CoppeliaSim CSV file format.
+It includes functions to load the expert data, add contact columns based on force thresholds, and create a symmetric action bounds for left and right legs.
+'''
+
+
 import torch
 import numpy as np
 import pandas as pd

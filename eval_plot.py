@@ -1,3 +1,13 @@
+'''
+This file plots the evaluation results of the whole test trail:
+- body pose
+- foot trajectories
+- gait pattern (foot trajs & force)
+- joint angles
+- velocity
+'''
+
+
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
