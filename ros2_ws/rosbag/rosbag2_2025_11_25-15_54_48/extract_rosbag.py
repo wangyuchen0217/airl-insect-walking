@@ -1,3 +1,7 @@
+'''
+This script reads a ROS2 rosbag2 file located in the current directory,
+'''
+
 import rosbag2_py
 import rclpy
 from rosidl_runtime_py.utilities import get_message
