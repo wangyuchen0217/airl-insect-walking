@@ -16,6 +16,7 @@ airl-insect-walking/
 ├── networks/               # modules for building Actor, Critic, Discriminator neural networks
 ├── ros2_ws/               # ros2 interfaces and logs
 ├── .gitignore
+├── environment.yml
 ├── eval_plot.ipynb               # plots the evaluation results of foot trajectories etc. (part of the trail)
 ├── eval_plot.py               # plots the evaluation results of body pose, velocity and gaits etc. (the whole trail)
 ├── expert.py               # load the expert demonstration (add contact columns, create a symmetric action bounds)
@@ -29,20 +30,16 @@ airl-insect-walking/
 
 ## Installation
 
-```bash
-conda create -n airl python=3.10
-conda activate airl
-pip install -r requirements.txt
+1. Install CoppeliaSim v4.10.0
+2. Enable ZMQ remote API
+3. Create conda environment, and navigate to the project root directory:
 
-```md
-- MuJoCo >= 2.3
-- CUDA 12.3 (optional, for GPU training)
+```bash
+cd airl-insect-walking
+conda env export > environment.yml
+conda activate coppeliasim
+```
 
 
 ## Quick Start
 
-Train AIRL on Ant-v4:
-```bash
-python scripts/train_airl.py --env Ant-v4 --config configs/airl.yaml
-
-python scripts/eval_policy.py --checkpoint logs/ant/airl/model.pt
