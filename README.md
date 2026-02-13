@@ -64,7 +64,7 @@ python train_airl.py
 This project includes five main experimental directions:
 
 ---
-#### 1. Expert Demonstration Generation
+### 1. Expert Demonstration Generation
 
 Expert demonstration are generated in CoppeliaSim based on the real stick insect, *Medauroidea extradentata*, walking trajectories. The demonstrations include:
 - States: body-z, rpy, joint positions, and binary foot contact information.
@@ -73,7 +73,7 @@ Expert demonstration are generated in CoppeliaSim based on the real stick insect
 Note: Demonstration generation is done with the CoppeliaSim UI with a defined `main_script.py` in folder `env` or `env_legloss`. The`expert.py` module provides the data preparation of the complete expert demonstration for the AIRL training. It is integrated in the `trian_airl.py`, thus no need to run it separately.
 
 ---
-#### 2. AIRL Learning from Expert Demonstrations
+### 2. AIRL Learning from Expert Demonstrations
 
 Adversarial Inverse Reinforcement Learning (AIRL) is applied to infer the underlying reward structure and the policy from expert data. The Discriminator learns to distinguish expert trajectories from policy-generated ones, while the policy is optimized using the recovered reward.
 
@@ -92,14 +92,14 @@ Note: Import the required `normalized_env` module and change the parameters base
 Use `eval_plot.py`, `eval_plot.ipynb`, `gait_analysis.ipynb`, and `intra_limb analysis.ipynb` for quantitative analysis.
 
 ---
-#### 3. Policy Learning Generalization
+### 3. Policy Learning Generalization
 
 We evaluate whether the learned reward enables policy generalization
 to unseen velocity commands and environmental perturbations.
 
 
 ---
-#### 4. Cross-Dynamic Transfer
+### 4. Cross-Dynamic Transfer
 
 The learned reward is tested under modified dynamics,
 including mass variations and friction changes,
