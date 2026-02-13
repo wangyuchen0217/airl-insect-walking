@@ -4,24 +4,24 @@ from rosidl_runtime_py.utilities import get_message
 from rclpy.serialization import deserialize_message
 import numpy as np
 
-# 当前目录就是 rosbag2_xxx_... 的目录
+# Current directory is the rosbag2_xxx_... directory
 bag_path = "."
 
-# 初始化 rclpy（为了使用反序列化）
+# Initialize rclpy (for deserialization)
 rclpy.init(args=None)
 
-# 打开 bag
+# open bag
 reader = rosbag2_py.SequentialReader()
 storage_options = rosbag2_py.StorageOptions(uri=bag_path, storage_id="sqlite3")
 converter_options = rosbag2_py.ConverterOptions("", "")
 reader.open(storage_options, converter_options)
 
-# 获取所有 topic 和类型
+# Acquire all topic and type information
 topic_types_info = reader.get_all_topics_and_types()
 topic_type_map = {t.name: t.type for t in topic_types_info}
 print("Topics:", topic_type_map)
 
-# 为每个 topic 准备对应的消息类型
+# Prepare message type classes for each topic
 msg_type_class = {}
 for topic, type_str in topic_type_map.items():
     try:
@@ -37,7 +37,7 @@ imu = []
 while reader.has_next():
     topic, data, stamp = reader.read_next()
 
-    # 只关心这几个 Float64MultiArray 话题
+    # Focus on following Float64MultiArray topics
     if topic not in (
         "/red_mirror/DXL_cmd_ID_positions",
         "/red_mirror/DXL_cur_positions",
@@ -47,9 +47,9 @@ while reader.has_next():
         continue
 
     msg_cls = msg_type_class[topic]
-    msg = deserialize_message(data, msg_cls)  # 反序列化为真正的 ROS 消息对象
+    msg = deserialize_message(data, msg_cls)  # Deserialize to actual ROS message object
 
-    # 这些都是 std_msgs/msg/Float64MultiArray，所以直接用 msg.data
+    # These are all std_msgs/msg/Float64MultiArray, so we can directly use msg.data
     arr = np.array(msg.data, dtype=np.float64)
 
     if topic == "/red_mirror/DXL_cmd_ID_positions":
@@ -61,7 +61,7 @@ while reader.has_next():
     elif topic == "/red_mirror/imu":
         imu.append(arr)
 
-# 保存为 CSV（注意要检查是否有数据）
+# Save to CSV (make sure to check if there is data)
 if DXL_cmd:
     np.savetxt("DXL_cmd.csv", np.vstack(DXL_cmd), delimiter=",")
     print("Saved DXL_cmd.csv")

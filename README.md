@@ -177,6 +177,7 @@ Record rosbag data:
 
 ```bash
 ros2 bag record -a
+cd /path/to/saved_rosbag
 python3 extract_rosbag.py
 ```
 
@@ -186,21 +187,8 @@ Visualize node graph:
 rqt_graph
 ```
 
-- **Get States from ROS2**
-
-To obtain simulation states via ROS2:
-
-```bash
-source /opt/ros/humble/setup.bash
-python3 sim_states_node.py
-```
-
-Read simulation states:
-
-```bash
-ros2 topic echo /sim_states
-```
-
+Evaluate the test trail:
+Use `sim2real_check.ipynb` in the saved rosbag folder for analysis.
 
 ## Citation
 
