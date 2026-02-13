@@ -49,8 +49,9 @@ conda activate coppeliasim
 cd /path/to/CoppeliaSim
 ./coppeliaSim
 ```
+load the created scene `medauroidea_stick_insect.ttt` in CoppeliaSim.
 
-#### 2. Run the Code (in another terminal)
+#### 2. Run the AIRL Training Code (in another terminal)
 
 ```bash
 conda activate coppeliasim
@@ -58,3 +59,55 @@ cd airl-insect-walking
 python train_airl.py
 ```
 
+## Experiments
+
+This project includes five main experimental directions:
+
+
+#### 1. Expert Demonstration Generation
+
+Expert demonstration are generated in CoppeliaSim based on the real stick insect, *Medauroidea extradentata*, walking trajectories. The demonstrations include:
+- States: body-z, rpy, joint positions, and binary foot contact information.
+- Actions: joint commands. 
+
+Note: Demonstration generation is done with the CoppeliaSim UI with a defined `main_script.py` in folder `env` or `env_legloss`. The`expert.py` module provides the data preparation of the complete expert demonstration for the AIRL training. It is integrated in the `trian_airl.py`, thus no need to run it separately.
+
+
+#### 2. AIRL Learning from Expert Demonstrations
+
+Adversarial Inverse Reinforcement Learning (AIRL) is applied to infer the underlying reward structure and the policy from expert data. The Discriminator learns to distinguish expert trajectories from policy-generated ones, while the policy is optimized using the recovered reward.
+
+**(1) Run the AIRL training code:**
+```bash
+python train_airl.py
+```
+
+**(2) Test the trained Actor (policy) network:**
+```
+python test_airl.py
+```
+Note: Import the required `normalized_env` module and change the parameters based on the different tasks and needs.
+
+**(3) Evaluation:**
+Use `eval_plot.py`, `eval_plot.ipynb`, `gait_analysis.ipynb`, and `intra_limb analysis.ipynb` for quantitative analysis.
+
+
+#### 3. Policy Learning Generalization
+
+We evaluate whether the learned reward enables policy generalization
+to unseen velocity commands and environmental perturbations.
+
+
+
+#### 4. Cross-Dynamic Transfer
+
+The learned reward is tested under modified dynamics,
+including mass variations and friction changes,
+to examine its robustness across dynamic conditions.
+
+
+#### 5. Sim-to-Real Calibration
+
+A sim-to-real calibration procedure is implemented to bridge
+the gap between simulation and the physical hexapod robot.
+Policy transfer performance is evaluated under real hardware constraints.
