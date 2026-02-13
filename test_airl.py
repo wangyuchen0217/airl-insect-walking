@@ -1,3 +1,8 @@
+'''
+This script tests a trained AIRL/PPO Actor model in a CoppeliaSim environment.
+'''
+
+
 import os
 import sys
 import torch
@@ -5,11 +10,15 @@ import numpy as np
 from networks.actor import ActorNetworkPolicy 
 import logging
 from common.base import LoggerWriter
+import tensorboard
+
+# ===== Import the normalized environment (modify these as needed) =====
 # from common.normalized_env_66k import CoppeliaSimEnv
 from common.normalized_env_red_mirror import CoppeliaSimEnv
 # from common.normalized_env_66k_legloss import CoppeliaSimEnv
 # from common.normalized_env_66k_RM_error import CoppeliaSimEnv
-import tensorboard
+# =============================================================
+
 
 # ======== Parameters (modify these as needed) =========
 ENV_ID = "RedMirror_66k_aug3c"

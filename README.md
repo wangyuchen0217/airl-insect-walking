@@ -20,12 +20,11 @@ airl-insect-walking/
 ├── eval_plot.py               # plots the evaluation results of body pose, velocity and gaits etc. (the whole trail)
 ├── expert.py               # load the expert demonstration (add contact columns, create a symmetric action bounds)
 ├── gait_analysis.ipynb               # plots the duty factor, phase difference, synchronization matrix etc. (part of the trail)
-├── intra-limb analysis.ipynb               # r
+├── intra-limb analysis.ipynb               # plots the cyclograms etc. (part of the trail)
 ├── README.md
-├── test_airl.py               # r
-├── train_airl.py               # r
-├── train_ppo.py               # r
-└── visualize_reward.py               # r
+├── test_airl.py               # tests a trained AIRL/PPO Actor model in a CoppeliaSim environment
+├── train_airl.py               # trains an AIRL agent in a CoppeliaSim environment using expert demonstrations
+└── train_ppo.py               # trains a PPO agent in a CoppeliaSim environment
 
 
 ## Installation

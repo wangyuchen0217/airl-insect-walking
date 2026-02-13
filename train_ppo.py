@@ -1,3 +1,8 @@
+'''
+This script trains a PPO agent in a CoppeliaSim environment.
+'''
+
+
 import os
 os.environ["NUMEXPR_MAX_THREADS"] = "8"
 import sys
@@ -12,11 +17,15 @@ from common.trainer import Trainer
 import logging
 from common.base import LoggerWriter
 from common.base import log_parameters
+from common.buffer import SerializedBuffer
+import torch.utils.tensorboard
+
+# ===== Import the normalized environment (modify these as needed) =====
 from common.normalized_env_red_mirror import CoppeliaSimEnv
 # from common.normalized_env_66k import CoppeliaSimEnv
 # from common.normalized_env_66k_legloss import CoppeliaSimEnv
-from common.buffer import SerializedBuffer
-import torch.utils.tensorboard
+# =============================================================
+
 
 # ======== Parameters (modify these as needed) =========
 NAME = "StickInsect"
