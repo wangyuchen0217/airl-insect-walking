@@ -10,8 +10,6 @@ import torch
 import numpy as np
 from coppeliasim_zmqremoteapi_client import RemoteAPIClient
 from datetime import datetime
-# from algorithms.ppo_dependent import PPO
-from algorithms.ppo_transfer import PPO
 from expert import load_expert_data, ExpertBuffer
 from common.trainer import Trainer
 import logging
@@ -19,6 +17,11 @@ from common.base import LoggerWriter
 from common.base import log_parameters
 from common.buffer import SerializedBuffer
 import torch.utils.tensorboard
+
+# ===== Import the PPO algorithm (modify these as needed) =====
+# from algorithms.ppo_dependent import PPO
+from algorithms.ppo_transfer import PPO
+# =====================================================
 
 # ===== Import the normalized environment (modify these as needed) =====
 from common.normalized_env_red_mirror import CoppeliaSimEnv

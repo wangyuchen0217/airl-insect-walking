@@ -67,47 +67,145 @@ This project includes five main experimental directions:
 ### 1. Expert Demonstration Generation
 
 Expert demonstration are generated in CoppeliaSim based on the real stick insect, *Medauroidea extradentata*, walking trajectories. The demonstrations include:
-- States: body-z, rpy, joint positions, and binary foot contact information.
+- States: body-z, rpy, joint positions, and binary foot contact information;
 - Actions: joint commands. 
 
-Note: Demonstration generation is done with the CoppeliaSim UI with a defined `main_script.py` in folder `env` or `env_legloss`. The`expert.py` module provides the data preparation of the complete expert demonstration for the AIRL training. It is integrated in the `trian_airl.py`, thus no need to run it separately.
+Note: Demonstration generation is done with the CoppeliaSim UI with a defined `main_script.py` in folder `env/` or `env_legloss/`. The`expert.py` module provides the data preparation of the complete expert demonstration for the AIRL training. It is integrated in the `trian_airl.py`, thus no need to run it separately.
 
 ---
 ### 2. AIRL Learning from Expert Demonstrations
 
 Adversarial Inverse Reinforcement Learning (AIRL) is applied to infer the underlying reward structure and the policy from expert data. The Discriminator learns to distinguish expert trajectories from policy-generated ones, while the policy is optimized using the recovered reward.
 
-**(1) Run the AIRL training code:**
+- **Run the AIRL training code:**
 ```bash
 python train_airl.py
 ```
 
-**(2) Test the trained Actor (policy) network:**
+- **Test the trained Actor (policy) network:**
 ```
 python test_airl.py
 ```
-Note: Import the required `normalized_env` module and change the parameters based on the different tasks and needs.
 
-**(3) Evaluation:**
+- **Evaluation:**
 Use `eval_plot.py`, `eval_plot.ipynb`, `gait_analysis.ipynb`, and `intra_limb analysis.ipynb` for quantitative analysis.
+
+Note: Import the required `normalized_env` module and change the parameters based on the different tasks and needs.
 
 ---
 ### 3. Policy Learning Generalization
 
-We evaluate whether the learned reward enables policy generalization
-to unseen velocity commands and environmental perturbations.
+The proposed AIRL-based learning framework is evaluated for the policy learning generalization ability with very limited expert demonstration data. With the demonstration dataset of a healthy stick insect walking on a flat terrain, the framework can learn the policy and reward function for:
+- uneven terrain `env/`,
+- RM leg loss scenarios `env_legloss/`.
 
+Note: Import the required `normalized_env` module and change the parameters based on the different tasks and needs.
 
 ---
 ### 4. Cross-Dynamic Transfer
 
-The learned reward is tested under modified dynamics,
-including mass variations and friction changes,
-to examine its robustness across dynamic conditions.
+The AIRL-learned reward network (Discriminator g(s) network) is tested for the cross-dynamic transfer task. The reward network is learned from the Stick Insect agent in the CoppeliaSim environment and used to transfer PPO learning to the RedMirror agent in the CoppeliaSim environment. These two agents differ in joint locations, joint properties, torque ranges, and body weight, etc.
+
+- **Transfer group**: using `AIRL-learned reward network + reward shaping factor` as reward function.
+```bash
+python train_ppo.py # import ppo_transfer module
+```
+- **Control group**: using only `reward shaping factor` as reward function.
+```bash
+python train_ppo.py # import ppo_dependent module
+```
+
+Note: Import the required `ppo` module and `normalized_env` module, and change the parameters based on the different tasks and needs.
+
+---
+### 5. Sim-to-Real Calibration
+
+A sim-to-real calibration procedure on the orientation (rpy) is implemented to bridge the gap between the simulation *RedMirror* agent and the physical hexapod robot *RedMirror*.
+
+The workflow consists of three stages:
+
+- **ROS2 workspace setup**
+
+Build the ROS2 workspace:
+```bash
+conda deactivate
+cd airl-insect-walking/ros2_ws
+colcon build
+source install/setup.bash
+```
+
+Grant serial port permissions:
+```bash
+sudo chmod 777 /dev/ttyU2D2
+sudo chmod 777 /dev/ttyESP32
+```
+
+- **Running the Real Robot Pipeline**
+
+Terminal 1 – Robot Hardware Drivers
+```bash
+ros2 run red_mirror_pkg red_mirror_dynamixel_node
+ros2 run red_mirror_pkg red_mirror_esp32_node
+```
+
+Terminal 2 – Policy Node
+```bash
+export PYTHONPATH=$PYTHONPATH:/home/yuchen/airl-insect-walking
+ros2 run robot_policy policy_node
+```
+
+- **Monitoring and Debugging**
+
+Check topic connections:
+
+```bash
+ros2 topic list
+ros2 topic info /position_controller/commands
+```
+
+Echo important topics:
+
+```bash
+ros2 topic echo /joint_states
+ros2 topic echo /position_controller/commands
+ros2 topic echo /red_mirror/DXL_cur_positions
+ros2 topic echo /red_mirror/foot_contact
+ros2 topic echo /red_mirror/imu
+```
+
+Record rosbag data:
+
+```bash
+ros2 bag record -a
+python3 extract_rosbag.py
+```
+
+Visualize node graph:
+
+```bash
+rqt_graph
+```
+
+- **Get States from ROS2**
+
+To obtain simulation states via ROS2:
+
+```bash
+source /opt/ros/humble/setup.bash
+python3 sim_states_node.py
+```
+
+Read simulation states:
+
+```bash
+ros2 topic echo /sim_states
+```
 
 
-#### 5. Sim-to-Real Calibration
+## Citation
 
-A sim-to-real calibration procedure is implemented to bridge
-the gap between simulation and the physical hexapod robot.
-Policy transfer performance is evaluated under real hardware constraints.
+If you use this repository in your research or find it helpful for your research or project, please cite:
+
+```bibtex
+# coming soon
+```
