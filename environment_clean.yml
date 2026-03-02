@@ -1,0 +1,20 @@
+name: coppeliasim
+channels:
+  - conda-forge
+dependencies:
+  - python=3.10
+  - pip
+  - ipython
+  - ipykernel
+  - numpy
+  - scipy
+  - pandas
+  - matplotlib
+  - tqdm
+  - pyzmq
+  - pip:
+      - torch==2.7.1+cu126
+      - torchvision==0.22.1+cu126
+      - torchaudio==2.7.1+cu126
+      - coppeliasim-zmqremoteapi-client==2.0.4
+      - tensorboard
