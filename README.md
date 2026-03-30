@@ -11,9 +11,10 @@ This repository provides a complete data-driven learning and transfer framework,
 
 The goal is to bridge biology and engineering through a data-driven framework that learns transferable locomotion strategies from biological walking data.
 
+<!-- This work has been submitted to  -->
 
-Parts of this work will be presented at the:
-- **SICE 38th Decentralized Autonomous Systems Symposium, DAS (第38回 自律分散システム・シンポジウム)**.  
+<!-- Parts of this work will be presented at the:
+- **SICE 38th Decentralized Autonomous Systems Symposium, DAS (第38回 自律分散システム・シンポジウム)**.   -->
 
 A related journal publication will come soon.
 ![AIRL Pipeline](common/pipeline.png)
