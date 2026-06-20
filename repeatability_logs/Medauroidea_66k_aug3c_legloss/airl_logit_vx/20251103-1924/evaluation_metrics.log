@@ -1,0 +1,21 @@
+Ontime :
+True
+INFO: VrepInterfaze is initialized successfully.
+Loaded actor model from logs/Medauroidea_66k_aug3c_legloss/airl_logit_vx/20251103-1924/model/step840000/actor.pth
+--- Evaluation ---
+Episode 1: Return=23496.91, Steps=283, MeanSpeed=2.0757 m/s, RollRMS=0.8445, PitchRMS=0.7964
+Episode 2: Return=23702.52, Steps=303, MeanSpeed=1.9557 m/s, RollRMS=0.8222, PitchRMS=0.6772
+Episode 3: Return=23625.64, Steps=305, MeanSpeed=1.9365 m/s, RollRMS=0.9360, PitchRMS=0.7427
+Episode 4: Return=23766.80, Steps=277, MeanSpeed=2.1450 m/s, RollRMS=0.7093, PitchRMS=0.6270
+Episode 5: Return=23682.56, Steps=341, MeanSpeed=1.7363 m/s, RollRMS=0.7864, PitchRMS=0.6984
+Episode 6: Return=23784.71, Steps=289, MeanSpeed=2.0575 m/s, RollRMS=0.6623, PitchRMS=0.7762
+Episode 7: Return=23934.71, Steps=296, MeanSpeed=2.0215 m/s, RollRMS=0.6105, PitchRMS=0.6696
+Episode 8: Return=24032.69, Steps=283, MeanSpeed=2.1230 m/s, RollRMS=0.7527, PitchRMS=0.7222
+Episode 9: Return=24356.22, Steps=307, MeanSpeed=1.9834 m/s, RollRMS=0.7593, PitchRMS=0.7083
+Episode 10: Return=23774.09, Steps=314, MeanSpeed=1.8928 m/s, RollRMS=0.8111, PitchRMS=0.6387
+
+--- Summary across episodes ---
+Number of trials: 10
+Mean speed: 1.9927 ± 0.1213 m/s
+Roll RMS: 0.7694 ± 0.0937
+Pitch RMS: 0.7057 ± 0.0555
